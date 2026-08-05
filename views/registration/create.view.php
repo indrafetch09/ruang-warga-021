@@ -7,11 +7,10 @@
             <div>
                 <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                      alt="Your Company">
-                <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Register for a new
-                    account</h2>
+                <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Masuk sebagai Admin</h2>
             </div>
 
-            <form class="mt-8 space-y-6" action="/register" method="POST">
+            <form class="mt-8 space-y-6" action="/login" method="POST">
                 <div class="-space-y-px rounded-md shadow-sm">
                     <div>
                         <label for="email" class="sr-only">Email address</label>

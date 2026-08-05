@@ -33,63 +33,7 @@ Ruang Warga 021 adalah aplikasi web sederhana berbasis PHP yang dibangun tanpa f
 
 ---
 
-## 📁 Struktur Proyek
-
-```
-ruang-warga-021/
-├── Core/                   # Komponen inti aplikasi
-│   ├── App.php             # Kelas utama aplikasi
-│   ├── Authenticator.php   # Logika autentikasi
-│   ├── Container.php       # Dependency injection container
-│   ├── Database.php        # Koneksi database via PDO
-│   ├── Router.php          # Router HTTP
-│   ├── Session.php         # Manajemen sesi
-│   ├── Validator.php       # Validasi input
-│   ├── Middleware/         # Middleware (auth, guest)
-│   └── functions.php       # Helper functions
-├── Http/
-│   ├── controllers/        # Controller untuk setiap fitur
-│   │   ├── notes/          # CRUD catatan
-│   │   ├── registration/   # Registrasi pengguna
-│   │   └── session/        # Login & logout
-│   └── Forms/              # Form request / validasi form
-├── views/                  # Template HTML
-│   ├── partials/           # Komponen layout (header, nav, dll)
-│   ├── notes/              # View halaman catatan
-│   ├── registration/       # View halaman registrasi
-│   └── session/            # View halaman login
-├── public/                 # Document root (entry point)
-├── tests/                  # Unit & feature test (Pest)
-├── bootstrap.php           # Inisialisasi aplikasi & container
-├── config.php              # Konfigurasi database
-├── routes.php              # Definisi semua rute
-└── composer.json           # Dependensi PHP
-```
-
 ---
-
-## 🗺️ Rute Aplikasi
-
-| Method   | URI              | Keterangan                     | Akses       |
-|----------|------------------|--------------------------------|-------------|
-| `GET`    | `/`              | Halaman beranda                | Publik      |
-| `GET`    | `/about`         | Halaman tentang                | Publik      |
-| `GET`    | `/contact`       | Halaman kontak                 | Publik      |
-| `GET`    | `/notes`         | Daftar catatan                 | Auth only   |
-| `GET`    | `/note`          | Detail catatan                 | Publik      |
-| `GET`    | `/notes/create`  | Form buat catatan baru         | Auth only   |
-| `POST`   | `/notes`         | Simpan catatan baru            | Auth only   |
-| `GET`    | `/note/edit`     | Form edit catatan              | Auth only   |
-| `PATCH`  | `/note`          | Update catatan                 | Auth only   |
-| `DELETE` | `/note`          | Hapus catatan                  | Auth only   |
-| `GET`    | `/register`      | Form registrasi                | Guest only  |
-| `POST`   | `/register`      | Proses registrasi              | Guest only  |
-| `GET`    | `/login`         | Form login                     | Guest only  |
-| `POST`   | `/session`       | Proses login                   | Guest only  |
-| `DELETE` | `/session`       | Logout                         | Auth only   |
-
----
-
 ## ⚙️ Instalasi & Konfigurasi
 
 ### Prasyarat
@@ -102,8 +46,8 @@ ruang-warga-021/
 
 1. **Clone repository**
    ```bash
-   git clone https://github.com/indrafetch09/pengurus-rw-021.git
-   cd pengurus-rw-021
+   git clone
+   cd 
    ```
 
 2. **Install dependensi**
