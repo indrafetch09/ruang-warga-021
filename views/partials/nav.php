@@ -16,6 +16,8 @@
                         <?php if ($_SESSION['user'] ?? false) : ?>
                             <a href="/notes"
                                class="<?= urlIs('/notes') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Notes</a>
+                            <a href="/laporan"
+                               class="<?= urlIs('/laporan') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Laporan Bulanan</a>
                         <?php endif ?>
                         <a href="/contact"
                            class="<?= urlIs('/contact') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
