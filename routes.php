@@ -7,7 +7,7 @@ $router->get('/about', 'about.php');
 $router->get('/contact', 'contact.php');
 
 // Laporan Bulanan
-$router->get('/laporan', 'laporan/index.php');
+$router->get('/laporan', 'laporan/index.php'); // ->only('auth'); // Ubah ke only auth kalo mau up to production
 $router->get('/laporan/create', 'laporan/create.php')->only('auth');
 $router->post('/laporan', 'laporan/store.php')->only('auth');
 $router->get('/laporan/export', 'laporan/export.php')->only('auth');
