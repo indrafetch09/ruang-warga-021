@@ -51,7 +51,7 @@
                     Warga Sejahtera.
                 </h1>
                 <p class="mt-4 text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
-                    Portal resmi RW 21. Kombinasi pelayanan digital yang serba cepat
+                    Portal resmi RW 021. Kombinasi pelayanan digital yang serba cepat
                     dengan semangat menjaga lingkungan yang asri dan guyub antarwarga.
                 </p>
                 <!-- ponytail: border-radius 10px, solid colors -->
@@ -278,7 +278,7 @@
     <footer class="bg-gray-900 py-8 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-gray-400 text-sm">
-                &copy; 2026 Sistem Informasi RW 21. Seluruh Hak Cipta Dilindungi.
+                &copy; 2026 Sistem Informasi RW 021. Seluruh Hak Cipta Dilindungi.
             </p>
         </div>
     </footer>

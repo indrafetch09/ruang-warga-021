@@ -18,9 +18,17 @@ $router->get('/', [HomeController::class, 'index']);
 $router->get('/tentang-kami', [HomeController::class, 'about']);
 $router->get('/pengurus-rw', [HomeController::class, 'pengurus']);
 
-// Notulensi Publik
+// Layanan Warga (Administrasi Kependudukan & TPST)
+$router->get('/layanan', function () {
+    return view('layanan.php');
+});
+
+// Notulensi & Statistik Warga
 $router->get('/notulensi', [NotulensiController::class, 'index']);
 $router->get('/notulensi/detail', [NotulensiController::class, 'show']);
+$router->get('/statistik', function () {
+    return view('statistik.php');
+});
 
 // Galeri Publik
 $router->get('/galeri', [GaleriController::class, 'index']);
