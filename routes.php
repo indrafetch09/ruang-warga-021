@@ -34,7 +34,7 @@ $router->get('/hubungi-kami', function () {
 });
 
 // Laporan Bulanan (Public list & Auth create/store)
-$router->get('/laporan', [LaporanController::class, 'index']);
+$router->get('/laporan', [LaporanController::class, 'index'])->only('auth');
 $router->get('/laporan/create', [LaporanController::class, 'create'])->only('auth');
 $router->post('/laporan', [LaporanController::class, 'store'])->only('auth');
 
