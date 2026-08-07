@@ -52,55 +52,13 @@
 
 <body class="bg-gray-50">
     <!-- NAVBAR -->
-    <nav class="bg-white border-b border-purple-100 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24">
-                <!-- Logo Area -->
-                <div
-                    class="flex-shrink-0 h-32 w-32 bg-white logo-container flex flex-col items-center justify-center p-2 z-10">
-                    <div
-                        class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mb-1 shadow-md">
-                        RW 21
-                    </div>
-                    <span
-                        class="text-[10px] text-center font-semibold text-gray-600 leading-tight">SISTEM<br />INFORMASI</span>
-                </div>
-
-                <!-- Text Info Kiri -->
-                <div class="hidden md:flex flex-col ml-6 text-sm font-medium">
-                    <span class="text-purple-700">#Kompak Bersama</span>
-                    <span class="text-emerald-600 font-semibold">#Lingkungan Asri & Aman</span>
-                    <span class="text-purple-500">Pelayanan Digital 2026</span>
-                </div>
-
-                <!-- Menu Navigasi -->
-                <div class="hidden md:flex flex-1 justify-end items-center space-x-6 text-gray-600 font-medium text-sm">
-                    <a href="index.html" class="hover:text-purple-600 transition">Beranda</a>
-                    <a href="tentang-kami.html" class="hover:text-purple-600 transition">Tentang Kami</a>
-                    <a href="#" class="hover:text-purple-600 transition">Layanan</a>
-                    <!-- Menu Informasi di-set ACTIVE -->
-                    <a href="notulensi.html"
-                        class="hover:text-purple-600 font-semibold text-purple-700 transition">Informasi</a>
-                    <a href="#"
-                        class="bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full font-bold flex items-center gap-1 border border-emerald-200 hover:bg-emerald-100 transition shadow-sm">
-                        Hubungi Kami
-                        <svg class="w-4 h-4 text-emerald-600 ml-1" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                            </path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php require base_path('views/partials/navbar.php'); ?>
 
     <!-- MAIN CONTENT -->
     <div class="py-12 bg-gray-50 min-h-screen">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Tombol Kembali -->
-            <a href="notulensi.html"
+            <a href="/notulensi"
                 class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-6 group">
                 <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none"
                     stroke="currentColor" viewBox="0 0 24 24">

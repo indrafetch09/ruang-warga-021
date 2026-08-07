@@ -31,40 +31,7 @@
 
 <body class="bg-gray-50">
     <!-- NAVBAR -->
-    <nav class="bg-white border-b border-purple-100 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24">
-                <!-- Logo Area -->
-                <div class="flex-shrink-0 h-32 w-32 bg-white logo-container flex flex-col items-center justify-center p-2 z-10">
-                    <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mb-1 shadow-md">
-                        RW 21
-                    </div>
-                    <span class="text-[10px] text-center font-semibold text-gray-600 leading-tight">SISTEM<br />INFORMASI</span>
-                </div>
-
-                <!-- Text Info Kiri -->
-                <div class="hidden md:flex flex-col ml-6 text-sm font-medium">
-                    <span class="text-purple-700">#Kompak Bersama</span>
-                    <span class="text-emerald-600 font-semibold">#Lingkungan Asri & Aman</span>
-                    <span class="text-purple-500">Pelayanan Digital 2026</span>
-                </div>
-
-                <!-- Menu Navigasi -->
-                <div class="hidden md:flex flex-1 justify-end items-center space-x-6 text-gray-600 font-medium text-sm">
-                    <a href="index.html" class="hover:text-purple-600 font-semibold text-purple-700 transition">Beranda</a>
-                    <a href="tentang-kami.html" class="hover:text-purple-600 transition">Tentang Kami</a>
-                    <a href="#" class="hover:text-purple-600 transition">Layanan</a>
-                    <a href="#" class="hover:text-purple-600 transition">Informasi</a>
-                    <a href="#" class="bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full font-bold flex items-center gap-1 border border-emerald-200 hover:bg-emerald-100 transition shadow-sm">
-                        Hubungi Kami
-                        <svg class="w-4 h-4 text-emerald-600 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php require base_path('views/partials/navbar.php'); ?>
 
     <!-- HERO SECTION -->
     <div class="relative bg-white overflow-hidden min-h-[600px] flex items-center">
@@ -77,12 +44,6 @@
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center w-full">
             <div class="max-w-2xl pt-10 pb-20 z-10">
-                <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold tracking-wide uppercase mb-4 border border-emerald-200 flex items-center w-max">
-                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    Lingkungan Asri & Digital
-                </span>
                 <h1 class="text-5xl md:text-6xl font-extrabold text-black leading-tight tracking-tight mb-2">
                     Layanan Responsif.
                 </h1>
@@ -93,13 +54,15 @@
                     Portal resmi RW 21. Kombinasi pelayanan digital yang serba cepat
                     dengan semangat menjaga lingkungan yang asri dan guyub antarwarga.
                 </p>
+                <!-- ponytail: border-radius 10px, solid colors -->
                 <div class="mt-8 flex gap-4 items-center">
-                    <a href="#" class="inline-flex items-center justify-center px-6 py-3 bg-purple-600 text-white font-medium rounded-full hover:bg-purple-700 transition duration-150 shadow-lg shadow-purple-200">
-                        Masuk Portal <span class="ml-2">↗</span>
+                    <a href="/login" class="inline-flex items-center justify-center px-6 py-4 bg-purple-600 text-white font-medium rounded-[10px] hover:bg-purple-700 transition duration-150 shadow-md">
+                        Masuk Ruang Warga 021 <span class="ml-2">↗</span>
                     </a>
-                    <a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-emerald-500 text-emerald-700 font-medium rounded-full hover:bg-emerald-50 transition duration-150">
-                        Ajukan Surat
+                    <a href="/tentang-kami" class="inline-flex items-center justify-center px-7 py-4 border border-emerald-500 text-emerald-700 font-medium rounded-[10px] hover:bg-emerald-50 transition duration-150">
+                        Profil RW
                     </a>
+                </div>
                 </div>
             </div>
         </div>

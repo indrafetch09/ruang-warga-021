@@ -67,7 +67,7 @@
                 <!-- Menu Navigasi -->
                 <div class="hidden md:flex flex-1 justify-end items-center space-x-6 text-gray-600 font-medium text-sm">
                     <a href="index.html" class="hover:text-purple-600 transition">Beranda</a>
-                    <a href="tentang-kami.html" class="hover:text-purple-600 transition">Tentang Kami</a>
+                    <a href="tentang-kami.html" class="hover:text-purple-600 transition">Profil RW</a>
                     <a href="#" class="hover:text-purple-600 font-semibold text-purple-700 transition">Layanan</a>
                     <a href="notulensi.html" class="hover:text-purple-600 transition">Informasi</a>
                     <a href="hubungi-kami.html"

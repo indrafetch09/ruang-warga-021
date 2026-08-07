@@ -48,10 +48,6 @@
 
             <!-- Teks Tengah -->
             <div class="max-w-md">
-                <span
-                    class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold tracking-widest uppercase mb-6 border border-white/30">
-                    Portal Pengurus
-                </span>
                 <h1 class="text-4xl font-extrabold mb-4 leading-tight">
                     Melayani dengan Hati, Berinovasi untuk Warga.
                 </h1>
