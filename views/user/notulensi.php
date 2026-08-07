@@ -101,7 +101,7 @@
                                 20:00 WIB
                             </span>
                         </div>
-                        <a href="detail-notulensi.html" class="inline-block">
+                        <a href="/notulensi/detail" class="inline-block">
                             <h3
                                 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors mb-2">
                                 Rapat Persiapan HUT RI ke-81
@@ -113,7 +113,7 @@
                             Disepakati bahwa iuran partisipasi per KK adalah sebesar
                             Rp50.000...
                         </p>
-                        <a href="detail-notulensi.html"
+                        <a href="/notulensi/detail"
                             class="text-sm font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1 w-max">
                             Baca Detail
                             <span class="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
@@ -141,7 +141,7 @@
                             <span class="text-xs font-semibold text-purple-600 bg-purple-50 px-2.5 py-1 rounded">Rapat
                                 Khusus</span>
                         </div>
-                        <a href="detail-notulensi.html" class="inline-block">
+                        <a href="/notulensi/detail" class="inline-block">
                             <h3
                                 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors mb-2">
                                 Evaluasi Keamanan Lingkungan
@@ -153,7 +153,7 @@
                             buntu dan portal utama akan mulai ditutup penuh pada pukul 23.00
                             WIB.
                         </p>
-                        <a href="detail-notulensi.html"
+                        <a href="/notulensi/detail"
                             class="text-sm font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1 w-max">
                             Baca Detail
                             <span class="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
@@ -182,7 +182,7 @@
                                 class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded">Laporan
                                 Kas</span>
                         </div>
-                        <a href="detail-notulensi.html" class="inline-block">
+                        <a href="/notulensi/detail" class="inline-block">
                             <h3
                                 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors mb-2">
                                 Laporan Transparansi Iuran Kas Semester I
@@ -193,7 +193,7 @@
                             Januari hingga Juni 2026. Saldo akhir yang dilaporkan telah
                             disetujui tanpa ada sanggahan dari perwakilan tiap RT.
                         </p>
-                        <a href="detail-notulensi.html"
+                        <a href="/notulensi/detail"
                             class="text-sm font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1 w-max">
                             Baca Detail
                             <span class="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
@@ -221,7 +221,7 @@
                             <span class="text-xs font-semibold text-amber-600 bg-amber-50 px-2.5 py-1 rounded">Rapat
                                 Khusus</span>
                         </div>
-                        <a href="detail-notulensi.html" class="inline-block">
+                        <a href="/notulensi/detail" class="inline-block">
                             <h3
                                 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors mb-2">
                                 Sosialisasi Pembuatan Sistem Portal Warga
@@ -232,7 +232,7 @@
                             digital warga. Pengurus RT dan RW menyetujui anggaran awal dan
                             fitur-fitur mandiri yang akan dikembangkan oleh tim IT warga.
                         </p>
-                        <a href="detail-notulensi.html"
+                        <a href="/notulensi/detail"
                             class="text-sm font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1 w-max">
                             Baca Detail
                             <span class="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
@@ -260,7 +260,7 @@
                             <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded">Rapat
                                 Rutin</span>
                         </div>
-                        <a href="detail-notulensi.html" class="inline-block">
+                        <a href="/notulensi/detail" class="inline-block">
                             <h3
                                 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors mb-2">
                                 Pembentukan Satgas Bank Sampah
@@ -271,7 +271,7 @@
                             warga yang mengumpulkan sampah botol plastik dan kardus bekas.
                             Disepakati lokasi penimbangan berada di sebelah Balai RW.
                         </p>
-                        <a href="detail-notulensi.html"
+                        <a href="/notulensi/detail"
                             class="text-sm font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1 w-max">
                             Baca Detail
                             <span class="transform group-hover:translate-x-1 transition-transform">&rarr;</span>

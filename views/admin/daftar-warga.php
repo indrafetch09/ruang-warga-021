@@ -41,79 +41,33 @@
     </style>
 </head>
 
-<body class="bg-gray-50 flex flex-col min-h-screen">
-    <!-- NAVBAR -->
-    <nav class="bg-white border-b border-purple-100 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24">
-                <!-- Logo Area -->
-                <div
-                    class="flex-shrink-0 h-32 w-32 bg-white logo-container flex flex-col items-center justify-center p-2 z-10">
-                    <div
-                        class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mb-1 shadow-md">
-                        RW 21
-                    </div>
-                    <span
-                        class="text-[10px] text-center font-semibold text-gray-600 leading-tight">SISTEM<br />INFORMASI</span>
-                </div>
+<body class="bg-gray-50 flex flex-col min-h-screen text-gray-800">
+    <?php require base_path('views/partials/admin-header.php'); ?>
 
-                <!-- Text Info Kiri -->
-                <div class="hidden md:flex flex-col ml-6 text-sm font-medium">
-                    <span class="text-purple-700">#Kompak Bersama</span>
-                    <span class="text-emerald-600 font-semibold">#Lingkungan Asri & Aman</span>
-                    <span class="text-purple-500">Pelayanan Digital 2026</span>
-                </div>
+    <!-- WRAPPER SIDEBAR & MAIN CONTENT -->
+    <div class="flex flex-1 max-w-[1400px] w-full mx-auto relative">
+        <?php require base_path('views/partials/admin-sidebar.php'); ?>
 
-                <!-- Menu Navigasi -->
-                <div class="hidden md:flex flex-1 justify-end items-center space-x-6 text-gray-600 font-medium text-sm">
-                    <a href="index.html" class="hover:text-purple-600 transition">Beranda</a>
-                    <a href="tentang-kami.html" class="hover:text-purple-600 transition">Profil RW</a>
-                    <a href="#" class="hover:text-purple-600 font-semibold text-purple-700 transition">Layanan</a>
-                    <a href="notulensi.html" class="hover:text-purple-600 transition">Informasi</a>
-                    <a href="hubungi-kami.html"
-                        class="bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full font-bold flex items-center gap-1 border border-emerald-200 hover:bg-emerald-100 transition shadow-sm">
-                        Hubungi Kami
-                        <svg class="w-4 h-4 text-emerald-600 ml-1" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                            </path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- PAGE HEADER -->
-    <div class="bg-purple-50 py-12 border-b border-purple-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <main class="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 space-y-6">
+            <!-- PAGE HEADER -->
+            <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
                 <div>
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-2">
-                        Data <span class="text-purple-600">Penduduk</span>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
+                        Data <span class="text-purple-600">Penduduk RW 021</span>
                     </h1>
-                    <p class="text-gray-600">
-                        Direktori daftar Kepala Keluarga (KK) dan warga RW 21.
+                    <p class="text-xs text-gray-500 mt-1">
+                        Direktori daftar Kepala Keluarga (KK) dan data warga terdaftar.
                     </p>
                 </div>
                 <div class="flex gap-3">
-                    <div class="bg-white px-4 py-2 rounded-lg shadow-sm border border-purple-100 text-center">
-                        <span class="block text-xl font-extrabold text-purple-700">350</span>
-                        <span class="text-[10px] uppercase font-bold text-gray-500">Total KK</span>
-                    </div>
-                    <div class="bg-white px-4 py-2 rounded-lg shadow-sm border border-emerald-100 text-center">
-                        <span class="block text-xl font-extrabold text-emerald-600">1.245</span>
-                        <span class="text-[10px] uppercase font-bold text-gray-500">Total Warga</span>
-                    </div>
+                    <a href="/warga/create" class="px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-[10px] text-xs transition shadow-sm flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Tambah Warga Baru
+                    </a>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div class="py-10 bg-white flex-1">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Privacy Alert -->
             <div class="mb-8 p-4 bg-sky-50 border border-sky-100 rounded-xl flex gap-3 items-start">
                 <div class="mt-0.5 text-sky-500 flex-shrink-0">
@@ -131,7 +85,7 @@
                         Alamat RT, Jumlah Anggota). Data spesifik seperti NIK, Nomor HP,
                         dan detail keluarga disembunyikan demi menjaga privasi warga.
                         Pengurus dapat melihat data lengkap melalui
-                        <a href="login.html" class="font-bold underline">Portal Admin</a>.
+                        <a href="/login" class="font-bold underline">Portal Admin</a>.
                     </p>
                 </div>
             </div>
@@ -363,18 +317,7 @@
                         </button>
                     </div>
                 </div>
-            </div>
-        </div>
+        </main>
     </div>
-
-    <!-- FOOTER SIMPLE -->
-    <footer class="bg-gray-900 py-8 border-t border-gray-800 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-gray-400 text-sm">
-                &copy; 2026 Sistem Informasi RW 21. Seluruh Hak Cipta Dilindungi.
-            </p>
-        </div>
-    </footer>
 </body>
-
 </html>

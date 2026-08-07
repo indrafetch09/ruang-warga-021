@@ -3,27 +3,20 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Laporan Bulanan - Sistem Informasi RW 21</title>
+    <title>Laporan Bulanan - Sistem Informasi RW 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>body { font-family: "Plus Jakarta Sans", sans-serif; }</style>
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen">
+<body class="bg-gray-50 flex flex-col min-h-screen text-gray-800">
+    <?php require base_path('views/partials/admin-header.php'); ?>
 
-    <?php require base_path('views/partials/navbar.php'); ?>
+    <!-- WRAPPER SIDEBAR & MAIN CONTENT -->
+    <div class="flex flex-1 max-w-[1400px] w-full mx-auto relative">
+        <?php require base_path('views/partials/admin-sidebar.php'); ?>
 
-    <!-- HEADER -->
-    <div class="bg-purple-50 py-12 border-b border-purple-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl font-extrabold text-gray-900 mb-2">Arsip <span class="text-purple-600">Laporan Bulanan</span></h1>
-            <p class="text-gray-600 max-w-2xl mx-auto">Rekapitulasi data kependudukan dan kegiatan rutin warga RW 21 setiap bulan.</p>
-        </div>
-    </div>
+        <main class="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 space-y-6">
 
-    <!-- MAIN CONTENT -->
-    <div class="py-12 flex-1">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-2xl font-bold text-gray-800">Daftar Laporan</h2>
                 <?php if ($_SESSION['user'] ?? false): ?>
@@ -41,9 +34,9 @@
                 </div>
             <?php else: ?>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <?php 
+                    <?php
                     $namaBulan = [1=>'Januari',2=>'Februari',3=>'Maret',4=>'April',5=>'Mei',6=>'Juni',7=>'Juli',8=>'Agustus',9=>'September',10=>'Oktober',11=>'November',12=>'Desember'];
-                    foreach ($laporans as $lap): 
+                    foreach ($laporans as $lap):
                         $bulanText = $namaBulan[(int)$lap['bulan']] ?? $lap['bulan'];
                     ?>
                         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition flex flex-col justify-between">
@@ -65,9 +58,7 @@
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
-
-        </div>
+        </main>
     </div>
-
 </body>
 </html>

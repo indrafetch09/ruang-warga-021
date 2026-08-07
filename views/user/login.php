@@ -42,7 +42,7 @@
                     <h2 class="font-bold tracking-widest uppercase text-sm">
                         Sistem Informasi
                     </h2>
-                    <p class="text-purple-200 text-xs">RW 21 Terpadu</p>
+                    <p class="text-purple-200 text-xs">RW 021 Terpadu</p>
                 </div>
             </div>
 
@@ -60,7 +60,7 @@
 
             <!-- Footer Kiri Bawah -->
             <div class="text-purple-300 text-sm">
-                &copy; 2026 Pengurus RW 21. V 1.0.0
+                &copy; 2026 Pengurus RW 021. V 1.0.0
             </div>
         </div>
     </div>
@@ -68,14 +68,13 @@
     <!-- KANAN: FORM LOGIN -->
     <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-8 sm:p-12 relative bg-white">
         <!-- Tombol Kembali (Mobile/Desktop) -->
-        <a href="index.html"
-            class="absolute top-8 right-8 flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-purple-600 transition group">
-            <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none"
-                stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
-                </path>
+        <a href="/"
+            class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-6 group">
+            <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
-            Kembali ke Beranda
+            Kembali ke Beranda Utama
         </a>
 
         <!-- Kontainer Form -->
@@ -90,7 +89,7 @@
                     <h2 class="font-bold text-gray-900 tracking-widest uppercase text-sm">
                         Sistem Informasi
                     </h2>
-                    <p class="text-gray-500 text-xs">RW 21 Terpadu</p>
+                    <p class="text-gray-500 text-xs">RW 021 Terpadu</p>
                 </div>
             </div>
 
@@ -121,11 +120,23 @@
                 </div>
             </div>
 
-            <form action="#" method="POST" class="space-y-5">
+            <?php $errors = \Core\Session::get('errors') ?? []; ?>
+            <?php if (!empty($errors)): ?>
+                <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+                    <ul class="text-xs text-red-600 font-medium space-y-1">
+                        <?php foreach ($errors as $error): ?>
+                            <li>• <?= htmlspecialchars($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
+            <form action="/login" method="POST" class="space-y-5">
+                <?= \Core\Csrf::field() ?>
+
                 <!-- ID Pengguna / Email -->
                 <div>
-                    <label for="username" class="block text-sm font-semibold text-gray-700 mb-2">ID Pengurus /
-                        Email</label>
+                    <label for="identity" class="block text-sm font-semibold text-gray-700 mb-2">ID Pengurus / Email</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -133,8 +144,8 @@
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
                         </div>
-                        <input type="text" id="username" name="username" placeholder="Masukkan ID atau Email Anda"
-                            class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm"
+                        <input type="text" id="identity" name="identity" value="<?= htmlspecialchars($_SESSION['_flash']['old']['identity'] ?? '') ?>" placeholder="Masukkan ID atau Email Anda"
+                            class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm"
                             required />
                     </div>
                 </div>
@@ -151,7 +162,7 @@
                             </svg>
                         </div>
                         <input type="password" id="password" name="password" placeholder="••••••••"
-                            class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm"
+                            class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm"
                             required />
                     </div>
                 </div>
@@ -166,7 +177,7 @@
                         </label>
                     </div>
                     <div class="text-sm">
-                        <a href="#" class="font-semibold text-purple-600 hover:text-purple-500 transition">
+                        <a href="/contact" class="font-semibold text-purple-600 hover:text-purple-500 transition">
                             Lupa sandi?
                         </a>
                     </div>
@@ -174,8 +185,8 @@
 
                 <!-- Button Submit -->
                 <div class="pt-2">
-                    <button type="button"
-                        class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-xl shadow-lg shadow-purple-200 text-sm font-bold text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200">
+                    <button type="submit"
+                        class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-[10px] shadow-md text-sm font-bold text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200">
                         Masuk ke Dasbor
                     </button>
                 </div>
@@ -183,7 +194,7 @@
 
             <div class="mt-8 text-center text-xs text-gray-500">
                 Mengalami kendala login?
-                <a href="hubungi-kami.html" class="font-bold text-purple-600 hover:underline">Hubungi Tim IT</a>
+                <a href="/contact" class="font-bold text-purple-600 hover:underline">Hubungi Tim IT</a>
             </div>
         </div>
     </div>

@@ -23,47 +23,24 @@
     </style>
 </head>
 
-<body class="text-gray-800">
+<body class="text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+    <?php require base_path('views/partials/admin-header.php'); ?>
 
-    <!-- NAVBAR KHUSUS ADMIN -->
-    <nav class="bg-white border-b border-purple-200 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo & Branding -->
-                <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 h-24 w-20 bg-white logo-container flex flex-col items-center justify-center p-2 z-10">
-                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm mb-1 shadow-md">
-                            RW
-                        </div>
-                        <span class="text-[8px] text-center font-bold text-gray-600 leading-tight">ADMIN</span>
-                    </div>
-                    <div>
-                        <h1 class="text-lg font-extrabold text-gray-900 leading-tight">Dasbor Pengurus</h1>
-                        <p class="text-xs text-gray-500 font-medium">Sistem Informasi RW 21</p>
-                    </div>
-                </div>
+    <!-- WRAPPER SIDEBAR & MAIN CONTENT -->
+    <div class="flex flex-1 max-w-[1400px] w-full mx-auto relative">
+        <?php require base_path('views/partials/admin-sidebar.php'); ?>
 
-                <!-- Admin Profile Menu -->
-                <div class="flex items-center gap-4">
-                    <div class="hidden sm:block text-right">
-                        <p class="text-sm font-bold text-gray-900">Ahmad Santoso</p>
-                        <p class="text-xs text-purple-600 font-medium">Ketua RW</p>
-                    </div>
-                    <img src="https://ui-avatars.com/api/?name=Ahmad+Santoso&background=7c3aed&color=fff" alt="Admin" class="w-10 h-10 rounded-full border-2 border-purple-100 shadow-sm">
-                </div>
-            </div>
-        </div>
-    </nav>
+        <main class="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 space-y-6">
 
     <!-- MAIN CONTENT -->
     <div class="py-10 flex-1">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+
             <!-- Header Section -->
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
                 <div>
                     <!-- Link ini bisa diarahkan ke halaman list notulensi versi admin nantinya -->
-                    <a href="notulensi.html" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-3 group">
+                    <a href="/notulensi" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-3 group">
                         <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                         Kembali ke Arsip Notulensi
                     </a>
@@ -76,7 +53,7 @@
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
                 <!-- Ganti action dengan endpoint backend lu nanti -->
                 <form action="#" method="POST" enctype="multipart/form-data">
-                    
+
                     <!-- Bagian 1: Informasi Rapat -->
                     <div class="p-6 md:p-8 border-b border-gray-100">
                         <h3 class="text-lg font-bold text-purple-700 mb-6 flex items-center gap-2">
@@ -88,7 +65,7 @@
                                 <label class="block text-sm font-semibold text-gray-700 mb-2">Judul Rapat <span class="text-rose-500">*</span></label>
                                 <input type="text" placeholder="Contoh: Rapat Persiapan HUT RI ke-81" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm" required>
                             </div>
-                            
+
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-2">Kategori Rapat <span class="text-rose-500">*</span></label>
                                 <select class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm cursor-pointer" required>
@@ -135,7 +112,7 @@
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                             Rincian Pembahasan
                         </h3>
-                        
+
                         <div class="space-y-6">
                             <!-- Field Agenda -->
                             <div>
@@ -166,10 +143,10 @@
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
                             Lampiran Dokumen Resmi
                         </h3>
-                        
+
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Unggah File (PDF, DOCX)</label>
-                            
+
                             <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-xl hover:bg-gray-50 transition cursor-pointer">
                                 <div class="space-y-1 text-center">
                                     <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
@@ -196,15 +173,13 @@
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             Simpan Notulensi
                         </button>
-                        <a href="notulensi.html" class="px-6 py-3 bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 text-sm font-bold rounded-xl transition-all text-center">
+                        <a href="/notulensi" class="px-6 py-3 bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 text-sm font-bold rounded-xl transition-all text-center">
                             Batal
                         </a>
                     </div>
                 </form>
             </div>
-
-        </div>
+        </main>
     </div>
-
 </body>
 </html>

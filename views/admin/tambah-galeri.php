@@ -23,43 +23,14 @@
     </style>
 </head>
 
-<body class="text-gray-800 flex flex-col min-h-screen">
-    <!-- NAVBAR KHUSUS ADMIN -->
-    <nav class="bg-white border-b border-purple-200 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo & Branding -->
-                <div class="flex items-center gap-4">
-                    <div
-                        class="flex-shrink-0 h-24 w-20 bg-white logo-container flex flex-col items-center justify-center p-2 z-10">
-                        <div
-                            class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm mb-1 shadow-md">
-                            RW
-                        </div>
-                        <span class="text-[8px] text-center font-bold text-gray-600 leading-tight">ADMIN</span>
-                    </div>
-                    <div>
-                        <h1 class="text-lg font-extrabold text-gray-900 leading-tight">
-                            Dasbor Pengurus
-                        </h1>
-                        <p class="text-xs text-gray-500 font-medium">
-                            Sistem Informasi RW 21
-                        </p>
-                    </div>
-                </div>
+<body class="text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+    <?php require base_path('views/partials/admin-header.php'); ?>
 
-                <!-- Admin Profile Menu -->
-                <div class="flex items-center gap-4">
-                    <div class="hidden sm:block text-right">
-                        <p class="text-sm font-bold text-gray-900">Ahmad Santoso</p>
-                        <p class="text-xs text-purple-600 font-medium">Ketua RW</p>
-                    </div>
-                    <img src="https://ui-avatars.com/api/?name=Ahmad+Santoso&background=7c3aed&color=fff" alt="Admin"
-                        class="w-10 h-10 rounded-full border-2 border-purple-100 shadow-sm" />
-                </div>
-            </div>
-        </div>
-    </nav>
+    <!-- WRAPPER SIDEBAR & MAIN CONTENT -->
+    <div class="flex flex-1 max-w-[1400px] w-full mx-auto relative">
+        <?php require base_path('views/partials/admin-sidebar.php'); ?>
+
+        <main class="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 space-y-6">
 
     <!-- MAIN CONTENT -->
     <div class="py-10 flex-1">
@@ -68,7 +39,7 @@
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
                 <div>
                     <!-- Link kembali ke galeri (atau ke list admin galeri nantinya) -->
-                    <a href="galeri.html"
+                    <a href="/galeri"
                         class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-3 group">
                         <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
@@ -207,15 +178,14 @@
                             </svg>
                             Simpan ke Galeri
                         </button>
-                        <a href="galeri.html"
+                        <a href="/galeri"
                             class="px-6 py-3 bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 text-sm font-bold rounded-xl transition-all text-center">
                             Batal
                         </a>
                     </div>
                 </form>
             </div>
-        </div>
+        </main>
     </div>
 </body>
-
 </html>
