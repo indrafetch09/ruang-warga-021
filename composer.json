@@ -1,20 +1,16 @@
 {
-  "name": "jeffreyway/demo",
-  "authors": [
-    {
-      "name": "Jeffrey Way",
-      "email": "jeffrey@jeffrey-way.com"
-    }
-  ],
-  "require": {
-    "illuminate/collections": "^10.9",
-    "ext-pdo": "*"
-  },
+  "name": "rw021/ruang-warga",
   "autoload": {
     "psr-4": {
       "Core\\": "Core/",
-      "Http\\": "Http/"
+      "Http\\": "Http/",
+      "App\\Controllers\\": "Http/Controllers/",
+      "App\\Models\\": "Model/"
     }
+  },
+  "require": {
+    "illuminate/collections": "^10.9",
+    "ext-pdo": "*"
   },
   "require-dev": {
     "pestphp/pest": "^3.0"
