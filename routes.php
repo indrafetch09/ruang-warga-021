@@ -1,5 +1,12 @@
 <?php
 
+use App\Controllers\HomeController;
+use App\Controllers\GaleriController;
+use App\Controllers\NotulensiController;
+use App\Controllers\PengumumanController;
+use App\Controllers\WargaController;
+use App\Controllers\LaporanController;
+
 $router = new \Core\Router();
 
 // ==========================================
@@ -7,16 +14,29 @@ $router = new \Core\Router();
 // ==========================================
 
 // Halaman Utama & Profil
-$router->get('/', 'home/index.php'); // Menampilkan index.view.php
-$router->get('/tentang-kami', 'home/about.php'); // Menampilkan tentang-kami.php
-$router->get('/pengurus-rw', 'home/pengurus.php'); // Menampilkan pengurus-rw.php
+$router->get('/', [HomeController::class, 'index']);
+$router->get('/tentang-kami', [HomeController::class, 'about']);
+$router->get('/pengurus-rw', [HomeController::class, 'pengurus']);
 
 // Notulensi Publik
-$router->get('/notulensi', 'notulensi/index.php'); // Menampilkan notulensi.php (List)
-$router->get('/notulensi/detail', 'notulensi/show.php'); // Menampilkan detail-notulensi.php
+$router->get('/notulensi', [NotulensiController::class, 'index']);
+$router->get('/notulensi/detail', [NotulensiController::class, 'show']);
 
 // Galeri Publik
-$router->get('/galeri', 'galeri/index.php'); // Menampilkan galeri.php
+$router->get('/galeri', [GaleriController::class, 'index']);
+
+// Hubungi Kami / Contact
+$router->get('/contact', function () {
+    return view('hubungi-kami.php');
+});
+$router->get('/hubungi-kami', function () {
+    return view('hubungi-kami.php');
+});
+
+// Laporan Bulanan (Public list & Auth create/store)
+$router->get('/laporan', [LaporanController::class, 'index']);
+$router->get('/laporan/create', [LaporanController::class, 'create'])->only('auth');
+$router->post('/laporan', [LaporanController::class, 'store'])->only('auth');
 
 
 // ==========================================
@@ -24,38 +44,65 @@ $router->get('/galeri', 'galeri/index.php'); // Menampilkan galeri.php
 // ==========================================
 
 // Login hanya untuk Guest (Belum login)
-$router->get('/login', 'session/create.php')->only('guest'); // Menampilkan login.php
-$router->post('/login', 'session/store.php')->only('guest'); // Proses validasi login
+$router->get('/login', function () {
+    return view('login.php');
+})->only('guest');
+
+$router->post('/login', function () {
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    $auth = new \Core\Authenticator();
+    if ($auth->attempt($email, $password)) {
+        redirect('/dashboard');
+    } else {
+        \Core\Session::flash('errors', ['email' => 'Email atau password yang Anda masukkan salah.']);
+        redirect('/login');
+    }
+})->only('guest');
 
 // Logout hanya untuk Auth (Sudah login)
-$router->delete('/logout', 'session/destroy.php')->only('auth'); // Proses hapus session
+$router->delete('/logout', function () {
+    (new \Core\Authenticator())->logout();
+    redirect('/');
+})->only('auth');
 
 
 // ==========================================
-// 3. ROUTES ADMIN (Hanya bisa diakses Pengurus)
+// 3. ROUTES ADMIN / PORTAL SIRW 21
 // ==========================================
 
 // Dasbor Utama Pengurus
-$router->get('/dashboard', 'dashboard/index.php')->only('auth'); // Menampilkan dashboard.php
+$router->get('/admin', function () {
+    return view('dashboard.php');
+})->only('auth');
+
+$router->get('/dashboard', function () {
+    return view('dashboard.php');
+})->only('auth');
 
 // Manajemen Data Warga (Penduduk)
-$router->get('/admin/warga', 'warga/index.php')->only('auth'); // Menampilkan daftar-warga.php
-$router->get('/admin/warga/create', 'warga/create.php')->only('auth'); // Menampilkan tambah-warga.php
-$router->post('/admin/warga', 'warga/store.php')->only('auth'); // Proses simpan data warga
-$router->patch('/admin/warga/approve', 'warga/approve.php')->only('auth'); // Proses approval RW (opsional)
+$router->get('/admin/warga', [WargaController::class, 'index'])->only('auth');
+$router->get('/warga/create', [WargaController::class, 'create'])->only('auth');
+$router->post('/warga', [WargaController::class, 'store'])->only('auth');
 
 // Manajemen Pengumuman
-$router->get('/admin/pengumuman/create', 'pengumuman/create.php')->only('auth'); // Menampilkan tambah-pengumuman.php
-$router->post('/admin/pengumuman', 'pengumuman/store.php')->only('auth'); // Proses simpan pengumuman
+$router->get('/admin/pengumuman/create', [PengumumanController::class, 'create'])->only('auth');
+$router->post('/admin/pengumuman', [PengumumanController::class, 'store'])->only('auth');
 
 // Manajemen Notulensi
-$router->get('/admin/notulensi/create', 'notulensi/create.php')->only('auth'); // Menampilkan tambah-notulensi.php
-$router->post('/admin/notulensi', 'notulensi/store.php')->only('auth'); // Proses simpan notulensi & upload file
+$router->get('/admin/notulensi/create', [NotulensiController::class, 'create'])->only('auth');
+$router->post('/admin/notulensi', [NotulensiController::class, 'store'])->only('auth');
 
 // Manajemen Galeri
-$router->get('/admin/galeri/create', 'galeri/create.php')->only('auth'); // Menampilkan tambah-galeri.php
-$router->post('/admin/galeri', 'galeri/store.php')->only('auth'); // Proses simpan galeri & upload foto
+$router->get('/admin/galeri/create', [GaleriController::class, 'create'])->only('auth');
+$router->post('/admin/galeri', [GaleriController::class, 'store'])->only('auth');
 
 // Manajemen Kegiatan Rutin
-$router->get('/admin/kegiatan/create', 'kegiatan/create.php')->only('auth'); // Menampilkan tambah-kegiatan.php
-$router->post('/admin/kegiatan', 'kegiatan/store.php')->only('auth'); // Proses simpan kegiatan rutin
+$router->get('/admin/kegiatan/create', function () {
+    return view('tambah-kegiatan.php');
+})->only('auth');
+
+$router->post('/admin/kegiatan', function () {
+    return redirect('/dashboard');
+})->only('auth');
