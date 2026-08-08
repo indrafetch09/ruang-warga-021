@@ -57,7 +57,6 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
                         <a href="/tentang-kami" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Profil</a>
                         <a href="/galeri" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Galeri Kegiatan</a>
                         <a href="/pengurus-rw#rw" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Struktur RW</a>
-                        <a href="/pengurus-rw#rt" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Pengurus RT</a>
                     </div>
                 </div>
 
@@ -70,8 +69,8 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
                         </svg>
                     </button>
                     <div class="absolute left-0 top-full hidden group-hover:block w-64 bg-white border border-purple-100 rounded-xl shadow-xl py-2 z-50">
-                        <a href="/layanan#administrasi" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Administrasi Kependudukan</a>
-                        <a href="/layanan#tpst" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Kebersihan Lingkungan (TPST)</a>
+                        <a href="/layanan" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Aula RW 021 & Fasilitas</a>
+                        <a href="/tpst" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Kebersihan Lingkungan (TPST)</a>
                     </div>
                 </div>
 
@@ -91,19 +90,16 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
                 </div>
 
                 <!-- 5. Hubungi Kami -->
-                <a href="/contact" class="flex items-center gap-1 font-semibold transition text-base <?= $isInfoActive ? 'text-purple-700 border-b-2 border-purple-600 pb-1' : 'text-gray-700 hover:text-purple-600' ?>">
-                    Hubungi Kami
+                <a href="/contact" class="<?= navClass('/contact') ?>">Hubungi Kami</a>
 
-                </a>
 
                 <!-- 6. PORTAL ADMIN (Ruang Warga 021) -->
                 <?php if ($_SESSION['user'] ?? false): ?>
-                    <a href="/dashboard" class="px-4 py-2 rounded-[10px] text-sm font-bold transition flex items-center gap-2 shadow-sm <?= (str_starts_with($currentUri, '/dashboard') || str_starts_with($currentUri, '/admin')) ? 'bg-purple-700 text-white' : 'bg-purple-100 text-purple-800 border border-purple-300 hover:bg-purple-200' ?>">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        Ruang Warga 021
+                    <a href="/dashboard" class="px-4 py-2 rounded-[10px] text-sm font-bold transition flex items-center gap-2 shadow-sm <?= (str_starts_with($currentUri, '/dashboard') || str_starts_with($currentUri, '/admin')) ? 'bg-purple-700 text-white' : 'bg-purple-100 text-purple-800 hover:bg-purple-200' ?>">
+                        Masuk ke Dashboard
                     </a>
                 <?php else: ?>
-                    <a href="/login" class="px-4 py-2 rounded-[10px] text-sm font-bold transition flex items-center gap-2 shadow-sm <?= ($currentUri === '/login') ? 'bg-purple-700 text-white' : 'bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100' ?>">
+                    <a href="/login" class="px-4 py-2 rounded-[10px] text-sm font-bold transition flex items-center gap-2 shadow-sm <?= ($currentUri === '/login') ? 'bg-purple-700 text-white' : 'bg-purple-50 text-purple-700 hover:bg-purple-100' ?>">
                         <svg class="w-4 h-4 <?= ($currentUri === '/login') ? 'text-white' : 'text-purple-600' ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
                         </svg>
@@ -126,26 +122,25 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
 
     <!-- Mobile Menu Dropdown -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-purple-100 bg-white px-4 pt-4 pb-6 space-y-4 text-base font-medium shadow-lg">
-        <a href="/" class="block px-3 py-2.5 rounded-md hover:bg-purple-50 text-gray-800 font-bold text-base">Beranda</a>
+        <a href="/" class="block px-3 py-2.5 rounded-md hover:bg-purple-50 text-gray-800 font-medium text-base tracking-wider">Beranda</a>
 
         <!-- Mobile Submenu: Profil RW -->
         <div class="pl-3 py-1 border-l-2 border-purple-300 space-y-2">
-            <span class="block text-xs font-extrabold text-purple-700 uppercase tracking-wider">Profil RW</span>
+            <span class="block text-xs font-medium text-purple-700 uppercase tracking-wider">Profil RW</span>
             <a href="/tentang-kami" class="block px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">Profil & Galeri</a>
             <a href="/pengurus-rw#rw" class="block px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">Struktur RW</a>
-            <a href="/pengurus-rw#rt" class="block px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">Pengurus RT</a>
         </div>
 
         <!-- Mobile Submenu: Layanan -->
         <div class="pl-3 py-1 border-l-2 border-purple-300 space-y-2">
-            <span class="block text-xs font-extrabold text-purple-700 uppercase tracking-wider">Layanan</span>
-            <a href="/layanan#administrasi" class="block px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">Administrasi Kependudukan</a>
-            <a href="/layanan#tpst" class="block px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">Kebersihan Lingkungan (TPST)</a>
+            <span class="block text-xs font-medium text-purple-700 uppercase tracking-wider">Layanan</span>
+            <a href="/layanan" class="block px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">Aula RW 021 & Fasilitas</a>
+            <a href="/tpst" class="block px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">Kebersihan Lingkungan (TPST)</a>
         </div>
 
         <!-- Mobile Submenu: Informasi -->
         <div class="pl-3 py-1 border-l-2 border-purple-300 space-y-2">
-            <span class="block text-xs font-extrabold text-purple-700 uppercase tracking-wider">Informasi</span>
+            <span class="block text-xs font-medium text-purple-700 uppercase tracking-wider">Informasi</span>
             <a href="/notulensi" class="block px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">Notulensi Rapat</a>
             <a href="/statistik" class="block px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">Statistik Warga</a>
             <a href="/contact#maps" class="block px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">Maps Peta Lokasi</a>
