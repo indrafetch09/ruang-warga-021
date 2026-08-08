@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sistem Informasi RW 21 - Lilac & Green</title>
+    <title>Ruang Warga 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
@@ -50,13 +50,10 @@
                     Portal resmi RW 021. Kombinasi pelayanan digital yang serba cepat
                     dengan semangat menjaga lingkungan yang asri dan guyub antarwarga.
                 </p>
-                <!-- ponytail: border-radius 10px, solid colors -->
                 <div class="mt-8 flex gap-4 items-center">
-                    <a href="/login" class="inline-flex items-center justify-center px-6 py-4 bg-purple-600 text-white font-medium rounded-[10px] hover:bg-purple-700 transition duration-150 shadow-md">
-                        Masuk Ruang Warga 021 <span class="ml-2">↗</span>
-                    </a>
-                    <a href="/tentang-kami" class="inline-flex items-center justify-center px-7 py-4 border border-emerald-500 text-emerald-700 font-medium rounded-[10px] hover:bg-emerald-50 transition duration-150">
-                        Profil RW
+                    <a href="/tentang-kami" class="inline-flex items-center justify-center gap-2 px-9 py-4 bg-purple-600 text-white font-medium rounded-[10px] hover:bg-purple-700 transition duration-150 shadow-md">
+                        Lihat Profil RW
+                        <span class="gap-2"> &rarr; </span>
                     </a>
                 </div>
                 </div>
@@ -118,10 +115,10 @@
                             Pengumuman <span class="text-purple-600">Penting</span>
                         </h2>
                     </div>
-                    <p class="text-lg text-gray-500">Informasi terbaru seputar lingkungan RW 21.</p>
+                    <p class="text-lg text-gray-500">Informasi terbaru seputar lingkungan RW 021.</p>
                 </div>
                 <div class="hidden md:block">
-                    <a href="#" class="text-purple-600 font-semibold hover:text-purple-700 flex items-center gap-1 group">
+                    <a href="/informasi" class="text-purple-600 font-semibold hover:text-purple-700 flex items-center gap-1 group">
                         Lihat Papan Informasi
                         <span aria-hidden="true" class="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
                     </a>
@@ -177,11 +174,11 @@
                         Notulen Rapat <span class="text-emerald-600">Terbaru</span>
                     </h2>
                     <p class="mt-4 text-lg text-gray-500">
-                        Transparansi informasi dan hasil keputusan rapat pengurus beserta warga RW 21.
+                        Transparansi informasi dan hasil keputusan rapat pengurus beserta warga RW 021.
                     </p>
                 </div>
                 <div class="hidden md:block">
-                    <a href="#" class="text-purple-600 font-semibold hover:text-purple-700 flex items-center gap-1 group">
+                    <a href="/notulensi" class="text-purple-600 font-semibold hover:text-purple-700 flex items-center gap-1 group">
                         Lihat Semua Arsip
                         <span aria-hidden="true" class="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
                     </a>
