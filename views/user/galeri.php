@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Galeri Kegiatan - Sistem Informasi RW 21</title>
+    <title>Galeri Kegiatan - Ruang Warga 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
@@ -61,7 +61,7 @@
             </h1>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                 Dokumentasi momen-momen kebersamaan, gotong royong, dan perayaan warga
-                RW 21.
+                RW 021.
             </p>
         </div>
     </div>
@@ -147,7 +147,7 @@
                 </div>
 
                 <!-- Item 3 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Bazar UMKM Makanan Tradisional', '15 Juli 2026', 'Mendukung perputaran ekonomi warga melalui bazar makanan dan kerajinan lokal pada setiap perayaan hari besar nasional. Diikuti lebih dari 20 pelaku UMKM lokal RW 21 untuk mempromosikan produk unggulan rumahan.')"
+                <div onclick="openModal('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Bazar UMKM Makanan Tradisional', '15 Juli 2026', 'Mendukung perputaran ekonomi warga melalui bazar makanan dan kerajinan lokal pada setiap perayaan hari besar nasional. Diikuti lebih dari 20 pelaku UMKM lokal RW 021 untuk mempromosikan produk unggulan rumahan.')"
                     class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
                     <div class="overflow-hidden relative h-56">
                         <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -201,7 +201,7 @@
                 </div>
 
                 <!-- Item 5 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Pembagian Sembako Bantuan', '20 Juni 2026', 'Penyaluran bantuan sembako kepada warga yang membutuhkan di sekitar lingkungan RW 21, terselenggara berkat donasi rutin kas warga dan sumbangan sukarela.')"
+                <div onclick="openModal('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Pembagian Sembako Bantuan', '20 Juni 2026', 'Penyaluran bantuan sembako kepada warga yang membutuhkan di sekitar lingkungan RW 021, terselenggara berkat donasi rutin kas warga dan sumbangan sukarela.')"
                     class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
                     <div class="overflow-hidden relative h-56">
                         <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -229,7 +229,7 @@
                 </div>
 
                 <!-- Item 6 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Senam Pagi Akhir Pekan', '14 Juni 2026', 'Kegiatan senam sehat bersama setiap Sabtu pagi di lapangan utama RW 21 untuk menjaga kebugaran dan mempererat tali silaturahmi antarwarga.')"
+                <div onclick="openModal('https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Senam Pagi Akhir Pekan', '14 Juni 2026', 'Kegiatan senam sehat bersama setiap Sabtu pagi di lapangan utama RW 021 untuk menjaga kebugaran dan mempererat tali silaturahmi antarwarga.')"
                     class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
                     <div class="overflow-hidden relative h-56">
                         <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -293,7 +293,7 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-gray-900 text-sm leading-tight">
-                                Pengurus RW 21
+                                Pengurus RW 021
                             </h4>
                             <p id="modalDate" class="text-xs text-gray-500 mt-0.5"></p>
                         </div>

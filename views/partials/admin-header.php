@@ -16,14 +16,14 @@ $currentUser = \Core\Authenticator::user() ?? ($_SESSION['user'] ?? ['name' => '
 
                 <a href="/dashboard" class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-md">
-                        RW 21
+                        RW 021
                     </div>
                     <div>
                         <h1 class="text-base font-extrabold text-gray-900 leading-tight">
                             Dasbor Pengurus
                         </h1>
                         <p class="text-xs text-purple-600 font-semibold">
-                            Portal Ruang Warga 021
+                            Portal Admin Warga 021
                         </p>
                     </div>
                 </a>

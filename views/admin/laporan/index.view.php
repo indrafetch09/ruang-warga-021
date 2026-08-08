@@ -46,7 +46,7 @@
                                     <span class="text-xs text-gray-400"><?= date('d M Y', strtotime($lap['created_at'] ?? 'now')) ?></span>
                                 </div>
                                 <h3 class="text-xl font-bold text-gray-900 mb-2">Laporan Bulan <?= $bulanText ?></h3>
-                                <p class="text-sm text-gray-600 mb-6">Rekapitulasi resmi kependudukan dan kegiatan wilayah RW 21.</p>
+                                <p class="text-sm text-gray-600 mb-6">Rekapitulasi resmi kependudukan dan kegiatan wilayah RW 021.</p>
                             </div>
                             <div class="flex gap-2">
                                 <a href="/laporan?id=<?= $lap['id'] ?>" class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 rounded-[10px] text-sm transition">Detail</a>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arsip Notulen Rapat - Sistem Informasi RW 21</title>
+    <title>Arsip Notulen Rapat - Ruang Warga 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
@@ -30,7 +30,7 @@
             </h1>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                 Transparansi informasi dan dokumentasi hasil keputusan seluruh forum
-                warga dan pengurus RW 21.
+                warga dan pengurus RW 021.
             </p>
         </div>
     </div>

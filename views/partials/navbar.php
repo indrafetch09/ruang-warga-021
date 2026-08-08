@@ -93,17 +93,18 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
                 <a href="/contact" class="<?= navClass('/contact') ?>">Hubungi Kami</a>
 
 
-                <!-- 6. PORTAL ADMIN (Ruang Warga 021) -->
+                <!-- 6. PORTAL ADMIN (Admin Warga) -->
                 <?php if ($_SESSION['user'] ?? false): ?>
-                    <a href="/dashboard" class="px-4 py-2 rounded-[10px] text-sm font-bold transition flex items-center gap-2 shadow-sm <?= (str_starts_with($currentUri, '/dashboard') || str_starts_with($currentUri, '/admin')) ? 'bg-purple-700 text-white' : 'bg-purple-100 text-purple-800 hover:bg-purple-200' ?>">
-                        Masuk ke Dashboard
+                    <a href="/dashboard" class="px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium text-sm rounded-[10px] transition duration-150 flex items-center gap-2 shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Admin Warga
                     </a>
                 <?php else: ?>
-                    <a href="/login" class="px-4 py-2 rounded-[10px] text-sm font-bold transition flex items-center gap-2 shadow-sm <?= ($currentUri === '/login') ? 'bg-purple-700 text-white' : 'bg-purple-50 text-purple-700 hover:bg-purple-100' ?>">
-                        <svg class="w-4 h-4 <?= ($currentUri === '/login') ? 'text-white' : 'text-purple-600' ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="/login" class="px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium text-sm rounded-[10px] transition duration-150 flex items-center gap-2 shadow-sm">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
                         </svg>
-                        Ruang Warga 021
+                        Admin Warga
                     </a>
                 <?php endif; ?>
 
@@ -148,11 +149,11 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
 
         <a href="/contact" class="block px-3 py-2.5 rounded-md bg-emerald-50 text-emerald-700 font-bold text-base">Hubungi Kami</a>
 
-        <!-- Portal Admin (Ruang Warga 021) in Mobile Menu -->
+        <!-- Portal Admin (Admin Warga) in Mobile Menu -->
         <?php if ($_SESSION['user'] ?? false): ?>
-            <a href="/dashboard" class="block px-3 py-2.5 rounded-md bg-purple-100 text-purple-800 font-bold text-base">Ruang Warga 021 (Admin)</a>
+            <a href="/dashboard" class="inline-flex items-center justify-center gap-2 px-9 py-4 bg-purple-600 text-white font-medium rounded-[10px] hover:bg-purple-700 transition duration-150">Admin Warga (Dashboard)</a>
         <?php else: ?>
-            <a href="/login" class="block px-3 py-2.5 rounded-md bg-purple-50 text-purple-700 font-bold text-base">Ruang Warga 021 (Login Admin)</a>
+            <a href="/login" class="inline-flex items-center justify-center gap-2 px-9 py-4 bg-purple-600 text-white font-medium rounded-[10px] hover:bg-purple-700 transition duration-150">Admin Warga (Login)</a>
         <?php endif; ?>
     </div>
 </nav>

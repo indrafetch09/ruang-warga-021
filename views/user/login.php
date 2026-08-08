@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Pengurus - Sistem Informasi RW 21</title>
+    <title>Login Pengurus - Ruang Warga 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
@@ -37,7 +37,7 @@
                 </div>
                 <div>
                     <h2 class="font-bold tracking-widest uppercase text-sm">
-                        Ruang Warga
+                        Admin Warga
                     </h2>
                     <p class="text-purple-200 text-xs">RW 021 </p>
                 </div>
@@ -50,7 +50,7 @@
                 </h1>
                 <p class="text-purple-200 text-lg leading-relaxed mb-8">
                     Sistem manajemen administrasi, pelaporan, dan pengelolaan data warga
-                    RW 21. Akses ini dikhususkan bagi jajaran pengurus untuk mempermudah
+                    RW 021. Akses ini dikhususkan bagi jajaran pengurus untuk mempermudah
                     pelayanan.
                 </p>
             </div>
@@ -85,7 +85,7 @@
                 </div>
                 <div>
                     <h2 class="font-bold text-gray-900 tracking-widest uppercase text-sm">
-                        Ruang Warga
+                        Admin Warga
                     </h2>
                     <p class="text-gray-500 text-xs">RW 021</p>
                 </div>

@@ -88,7 +88,7 @@ function getIconClass($isActive) {
             <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-2">
                 <div class="flex items-center gap-3">
                     <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xs">
-                        RW 21
+                        RW 021
                     </div>
                     <span class="font-extrabold text-sm text-gray-900">Menu Pengurus</span>
                 </div>

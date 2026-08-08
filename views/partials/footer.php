@@ -84,7 +84,7 @@
                 <h4 class="text-gray-900 font-extrabold text-base tracking-tight">Lainnya</h4>
                 <ul class="space-y-2.5 text-xs md:text-sm">
                     <li><a href="/contact" class="text-gray-600 hover:text-purple-700 font-semibold transition">Hubungi Kami</a></li>
-                    <li><a href="/login" class="text-gray-600 hover:text-purple-700 font-semibold transition">Portal Admin SIRW 021</a></li>
+                    <li><a href="/login" class="text-gray-600 hover:text-purple-700 font-semibold transition">Portal Admin Warga</a></li>
                     <li><a href="/tentang-kami#jadwal" class="text-gray-600 hover:text-purple-700 font-semibold transition">Jadwal Ronda Malam</a></li>
                 </ul>
             </div>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detail Notulensi - Sistem Informasi RW 21</title>
+    <title>Detail Notulensi - Ruang Warga 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
@@ -93,7 +93,7 @@
                         </div>
                         <div>
                             <span class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Lokasi</span>
-                            <span class="text-sm font-semibold text-gray-800">Balai Warga RW 21</span>
+                            <span class="text-sm font-semibold text-gray-800">Balai Warga RW 021</span>
                         </div>
                         <div>
                             <span class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Notulis</span>
@@ -172,7 +172,7 @@
                     </h3>
                     <p>
                         Rapat menyetujui poin-poin keputusan final yang mengikat untuk
-                        dilaksanakan oleh seluruh warga RW 21:
+                        dilaksanakan oleh seluruh warga RW 021:
                     </p>
                     <ul>
                         <li>

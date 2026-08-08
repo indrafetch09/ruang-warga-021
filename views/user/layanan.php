@@ -40,7 +40,6 @@
     <!-- HEADER (PUTIH BIASA DENGAN PENGATURAN TEKS BERSIH) -->
     <div class="bg-white py-12 border-b border-gray-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="inline-block px-3.5 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-bold tracking-wide uppercase mb-3">Fasilitas Balai Warga</span>
             <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Aula <span class="text-purple-600">RW 021 & Posyandu Bunga Tanjung</span></h1>
             <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">Gedung balai pertemuan utama warga, pelayanan Posyandu Balita & Lansia, sarana olahraga indoor, serta pengajuan izin peminjaman gedung.</p>
         </div>
@@ -331,7 +330,7 @@
             document.getElementById('modal-title').innerText = data.title;
             document.getElementById('modal-header-bg').className = `px-6 py-5 ${data.headerBg} text-white flex justify-between items-center`;
             document.getElementById('modal-description').innerText = data.description;
-            
+
             const subitemsContainer = document.getElementById('modal-subitems');
             subitemsContainer.innerHTML = '';
             data.subitems.forEach(item => {

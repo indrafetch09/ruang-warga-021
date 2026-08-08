@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tentang Kami - Sistem Informasi RW 21</title>
+    <title>Tentang Kami - Ruang Warga 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
@@ -57,7 +57,7 @@
     <div class="bg-purple-50 py-16 border-b border-purple-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-                Mengenal Lebih Dekat <span class="text-purple-600">RW 21</span>
+                Mengenal Lebih Dekat <span class="text-purple-600">RW 021</span>
             </h1>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                 Ruang informasi tentang arah gerak, rutinitas, dan kekompakan warga
@@ -71,12 +71,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-extrabold text-black tracking-tight sm:text-4xl">
-                    Arah Gerak <span class="text-purple-600">RW 21</span>
+                    Visi dan Misi <span class="text-purple-600">RW 021</span>
                 </h2>
-                <p class="mt-4 max-w-2xl text-lg text-gray-500 mx-auto">
-                    Bersama mewujudkan lingkungan yang aman, asri, dan adaptif terhadap
-                    perkembangan teknologi digital.
-                </p>
+
             </div>
             <div class="flex flex-wrap gap-1 md:gap-2">
                 <button
@@ -106,7 +103,7 @@
                     <div class="w-full md:w-1/3">
                         <h3 class="text-4xl font-bold text-white mb-2">Visi Kami</h3>
                         <p class="text-purple-100 font-medium text-sm mb-4">
-                            Tujuan utama yang ingin dicapai oleh kepengurusan RW 21 untuk
+                            Tujuan utama yang ingin dicapai oleh kepengurusan RW 021 untuk
                             masa depan.
                         </p>
                         <span
@@ -173,7 +170,7 @@
                 </h2>
                 <p class="mt-4 max-w-2xl text-lg text-gray-500 mx-auto">
                     Jadwal tetap pelayanan administrasi, keamanan, kebersihan, dan
-                    aktivitas sosial warga RW 21.
+                    aktivitas sosial warga RW 021.
                 </p>
             </div>
 
@@ -441,7 +438,7 @@
                     </div>
                 </div>
                 <!-- Card 3 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Bazar UMKM Warga', '15 Juli 2026', 'Mendukung perputaran ekonomi warga melalui bazar makanan dan kerajinan lokal pada setiap perayaan hari besar nasional. Diikuti lebih dari 20 pelaku UMKM lokal RW 21 untuk mempromosikan produk unggulan rumahan.')"
+                <div onclick="openModal('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Bazar UMKM Warga', '15 Juli 2026', 'Mendukung perputaran ekonomi warga melalui bazar makanan dan kerajinan lokal pada setiap perayaan hari besar nasional. Diikuti lebih dari 20 pelaku UMKM lokal RW 021 untuk mempromosikan produk unggulan rumahan.')"
                     class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group">
                     <div class="overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -491,7 +488,7 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-gray-900 text-sm leading-tight">
-                                Pengurus RW 21
+                                Pengurus RW 021
                             </h4>
                             <p id="modalDate" class="text-xs text-gray-500 mt-0.5"></p>
                         </div>

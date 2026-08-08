@@ -41,7 +41,7 @@
                         Selamat Datang, <?= htmlspecialchars($user['name'] ?? 'Pengurus RW') ?>!
                     </h2>
                     <p class="text-purple-100 text-sm max-w-2xl leading-relaxed">
-                        Kelola data kependudukan, pengumuman publik, arsip notulensi, dan laporan bulanan RW 21 secara terintegrasi dan aman.
+                        Kelola data kependudukan, pengumuman publik, arsip notulensi, dan laporan bulanan RW 021 secara terintegrasi dan aman.
                     </p>
                 </div>
             </div>

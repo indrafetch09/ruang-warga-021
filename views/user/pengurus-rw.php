@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Struktur Pengurus - Sistem Informasi RW 21</title>
+    <title>Struktur Pengurus - Ruang Warga 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
@@ -69,7 +69,7 @@
             </h1>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                 Mengenal lebih dekat sosok-sosok yang mengabdi serta persebaran warga
-                di lingkungan RW 21 (Periode 2024-2027).
+                di lingkungan RW 021 (Periode 2024-2027).
             </p>
         </div>
     </div>
@@ -87,7 +87,7 @@
                             class="w-28 h-28 rounded-full mb-4 object-cover border-4 border-purple-50 shadow-md" />
                         <span
                             class="bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3">Ketua
-                            RW 21</span>
+                            RW 021</span>
                         <h3 class="text-xl font-bold text-gray-900 mb-1">
                             Drs. Ahmad Santoso
                         </h3>

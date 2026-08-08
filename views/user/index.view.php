@@ -130,7 +130,6 @@
                 <div class="bg-white rounded-xl p-6 border border-rose-100 shadow-sm relative overflow-hidden group hover:shadow-md transition">
                     <div class="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
                     <div class="flex justify-between items-start mb-4">
-                        <span class="bg-rose-50 text-rose-600 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider">URGENT</span>
                         <span class="text-xs text-gray-400 font-medium">Hari ini, 08:00</span>
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Pemadaman Listrik Bergilir</h3>
@@ -142,7 +141,6 @@
                 <div class="bg-white rounded-xl p-6 border border-emerald-100 shadow-sm relative overflow-hidden group hover:shadow-md transition">
                     <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
                     <div class="flex justify-between items-start mb-4">
-                        <span class="bg-emerald-50 text-emerald-600 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider">KEGIATAN</span>
                         <span class="text-xs text-gray-400 font-medium">Kemarin</span>
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Pendaftaran Lomba 17-an</h3>
@@ -154,7 +152,6 @@
                 <div class="bg-white rounded-xl p-6 border border-purple-100 shadow-sm relative overflow-hidden group hover:shadow-md transition">
                     <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
                     <div class="flex justify-between items-start mb-4">
-                        <span class="bg-purple-50 text-purple-600 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider">INFO WARGA</span>
                         <span class="text-xs text-gray-400 font-medium">2 Hari lalu</span>
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Jadwal Pengambilan Sampah</h3>
