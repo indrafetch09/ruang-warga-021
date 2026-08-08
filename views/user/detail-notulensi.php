@@ -232,14 +232,8 @@
         </div>
     </div>
 
-    <!-- FOOTER SIMPLE -->
-    <footer class="bg-gray-900 py-8 border-t border-gray-800 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-gray-400 text-sm">
-                &copy; 2026 Sistem Informasi RW 21. Seluruh Hak Cipta Dilindungi.
-            </p>
-        </div>
-    </footer>
+    <!-- FOOTER -->
+    <?php require base_path('views/partials/footer.php'); ?>
 </body>
 
 </html>
