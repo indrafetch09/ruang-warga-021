@@ -91,11 +91,9 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
                 </div>
 
                 <!-- 5. Hubungi Kami -->
-                <a href="/contact" class="px-4 py-2.5 rounded-[10px] font-bold flex items-center gap-1.5 transition shadow-sm text-sm <?= ($currentUri === '/contact' || $currentUri === '/hubungi-kami') ? 'bg-emerald-700 text-white' : 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100' ?>">
+                <a href="/contact" class="flex items-center gap-1 font-semibold transition text-base <?= $isInfoActive ? 'text-purple-700 border-b-2 border-purple-600 pb-1' : 'text-gray-700 hover:text-purple-600' ?>">
                     Hubungi Kami
-                    <svg class="w-4 h-4 <?= ($currentUri === '/contact' || $currentUri === '/hubungi-kami') ? 'text-white' : 'text-emerald-600' ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
+
                 </a>
 
                 <!-- 6. PORTAL ADMIN (Ruang Warga 021) -->
