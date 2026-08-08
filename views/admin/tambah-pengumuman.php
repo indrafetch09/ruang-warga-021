@@ -6,21 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tambah Pengumuman - Dasbor Pengurus RW 21</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet" />
-    <style>
-        body {
-            font-family: "Plus Jakarta Sans", sans-serif;
-            background-color: #f8fafc;
-        }
-
-        .logo-container {
-            border-radius: 0 0 16px 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e9d5ff;
-            border-top-width: 0;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/theme.css" />
 </head>
 
 <body class="text-gray-800 bg-gray-50 flex flex-col min-h-screen">

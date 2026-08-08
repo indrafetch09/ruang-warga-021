@@ -7,25 +7,7 @@
     <title>Dasbor Pengurus - Ruang Warga 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-        body {
-            font-family: "Plus Jakarta Sans", sans-serif;
-            background-color: #f8fafc;
-        }
-
-        .sidebar-scroll::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .sidebar-scroll::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .sidebar-scroll::-webkit-scrollbar-thumb {
-            background: #e5e7eb;
-            border-radius: 4px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/theme.css" />
 </head>
 
 <body class="text-gray-800 flex flex-col min-h-screen">

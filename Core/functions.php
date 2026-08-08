@@ -43,7 +43,17 @@ function view($path, $attributes = [])
 {
     extract($attributes);
 
-    require base_path('views/' . $path);
+    // ponytail: resolution logic for filtered user/ and admin/ views architecture
+    $fullPath = base_path('views/' . $path);
+    if (!file_exists($fullPath)) {
+        if (file_exists(base_path('views/user/' . $path))) {
+            $fullPath = base_path('views/user/' . $path);
+        } elseif (file_exists(base_path('views/admin/' . $path))) {
+            $fullPath = base_path('views/admin/' . $path);
+        }
+    }
+
+    require $fullPath;
 }
 
 function redirect($path)

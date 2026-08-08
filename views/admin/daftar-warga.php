@@ -6,39 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data Penduduk - Sistem Informasi RW 21</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet" />
-    <style>
-        body {
-            font-family: "Plus Jakarta Sans", sans-serif;
-        }
-
-        .logo-container {
-            border-radius: 0 0 24px 24px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e9d5ff;
-            border-top-width: 0;
-        }
-
-        /* Custom Scrollbar untuk tabel */
-        .table-container::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .table-container::-webkit-scrollbar-track {
-            background: #f3f4f6;
-            border-radius: 8px;
-        }
-
-        .table-container::-webkit-scrollbar-thumb {
-            background: #d1d5db;
-            border-radius: 8px;
-        }
-
-        .table-container::-webkit-scrollbar-thumb:hover {
-            background: #9ca3af;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/theme.css" />
 </head>
 
 <body class="bg-gray-50 flex flex-col min-h-screen text-gray-800">

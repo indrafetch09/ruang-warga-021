@@ -14,7 +14,7 @@ class PengumumanController
      */
     public function create()
     {
-        return view('tambah-pengumuman.php');
+        return view('admin/tambah-pengumuman.php');
     }
 
     /**

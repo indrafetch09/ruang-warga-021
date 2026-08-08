@@ -46,7 +46,7 @@ class NotulensiController
 
         $notulensiList = $db->query($query, $params)->get();
 
-        return view('notulensi.php', [
+        return view('user/notulensi.php', [
             'notulensiList' => $notulensiList,
             'search' => $search,
             'kategori' => $kategori,
@@ -73,7 +73,7 @@ class NotulensiController
             abort(404);
         }
 
-        return view('detail-notulensi.php', [
+        return view('user/detail-notulensi.php', [
             'notulensi' => $notulensi
         ]);
     }
@@ -84,7 +84,7 @@ class NotulensiController
      */
     public function create()
     {
-        return view('tambah-notulensi.php');
+        return view('admin/tambah-notulensi.php');
     }
 
     /**

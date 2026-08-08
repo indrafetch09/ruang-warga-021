@@ -33,7 +33,7 @@ class GaleriController
 
         $galeriList = $db->query($query, $params)->get();
 
-        return view('galeri.php', [
+        return view('user/galeri.php', [
             'galeriList' => $galeriList,
             'kategori' => $kategori
         ]);
@@ -45,7 +45,7 @@ class GaleriController
      */
     public function create()
     {
-        return view('tambah-galeri.php');
+        return view('admin/tambah-galeri.php');
     }
 
     /**

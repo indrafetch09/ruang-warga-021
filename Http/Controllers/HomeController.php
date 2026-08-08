@@ -30,7 +30,7 @@ class HomeController
         // C. Ambil 3 Notulensi Rapat Terbaru
         $notulensiTerbaru = $db->query("SELECT * FROM notulensi ORDER BY tanggal DESC LIMIT 3")->get();
 
-        return view('index.view.php', [
+        return view('user/index.view.php', [
             'totalWarga'       => $totalWarga,
             'totalKK'          => $totalKK,
             'pengumumanList'   => $pengumumanTerbaru,
@@ -48,7 +48,7 @@ class HomeController
         // Ambil data profil RW dari database
         $profil = $db->query("SELECT * FROM profil_rw LIMIT 1")->find();
 
-        return view('tentang-kami.php', [
+        return view('user/tentang-kami.php', [
             'profil' => $profil
         ]);
     }
@@ -79,7 +79,7 @@ class HomeController
             }
         }
 
-        return view('pengurus-rw.php', [
+        return view('user/pengurus-rw.php', [
             'pengurusList' => $pengurusList
         ]);
     }

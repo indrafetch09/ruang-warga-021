@@ -23,7 +23,7 @@ class LaporanController
             if (!$laporan) {
                 abort(404);
             }
-            return view('laporan/show.view.php', [
+            return view('admin/laporan/show.view.php', [
                 'heading' => 'Detail Laporan Bulanan',
                 'laporan' => $laporan
             ]);
@@ -32,7 +32,7 @@ class LaporanController
         // Tampilkan daftar laporan bulanan
         $laporans = $db->query('SELECT * FROM laporan_bulanan ORDER BY tahun DESC, bulan DESC')->get();
 
-        return view('laporan/index.view.php', [
+        return view('admin/laporan/index.view.php', [
             'heading' => 'Laporan Bulanan',
             'laporans' => $laporans
         ]);
@@ -54,7 +54,7 @@ class LaporanController
             $heading = 'Edit Laporan Bulanan';
         }
 
-        return view('laporan/create.view.php', [
+        return view('admin/laporan/create.view.php', [
             'heading' => $heading,
             'laporan' => $laporan
         ]);

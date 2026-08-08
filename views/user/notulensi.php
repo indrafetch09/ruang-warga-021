@@ -6,17 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arsip Notulen Rapat - Sistem Informasi RW 21</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/theme.css" />
     <style>
-        body {
-            font-family: "Plus Jakarta Sans", sans-serif;
-        }
-
         .logo-container {
             border-radius: 0 0 24px 24px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e9d5ff;
+            border: 1px solid var(--color-border-light);
             border-top-width: 0;
         }
     </style>

@@ -20,14 +20,14 @@ $router->get('/pengurus-rw', [HomeController::class, 'pengurus']);
 
 // Layanan Warga (Administrasi Kependudukan & TPST)
 $router->get('/layanan', function () {
-    return view('layanan.php');
+    return view('user/layanan.php');
 });
 
 // Notulensi & Statistik Warga
 $router->get('/notulensi', [NotulensiController::class, 'index']);
 $router->get('/notulensi/detail', [NotulensiController::class, 'show']);
 $router->get('/statistik', function () {
-    return view('statistik.php');
+    return view('user/statistik.php');
 });
 
 // Galeri Publik
@@ -35,10 +35,10 @@ $router->get('/galeri', [GaleriController::class, 'index']);
 
 // Hubungi Kami / Contact
 $router->get('/contact', function () {
-    return view('hubungi-kami.php');
+    return view('user/hubungi-kami.php');
 });
 $router->get('/hubungi-kami', function () {
-    return view('hubungi-kami.php');
+    return view('user/hubungi-kami.php');
 });
 
 // Laporan Bulanan (Public list & Auth create/store)
@@ -51,25 +51,44 @@ $router->post('/laporan', [LaporanController::class, 'store'])->only('auth');
 // 2. ROUTES AUTENTIKASI (Login & Logout)
 // ==========================================
 
-// Login hanya untuk Guest (Belum login)
+// Login (Guest Only)
 $router->get('/login', function () {
-    return view('login.php');
+    return view('user/login.php');
 })->only('guest');
 
 $router->post('/login', function () {
-    $email = $_POST['email'] ?? '';
+    // 1. Verifikasi CSRF Token
+    if (!\Core\Csrf::verify($_POST['_csrf_token'] ?? null)) {
+        \Core\Session::flash('errors', ['identity' => 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.']);
+        return redirect('/login');
+    }
+
+    $identity = trim($_POST['identity'] ?? $_POST['username'] ?? $_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
-    $auth = new \Core\Authenticator();
-    if ($auth->attempt($email, $password)) {
-        redirect('/dashboard');
-    } else {
-        \Core\Session::flash('errors', ['email' => 'Email atau password yang Anda masukkan salah.']);
-        redirect('/login');
+    // 2. Form Validation & Rate Limiting Check
+    $form = \Http\Forms\LoginForm::validate([
+        'identity' => $identity,
+        'password' => $password,
+    ]);
+
+    // 3. Attempt Authentication
+    $signedIn = (new \Core\Authenticator())->attempt($identity, $password);
+
+    if (!$signedIn) {
+        $form->error('identity', 'Email/ID Pengurus atau kata sandi yang Anda masukkan salah.')->throw();
     }
+
+    \Core\Session::flash('sukses', 'Selamat datang kembali di Portal Ruang Warga 021!');
+    redirect('/dashboard');
 })->only('guest');
 
-// Logout hanya untuk Auth (Sudah login)
+// Logout (Auth Only)
+$router->post('/logout', function () {
+    (new \Core\Authenticator())->logout();
+    redirect('/');
+})->only('auth');
+
 $router->delete('/logout', function () {
     (new \Core\Authenticator())->logout();
     redirect('/');
@@ -80,14 +99,11 @@ $router->delete('/logout', function () {
 // 3. ROUTES ADMIN / PORTAL SIRW 21
 // ==========================================
 
-// Dasbor Utama Pengurus
-$router->get('/admin', function () {
-    return view('dashboard.php');
-})->only('auth');
+use App\Controllers\AdminController;
 
-$router->get('/dashboard', function () {
-    return view('dashboard.php');
-})->only('auth');
+// Dasbor Utama Pengurus
+$router->get('/admin', [AdminController::class, 'dashboard'])->only('auth');
+$router->get('/dashboard', [AdminController::class, 'dashboard'])->only('auth');
 
 // Manajemen Data Warga (Penduduk)
 $router->get('/admin/warga', [WargaController::class, 'index'])->only('auth');
@@ -108,7 +124,7 @@ $router->post('/admin/galeri', [GaleriController::class, 'store'])->only('auth')
 
 // Manajemen Kegiatan Rutin
 $router->get('/admin/kegiatan/create', function () {
-    return view('tambah-kegiatan.php');
+    return view('admin/tambah-kegiatan.php');
 })->only('auth');
 
 $router->post('/admin/kegiatan', function () {
