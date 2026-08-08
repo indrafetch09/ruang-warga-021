@@ -37,9 +37,9 @@
                 </div>
                 <div>
                     <h2 class="font-bold tracking-widest uppercase text-sm">
-                        Sistem Informasi
+                        Ruang Warga
                     </h2>
-                    <p class="text-purple-200 text-xs">RW 021 Terpadu</p>
+                    <p class="text-purple-200 text-xs">RW 021 </p>
                 </div>
             </div>
 
@@ -64,18 +64,19 @@
 
     <!-- KANAN: FORM LOGIN -->
     <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-8 sm:p-12 relative bg-white">
-        <!-- Tombol Kembali (Mobile/Desktop) -->
-        <a href="/"
-            class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-6 group">
-            <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-            </svg>
-            Kembali ke Beranda Utama
-        </a>
-
         <!-- Kontainer Form -->
-        <div class="w-full max-w-md mt-10 lg:mt-0">
+        <div class="w-full max-w-md">
+            <!-- Tombol Kembali (Aligned Left) -->
+            <div class="mb-6">
+                <a href="/"
+                   class="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-purple-600 transition group">
+                   <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor"
+                       viewBox="0 0 24 24">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                   </svg>
+                   Kembali ke Beranda Utama
+                </a>
+            </div>
             <!-- Logo Khusus Mobile -->
             <div class="lg:hidden flex items-center gap-3 mb-8">
                 <div
@@ -84,9 +85,9 @@
                 </div>
                 <div>
                     <h2 class="font-bold text-gray-900 tracking-widest uppercase text-sm">
-                        Sistem Informasi
+                        Ruang Warga
                     </h2>
-                    <p class="text-gray-500 text-xs">RW 021 Terpadu</p>
+                    <p class="text-gray-500 text-xs">RW 021</p>
                 </div>
             </div>
 
