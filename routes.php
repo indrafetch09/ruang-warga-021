@@ -18,9 +18,18 @@ $router->get('/', [HomeController::class, 'index']);
 $router->get('/tentang-kami', [HomeController::class, 'about']);
 $router->get('/pengurus-rw', [HomeController::class, 'pengurus']);
 
-// Layanan Warga (Administrasi Kependudukan & TPST)
+// Layanan Warga (Aula RW 021 & TPST)
 $router->get('/layanan', function () {
     return view('user/layanan.php');
+});
+$router->get('/aula-rw', function () {
+    return view('user/layanan.php');
+});
+$router->get('/tpst', function () {
+    return view('user/tpst.php');
+});
+$router->get('/kebersihan', function () {
+    return view('user/tpst.php');
 });
 
 // Notulensi & Statistik Warga
