@@ -16,7 +16,6 @@
             border-top-width: 0;
         }
 
-        /* Animasi untuk modal */
         @keyframes fadeInZoom {
             from {
                 opacity: 0;
@@ -33,7 +32,6 @@
             animation: fadeInZoom 0.25s ease-out forwards;
         }
 
-        /* Scrollbar halus untuk modal */
         #postModal .overflow-y-auto::-webkit-scrollbar {
             width: 4px;
         }
@@ -43,7 +41,7 @@
         }
 
         #postModal .overflow-y-auto::-webkit-scrollbar-thumb {
-            background: var(--color-scrollbar-thumb);
+            background: var(--color-scrollbar-thumb, #cbd5e1);
             border-radius: 8px;
         }
     </style>
@@ -60,8 +58,7 @@
                 Galeri <span class="text-purple-600">Kegiatan Warga</span>
             </h1>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Dokumentasi momen-momen kebersamaan, gotong royong, dan perayaan warga
-                RW 021.
+                Dokumentasi momen-momen kebersamaan, gotong royong, dan perayaan warga RW 021.
             </p>
         </div>
     </div>
@@ -69,200 +66,90 @@
     <!-- MAIN CONTENT - GALERI -->
     <div class="py-12 bg-gray-50 flex-1">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Filter Kategori -->
+
+            <!-- Filter Kategori Dinamis -->
+            <?php
+            $activeKategori = $_GET['kategori'] ?? '';
+            $categories = [
+                '' => 'Semua',
+                'Sosial & Kebersihan' => 'Sosial & Kebersihan',
+                'Perayaan' => 'Perayaan',
+                'Kesehatan' => 'Kesehatan'
+            ];
+            ?>
             <div class="flex flex-wrap justify-center gap-2 mb-10">
-                <button
-                    class="px-5 py-2 rounded-full bg-purple-600 text-white text-sm font-semibold shadow-md transition">
-                    Semua
-                </button>
-                <button
-                    class="px-5 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-medium hover:bg-gray-100 transition">
-                    Sosial & Kebersihan
-                </button>
-                <button
-                    class="px-5 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-medium hover:bg-gray-100 transition">
-                    Perayaan
-                </button>
-                <button
-                    class="px-5 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-medium hover:bg-gray-100 transition">
-                    Kesehatan
-                </button>
+                <?php foreach ($categories as $key => $label): ?>
+                    <a href="/galeri<?= $key !== '' ? '?kategori=' . urlencode($key) : '' ?>"
+                        class="px-5 py-2 rounded-full text-sm font-semibold transition <?= $activeKategori === $key ? 'bg-purple-600 text-white shadow-md' : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-100' ?>">
+                        <?= $label ?>
+                    </a>
+                <?php endforeach; ?>
             </div>
 
-            <!-- Grid Foto -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                <!-- Item 1 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Kerja Bakti Membersihkan Saluran Air', '03 Agustus 2026', 'Kegiatan gotong royong membersihkan lingkungan, saluran air, dan fasilitas umum setiap hari Minggu di minggu pertama. Kegiatan ini diikuti oleh warga dari RT 01 hingga RT 05 untuk menjaga kebersihan dan mengantisipasi genangan air di musim hujan.')"
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
-                    <div class="overflow-hidden relative h-56">
-                        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Kerja Bakti"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
-                            <span>Lihat Detail</span>
-                        </div>
-                        <span
-                            class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded">Sosial
-                            & Kebersihan</span>
+            <!-- Grid Foto / Dynamic List -->
+            <?php if (empty($galeriList)): ?>
+                <!-- EMPTY STATE -->
+                <div class="bg-white rounded-2xl border border-gray-200 p-12 text-center max-w-lg mx-auto shadow-sm my-8">
+                    <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
                     </div>
-                    <div class="p-5">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                            Kerja Bakti Membersihkan Saluran Air
-                        </h3>
-                        <p class="text-xs text-gray-400 mb-3">03 Agustus 2026</p>
-                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Belum Ada Foto Galeri</h3>
+                    <p class="text-gray-500 text-sm mb-6">
+                        <?= !empty($activeKategori) ? 'Tidak ditemukan foto untuk kategori "' . htmlspecialchars($activeKategori) . '".' : 'Dokumentasi foto kegiatan belum tersedia saat ini.' ?>
+                    </p>
+                    <?php if (!empty($activeKategori)): ?>
+                        <a href="/galeri" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white font-medium text-xs rounded-lg hover:bg-purple-700 transition">
+                            Tampilkan Semua Foto
+                        </a>
+                    <?php endif; ?>
                 </div>
+            <?php else: ?>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                    <?php foreach ($galeriList as $item): ?>
+                        <?php
+                        // Tentukan URL Foto (jika dari database atau Unsplash fallback)
+                        $imgSrc = !empty($item->file_foto)
+                            ? '/uploads/galeri/' . htmlspecialchars($item->file_foto)
+                            : 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
 
-                <!-- Item 2 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Posyandu & Pemeriksaan Lansia', '27 Juli 2026', 'Pelayanan kesehatan gratis untuk balita, ibu hamil, dan pemeriksaan kesehatan rutin bagi warga lanjut usia setiap bulan. Bekerja sama dengan Puskesmas setempat untuk menyediakan penimbangan balita, vitamin, serta cek tensi dan gula darah.')"
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
-                    <div class="overflow-hidden relative h-56">
-                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Posyandu"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
-                            <span>Lihat Detail</span>
+                        $tglFormatted = !empty($item->tanggal) ? date('d F Y', strtotime($item->tanggal)) : '-';
+
+                        // Badge color berdasarkan kategori
+                        $badgeColor = 'bg-purple-500';
+                        if (($item->kategori ?? '') === 'Sosial & Kebersihan') $badgeColor = 'bg-emerald-500';
+                        elseif (($item->kategori ?? '') === 'Kesehatan') $badgeColor = 'bg-rose-500';
+                        elseif (($item->kategori ?? '') === 'Perayaan') $badgeColor = 'bg-amber-500';
+                        ?>
+
+                        <div onclick="openModal('<?= $imgSrc ?>', '<?= htmlspecialchars(addslashes($item->judul ?? 'Kegiatan')) ?>', '<?= $tglFormatted ?>', '<?= htmlspecialchars(addslashes($item->deskripsi ?? '')) ?>')"
+                            class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
+                            <div class="overflow-hidden relative h-56">
+                                <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($item->judul ?? 'Foto') ?>"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    onerror="this.src='https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'" />
+
+                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                                    </svg>
+                                    <span>Lihat Detail</span>
+                                </div>
+                                <span class="absolute top-3 left-3 <?= $badgeColor ?> text-white text-[10px] font-bold px-2 py-1 rounded">
+                                    <?= htmlspecialchars($item->kategori ?? 'Kegiatan') ?>
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
+                                    <?= htmlspecialchars($item->judul ?? '-') ?>
+                                </h3>
+                                <p class="text-xs text-gray-400 mb-3"><?= $tglFormatted ?></p>
+                            </div>
                         </div>
-                        <span
-                            class="absolute top-3 left-3 bg-rose-500 text-white text-[10px] font-bold px-2 py-1 rounded">Kesehatan</span>
-                    </div>
-                    <div class="p-5">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                            Posyandu & Pemeriksaan Lansia
-                        </h3>
-                        <p class="text-xs text-gray-400 mb-3">27 Juli 2026</p>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
-
-                <!-- Item 3 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Bazar UMKM Makanan Tradisional', '15 Juli 2026', 'Mendukung perputaran ekonomi warga melalui bazar makanan dan kerajinan lokal pada setiap perayaan hari besar nasional. Diikuti lebih dari 20 pelaku UMKM lokal RW 021 untuk mempromosikan produk unggulan rumahan.')"
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
-                    <div class="overflow-hidden relative h-56">
-                        <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="UMKM"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
-                            <span>Lihat Detail</span>
-                        </div>
-                        <span
-                            class="absolute top-3 left-3 bg-amber-500 text-white text-[10px] font-bold px-2 py-1 rounded">Perayaan</span>
-                    </div>
-                    <div class="p-5">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                            Bazar UMKM Makanan Tradisional
-                        </h3>
-                        <p class="text-xs text-gray-400 mb-3">15 Juli 2026</p>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Rapat Koordinasi Pengurus RW & RT', '05 Juli 2026', 'Pertemuan rutin bulanan antara pengurus RW dan seluruh perwakilan RT untuk membahas program kerja bulan berikutnya, evaluasi kas, dan menampung aspirasi warga.')"
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
-                    <div class="overflow-hidden relative h-56">
-                        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Rapat"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
-                            <span>Lihat Detail</span>
-                        </div>
-                        <span
-                            class="absolute top-3 left-3 bg-purple-500 text-white text-[10px] font-bold px-2 py-1 rounded">Pertemuan</span>
-                    </div>
-                    <div class="p-5">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                            Rapat Koordinasi Pengurus RW & RT
-                        </h3>
-                        <p class="text-xs text-gray-400 mb-3">05 Juli 2026</p>
-                    </div>
-                </div>
-
-                <!-- Item 5 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Pembagian Sembako Bantuan', '20 Juni 2026', 'Penyaluran bantuan sembako kepada warga yang membutuhkan di sekitar lingkungan RW 021, terselenggara berkat donasi rutin kas warga dan sumbangan sukarela.')"
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
-                    <div class="overflow-hidden relative h-56">
-                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Bantuan"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
-                            <span>Lihat Detail</span>
-                        </div>
-                        <span
-                            class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded">Sosial
-                            & Kebersihan</span>
-                    </div>
-                    <div class="p-5">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                            Pembagian Sembako Bantuan
-                        </h3>
-                        <p class="text-xs text-gray-400 mb-3">20 Juni 2026</p>
-                    </div>
-                </div>
-
-                <!-- Item 6 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Senam Pagi Akhir Pekan', '14 Juni 2026', 'Kegiatan senam sehat bersama setiap Sabtu pagi di lapangan utama RW 021 untuk menjaga kebugaran dan mempererat tali silaturahmi antarwarga.')"
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
-                    <div class="overflow-hidden relative h-56">
-                        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Senam"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
-                            <span>Lihat Detail</span>
-                        </div>
-                        <span
-                            class="absolute top-3 left-3 bg-rose-500 text-white text-[10px] font-bold px-2 py-1 rounded">Kesehatan</span>
-                    </div>
-                    <div class="p-5">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                            Senam Pagi Akhir Pekan
-                        </h3>
-                        <p class="text-xs text-gray-400 mb-3">14 Juni 2026</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Load More Button -->
-            <div class="text-center mt-12">
-                <button
-                    class="px-6 py-3 border border-purple-200 text-purple-700 font-bold rounded-full hover:bg-purple-50 transition w-full md:w-auto shadow-sm">
-                    Muat Lebih Banyak
-                </button>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -270,25 +157,21 @@
     <?php require base_path('views/partials/footer.php'); ?>
 
     <!-- MODAL POPUP INSTAGRAM STYLE -->
-    <div id="postModal"
-        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
-        <div
-            class="bg-white rounded-2xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row shadow-2xl relative animate-in">
+    <div id="postModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
+        <div class="bg-white rounded-2xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row shadow-2xl relative animate-in">
             <button onclick="closeModal()"
                 class="absolute top-3 right-3 z-20 w-9 h-9 bg-black/50 hover:bg-black/80 text-white rounded-full flex items-center justify-center md:bg-gray-100 md:text-gray-600 md:hover:bg-gray-200 transition">
                 ✕
             </button>
 
             <div class="w-full md:w-3/5 bg-black flex items-center justify-center min-h-[250px] md:min-h-[500px]">
-                <img id="modalImage" src="" alt="Detail Kegiatan"
-                    class="w-full h-full object-cover max-h-[60vh] md:max-h-[80vh]" />
+                <img id="modalImage" src="" alt="Detail Kegiatan" class="w-full h-full object-cover max-h-[60vh] md:max-h-[80vh]" />
             </div>
 
             <div class="w-full md:w-2/3 p-6 flex flex-col justify-between bg-white overflow-y-auto">
                 <div>
                     <div class="flex items-center gap-3 border-b border-gray-100 pb-4 mb-4">
-                        <div
-                            class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xs">
+                        <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xs">
                             RW21
                         </div>
                         <div>
@@ -297,8 +180,7 @@
                             </h4>
                             <p id="modalDate" class="text-xs text-gray-500 mt-0.5"></p>
                         </div>
-                        <span
-                            class="ml-auto px-2.5 py-1 bg-emerald-100 text-emerald-800 text-[11px] font-bold rounded-full">Kegiatan</span>
+                        <span class="ml-auto px-2.5 py-1 bg-emerald-100 text-emerald-800 text-[11px] font-bold rounded-full">Kegiatan</span>
                     </div>
                     <h3 id="modalTitle" class="text-2xl font-extrabold text-gray-900 mb-3"></h3>
                     <p id="modalDescription" class="text-gray-600 text-sm leading-relaxed whitespace-pre-line mb-6"></p>
@@ -308,13 +190,11 @@
                     <div class="flex items-center justify-between text-gray-500 text-xs">
                         <span class="flex items-center gap-1 text-emerald-600 font-semibold">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                             Dokumentasi Terbuka
                         </span>
-                        <button onclick="closeModal()"
-                            class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg text-xs transition">
+                        <button onclick="closeModal()" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg text-xs transition">
                             Tutup
                         </button>
                     </div>
@@ -341,13 +221,11 @@
             document.body.style.overflow = "auto";
         }
 
-        document
-            .getElementById("postModal")
-            .addEventListener("click", function (e) {
-                if (e.target === this) closeModal();
-            });
+        document.getElementById("postModal").addEventListener("click", function(e) {
+            if (e.target === this) closeModal();
+        });
 
-        document.addEventListener("keydown", function (e) {
+        document.addEventListener("keydown", function(e) {
             if (e.key === "Escape") closeModal();
         });
     </script>

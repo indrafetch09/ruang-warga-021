@@ -138,4 +138,104 @@ abstract class Model
 
         return $models; // Return array of objects yang sudah terisi relasinya
     }
+
+    public function delete()
+    {
+        $id = $this->attributes['id'] ?? null;
+        if (!$id) return false;
+
+        $db = App::resolve(Database::class);
+        $table = static::$table;
+
+        $db->query("DELETE FROM {$table} WHERE id = :id", ['id' => $id]);
+        
+        return true;
+    }
+
+    // -----------------------------------------------------------------
+    // 2. WHERE CLAUSE (Filter Data)
+    // -----------------------------------------------------------------
+    public static function where($column, $value, $operator = '=')
+    {
+        $db = App::resolve(Database::class);
+        $table = static::$table;
+
+        $results = $db->query(
+            "SELECT * FROM {$table} WHERE {$column} {$operator} :val", 
+            ['val' => $value]
+        )->get();
+
+        return array_map(fn($row) => new static($row), $results);
+    }
+
+    // -----------------------------------------------------------------
+    // 3. PAGINATION (Sistem Halaman)
+    // -----------------------------------------------------------------
+    public static function paginate($perPage = 10, $page = 1)
+    {
+        $db = App::resolve(Database::class);
+        $table = static::$table;
+
+        // Hitung total record di database
+        $total = $db->query("SELECT COUNT(*) as total FROM {$table}")->find()['total'] ?? 0;
+
+        // Hitung offset limit
+        $offset = max(0, ($page - 1) * $perPage);
+
+        // Fetch data sesuai limit & offset
+        $results = $db->query(
+            "SELECT * FROM {$table} LIMIT :per_page OFFSET :offset", 
+            [
+                'per_page' => (int) $perPage,
+                'offset' => (int) $offset
+            ]
+        )->get();
+
+        return [
+            'data' => array_map(fn($row) => new static($row), $results),
+            'total' => (int) $total,
+            'per_page' => (int) $perPage,
+            'current_page' => (int) $page,
+            'last_page' => ceil($total / $perPage)
+        ];
+    }
+
+     public static function create($attributes)
+    {
+        $db = App::resolve(Database::class);
+        $table = static::$table;
+
+        $columns = implode(', ', array_keys($attributes));
+        $placeholders = ':' . implode(', :', array_keys($attributes));
+
+        $db->query("INSERT INTO {$table} ({$columns}) VALUES ({$placeholders})", $attributes);
+
+        // Ambil instance data yang baru saja di-insert
+        $id = $db->connection->lastInsertId();
+        return static::find($id);
+    }
+
+    // Hitung Total Baris
+    public static function count()
+    {
+        $db = App::resolve(Database::class);
+        $table = static::$table;
+
+        $result = $db->query("SELECT COUNT(*) as total FROM {$table}")->find();
+        return (int)($result['total'] ?? 0);
+    }
+
+    // Ambil Data Terbaru dengan Limit
+    public static function latest($limit = 5, $column = 'created_at')
+    {
+        $db = App::resolve(Database::class);
+        $table = static::$table;
+
+        $results = $db->query("SELECT * FROM {$table} ORDER BY {$column} DESC LIMIT :limit", [
+            'limit' => (int)$limit
+        ])->get();
+
+        return array_map(fn($row) => new static($row), $results);
+    }
+
 }
