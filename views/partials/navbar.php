@@ -23,21 +23,15 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
         <div class="flex justify-between items-center h-24">
 
             <!-- Logo Area -->
-            <a href="/" class="flex items-center gap-3 group">
-                <div class="flex-shrink-0 h-28 w-28 bg-white logo-container flex flex-col items-center justify-center p-2 z-10 border border-purple-200 shadow-md rounded-b-2xl group-hover:border-purple-400 transition">
+            <a href="/" class="flex items-center bg-red-800 gap-3 sm:pl-10 pl-0 group">
+                <div class="flex-shrink-0 h-100 w-28 bg-red-800 logo-container flex flex-col items-center justify-center p-2 z-10 border border-purple-200 shadow-md rounded-b-2xl group-hover:border-purple-400 transition">
                     <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-center text-xs leading-tight mb-1 shadow-md group-hover:scale-105 transition p-1">
+                        <!--Logo RW 021-->
                         Ruang Warga 021
                     </div>
                     <span class="text-[9px] text-center font-bold text-gray-700 leading-tight">RUANG<br />WARGA 021</span>
                 </div>
             </a>
-
-            <!-- Text Info Kiri (Desktop) -->
-            <div class="hidden lg:flex flex-col ml-4 text-xs font-medium">
-                <span class="text-purple-700 font-bold">#KompakBersama</span>
-                <span class="text-emerald-600 font-semibold">#LingkunganAsriAman</span>
-                <span class="text-purple-500">Pelayanan Digital 2026</span>
-            </div>
 
             <!-- Menu Navigasi (Desktop) -->
             <div class="hidden md:flex flex-1 justify-end items-center space-x-6 text-gray-700 text-base">
@@ -47,45 +41,45 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
 
                 <!-- 2. Profil RW (Dropdown) -->
                 <div class="relative group py-2">
-                    <button class="flex items-center gap-1 font-semibold transition text-base <?= $isProfilActive ? 'text-purple-700 border-b-2 border-purple-600 pb-1' : 'text-gray-700 hover:text-purple-600' ?>">
+                    <button class="flex items-center gap-1 font-medium transition text-base <?= $isProfilActive ? 'text-purple-700 border-b-2 border-purple-600 pb-1' : 'text-gray-700 hover:text-purple-600' ?>">
                         <span>Profil RW</span>
                         <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
                     <div class="absolute left-0 top-full hidden group-hover:block w-56 bg-white border border-purple-100 rounded-xl shadow-xl py-2 z-50">
-                        <a href="/tentang-kami" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Profil</a>
-                        <a href="/galeri" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Galeri Kegiatan</a>
-                        <a href="/pengurus-rw#rw" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Struktur RW</a>
+                        <a href="/tentang-kami" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Profil</a>
+                        <a href="/galeri" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Galeri Kegiatan</a>
+                        <a href="/pengurus-rw#rw" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Struktur RW</a>
                     </div>
                 </div>
 
                 <!-- 3. Layanan (Dropdown) -->
                 <div class="relative group py-2">
-                    <button class="flex items-center gap-1 font-semibold transition text-base <?= $isLayananActive ? 'text-purple-700 border-b-2 border-purple-600 pb-1' : 'text-gray-700 hover:text-purple-600' ?>">
+                    <button class="flex items-center gap-1 font-medium transition text-base <?= $isLayananActive ? 'text-purple-700 border-b-2 border-purple-600 pb-1' : 'text-gray-700 hover:text-purple-600' ?>">
                         <span>Layanan</span>
                         <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
                     <div class="absolute left-0 top-full hidden group-hover:block w-64 bg-white border border-purple-100 rounded-xl shadow-xl py-2 z-50">
-                        <a href="/layanan" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Aula RW 021 & Fasilitas</a>
-                        <a href="/tpst" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Kebersihan Lingkungan (TPST)</a>
+                        <a href="/layanan" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Aula RW 021 & Fasilitas</a>
+                        <a href="/tpst" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Kebersihan Lingkungan (TPST)</a>
                     </div>
                 </div>
 
                 <!-- 4. Informasi (Dropdown) -->
                 <div class="relative group py-2">
-                    <button class="flex items-center gap-1 font-semibold transition text-base <?= $isInfoActive ? 'text-purple-700 border-b-2 border-purple-600 pb-1' : 'text-gray-700 hover:text-purple-600' ?>">
+                    <button class="flex items-center gap-1 font-medium transition text-base <?= $isInfoActive ? 'text-purple-700 border-b-2 border-purple-600 pb-1' : 'text-gray-700 hover:text-purple-600' ?>">
                         <span>Informasi</span>
                         <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
                     <div class="absolute left-0 top-full hidden group-hover:block w-52 bg-white border border-purple-100 rounded-xl shadow-xl py-2 z-50">
-                        <a href="/notulensi" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Notulensi</a>
-                        <a href="/statistik" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Statistik Warga</a>
-                        <a href="/contact#maps" class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Maps Peta Lokasi</a>
+                        <a href="/notulensi" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Notulensi</a>
+                        <a href="/statistik" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Statistik Warga</a>
+                        <a href="/contact#maps" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">Maps Peta Lokasi</a>
                     </div>
                 </div>
 
