@@ -8,9 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
+    <style>
+        body { font-family: "Plus Jakarta Sans", sans-serif; }
+    </style>
 </head>
 
-<body class="text-gray-800 flex flex-col min-h-screen">
+<body class="text-gray-800 bg-gray-50 flex flex-col min-h-screen">
     <?php require base_path('views/partials/admin-header.php'); ?>
 
     <!-- WRAPPER SIDEBAR & MAIN CONTENT -->
@@ -20,10 +23,17 @@
         <!-- MAIN CONTENT -->
         <main class="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 space-y-8">
 
+            <?php
+                // Helper Role Check
+                $isRw = method_exists($user, 'isRw') ? $user->isRw() : (($user['role'] ?? '') === 'admin' || ($user['role'] ?? '') === 'rw');
+                $isRt = method_exists($user, 'isRt') ? $user->isRt() : (($user['role'] ?? '') === 'rt');
+                $assignedRt = method_exists($user, 'getRtAssigned') ? $user->getRtAssigned() : ($user['rt'] ?? 1);
+            ?>
+
             <!-- Alert Message Flash (Jika Ada) -->
-            <?php $sukses = \Core\Session::get('sukses'); ?>
+            <?php $sukses = \Core\Session::getFlash('sukses'); ?>
             <?php if ($sukses): ?>
-                <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-between text-emerald-800 text-sm font-semibold">
+                <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-between text-emerald-800 text-sm font-semibold shadow-sm">
                     <div class="flex items-center gap-2">
                         <svg class="w-5 h-5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -36,11 +46,23 @@
             <!-- Welcome Banner -->
             <div class="bg-purple-800 rounded-2xl p-6 md:p-8 text-white shadow-md relative overflow-hidden">
                 <div class="relative z-10">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold tracking-wide uppercase">
+                            Portal Pengurus RW 021
+                        </span>
+                        <?php if ($isRt): ?>
+                            <span class="px-3 py-1 bg-emerald-500 text-white rounded-full text-xs font-extrabold uppercase">
+                                Wilayah RT <?= sprintf('%02d', $assignedRt) ?>
+                            </span>
+                        <?php endif; ?>
+                    </div>
                     <h2 class="text-3xl md:text-4xl font-extrabold mb-2 leading-tight">
                         Selamat Datang, <?= htmlspecialchars($user['name'] ?? 'Pengurus RW') ?>!
                     </h2>
                     <p class="text-purple-100 text-sm max-w-2xl leading-relaxed">
-                        Kelola data kependudukan, pengumuman publik, arsip notulensi, dan laporan bulanan RW 021 secara terintegrasi dan aman.
+                        <?= $isRw 
+                            ? 'Kelola data kependudukan seluruh RT, pengumuman publik, arsip notulensi, galeri kegiatan, dan laporan bulanan RW 021 secara terintegrasi.' 
+                            : 'Kelola pendaftaran dan verifikasi data kependudukan warga khusus di lingkungan RT ' . sprintf('%02d', $assignedRt) . '.'; ?>
                     </p>
                 </div>
             </div>
@@ -119,14 +141,14 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                             </svg>
                                         </div>
-                                        <span class="text-xs bg-purple-50 text-purple-700 font-bold px-2.5 py-1 rounded-full"><?= $totalWarga ?> Terdaftar</span>
+                                        <span class="text-xs bg-purple-50 text-purple-700 font-bold px-2.5 py-1 rounded-full"><?= $totalWarga ?? 0 ?> Terdaftar</span>
                                     </div>
                                     <h4 class="font-bold text-gray-900 text-base mb-1">Manajemen Penduduk</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Kelola data warga, status verifikasi RT/RW, dan NIK kependudukan.</p>
+                                    <p class="text-xs text-gray-500 mb-4">Kelola data warga, verifikasi status RT/RW, dan enkripsi NIK.</p>
                                 </div>
                                 <div class="flex gap-2">
                                     <a href="/admin/warga" class="flex-1 text-center bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold py-2 rounded-[10px] text-xs transition border border-purple-200">Lihat Data</a>
-                                    <a href="/warga/create" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-4 py-2 rounded-[10px] text-xs transition">+ Tambah</a>
+                                    <a href="/admin/warga/create" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-4 py-2 rounded-[10px] text-xs transition">+ Tambah</a>
                                 </div>
                             </div>
 
@@ -139,7 +161,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
                                             </svg>
                                         </div>
-                                        <span class="text-xs bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-full"><?= $totalPengumuman ?> Berita</span>
+                                        <span class="text-xs bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-full"><?= $totalPengumuman ?? 0 ?> Berita</span>
                                     </div>
                                     <h4 class="font-bold text-gray-900 text-base mb-1">Pengumuman Warga</h4>
                                     <p class="text-xs text-gray-500 mb-4">Buat dan publikasikan siaran penting di halaman utama publik.</p>
@@ -158,7 +180,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
                                             </svg>
                                         </div>
-                                        <span class="text-xs bg-sky-50 text-sky-700 font-bold px-2.5 py-1 rounded-full"><?= $totalNotulensi ?> Dokumen</span>
+                                        <span class="text-xs bg-sky-50 text-sky-700 font-bold px-2.5 py-1 rounded-full"><?= $totalNotulensi ?? 0 ?> Dokumen</span>
                                     </div>
                                     <h4 class="font-bold text-gray-900 text-base mb-1">Notulensi Rapat</h4>
                                     <p class="text-xs text-gray-500 mb-4">Catat dan simpan hasil musyawarah warga serta keputusan rapat.</p>
@@ -169,22 +191,27 @@
                                 </div>
                             </div>
 
-                            <!-- Card Laporan Bulanan -->
-                            <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm hover:border-amber-300 transition flex flex-col justify-between">
+                            <!-- Card Galeri Dokumentasi (Khusus RW) -->
+                            <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm hover:border-indigo-300 transition flex flex-col justify-between">
                                 <div>
                                     <div class="flex justify-between items-start mb-3">
-                                        <div class="w-10 h-10 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center font-bold">
-                                            <svg class="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                        <div class="w-10 h-10 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold">
+                                            <svg class="w-5 h-5 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                             </svg>
                                         </div>
-                                        <span class="text-xs bg-amber-50 text-amber-700 font-bold px-2.5 py-1 rounded-full"><?= $totalLaporan ?> Laporan</span>
+                                        <span class="text-xs bg-indigo-50 text-indigo-700 font-bold px-2.5 py-1 rounded-full">
+                                            <?= $isRw ? 'Khusus RW' : 'Akses Publik' ?>
+                                        </span>
                                     </div>
-                                    <h4 class="font-bold text-gray-900 text-base mb-1">Laporan Bulanan RW</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Rekapitulasi bulanan resmi dan ekspor dokumen Word/PDF.</p>
+                                    <h4 class="font-bold text-gray-900 text-base mb-1">Galeri Kegiatan</h4>
+                                    <p class="text-xs text-gray-500 mb-4">Unggah dokumentasi momen kegiatan warga RW 021.</p>
                                 </div>
                                 <div class="flex gap-2">
-                                    <a href="/laporan" class="flex-1 text-center bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 rounded-[10px] text-xs transition shadow-sm">Kelola & Ekspor Laporan</a>
+                                    <a href="/tentang" class="flex-1 text-center bg-gray-50 hover:bg-gray-100 text-gray-700 font-bold py-2 rounded-[10px] text-xs transition border border-gray-200">Lihat Galeri</a>
+                                    <?php if ($isRw): ?>
+                                        <a href="/admin/galeri/create" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-[10px] text-xs transition">+ Unggah</a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -206,7 +233,7 @@
                                         <tr class="bg-purple-50 text-purple-900 font-bold uppercase tracking-wider">
                                             <th class="p-3 rounded-l-lg">Nama Warga</th>
                                             <th class="p-3">RT</th>
-                                            <th class="p-3">Status</th>
+                                            <th class="p-3">Status Verifikasi</th>
                                             <th class="p-3 rounded-r-lg">Tanggal Input</th>
                                         </tr>
                                     </thead>

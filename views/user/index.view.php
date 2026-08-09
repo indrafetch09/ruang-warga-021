@@ -56,52 +56,59 @@
                         <span class="gap-2"> &rarr; </span>
                     </a>
                 </div>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- STATISTIK SECTION -->
+    <!-- STATISTIK SECTION (DINAMIS) -->
     <div class="bg-gray-50 py-12 border-b border-gray-200 relative z-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                <!-- Card 1 -->
+                <!-- Card 1: KK -->
                 <div class="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-purple-50 p-6 flex flex-col items-center text-center transform hover:-translate-y-1 transition-transform duration-300">
                     <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
                     </div>
-                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700">350</span>
+                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700"><?= number_format($stats['total_kk'] ?? 0) ?></span>
                     <span class="mt-2 text-sm text-gray-500 font-medium">Kepala Keluarga</span>
                 </div>
-                <!-- Card 2 -->
+                <!-- Card 2: Total Warga -->
                 <div class="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-purple-50 p-6 flex flex-col items-center text-center transform hover:-translate-y-1 transition-transform duration-300">
                     <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
                     </div>
-                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700">1.245</span>
+                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700"><?= number_format($stats['total_warga'] ?? 0) ?></span>
                     <span class="mt-2 text-sm text-gray-500 font-medium">Total Warga</span>
                 </div>
-                <!-- Card 3 -->
+                <!-- Card 3: Fasilitas -->
                 <div class="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-purple-50 p-6 flex flex-col items-center text-center transform hover:-translate-y-1 transition-transform duration-300">
                     <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
                     </div>
-                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700">12</span>
+                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700"><?= number_format($stats['total_fasilitas'] ?? 0) ?></span>
                     <span class="mt-2 text-sm text-gray-500 font-medium">Fasilitas Umum</span>
                 </div>
-                <!-- Card 4 -->
+                <!-- Card 4: UMKM -->
                 <div class="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-purple-50 p-6 flex flex-col items-center text-center transform hover:-translate-y-1 transition-transform duration-300">
                     <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
                     </div>
-                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700">45</span>
+                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700"><?= number_format($stats['total_umkm'] ?? 0) ?></span>
                     <span class="mt-2 text-sm text-gray-500 font-medium">UMKM Aktif</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- PENGUMUMAN WARGA SECTION (NEW) -->
+    <!-- PENGUMUMAN WARGA SECTION -->
     <div class="py-16 bg-purple-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
@@ -125,40 +132,50 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Pengumuman 1 -->
-                <div class="bg-white rounded-xl p-6 border border-rose-100 shadow-sm relative overflow-hidden group hover:shadow-md transition">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs text-gray-400 font-medium">Hari ini, 08:00</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Pemadaman Listrik Bergilir</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-4">Sehubungan dengan perbaikan gardu induk PLN, akan dilakukan pemadaman listrik pada pukul 10.00 - 14.00 WIB untuk wilayah RT 01 s/d RT 03.</p>
-                    <a href="#" class="text-rose-600 text-sm font-semibold hover:text-rose-700">Baca selengkapnya &rarr;</a>
+            <?php if (empty($pengumumanList)): ?>
+                <!-- EMPTY STATE PENGUMUMAN -->
+                <div class="bg-white rounded-xl p-10 text-center border border-purple-100 shadow-sm">
+                    <p class="text-gray-500 text-sm">Belum ada pengumuman terbaru untuk warga.</p>
                 </div>
+            <?php else: ?>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <?php foreach ($pengumumanList as $pengumuman): ?>
+                        <?php
+                        $kategori = $pengumuman->kategori ?? 'Umum';
+                        $borderColor = 'border-purple-100';
+                        $bgColor = 'bg-purple-500';
+                        $textColor = 'text-purple-600';
 
-                <!-- Pengumuman 2 -->
-                <div class="bg-white rounded-xl p-6 border border-emerald-100 shadow-sm relative overflow-hidden group hover:shadow-md transition">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs text-gray-400 font-medium">Kemarin</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Pendaftaran Lomba 17-an</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-4">Pendaftaran lomba perayaan HUT RI ke-81 telah dibuka! Segera daftarkan keluarga Anda melalui ketua RT masing-masing paling lambat 10 Agustus 2026.</p>
-                    <a href="#" class="text-emerald-600 text-sm font-semibold hover:text-emerald-700">Daftar sekarang &rarr;</a>
+                        if ($kategori === 'Mendesak' || $kategori === 'Penting') {
+                            $borderColor = 'border-rose-100';
+                            $bgColor = 'bg-rose-500';
+                            $textColor = 'text-rose-600';
+                        } elseif ($kategori === 'Kegiatan' || $kategori === 'Sosial') {
+                            $borderColor = 'border-emerald-100';
+                            $bgColor = 'bg-emerald-500';
+                            $textColor = 'text-emerald-600';
+                        }
+                        ?>
+                        <div class="bg-white rounded-xl p-6 border <?= $borderColor ?> shadow-sm relative overflow-hidden group hover:shadow-md transition">
+                            <div class="absolute top-0 left-0 w-1 h-full <?= $bgColor ?>"></div>
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="text-xs text-gray-400 font-medium">
+                                    <?= !empty($pengumuman->tanggal_publikasi) ? date('d M Y', strtotime($pengumuman->tanggal_publikasi)) : 'Baru saja' ?>
+                                </span>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-2"><?= htmlspecialchars($pengumuman->judul ?? '-') ?></h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                                <?= htmlspecialchars($pengumuman->pesan ?? '') ?>
+                            </p>
+                            <?php if (!empty($pengumuman->tautan_url)): ?>
+                                <a href="<?= htmlspecialchars($pengumuman->tautan_url) ?>" class="<?= $textColor ?> text-sm font-semibold hover:underline">
+                                    <?= htmlspecialchars($pengumuman->label_tombol ?? 'Baca selengkapnya') ?> &rarr;
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-
-                <!-- Pengumuman 3 -->
-                <div class="bg-white rounded-xl p-6 border border-purple-100 shadow-sm relative overflow-hidden group hover:shadow-md transition">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs text-gray-400 font-medium">2 Hari lalu</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Jadwal Pengambilan Sampah</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-4">Terdapat perubahan rute truk sampah DLH minggu ini. Dimohon warga sudah meletakkan bak sampah di depan rumah sebelum pukul 06.00 pagi.</p>
-                    <a href="#" class="text-purple-600 text-sm font-semibold hover:text-purple-700">Lihat jadwal &rarr;</a>
-                </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -183,83 +200,51 @@
             </div>
 
             <!-- List Container -->
-            <div class="flex flex-col space-y-6">
-                <!-- Item 1 -->
-                <div class="flex flex-col sm:flex-row gap-6 bg-white p-4 rounded-xl border-l-4 border-emerald-500 hover:shadow-lg transition-shadow duration-300">
-                    <div class="flex-shrink-0 w-24 flex flex-col rounded-md overflow-hidden shadow-sm border border-purple-100">
-                        <div class="bg-purple-100 py-2 flex flex-col items-center justify-center relative">
-                            <div class="absolute top-2 left-2 w-2 h-2 bg-purple-800 rounded-full"></div>
-                            <div class="absolute top-2 right-2 w-2 h-2 bg-purple-800 rounded-full"></div>
-                            <span class="text-2xl font-bold text-purple-800 mt-2">12</span>
-                            <span class="text-sm font-semibold text-purple-800 uppercase">Agt</span>
-                        </div>
-                        <div class="bg-purple-800 py-1.5 flex justify-center items-center">
-                            <span class="text-xs font-bold text-white tracking-widest">2026</span>
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-xl font-bold text-purple-700 hover:text-purple-600 transition-colors mb-2 cursor-pointer">
-                            Rapat Persiapan HUT RI ke-81
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-2 line-clamp-3">
-                            Rapat ini membahas pembentukan panitia lomba 17 Agustus tingkat RW, rincian anggaran kegiatan, dan penetapan rute jalan sehat warga. Disepakati bahwa iuran partisipasi per KK adalah sebesar Rp50.000 dan puncak acara akan dimeriahkan dengan panggung gembira.
-                        </p>
-                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Rapat Rutin</span>
-                    </div>
+            <?php if (empty($notulensiList)): ?>
+                <!-- EMPTY STATE NOTULENSI -->
+                <div class="bg-gray-50 rounded-xl p-10 text-center border border-gray-200">
+                    <p class="text-gray-500 text-sm">Belum ada notulensi rapat yang dipublikasikan.</p>
                 </div>
-
-                <!-- Item 2 -->
-                <div class="flex flex-col sm:flex-row gap-6 bg-white p-4 rounded-xl border-l-4 border-purple-500 hover:shadow-lg transition-shadow duration-300">
-                    <div class="flex-shrink-0 w-24 flex flex-col rounded-md overflow-hidden shadow-sm border border-purple-100">
-                        <div class="bg-purple-100 py-2 flex flex-col items-center justify-center relative">
-                            <div class="absolute top-2 left-2 w-2 h-2 bg-purple-800 rounded-full"></div>
-                            <div class="absolute top-2 right-2 w-2 h-2 bg-purple-800 rounded-full"></div>
-                            <span class="text-2xl font-bold text-purple-800 mt-2">28</span>
-                            <span class="text-sm font-semibold text-purple-800 uppercase">Jul</span>
+            <?php else: ?>
+                <div class="flex flex-col space-y-6">
+                    <?php foreach ($notulensiList as $notulen): ?>
+                        <?php
+                        $tglTime = !empty($notulen->tanggal) ? strtotime($notulen->tanggal) : time();
+                        $tglDay = date('d', $tglTime);
+                        $tglMonth = date('M', $tglTime);
+                        $tglYear = date('Y', $tglTime);
+                        ?>
+                        <div class="flex flex-col sm:flex-row gap-6 bg-white p-4 rounded-xl border-l-4 border-emerald-500 hover:shadow-lg transition-shadow duration-300">
+                            <div class="flex-shrink-0 w-24 flex flex-col rounded-md overflow-hidden shadow-sm border border-purple-100">
+                                <div class="bg-purple-100 py-2 flex flex-col items-center justify-center relative">
+                                    <div class="absolute top-2 left-2 w-2 h-2 bg-purple-800 rounded-full"></div>
+                                    <div class="absolute top-2 right-2 w-2 h-2 bg-purple-800 rounded-full"></div>
+                                    <span class="text-2xl font-bold text-purple-800 mt-2"><?= $tglDay ?></span>
+                                    <span class="text-sm font-semibold text-purple-800 uppercase"><?= $tglMonth ?></span>
+                                </div>
+                                <div class="bg-purple-800 py-1.5 flex justify-center items-center">
+                                    <span class="text-xs font-bold text-white tracking-widest"><?= $tglYear ?></span>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <a href="/notulensi/show?id=<?= $notulen->id ?>" class="text-xl font-bold text-purple-700 hover:text-purple-600 transition-colors mb-2 block">
+                                    <?= htmlspecialchars($notulen->judul ?? '-') ?>
+                                </a>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-2 line-clamp-3">
+                                    <?= htmlspecialchars($notulen->hasil_pembahasan ?? $notulen->agenda ?? '-') ?>
+                                </p>
+                                <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">
+                                    <?= htmlspecialchars($notulen->kategori ?? 'Rapat Rutin') ?>
+                                </span>
+                            </div>
                         </div>
-                        <div class="bg-purple-800 py-1.5 flex justify-center items-center">
-                            <span class="text-xs font-bold text-white tracking-widest">2026</span>
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-xl font-bold text-purple-700 hover:text-purple-600 transition-colors mb-2 cursor-pointer">
-                            Evaluasi Keamanan Lingkungan
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-2 line-clamp-3">
-                            Tindak lanjut dari laporan warga terkait aturan jam malam untuk tamu. Forum menyetujui penambahan 3 titik CCTV baru di area gang buntu dan portal utama akan mulai ditutup penuh pada pukul 23.00 WIB setiap harinya demi kenyamanan bersama.
-                        </p>
-                        <span class="text-xs font-semibold text-purple-600 bg-purple-50 px-2 py-1 rounded">Rapat Khusus</span>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
-
-                <!-- Item 3 -->
-                <div class="flex flex-col sm:flex-row gap-6 bg-white p-4 rounded-xl border-l-4 border-emerald-500 hover:shadow-lg transition-shadow duration-300">
-                    <div class="flex-shrink-0 w-24 flex flex-col rounded-md overflow-hidden shadow-sm border border-purple-100">
-                        <div class="bg-purple-100 py-2 flex flex-col items-center justify-center relative">
-                            <div class="absolute top-2 left-2 w-2 h-2 bg-purple-800 rounded-full"></div>
-                            <div class="absolute top-2 right-2 w-2 h-2 bg-purple-800 rounded-full"></div>
-                            <span class="text-2xl font-bold text-purple-800 mt-2">05</span>
-                            <span class="text-sm font-semibold text-purple-800 uppercase">Jul</span>
-                        </div>
-                        <div class="bg-purple-800 py-1.5 flex justify-center items-center">
-                            <span class="text-xs font-bold text-white tracking-widest">2026</span>
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-xl font-bold text-purple-700 hover:text-purple-600 transition-colors mb-2 cursor-pointer">
-                            Laporan Transparansi Iuran Kas Semester I
-                        </h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-2 line-clamp-3">
-                            Pemaparan rincian pemasukan dan pengeluaran kas RW untuk periode Januari hingga Juni 2026. Saldo akhir yang dilaporkan telah disetujui tanpa ada sanggahan dari perwakilan tiap RT. Dana darurat warga disepakati untuk tidak digunakan kecuali mendesak.
-                        </p>
-                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Laporan Kas</span>
-                    </div>
-                </div>
-            </div>
+            <?php endif; ?>
 
             <!-- Tombol Lihat Semua (Mobile) -->
             <div class="mt-8 text-center md:hidden">
-                <a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-purple-200 text-purple-700 font-medium rounded-full hover:bg-purple-50 transition duration-150 w-full">Lihat Semua Arsip &rarr;</a>
+                <a href="/notulensi" class="inline-flex items-center justify-center px-6 py-3 border border-purple-200 text-purple-700 font-medium rounded-full hover:bg-purple-50 transition duration-150 w-full">Lihat Semua Arsip &rarr;</a>
             </div>
         </div>
     </div>
@@ -267,4 +252,5 @@
     <!-- FOOTER -->
     <?php require base_path('views/partials/footer.php'); ?>
 </body>
+
 </html>

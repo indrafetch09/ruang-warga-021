@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Core\App;
 use Core\Database;
 use Core\Session;
+use App\Models\LaporanBulanan;
 
 class LaporanController
 {
@@ -14,12 +15,10 @@ class LaporanController
     public function index()
     {
         $db = App::resolve(Database::class);
-
         $id = $_GET['id'] ?? null;
 
-        // Jika ada param ?id=X, tampilkan detail laporan
         if ($id) {
-            $laporan = $db->query('SELECT * FROM laporan_bulanan WHERE id = :id', ['id' => $id])->find();
+            $laporan = LaporanBulanan::find($id);
             if (!$laporan) {
                 abort(404);
             }
@@ -29,11 +28,11 @@ class LaporanController
             ]);
         }
 
-        // Tampilkan daftar laporan bulanan
-        $laporans = $db->query('SELECT * FROM laporan_bulanan ORDER BY tahun DESC, bulan DESC')->get();
+        $laporansRaw = $db->query('SELECT * FROM ' . LaporanBulanan::$table . ' ORDER BY tahun DESC, bulan DESC')->get();
+        $laporans    = array_map(fn($row) => new LaporanBulanan($row), $laporansRaw);
 
         return view('admin/laporan/index.view.php', [
-            'heading' => 'Laporan Bulanan',
+            'heading'  => 'Laporan Bulanan',
             'laporans' => $laporans
         ]);
     }
@@ -43,14 +42,13 @@ class LaporanController
      */
     public function create()
     {
-        $db = App::resolve(Database::class);
         $id = $_GET['id'] ?? null;
 
         $laporan = null;
         $heading = 'Tambah Laporan Bulanan';
 
         if ($id) {
-            $laporan = $db->query('SELECT * FROM laporan_bulanan WHERE id = :id', ['id' => $id])->find();
+            $laporan = LaporanBulanan::find($id);
             $heading = 'Edit Laporan Bulanan';
         }
 
@@ -67,21 +65,19 @@ class LaporanController
     {
         $db = App::resolve(Database::class);
 
-        $id = $_POST['id'] ?? null;
+        $id    = $_POST['id'] ?? null;
         $bulan = (int)($_POST['bulan'] ?? date('n'));
         $tahun = (int)($_POST['tahun'] ?? date('Y'));
 
         if ($id) {
-            // Update
             $db->query(
-                "UPDATE laporan_bulanan SET bulan = :bulan, tahun = :tahun, updated_at = NOW() WHERE id = :id",
+                "UPDATE " . LaporanBulanan::$table . " SET bulan = :bulan, tahun = :tahun, updated_at = NOW() WHERE id = :id",
                 ['bulan' => $bulan, 'tahun' => $tahun, 'id' => $id]
             );
             Session::flash('sukses', 'Laporan bulanan berhasil diperbarui.');
         } else {
-            // Insert
             $db->query(
-                "INSERT INTO laporan_bulanan (bulan, tahun) VALUES (:bulan, :tahun)",
+                "INSERT INTO " . LaporanBulanan::$table . " (bulan, tahun) VALUES (:bulan, :tahun)",
                 ['bulan' => $bulan, 'tahun' => $tahun]
             );
             Session::flash('sukses', 'Laporan bulanan berhasil dibuat.');

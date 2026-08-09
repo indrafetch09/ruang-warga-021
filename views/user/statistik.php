@@ -25,22 +25,46 @@
     <div class="py-12 flex-1">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
+            <?php
+                // Data Kartu Ringkasan (Fallback dari Controller)
+                $summary = $summaryData ?? [
+                    'total_kk' => 350,
+                    'total_jiwa' => 1245,
+                    'total_rt' => 10,
+                    'verifikasi' => '98%'
+                ];
+
+                // Data RT Detail
+                $dataRt = $listDataRt ?? [
+                    1 => ['kk' => 32, 'jiwa' => 112],
+                    2 => ['kk' => 35, 'jiwa' => 123],
+                    3 => ['kk' => 28, 'jiwa' => 98],
+                    4 => ['kk' => 40, 'jiwa' => 140],
+                    5 => ['kk' => 38, 'jiwa' => 133],
+                    6 => ['kk' => 30, 'jiwa' => 105],
+                    7 => ['kk' => 36, 'jiwa' => 126],
+                    8 => ['kk' => 34, 'jiwa' => 119],
+                    9 => ['kk' => 39, 'jiwa' => 137],
+                    10 => ['kk' => 38, 'jiwa' => 133]
+                ];
+            ?>
+
             <!-- SUMMARY CARDS -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
                 <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center hover:shadow-md transition">
-                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700 block mb-1">350</span>
+                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700 block mb-1"><?= number_format($summary['total_kk']) ?></span>
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Kepala Keluarga (KK)</span>
                 </div>
                 <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center hover:shadow-md transition">
-                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700 block mb-1">1.245</span>
+                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700 block mb-1"><?= number_format($summary['total_jiwa']) ?></span>
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Total Jiwa Warga</span>
                 </div>
                 <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center hover:shadow-md transition">
-                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700 block mb-1">10</span>
+                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700 block mb-1"><?= htmlspecialchars($summary['total_rt']) ?></span>
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Rukun Tetangga (RT 01-10)</span>
                 </div>
                 <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center hover:shadow-md transition">
-                    <span class="text-3xl md:text-4xl font-extrabold text-emerald-600 block mb-1">98%</span>
+                    <span class="text-3xl md:text-4xl font-extrabold text-emerald-600 block mb-1"><?= htmlspecialchars($summary['verifikasi']) ?></span>
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Terverifikasi Digital</span>
                 </div>
             </div>
@@ -48,7 +72,7 @@
             <!-- CHARTS SECTION: BAR CHART & PIE CHARTS -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-                <!-- BAR CHART: SEBARAN KK & JIWA PER RT (2 Columns on Large Screens) -->
+                <!-- BAR CHART: SEBARAN KK & JIWA PER RT -->
                 <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-2xl border border-purple-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
@@ -64,7 +88,7 @@
                     </div>
                 </div>
 
-                <!-- PIE CHART: DEMOGRAFI USIA (1 Column on Large Screens) -->
+                <!-- PIE CHART: DEMOGRAFI USIA -->
                 <div class="bg-white p-6 md:p-8 rounded-2xl border border-purple-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="mb-6 border-b border-gray-100 pb-4">
@@ -106,41 +130,33 @@
                     </div>
                 </div>
 
-                <!-- TABEL RINCIAN SEBARAN RT (2 Columns) -->
+                <!-- TABEL RINCIAN SEBARAN RT -->
                 <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-2xl border border-purple-100 shadow-sm">
                     <h2 class="text-lg md:text-xl font-extrabold text-gray-900 mb-6 border-b border-gray-100 pb-4">Rincian Data Kependudukan RT 01 - RT 10</h2>
 
-                    <div class="space-y-4">
-                        <?php
-                        $dataRt = [
-                            1 => ['kk' => 32, 'jiwa' => 112],
-                            2 => ['kk' => 35, 'jiwa' => 123],
-                            3 => ['kk' => 28, 'jiwa' => 98],
-                            4 => ['kk' => 40, 'jiwa' => 140],
-                            5 => ['kk' => 38, 'jiwa' => 133],
-                            6 => ['kk' => 30, 'jiwa' => 105],
-                            7 => ['kk' => 36, 'jiwa' => 126],
-                            8 => ['kk' => 34, 'jiwa' => 119],
-                            9 => ['kk' => 39, 'jiwa' => 137],
-                            10 => ['kk' => 38, 'jiwa' => 133]
-                        ];
-                        foreach ($dataRt as $i => $row):
-                            $pct = round(($row['kk'] / 350) * 100);
-                        ?>
-                            <div>
-                                <div class="flex justify-between items-center text-xs font-bold text-gray-700 mb-1">
-                                    <span class="flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
-                                        RT <?= sprintf('%02d', $i) ?> RW 021
-                                    </span>
-                                    <span class="text-gray-500 font-semibold"><?= $row['kk'] ?> KK &bull; <strong class="text-purple-700"><?= $row['jiwa'] ?> Jiwa</strong> (<?= $pct ?>%)</span>
+                    <?php if (empty($dataRt)): ?>
+                        <div class="p-8 text-center text-gray-500 text-sm">
+                            Data rekapitulasi RT belum tersedia.
+                        </div>
+                    <?php else: ?>
+                        <div class="space-y-4">
+                            <?php foreach ($dataRt as $i => $row): ?>
+                                <?php $pct = round(($row['kk'] / max($summary['total_kk'], 1)) * 100); ?>
+                                <div>
+                                    <div class="flex justify-between items-center text-xs font-bold text-gray-700 mb-1">
+                                        <span class="flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                                            RT <?= sprintf('%02d', $i) ?> RW 021
+                                        </span>
+                                        <span class="text-gray-500 font-semibold"><?= $row['kk'] ?> KK &bull; <strong class="text-purple-700"><?= $row['jiwa'] ?> Jiwa</strong> (<?= $pct ?>%)</span>
+                                    </div>
+                                    <div class="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
+                                        <div class="bg-gradient-to-r from-purple-500 to-purple-700 h-2.5 rounded-full transition-all duration-300" style="width: <?= min($pct * 2.5, 100) ?>%"></div>
+                                    </div>
                                 </div>
-                                <div class="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
-                                    <div class="bg-gradient-to-r from-purple-500 to-purple-700 h-2.5 rounded-full transition-all duration-300" style="width: <?= $pct * 2.5 ?>%"></div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
 
             </div>
@@ -151,25 +167,33 @@
     <!-- FOOTER -->
     <?php require base_path('views/partials/footer.php'); ?>
 
-    <!-- SCRIPT INITIALIZE CHART.JS -->
+    <!-- SCRIPT INITIALIZE CHART.JS (DYNAMIC DATA INJECTION) -->
     <script>
     document.addEventListener("DOMContentLoaded", function () {
+        // Data Dynamic Injection dari Controller / Fallback JSON
+        const barLabels = <?= json_encode($chartBarLabels ?? ['RT 01', 'RT 02', 'RT 03', 'RT 04', 'RT 05', 'RT 06', 'RT 07', 'RT 08', 'RT 09', 'RT 10']) ?>;
+        const barKk = <?= json_encode($chartBarKk ?? [32, 35, 28, 40, 38, 30, 36, 34, 39, 38]) ?>;
+        const barJiwa = <?= json_encode($chartBarJiwa ?? [112, 123, 98, 140, 133, 105, 126, 119, 137, 133]) ?>;
+
+        const usiaData = <?= json_encode($chartUsiaData ?? [215, 180, 680, 170]) ?>;
+        const genderData = <?= json_encode($chartGenderData ?? [635, 610]) ?>;
+
         // 1. BAR CHART: Sebaran KK & Jiwa per RT
         const ctxBar = document.getElementById('barChartRt').getContext('2d');
         new Chart(ctxBar, {
             type: 'bar',
             data: {
-                labels: ['RT 01', 'RT 02', 'RT 03', 'RT 04', 'RT 05', 'RT 06', 'RT 07', 'RT 08', 'RT 09', 'RT 10'],
+                labels: barLabels,
                 datasets: [
                     {
                         label: 'Jumlah KK',
-                        data: [32, 35, 28, 40, 38, 30, 36, 34, 39, 38],
+                        data: barKk,
                         backgroundColor: '#9333ea',
                         borderRadius: 6,
                     },
                     {
                         label: 'Estimasi Jiwa',
-                        data: [112, 123, 98, 140, 133, 105, 126, 119, 137, 133],
+                        data: barJiwa,
                         backgroundColor: '#059669',
                         borderRadius: 6,
                     }
@@ -210,13 +234,8 @@
             data: {
                 labels: ['Anak (0-12 thn)', 'Remaja (13-18 thn)', 'Dewasa (19-59 thn)', 'Lansia (60+ thn)'],
                 datasets: [{
-                    data: [215, 180, 680, 170],
-                    backgroundColor: [
-                        '#c084fc',
-                        '#38bdf8',
-                        '#7e22ce',
-                        '#f59e0b'
-                    ],
+                    data: usiaData,
+                    backgroundColor: ['#c084fc', '#38bdf8', '#7e22ce', '#f59e0b'],
                     borderWidth: 2,
                     borderColor: '#ffffff'
                 }]
@@ -251,7 +270,7 @@
             data: {
                 labels: ['Laki-laki', 'Perempuan'],
                 datasets: [{
-                    data: [635, 610],
+                    data: genderData,
                     backgroundColor: ['#2563eb', '#ec4899'],
                     borderWidth: 3,
                     borderColor: '#ffffff'

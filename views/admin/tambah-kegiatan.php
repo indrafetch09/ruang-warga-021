@@ -7,7 +7,9 @@
     <title>Tambah Kegiatan Rutin - Dasbor Pengurus RW 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
+    <style>
+        body { font-family: "Plus Jakarta Sans", sans-serif; }
+    </style>
 </head>
 
 <body class="text-gray-800 bg-gray-50 flex flex-col min-h-screen">
@@ -19,60 +21,47 @@
 
         <main class="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 space-y-6">
 
-    <!-- MAIN CONTENT -->
-    <div class="py-10 flex-1">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Header Section -->
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+            <!-- HEADER SECTION -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div>
-                    <!-- Link kembali ke halaman utama dashboard atau manajemen jadwal -->
-                    <a href="/dashboard"
-                        class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-3 group">
-                        <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    <a href="/admin/dashboard" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-2 group">
+                        <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
-                        Kembali ke Dashboard
+                        Kembali ke Dasbor
                     </a>
-                    <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
                         Tambah Kegiatan Rutin
                     </h2>
-                    <p class="text-sm text-gray-500 mt-1">
-                        Masukkan jadwal kegiatan mingguan yang akan tampil di panduan
-                        warga.
+                    <p class="text-xs md:text-sm text-gray-500 mt-1">
+                        Masukkan jadwal kegiatan mingguan atau bulanan yang akan tampil pada panduan warga RW 021.
                     </p>
                 </div>
             </div>
 
             <!-- FORM CONTAINER -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                <form action="#" method="POST">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden max-w-4xl mx-auto">
+                <form action="/admin/kegiatan" method="POST">
+                    <?= \Core\Csrf::field() ?>
+
                     <!-- Bagian 1: Detail Utama -->
                     <div class="p-6 md:p-8 border-b border-gray-100">
-                        <h3 class="text-lg font-bold text-purple-700 mb-6 flex items-center gap-2">
+                        <h3 class="text-base font-bold text-purple-700 mb-6 flex items-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
-                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 022 2h2a2 2 0 022-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
                             </svg>
                             Informasi Kegiatan
                         </h3>
+                        
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="md:col-span-2">
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Nama Kegiatan <span
-                                        class="text-rose-500">*</span></label>
-                                <input type="text" placeholder="Contoh: Senam Pagi, Ronda Malam, Pengajian"
-                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm"
-                                    required />
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Kegiatan <span class="text-rose-500">*</span></label>
+                                <input type="text" name="nama" placeholder="Contoh: Senam Pagi Warga, Ronda Malam, Pengajian Rutin" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Hari Pelaksanaan
-                                    <span class="text-rose-500">*</span></label>
-                                <select
-                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm cursor-pointer"
-                                    required>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Hari Pelaksanaan <span class="text-rose-500">*</span></label>
+                                <select name="hari" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold cursor-pointer" required>
                                     <option value="" disabled selected>Pilih Hari</option>
                                     <option value="senin">Senin</option>
                                     <option value="selasa">Selasa</option>
@@ -85,22 +74,13 @@
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Kategori Kegiatan
-                                    <span class="text-rose-500">*</span></label>
-                                <select
-                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm cursor-pointer"
-                                    required>
-                                    <option value="" disabled selected>
-                                        Pilih Kategori (Ikon & Warna)
-                                    </option>
-                                    <option value="administrasi">
-                                        Administrasi & Pelayanan (Ungu)
-                                    </option>
-                                    <option value="kebersihan">
-                                        Kebersihan Lingkungan (Hijau)
-                                    </option>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Kategori Kegiatan <span class="text-rose-500">*</span></label>
+                                <select name="kategori" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold cursor-pointer" required>
+                                    <option value="" disabled selected>Pilih Kategori (Tema / Warna)</option>
+                                    <option value="administrasi">Administrasi & Pelayanan (Ungu)</option>
+                                    <option value="kebersihan">Kebersihan Lingkungan (Hijau)</option>
                                     <option value="keamanan">Keamanan & Ronda (Kuning)</option>
-                                    <option value="sosial">Kesehatan & Sosial (Merah)</option>
+                                    <option value="sosial">Kesehatan & Posyandu (Merah)</option>
                                     <option value="keagamaan">Keagamaan & Kajian (Biru)</option>
                                 </select>
                             </div>
@@ -109,61 +89,43 @@
 
                     <!-- Bagian 2: Waktu & Deskripsi -->
                     <div class="p-6 md:p-8">
-                        <h3 class="text-lg font-bold text-emerald-600 mb-6 flex items-center gap-2">
+                        <h3 class="text-base font-bold text-emerald-600 mb-6 flex items-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                             Waktu & Keterangan Tambahan
                         </h3>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Waktu Pelaksanaan
-                                    <span class="text-rose-500">*</span></label>
-                                <p class="text-xs text-gray-500 mb-2">
-                                    Bisa berupa rentang jam atau teks spesifik.
-                                </p>
-                                <input type="text" placeholder="Contoh: 19.00 - 21.00 atau Ba'da Isya"
-                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition text-sm"
-                                    required />
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Waktu Pelaksanaan <span class="text-rose-500">*</span></label>
+                                <p class="text-[11px] text-gray-400 mb-2">Bisa berupa rentang jam atau teks spesifik.</p>
+                                <input type="text" name="waktu" placeholder="Contoh: 19.30 - 21.00 atau Ba'da Isya" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold" required />
                             </div>
 
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Keterangan Frekuensi /
-                                    Waktu</label>
-                                <p class="text-xs text-gray-500 mb-2">
-                                    Opsional. Misal: Minggu ke-1, Setiap Hari, dll.
-                                </p>
-                                <input type="text" placeholder="Contoh: Mg ke-1 atau Setiap Sabtu"
-                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition text-sm" />
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Keterangan Frekuensi</label>
+                                <p class="text-[11px] text-gray-400 mb-2">Opsional. Misal: Minggu ke-1, Setiap Pekan, dll.</p>
+                                <input type="text" name="frekuensi" placeholder="Contoh: Setiap Sabtu Pekan Pertama" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold" />
                             </div>
 
                             <div class="md:col-span-2">
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Deskripsi Singkat</label>
-                                <p class="text-xs text-gray-500 mb-2">
-                                    Penjelasan singkat tentang kegiatan tersebut (maks. 2
-                                    baris).
-                                </p>
-                                <textarea rows="3" placeholder="Contoh: Oleh petugas DLH / Surat pengantar, KTP, dll."
-                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition text-sm resize-none"></textarea>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Deskripsi Singkat</label>
+                                <p class="text-[11px] text-gray-400 mb-2">Penjelasan singkat mengenai perlengkapan atau teknis kegiatan.</p>
+                                <textarea name="deskripsi" rows="3" placeholder="Contoh: Dilaksanakan di Balai Warga, dimohon membawa peralatan kebersihan masing-masing..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm resize-none"></textarea>
                             </div>
                         </div>
                     </div>
 
                     <!-- Tombol Aksi -->
-                    <div
-                        class="px-6 py-5 md:px-8 bg-gray-50 border-t border-gray-200 flex flex-col sm:flex-row-reverse gap-3">
-                        <button type="submit"
-                            class="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold rounded-xl shadow-md shadow-purple-200 transition-all flex items-center justify-center gap-2">
+                    <div class="px-6 py-5 md:px-8 bg-gray-50 border-t border-gray-200 flex flex-col sm:flex-row-reverse gap-3">
+                        <button type="submit" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold rounded-xl shadow-md transition flex items-center justify-center gap-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                             Simpan Kegiatan
                         </button>
-                        <a href="/dashboard"
-                            class="px-6 py-3 bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 text-sm font-bold rounded-xl transition-all text-center">
+                        <a href="/admin/dashboard" class="px-6 py-3 bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 text-sm font-bold rounded-xl transition text-center">
                             Batal
                         </a>
                     </div>

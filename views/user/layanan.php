@@ -10,25 +10,25 @@
     <style>
         /* 2x2 Grid Directional Animations */
         @keyframes marquee-right {
-            from {transform: translateX(-50%); }
-            to {transform: translateX(0%); }
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0%); }
         }
 
         @keyframes marquee-left {
-            from {transform: translateX(0%); }
-            to {transform: translateX(-50%); }
+            from { transform: translateX(0%); }
+            to { transform: translateX(-50%); }
         }
 
         .animate-slide-right {
-            animation: marquee-right 25s linear infinite ;
+            animation: marquee-right 25s linear infinite;
         }
 
         .animate-slide-left {
-            animation: marquee-left 25s linear infinite ;
+            animation: marquee-left 25s linear infinite;
         }
 
-        .animate-marquee-right:hover,
-        .animate-marquee-left:hover {
+        .animate-slide-right:hover,
+        .animate-slide-left:hover {
             animation-play-state: paused;
         }
     </style>
@@ -37,7 +37,7 @@
 
     <?php require base_path('views/partials/navbar.php'); ?>
 
-    <!-- HEADER (PUTIH BIASA DENGAN PENGATURAN TEKS BERSIH) -->
+    <!-- HEADER -->
     <div class="bg-white py-12 border-b border-gray-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Aula <span class="text-purple-600">RW 021 & Posyandu Bunga Tanjung</span></h1>
@@ -59,47 +59,60 @@
                     </div>
                 </div>
 
-                <!-- 2x2 GRID GALERI AKTIVITAS AULA RW (TOP ANIMATE RIGHT, BOTTOM ANIMATE LEFT) -->
+                <!-- GALERI SLIDER AKTIVITAS AULA -->
+                <?php 
+                    $galeriAula = $galeriAula ?? [
+                        ['foto' => '/images/aula_posyandu.jpg', 'judul' => 'Posyandu Bunga Tanjung'],
+                        ['foto' => '/images/aula_rapat.jpg', 'judul' => 'Musyawarah Warga RW 021'],
+                        ['foto' => '/images/aula_badminton.jpg', 'judul' => 'Badminton Indoor'],
+                        ['foto' => '/images/aula_senam.jpg', 'judul' => 'Senam Sehat Warga']
+                    ];
+                ?>
+
                 <div class="space-y-3">
                     <div class="flex justify-between items-center px-1">
                         <span class="text-lg text-purple-700 font-bold">Balai RW 021 RT 05</span>
                     </div>
-                    <!-- TOP GRID ROW -->
-                    <div class="relative overflow-hidden">
-                        <div class="flex gap-4 w-max animate-slide-right">
-                            <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md">
-                                <img src="/images/aula_posyandu.jpg" alt="Posyandu Bunga Tanjung" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
-                            </div>
-                            <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md">
-                                <img src="/images/aula_rapat.jpg" alt="Musyawarah Warga RW 021" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
-                            </div>
-                            <!-- duplicate for seamless loop -->
-                            <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md" aria-hidden="true">
-                                <img src="/images/aula_posyandu.jpg" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
-                            </div>
-                            <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md" aria-hidden="true">
-                                <img src="/images/aula_rapat.jpg" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
+
+                    <?php if (empty($galeriAula)): ?>
+                        <!-- EMPTY STATE GALERI AULA -->
+                        <div class="p-8 bg-gray-50 rounded-2xl border border-gray-200 text-center">
+                            <p class="text-gray-500 text-sm">Dokumentasi foto fasilitas Aula belum diunggah.</p>
+                        </div>
+                    <?php else: ?>
+                        <!-- TOP GRID ROW -->
+                        <div class="relative overflow-hidden rounded-xl">
+                            <div class="flex gap-4 w-max animate-slide-right">
+                                <?php foreach ($galeriAula as $item): ?>
+                                    <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md rounded-xl">
+                                        <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                    </div>
+                                <?php endforeach; ?>
+                                <!-- Duplicate Loop for Seamless Infinite Scroll -->
+                                <?php foreach ($galeriAula as $item): ?>
+                                    <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md rounded-xl" aria-hidden="true">
+                                        <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
-                    </div>
-                    <!-- BOTTOM GRID ROW -->
-                    <div class="relative overflow-hidden">
-                        <div class="flex gap-4 w-max animate-slide-left">
-                            <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md">
-                                <img src="/images/aula_badminton.jpg" alt="Posyandu Bunga Tanjung" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
-                            </div>
-                            <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md">
-                                <img src="/images/aula_senam.jpg" alt="Musyawarah Warga RW 021" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
-                            </div>
-                            <!-- duplicate for seamless loop -->
-                            <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md" aria-hidden="true">
-                                <img src="/images/aula_senam.jpg" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
-                            </div>
-                            <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md" aria-hidden="true">
-                                <img src="/images/aula_badminton.jpg" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
+
+                        <!-- BOTTOM GRID ROW -->
+                        <div class="relative overflow-hidden rounded-xl">
+                            <div class="flex gap-4 w-max animate-slide-left">
+                                <?php foreach (array_reverse($galeriAula) as $item): ?>
+                                    <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md rounded-xl">
+                                        <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                    </div>
+                                <?php endforeach; ?>
+                                <?php foreach (array_reverse($galeriAula) as $item): ?>
+                                    <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md rounded-xl" aria-hidden="true">
+                                        <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
 
                 <!-- FORM PENGAJUAN PEMINJAMAN AULA RW 021 -->
@@ -126,7 +139,8 @@
                             <div>
                                 <label class="block text-xs font-bold text-purple-100 uppercase tracking-wider mb-1.5">Asal Rukun Tetangga (RT) *</label>
                                 <select id="book_rt" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm font-semibold">
-                                    <?php for ($r = 1; $r <= 10; $r++): ?>
+                                    <?php $totalRt = $totalRt ?? 10; ?>
+                                    <?php for ($r = 1; $r <= $totalRt; $r++): ?>
                                         <option value="<?= sprintf('%02d', $r) ?>">RT <?= sprintf('%02d', $r) ?> RW 021</option>
                                     <?php endfor; ?>
                                 </select>
@@ -183,7 +197,7 @@
 
     <!-- MODAL DETAIL OVERLAY -->
     <div id="detail-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
             <!-- Modal Header -->
             <div id="modal-header-bg" class="px-6 py-5 bg-purple-700 text-white flex justify-between items-center">
                 <div>
@@ -231,14 +245,12 @@
                 </div>
             </div>
 
-            <!-- Modal Footer -->
             <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end">
                 <button type="button" onclick="closeModal()" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold text-xs rounded-xl transition">Tutup</button>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT DATA & WHATSAPP BOOKING GENERATOR -->
     <script>
         const modalData = {
             'peminjaman-aula': {
@@ -300,7 +312,6 @@
             }
         };
 
-        // SUBMIT FORM PEMINJAMAN AULA KE WHATSAPP RW
         function submitBookingAula(e) {
             e.preventDefault();
             const nama = document.getElementById('book_nama').value.trim();
@@ -370,6 +381,5 @@
             if (e.target === this) closeModal();
         });
     </script>
-
 </body>
 </html>
