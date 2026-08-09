@@ -34,9 +34,8 @@
             <?php endif; ?>
 
             <!-- Welcome Banner -->
-            <div class="bg-gradient-to-r from-purple-800 via-purple-700 to-indigo-800 rounded-2xl p-6 md:p-8 text-white shadow-md relative overflow-hidden">
+            <div class="bg-purple-800 rounded-2xl p-6 md:p-8 text-white shadow-md relative overflow-hidden">
                 <div class="relative z-10">
-                    <span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold tracking-wide uppercase mb-3 inline-block">Portal Pengurus RW 021</span>
                     <h2 class="text-3xl md:text-4xl font-extrabold mb-2 leading-tight">
                         Selamat Datang, <?= htmlspecialchars($user['name'] ?? 'Pengurus RW') ?>!
                     </h2>
@@ -83,7 +82,7 @@
                     </div>
                     <div>
                         <p class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider">Pending Verifikasi</p>
-                        <h3 class="text-2xl font-extrabold text-amber-600"><?= number_format($totalPending ?? 0) ?></h3>
+                        <h3 class="text-2xl font-extrabold text-gray-900"><?= number_format($totalPending ?? 0) ?></h3>
                     </div>
                 </div>
 
