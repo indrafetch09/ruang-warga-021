@@ -9,7 +9,7 @@ class Database
     public $connection;
     public $statement;
 
-    public function __construct($config, $username = 'root', $password = '')
+    public function __construct($config, $username = 'indra', $password = 'indrasql1')
     {
         $dsn = 'mysql:' . http_build_query($config, '', ';');
 
@@ -25,7 +25,7 @@ class Database
 
         // Binding parameter satu per satu dengan deteksi tipe data otomatis
         foreach ($params as $key => $value) {
-            
+
             // 1. Cek tipe data otomatis
             if (is_int($value)) {
                 $type = PDO::PARAM_INT;
@@ -40,8 +40,8 @@ class Database
             // 2. Tentukan format key
             // Jika array angka [10, 0] (posisi '?'), PDO butuh urutan mulai dari 1 (1, 2, 3...)
             // Jika array asosiatif ['limit' => 10], dipastikan ada titik dua (:limit)
-            $paramKey = is_int($key) 
-                ? $key + 1 
+            $paramKey = is_int($key)
+                ? $key + 1
                 : (str_starts_with($key, ':') ? $key : ':' . $key);
 
             // 3. Bind value dengan tipe data yang pas

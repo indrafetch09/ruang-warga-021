@@ -69,6 +69,8 @@ class WargaController
             $pendingList = Warga::getByRtAndStatus($rtAssigned, 'pending');
         }
 
+        dd($user);
+
         // DEKRIPSI: Buka gembok NIK dan No HP biar bisa dibaca di tabel view
         $decryptData = function ($wargaArray) {
             foreach ($wargaArray as $w) {
@@ -120,9 +122,9 @@ class WargaController
 
         // Simpan ke Database
         $db->query(
-            "INSERT INTO " . Warga::$table . " 
-            (no_kk, nik, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, rt, blok, nomor, no_hp, status_warga, jml_anggota_keluarga, agama, pekerjaan, status_verifikasi, created_by) 
-            VALUES 
+            "INSERT INTO " . Warga::$table . "
+            (no_kk, nik, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, rt, blok, nomor, no_hp, status_warga, jml_anggota_keluarga, agama, pekerjaan, status_verifikasi, created_by)
+            VALUES
             (:no_kk, :nik, :nama, :tempat_lahir, :tanggal_lahir, :jenis_kelamin, :rt, :blok, :nomor, :no_hp, :status_warga, :jml_anggota_keluarga, :agama, :pekerjaan, :status_verifikasi, :created_by)",
             [
                 'no_kk'                => $_POST['no_kk'],

@@ -6,7 +6,7 @@ use Core\Model;
 
 class User extends Model
 {
-    public static $table = 'user';
+    public static $table = 'users';
 
     // Relasi ke tabel Warga
     public function warga()

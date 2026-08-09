@@ -26,9 +26,10 @@
 
             <?php
             // Helper pengecekan role user
-            $isRw = method_exists($user, 'isRw') ? $user->isRw() : (($user->data['role'] ?? '') === 'admin' || ($user->data['role'] ?? '') === 'rw');
-            $isRt = method_exists($user, 'isRt') ? $user->isRt() : (($user->data['role'] ?? '') === 'rt');
-            $assignedRt = method_exists($user, 'getRtAssigned') ? $user->getRtAssigned() : ($user->data['rt'] ?? 1);
+            $isObject = is_object($user);
+            $isRw = ($isObject && method_exists($user, 'isRw')) ? $user->isRw() : (($user['role'] ?? $user->data['role'] ?? '') === 'admin' || ($user['role'] ?? $user->data['role'] ?? '') === 'rw');
+            $isRt = ($isObject && method_exists($user, 'isRt')) ? $user->isRt() : (($user['role'] ?? $user->data['role'] ?? '') === 'rt');
+            $assignedRt = ($isObject && method_exists($user, 'getRtAssigned')) ? $user->getRtAssigned() : ($user['rt'] ?? $user->data['rt'] ?? 1);
 
             // Helper Ambil Properti Object / Array
             $getVal = function ($item, $key, $default = '-') {
@@ -75,7 +76,7 @@
             </div>
 
             <!-- FLASH MESSAGE NOTIFICATION -->
-            <?php if ($sukses = \Core\Session::getFlash('sukses')): ?>
+            <?php if ($sukses = \Core\Session::get('sukses')): ?>
                 <div class="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-bold rounded-xl flex items-center gap-2 shadow-sm">
                     <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>

@@ -25,13 +25,14 @@
 
             <?php
                 // Helper Role Check
-                $isRw = method_exists($user, 'isRw') ? $user->isRw() : (($user['role'] ?? '') === 'admin' || ($user['role'] ?? '') === 'rw');
-                $isRt = method_exists($user, 'isRt') ? $user->isRt() : (($user['role'] ?? '') === 'rt');
-                $assignedRt = method_exists($user, 'getRtAssigned') ? $user->getRtAssigned() : ($user['rt'] ?? 1);
+                $isObject = is_object($user);
+                $isRw = ($isObject && method_exists($user, 'isRw')) ? $user->isRw() : (($user['role'] ?? $user->role ?? '') === 'admin' || ($user['role'] ?? $user->role ?? '') === 'rw' || ($user['role'] ?? $user->role ?? '') === 'pengurus_rw');
+                $isRt = ($isObject && method_exists($user, 'isRt')) ? $user->isRt() : (($user['role'] ?? $user->role ?? '') === 'rt' || ($user['role'] ?? $user->role ?? '') === 'pengurus_rt');
+                $assignedRt = ($isObject && method_exists($user, 'getRtAssigned')) ? $user->getRtAssigned() : ($user['rt'] ?? $user->rt ?? 1);
             ?>
 
             <!-- Alert Message Flash (Jika Ada) -->
-            <?php $sukses = \Core\Session::getFlash('sukses'); ?>
+            <?php $sukses = \Core\Session::get('sukses'); ?>
             <?php if ($sukses): ?>
                 <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-between text-emerald-800 text-sm font-semibold shadow-sm">
                     <div class="flex items-center gap-2">
@@ -60,8 +61,8 @@
                         Selamat Datang, <?= htmlspecialchars($user['name'] ?? 'Pengurus RW') ?>!
                     </h2>
                     <p class="text-purple-100 text-sm max-w-2xl leading-relaxed">
-                        <?= $isRw 
-                            ? 'Kelola data kependudukan seluruh RT, pengumuman publik, arsip notulensi, galeri kegiatan, dan laporan bulanan RW 021 secara terintegrasi.' 
+                        <?= $isRw
+                            ? 'Kelola data kependudukan seluruh RT, pengumuman publik, arsip notulensi, galeri kegiatan, dan laporan bulanan RW 021 secara terintegrasi.'
                             : 'Kelola pendaftaran dan verifikasi data kependudukan warga khusus di lingkungan RT ' . sprintf('%02d', $assignedRt) . '.'; ?>
                     </p>
                 </div>

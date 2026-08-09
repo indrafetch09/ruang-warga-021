@@ -23,8 +23,8 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
         <div class="flex justify-between items-center h-24">
 
             <!-- Logo Area -->
-            <a href="/" class="flex items-center bg-red-800 gap-3 sm:pl-10 pl-0 group">
-                <div class="flex-shrink-0 h-100 w-28 bg-red-800 logo-container flex flex-col items-center justify-center p-2 z-10 border border-purple-200 shadow-md rounded-b-2xl group-hover:border-purple-400 transition">
+            <a href="/" class="flex items-center gap-3 sm:pl-10 pl-0 group">
+                <div class="flex-shrink-0 h-100 w-28  logo-container flex flex-col items-center justify-center p-2 z-10 border border-purple-200 shadow-md rounded-b-2xl group-hover:border-purple-400 transition">
                     <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-center text-xs leading-tight mb-1 shadow-md group-hover:scale-105 transition p-1">
                         <!--Logo RW 021-->
                         Ruang Warga 021
