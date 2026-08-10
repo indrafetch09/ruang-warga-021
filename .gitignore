@@ -1,5 +1,7 @@
-vendor
+vendor/
 
 *.sql
 
 .env
+
+/tests/
