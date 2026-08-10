@@ -15,14 +15,15 @@
     <?php require base_path('views/partials/navbar.php'); ?>
 
     <!-- MAIN CONTENT - MAPS DEDICATED SECTION -->
-    <div class="py-12 bg-white flex-1">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <div class="py-16 md:py-20 bg-white flex-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
+            <!-- ponytail: Page header with generous spacing and padding -->
             <!-- SIMPLE PAGE HEADER -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Peta & Lokasi <span class="text-purple-600">Sekretariat RW 021</span></h1>
-                    <p class="text-xs md:text-sm text-gray-500 mt-1">Denah balai pertemuan Aula RW 021 (Posyandu Bunga Tanjung) Dasana Indah.</p>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-4">
+                <div class="space-y-2">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Peta & Lokasi <span class="text-purple-600">Sekretariat RW 021</span></h1>
+                    <p class="text-xs md:text-sm text-gray-500 max-w-2xl leading-relaxed">Denah balai pertemuan Aula RW 021 (Posyandu Bunga Tanjung) Dasana Indah.</p>
                 </div>
             </div>
 
