@@ -12,17 +12,18 @@
 
     <?php require base_path('views/partials/navbar.php'); ?>
 
-    <!-- HEADER -->
-    <div class="bg-emerald-50 py-12 border-b border-emerald-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Layanan <span class="text-emerald-600">Kebersihan TPST & Bank Sampah</span></h1>
-            <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">Informasi pengangkutan sampah rumah tangga teratur, tata tertib pembuangan limbah, dan program daur ulang Bank Sampah RW 021.</p>
-        </div>
-    </div>
-
     <!-- MAIN CONTENT -->
-    <div class="py-12 flex-1">
+    <div class="py-16 md:py-20 flex-1">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+            <!-- ponytail: Page header with generous spacing and padding -->
+            <!-- SIMPLE PAGE HEADER -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-4">
+                <div class="space-y-2">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Layanan <span class="text-emerald-600">Kebersihan TPST & Bank Sampah</span></h1>
+                    <p class="text-xs md:text-sm text-gray-500 max-w-2xl leading-relaxed">Jadwal pengangkutan sampah rumah tangga dan program daur ulang Bank Sampah RW 021.</p>
+                </div>
+            </div>
 
             <!-- SUMMARY STATS TPST -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-5">

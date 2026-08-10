@@ -15,14 +15,15 @@
     <?php require base_path('views/partials/navbar.php'); ?>
 
     <!-- MAIN CONTENT - CONTACT CARDS -->
-    <div class="py-16 bg-white flex-1">
+    <div class="py-16 md:py-20 bg-white flex-1">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
+            <!-- ponytail: Page header with generous spacing and padding -->
             <!-- SIMPLE PAGE HEADER -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Kontak Resmi <span class="text-purple-600">Pengurus RW 021</span></h1>
-                    <p class="text-xs md:text-sm text-gray-500 mt-1">Layanan komunikasi langsung via WhatsApp & Email Sekretariat RW 021.</p>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-4">
+                <div class="space-y-2">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Kontak Resmi <span class="text-purple-600">Pengurus RW 021</span></h1>
+                    <p class="text-xs md:text-sm text-gray-500 max-w-2xl leading-relaxed">Layanan komunikasi langsung via WhatsApp & Email Sekretariat RW 021.</p>
                 </div>
                 <a href="/lokasi" class="px-5 py-2.5 bg-purple-100 hover:bg-purple-200 text-purple-800 text-xs font-bold rounded-xl transition flex items-center gap-2">
                     <svg class="w-4 h-4 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>

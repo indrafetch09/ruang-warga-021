@@ -13,40 +13,33 @@
 
     <?php require base_path('views/partials/navbar.php'); ?>
 
-    <!-- HEADER SECTION -->
-    <div class="bg-purple-50 py-12 border-b border-purple-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Statistik <span class="text-purple-600">Penduduk & Wilayah</span></h1>
-            <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">Grafik rekapitulasi data demografi, sebaran jumlah Kepala Keluarga (KK), serta kelompok usia se-wilayah RW 021 Bojong Nangka.</p>
-        </div>
-    </div>
-
     <!-- MAIN CONTENT -->
     <div class="py-12 flex-1">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
+            <!-- SIMPLE PAGE HEADER -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Statistik <span class="text-purple-600">Demografi Penduduk</span></h1>
+                    <p class="text-xs md:text-sm text-gray-500 mt-1">Grafik rekapitulasi data demografi dan sebaran jumlah KK per RT 01 s/d 10.</p>
+                </div>
+            </div>
+
             <?php
-                // Data Kartu Ringkasan (Fallback dari Controller)
+                // Data Kartu Ringkasan & Sebaran RT dari Database Controller
                 $summary = $summaryData ?? [
-                    'total_kk' => 350,
-                    'total_jiwa' => 1245,
+                    'total_kk' => 0,
+                    'total_jiwa' => 0,
                     'total_rt' => 10,
-                    'verifikasi' => '98%'
+                    'verifikasi' => '0%'
                 ];
 
-                // Data RT Detail
-                $dataRt = $listDataRt ?? [
-                    1 => ['kk' => 32, 'jiwa' => 112],
-                    2 => ['kk' => 35, 'jiwa' => 123],
-                    3 => ['kk' => 28, 'jiwa' => 98],
-                    4 => ['kk' => 40, 'jiwa' => 140],
-                    5 => ['kk' => 38, 'jiwa' => 133],
-                    6 => ['kk' => 30, 'jiwa' => 105],
-                    7 => ['kk' => 36, 'jiwa' => 126],
-                    8 => ['kk' => 34, 'jiwa' => 119],
-                    9 => ['kk' => 39, 'jiwa' => 137],
-                    10 => ['kk' => 38, 'jiwa' => 133]
-                ];
+                $dataRt = $listDataRt ?? [];
+                for ($i = 1; $i <= 10; $i++) {
+                    if (!isset($dataRt[$i])) {
+                        $dataRt[$i] = ['kk' => 0, 'jiwa' => 0];
+                    }
+                }
             ?>
 
             <!-- SUMMARY CARDS -->

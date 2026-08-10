@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tentang Kami - Ruang Warga 021</title>
+    <title>Profil - Ruang Warga 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
@@ -42,14 +42,15 @@
     <?php require base_path('views/partials/navbar.php'); ?>
 
     <!-- MAIN CONTENT CONTAINER -->
-    <div class="py-12 bg-gray-50 flex-1">
+    <div class="py-16 md:py-20 bg-gray-50 flex-1">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
+            <!-- ponytail: Page header with generous spacing and padding -->
             <!-- SIMPLE PAGE HEADER -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Profil <span class="text-purple-600">RW 021</span></h1>
-                    <p class="text-xs md:text-sm text-gray-500 mt-1">Letak geografis, visi, misi, dan profil lingkungan RW 021 Bojong Nangka.</p>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-4">
+                <div class="space-y-2">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Profil <span class="text-purple-600">RW 021</span></h1>
+                    <p class="text-xs md:text-sm text-gray-500 max-w-2xl leading-relaxed">Letak geografis, visi, misi, dan profil lingkungan RW 021 Bojong Nangka.</p>
                 </div>
             </div>
 
@@ -57,11 +58,9 @@
             <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-200 space-y-6">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-100 pb-4">
                     <div>
-                        <span class="text-xs font-bold text-purple-600 uppercase tracking-widest">Informasi Wilayah</span>
                         <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-1">
                             Letak <span class="text-purple-600">Geografis RW 021</span>
                         </h2>
-                        <p class="text-xs md:text-sm text-gray-500 mt-1">Gambaran lokasi, batas wilayah administrasi, dan koordinat lingkungan RW 021 Bojong Nangka.</p>
                     </div>
                     <a href="/lokasi" class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 font-extrabold text-xs rounded-xl border border-purple-200 transition inline-flex items-center gap-1.5">
                         <span>Lihat Peta Lengkap</span>
@@ -122,11 +121,9 @@
             <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-200 space-y-6">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-100 pb-4">
                     <div>
-                        <span class="text-xs font-bold text-purple-600 uppercase tracking-widest">Agenda Warga</span>
                         <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-1">
                             Jadwal <span class="text-purple-600">Kegiatan Rutin</span>
                         </h2>
-                        <p class="text-xs md:text-sm text-gray-500 mt-1">Jadwal pelayanan administrasi, kegiatan olahraga, pelayanan posyandu, dan siskamling warga.</p>
                     </div>
                 </div>
 
@@ -281,10 +278,6 @@
                     <div id="content-visi" class="flex flex-col md:flex-row gap-8 items-start">
                         <div class="w-full md:w-1/3">
                             <h3 class="text-3xl font-extrabold text-gray-900 mb-2">Visi Kami</h3>
-                            <p class="text-gray-600 font-medium text-sm leading-relaxed mb-4">
-                                Tujuan utama dan cita-cita yang ingin dicapai oleh kepengurusan RW 021 untuk masa depan warga.
-                            </p>
-                            <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold tracking-wide">#RW021Maju</span>
                         </div>
                         <div class="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div class="bg-purple-50/60 border border-purple-100 p-6 rounded-2xl hover:border-purple-300 transition-all">
@@ -316,10 +309,6 @@
                     <div id="content-misi" class="hidden flex flex-col md:flex-row gap-8 items-start">
                         <div class="w-full md:w-1/3">
                             <h3 class="text-3xl font-extrabold text-gray-900 mb-2">Misi Kami</h3>
-                            <p class="text-gray-600 font-medium text-sm leading-relaxed mb-4">
-                                Program kerja konkret dan langkah operasional pengurus RW 021 untuk merealisasikan visi lingkungan.
-                            </p>
-                            <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold tracking-wide">#AksiWarga021</span>
                         </div>
                         <div class="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-2xl hover:border-emerald-300 transition-all">

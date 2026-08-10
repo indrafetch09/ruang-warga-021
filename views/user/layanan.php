@@ -37,17 +37,18 @@
 
     <?php require base_path('views/partials/navbar.php'); ?>
 
-    <!-- HEADER -->
-    <div class="bg-white py-12 border-b border-gray-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Aula <span class="text-purple-600">RW 021 & Posyandu Bunga Tanjung</span></h1>
-            <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">Gedung balai pertemuan utama warga, pelayanan Posyandu Balita & Lansia, sarana olahraga indoor, serta pengajuan izin peminjaman gedung.</p>
-        </div>
-    </div>
-
     <!-- MAIN CONTENT -->
-    <div class="py-12 flex-1">
+    <div class="py-16 md:py-20 flex-1">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+            <!-- ponytail: Page header with generous spacing and padding -->
+            <!-- SIMPLE PAGE HEADER -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-4">
+                <div class="space-y-2">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Aula <span class="text-purple-600">RW 021 & Posyandu Bunga Tanjung</span></h1>
+                    <p class="text-xs md:text-sm text-gray-500 max-w-2xl leading-relaxed">Gedung balai pertemuan utama warga, pelayanan Posyandu, serta izin peminjaman gedung.</p>
+                </div>
+            </div>
 
             <!-- SECTION AULA RW FULL -->
             <div id="aula-rw" class="bg-white p-6 md:p-10 rounded-2xl shadow-sm border border-purple-100 space-y-10">
@@ -115,82 +116,11 @@
                     <?php endif; ?>
                 </div>
 
-                <!-- FORM PENGAJUAN PEMINJAMAN AULA RW 021 -->
-                <div id="form-peminjaman" class="bg-purple-900 text-white p-6 md:p-8 rounded-2xl shadow-lg space-y-6">
-                    <div class="border-b border-purple-700/60 pb-4">
-                        <h3 class="text-2xl font-extrabold mt-2">Form Pengajuan Peminjaman Aula RW 021</h3>
-                        <p class="text-xs text-purple-200 mt-1">Isi formulir di bawah ini untuk mengajukan izin peminjaman gedung Aula RW. Pengajuan akan diteruskan langsung ke WhatsApp Sekretaris RW (Galih Wirapati - 087888872828).</p>
-                    </div>
-
-                    <form onsubmit="submitBookingAula(event)" class="space-y-5 text-gray-800">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="block text-xs font-bold text-purple-100 uppercase tracking-wider mb-1.5">Nama Pemohon / Penanggung Jawab *</label>
-                                <input type="text" id="book_nama" required placeholder="Contoh: Bpk. Ahmad Santoso" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm font-semibold" />
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold text-purple-100 uppercase tracking-wider mb-1.5">Nomor WhatsApp Aktif *</label>
-                                <input type="tel" id="book_wa" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm font-semibold" />
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                            <div>
-                                <label class="block text-xs font-bold text-purple-100 uppercase tracking-wider mb-1.5">Asal Rukun Tetangga (RT) *</label>
-                                <select id="book_rt" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm font-semibold">
-                                    <?php $totalRt = $totalRt ?? 10; ?>
-                                    <?php for ($r = 1; $r <= $totalRt; $r++): ?>
-                                        <option value="<?= sprintf('%02d', $r) ?>">RT <?= sprintf('%02d', $r) ?> RW 021</option>
-                                    <?php endfor; ?>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold text-purple-100 uppercase tracking-wider mb-1.5">Tanggal Acara *</label>
-                                <input type="date" id="book_tanggal" required class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm font-semibold" />
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold text-purple-100 uppercase tracking-wider mb-1.5">Waktu / Jam Acara *</label>
-                                <input type="text" id="book_waktu" required placeholder="Contoh: 09.00 - 13.00 WIB" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm font-semibold" />
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label class="block text-xs font-bold text-purple-100 uppercase tracking-wider mb-1.5">Jenis Keperluan / Acara *</label>
-                                <select id="book_acara" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm font-semibold">
-                                    <option value="Acara Syukuran / Syukuran Keluarga">Acara Syukuran / Hajatan Keluarga</option>
-                                    <option value="Rapat RT / Musyawarah Warga">Rapat RT / Musyawarah Warga</option>
-                                    <option value="Kegiatan Karang Taruna / Remaja">Kegiatan Karang Taruna / Remaja</option>
-                                    <option value="Kegiatan Keagamaan / Pengajian">Kegiatan Keagamaan / Pengajian</option>
-                                    <option value="Sosialisasi Instansi / Kesehatan">Sosialisasi Instansi / Kesehatan</option>
-                                    <option value="Kegiatan Olahraga / Lainnya">Kegiatan Olahraga / Lainnya</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold text-purple-100 uppercase tracking-wider mb-1.5">Catatan Tambahan (Opsional)</label>
-                                <input type="text" id="book_catatan" placeholder="Contoh: Perlu penggunaan sound system & 50 kursi" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm font-semibold" />
-                            </div>
-                        </div>
-
-                        <div class="pt-2">
-                            <button type="submit" class="w-full md:w-auto px-8 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-extrabold rounded-xl shadow-lg transition flex items-center justify-center gap-2">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.301-1.127z"/>
-                                </svg>
-                                Kirim Pengajuan via WhatsApp RW
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
             </div>
 
         </div>
     </div>
+
 
     <!-- FOOTER -->
     <?php require base_path('views/partials/footer.php'); ?>

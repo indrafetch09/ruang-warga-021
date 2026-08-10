@@ -14,22 +14,17 @@
     <!-- NAVBAR -->
     <?php require base_path('views/partials/navbar.php'); ?>
 
-    <!-- PAGE HEADER -->
-    <div class="bg-purple-50 py-16 border-b border-purple-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-                Arsip <span class="text-purple-600">Notulen Rapat</span>
-            </h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Transparansi informasi dan dokumentasi hasil keputusan seluruh forum
-                warga dan pengurus RW 021.
-            </p>
-        </div>
-    </div>
-
     <!-- MAIN CONTENT -->
     <div class="py-12 bg-white flex-1">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            
+            <!-- SIMPLE PAGE HEADER -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Arsip <span class="text-purple-600">Notulen Musyawarah</span></h1>
+                    <p class="text-xs md:text-sm text-gray-500 mt-1">Transparansi dokumentasi hasil rapat dan keputusan bersama warga RW 021.</p>
+                </div>
+            </div>
             
             <!-- Filter & Search Bar (Method GET) -->
             <form action="/notulensi" method="GET" class="bg-white border border-gray-200 p-4 rounded-xl shadow-sm mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
@@ -58,65 +53,9 @@
                 </div>
             </form>
 
-            <!-- List of Notulensi (Dynamic / Fallback) -->
+            <!-- List of Notulensi (100% Dynamic from Database) -->
             <?php 
-                $listNotulensi = $notulensi ?? [
-                    [
-                        'id' => 1,
-                        'tgl_day' => '12',
-                        'tgl_month' => 'Agt',
-                        'tgl_year' => '2026',
-                        'kategori' => 'Rapat Rutin',
-                        'kategori_type' => 'emerald',
-                        'waktu' => '20:00 WIB',
-                        'judul' => 'Rapat Persiapan HUT RI ke-81',
-                        'ringkasan' => 'Membahas pembentukan panitia lomba 17 Agustus tingkat RW, rincian anggaran kegiatan, dan penetapan rute jalan sehat warga. Disepakati bahwa iuran partisipasi per KK adalah sebesar Rp50.000...'
-                    ],
-                    [
-                        'id' => 2,
-                        'tgl_day' => '28',
-                        'tgl_month' => 'Jul',
-                        'tgl_year' => '2026',
-                        'kategori' => 'Rapat Khusus',
-                        'kategori_type' => 'purple',
-                        'waktu' => '19:30 WIB',
-                        'judul' => 'Evaluasi Keamanan Lingkungan',
-                        'ringkasan' => 'Tindak lanjut dari laporan warga terkait aturan jam malam untuk tamu. Forum menyetujui penambahan 3 titik CCTV baru di area gang buntu dan portal utama akan mulai ditutup penuh pada pukul 23.00 WIB.'
-                    ],
-                    [
-                        'id' => 3,
-                        'tgl_day' => '05',
-                        'tgl_month' => 'Jul',
-                        'tgl_year' => '2026',
-                        'kategori' => 'Laporan Kas',
-                        'kategori_type' => 'emerald',
-                        'waktu' => '10:00 WIB',
-                        'judul' => 'Laporan Transparansi Iuran Kas Semester I',
-                        'ringkasan' => 'Pemaparan rincian pemasukan dan pengeluaran kas RW untuk periode Januari hingga Juni 2026. Saldo akhir yang dilaporkan telah disetujui tanpa ada sanggahan dari perwakilan tiap RT.'
-                    ],
-                    [
-                        'id' => 4,
-                        'tgl_day' => '15',
-                        'tgl_month' => 'Jun',
-                        'tgl_year' => '2026',
-                        'kategori' => 'Rapat Khusus',
-                        'kategori_type' => 'amber',
-                        'waktu' => '20:00 WIB',
-                        'judul' => 'Sosialisasi Pembuatan Sistem Portal Warga',
-                        'ringkasan' => 'Diskusi awal mengenai perancangan dan kebutuhan sistem portal digital warga. Pengurus RT dan RW menyetujui anggaran awal dan fitur-fitur mandiri yang akan dikembangkan oleh tim IT warga.'
-                    ],
-                    [
-                        'id' => 5,
-                        'tgl_day' => '02',
-                        'tgl_month' => 'Jun',
-                        'tgl_year' => '2026',
-                        'kategori' => 'Rapat Rutin',
-                        'kategori_type' => 'emerald',
-                        'waktu' => '19:30 WIB',
-                        'judul' => 'Pembentukan Satgas Bank Sampah',
-                        'ringkasan' => 'Pemilihan ketua satgas dan pemaparan sistem bagi hasil untuk warga yang mengumpulkan sampah botol plastik dan kardus bekas. Disepakati lokasi penimbangan berada di sebelah Balai RW.'
-                    ]
-                ];
+                $listNotulensi = $notulensiList ?? $notulensi ?? [];
             ?>
 
             <?php if (empty($listNotulensi)): ?>
@@ -132,15 +71,26 @@
                 <div class="flex flex-col space-y-6">
                     <?php foreach ($listNotulensi as $item): ?>
                         <?php 
-                            $badgeColor = match($item['kategori_type'] ?? 'emerald') {
-                                'purple' => 'text-purple-600 bg-purple-50 border-l-purple-500',
-                                'amber'  => 'text-amber-600 bg-amber-50 border-l-amber-500',
-                                default  => 'text-emerald-600 bg-emerald-50 border-l-emerald-500',
+                            $isObj = is_object($item);
+                            $idVal = $isObj ? ($item->id ?? 1) : ($item['id'] ?? 1);
+                            $tglVal = $isObj ? ($item->tanggal ?? 'now') : ($item['tanggal'] ?? 'now');
+                            $dayVal = date('d', strtotime($tglVal));
+                            $monthVal = date('M', strtotime($tglVal));
+                            $yearVal = date('Y', strtotime($tglVal));
+                            $katVal = $isObj ? ($item->kategori ?? 'rutin') : ($item['kategori'] ?? 'rutin');
+                            $waktuVal = $isObj ? ($item->waktu_mulai ?? '') : ($item['waktu'] ?? '');
+                            $judulVal = $isObj ? ($item->judul ?? '-') : ($item['judul'] ?? '-');
+                            $ringkasanVal = $isObj ? ($item->hasil_pembahasan ?? $item->agenda ?? '') : ($item['ringkasan'] ?? '');
+
+                            $badgeColor = match(strtolower($katVal)) {
+                                'khusus' => 'text-purple-600 bg-purple-50 border-l-purple-500',
+                                'laporan' => 'text-amber-600 bg-amber-50 border-l-amber-500',
+                                default => 'text-emerald-600 bg-emerald-50 border-l-emerald-500',
                             };
-                            $borderColor = match($item['kategori_type'] ?? 'emerald') {
-                                'purple' => 'border-l-purple-500',
-                                'amber'  => 'border-l-amber-500',
-                                default  => 'border-l-emerald-500',
+                            $borderColor = match(strtolower($katVal)) {
+                                'khusus' => 'border-l-purple-500',
+                                'laporan' => 'border-l-amber-500',
+                                default => 'border-l-emerald-500',
                             };
                         ?>
                         <div class="flex flex-col sm:flex-row gap-6 bg-white p-5 rounded-xl border border-gray-100 border-l-4 <?= $borderColor ?> hover:shadow-lg transition-all duration-300 group">
@@ -149,11 +99,11 @@
                                 <div class="bg-purple-100 py-2 flex flex-col items-center justify-center relative">
                                     <div class="absolute top-2 left-2 w-2 h-2 bg-purple-800 rounded-full"></div>
                                     <div class="absolute top-2 right-2 w-2 h-2 bg-purple-800 rounded-full"></div>
-                                    <span class="text-2xl font-bold text-purple-800 mt-2"><?= htmlspecialchars($item['tgl_day']) ?></span>
-                                    <span class="text-sm font-semibold text-purple-800 uppercase"><?= htmlspecialchars($item['tgl_month']) ?></span>
+                                    <span class="text-2xl font-bold text-purple-800 mt-2"><?= htmlspecialchars($dayVal) ?></span>
+                                    <span class="text-sm font-semibold text-purple-800 uppercase"><?= htmlspecialchars($monthVal) ?></span>
                                 </div>
                                 <div class="bg-purple-800 py-1.5 flex justify-center items-center">
-                                    <span class="text-xs font-bold text-white tracking-widest"><?= htmlspecialchars($item['tgl_year']) ?></span>
+                                    <span class="text-xs font-bold text-white tracking-widest"><?= htmlspecialchars($yearVal) ?></span>
                                 </div>
                             </div>
 
@@ -161,29 +111,29 @@
                             <div class="flex-1 flex flex-col justify-center">
                                 <div class="flex items-center gap-2 mb-2">
                                     <span class="text-xs font-semibold px-2.5 py-1 rounded <?= $badgeColor ?>">
-                                        <?= htmlspecialchars($item['kategori']) ?>
+                                        <?= htmlspecialchars(ucfirst($katVal)) ?>
                                     </span>
-                                    <?php if (!empty($item['waktu'])): ?>
+                                    <?php if (!empty($waktuVal)): ?>
                                         <span class="text-xs text-gray-400 font-medium flex items-center gap-1">
                                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                             </svg>
-                                            <?= htmlspecialchars($item['waktu']) ?>
+                                            <?= htmlspecialchars($waktuVal) ?>
                                         </span>
                                     <?php endif; ?>
                                 </div>
 
-                                <a href="/notulensi/detail?id=<?= $item['id'] ?>" class="inline-block">
+                                <a href="/notulensi/detail?id=<?= $idVal ?>" class="inline-block">
                                     <h3 class="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors mb-2">
-                                        <?= htmlspecialchars($item['judul']) ?>
+                                        <?= htmlspecialchars($judulVal) ?>
                                     </h3>
                                 </a>
 
                                 <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
-                                    <?= htmlspecialchars($item['ringkasan']) ?>
+                                    <?= htmlspecialchars($ringkasanVal) ?>
                                 </p>
 
-                                <a href="/notulensi/detail?id=<?= $item['id'] ?>" class="text-sm font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1 w-max">
+                                <a href="/notulensi/detail?id=<?= $idVal ?>" class="text-sm font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1 w-max">
                                     Baca Detail
                                     <span class="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
                                 </a>
