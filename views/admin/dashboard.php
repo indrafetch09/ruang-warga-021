@@ -44,27 +44,10 @@
                 </div>
             <?php endif; ?>
 
-            <!-- Welcome Banner -->
-            <div class="bg-purple-800 rounded-2xl p-6 md:p-8 text-white shadow-md relative overflow-hidden">
-                <div class="relative z-10">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold tracking-wide uppercase">
-                            Portal Pengurus RW 021
-                        </span>
-                        <?php if ($isRt): ?>
-                            <span class="px-3 py-1 bg-emerald-500 text-white rounded-full text-xs font-extrabold uppercase">
-                                Wilayah RT <?= sprintf('%02d', $assignedRt) ?>
-                            </span>
-                        <?php endif; ?>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-extrabold mb-2 leading-tight">
-                        Selamat Datang, <?= htmlspecialchars($user['name'] ?? 'Pengurus RW') ?>!
-                    </h2>
-                    <p class="text-purple-100 text-sm max-w-2xl leading-relaxed">
-                        <?= $isRw
-                            ? 'Kelola data kependudukan seluruh RT, pengumuman publik, arsip notulensi, galeri kegiatan, dan laporan bulanan RW 021 secara terintegrasi.'
-                            : 'Kelola pendaftaran dan verifikasi data kependudukan warga khusus di lingkungan RT ' . sprintf('%02d', $assignedRt) . '.'; ?>
-                    </p>
+            <!-- SIMPLE PAGE HEADER -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Selamat Datang di <span class="text-purple-600">Admin RW 021</span></h1>
                 </div>
             </div>
 
@@ -145,7 +128,6 @@
                                         <span class="text-xs bg-purple-50 text-purple-700 font-bold px-2.5 py-1 rounded-full"><?= $totalWarga ?? 0 ?> Terdaftar</span>
                                     </div>
                                     <h4 class="font-bold text-gray-900 text-base mb-1">Manajemen Penduduk</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Kelola data warga, verifikasi status RT/RW, dan enkripsi NIK.</p>
                                 </div>
                                 <div class="flex gap-2">
                                     <a href="/admin/warga" class="flex-1 text-center bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold py-2 rounded-[10px] text-xs transition border border-purple-200">Lihat Data</a>
@@ -165,7 +147,6 @@
                                         <span class="text-xs bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-full"><?= $totalPengumuman ?? 0 ?> Berita</span>
                                     </div>
                                     <h4 class="font-bold text-gray-900 text-base mb-1">Pengumuman Warga</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Buat dan publikasikan siaran penting di halaman utama publik.</p>
                                 </div>
                                 <div class="flex gap-2">
                                     <a href="/admin/pengumuman/create" class="flex-1 text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-[10px] text-xs transition shadow-sm">+ Buat Pengumuman Baru</a>
@@ -184,7 +165,6 @@
                                         <span class="text-xs bg-sky-50 text-sky-700 font-bold px-2.5 py-1 rounded-full"><?= $totalNotulensi ?? 0 ?> Dokumen</span>
                                     </div>
                                     <h4 class="font-bold text-gray-900 text-base mb-1">Notulensi Rapat</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Catat dan simpan hasil musyawarah warga serta keputusan rapat.</p>
                                 </div>
                                 <div class="flex gap-2">
                                     <a href="/notulensi" class="flex-1 text-center bg-gray-50 hover:bg-gray-100 text-gray-700 font-bold py-2 rounded-[10px] text-xs transition border border-gray-200">Arsip</a>
@@ -206,7 +186,6 @@
                                         </span>
                                     </div>
                                     <h4 class="font-bold text-gray-900 text-base mb-1">Galeri Kegiatan</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Unggah dokumentasi momen kegiatan warga RW 021.</p>
                                 </div>
                                 <div class="flex gap-2">
                                     <a href="/tentang" class="flex-1 text-center bg-gray-50 hover:bg-gray-100 text-gray-700 font-bold py-2 rounded-[10px] text-xs transition border border-gray-200">Lihat Galeri</a>
