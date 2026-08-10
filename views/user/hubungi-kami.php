@@ -8,114 +8,162 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
-    <style>
-        .logo-container {
-            border-radius: 0 0 24px 24px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--color-border-light);
-            border-top-width: 0;
-        }
-    </style>
 </head>
 
 <body class="bg-gray-50 flex flex-col min-h-screen">
     <!-- NAVBAR -->
     <?php require base_path('views/partials/navbar.php'); ?>
 
-    <!-- PAGE HEADER -->
-    <div class="bg-purple-50 py-16 border-b border-purple-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-                Sapa <span class="text-purple-600">Pengurus RW 021</span>
-            </h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Butuh pelayanan administrasi, koordinasi lingkungan, atau penggunaan Aula RW 021?
-                Silakan hubungi kontak resmi pengurus di bawah ini.
-            </p>
-        </div>
-    </div>
-
-    <!-- MAIN CONTENT - CONTACT SECTION -->
+    <!-- MAIN CONTENT - CONTACT CARDS -->
     <div class="py-16 bg-white flex-1">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
-                <!-- Kiri: Info Kontak Pengurus RW 021 -->
-                <div class="w-full lg:w-5/12 flex flex-col gap-6">
-                    <div>
-                        <h2 class="text-2xl font-extrabold text-gray-900 mb-2">
-                            Kontak Pengurus RW 021
-                        </h2>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                            Kontak resmi pengurus & penggunaan Aula RW 021 Dasana Indah, Kelurahan Bojong Nangka:
-                        </p>
-                    </div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
-                    <!-- List Kontak Resmi (Dinamis / Fallback) -->
-                    <div class="space-y-4">
-                        <?php if (empty($kontakList)): ?>
-                            <!-- EMPTY STATE KONTAK -->
-                            <div class="p-8 bg-gray-50 rounded-2xl border border-gray-200 text-center">
-                                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                    </svg>
-                                </div>
-                                <h4 class="text-sm font-bold text-gray-900">Daftar Kontak Belum Tersedia</h4>
-                                <p class="text-xs text-gray-500 mt-1">Informasi kontak pengurus sedang diperbarui oleh administrator.</p>
-                            </div>
-                        <?php else: ?>
-                            <?php foreach ($kontakList as $kontak): ?>
-                                <?php 
-                                    $rawPhone = preg_replace('/[^0-9]/', '', $kontak->no_hp ?? '');
-                                    if (str_starts_with($rawPhone, '0')) {
-                                        $waPhone = '62' . substr($rawPhone, 1);
-                                    } else {
-                                        $waPhone = $rawPhone;
-                                    }
-                                ?>
-                                <div class="p-5 bg-white rounded-2xl border border-gray-200 shadow-sm hover:border-purple-300 hover:shadow-md transition-all flex items-center justify-between gap-4">
-                                    <div class="flex items-center gap-3.5">
-                                        <div class="w-12 h-12 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center font-bold text-lg">
-                                            <?= htmlspecialchars($kontak->icon ?? '👤') ?>
-                                        </div>
-                                        <div>
-                                            <h4 class="text-sm font-bold text-gray-900"><?= htmlspecialchars($kontak->nama ?? '-') ?></h4>
-                                            <span class="text-xs font-semibold text-purple-700"><?= htmlspecialchars($kontak->jabatan ?? 'Pengurus RW') ?></span>
-                                            <p class="text-xs text-gray-500 font-medium mt-0.5"><?= htmlspecialchars($kontak->no_hp ?? '-') ?></p>
-                                        </div>
-                                    </div>
-                                    <?php if (!empty($waPhone)): ?>
-                                        <a href="https://wa.me/<?= $waPhone ?>" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-bold rounded-[10px] border border-emerald-200 transition flex items-center gap-1 shadow-sm">
-                                            WA ↗
-                                        </a>
-                                    <?php endif; ?>
-                                </div>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </div>
+            <!-- SIMPLE PAGE HEADER -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Kontak Resmi <span class="text-purple-600">Pengurus RW 021</span></h1>
+                    <p class="text-xs md:text-sm text-gray-500 mt-1">Layanan komunikasi langsung via WhatsApp & Email Sekretariat RW 021.</p>
                 </div>
-
-                <!-- Kanan: Peta Lokasi (Embed Google Maps) -->
-                <div id="maps" class="w-full lg:w-7/12 flex flex-col scroll-mt-28">
-                    <div class="flex items-center gap-3 mb-6">
-                        <h2 class="text-2xl font-extrabold text-gray-900">Peta Lokasi Aula RW 021</h2>
-                        <div class="h-px bg-gray-200 flex-1"></div>
-                    </div>
-                    <!-- Maps Container -->
-                    <div class="w-full min-h-[400px] lg:h-full bg-gray-100 rounded-2xl overflow-hidden shadow-inner border border-gray-200">
-                        <iframe
-                            src="<?= htmlspecialchars($mapsUrl ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1956554593455!2d106.594195!3d-6.2516586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fdda23895485%3A0xccc8a8aee72f4e42!2sAula%20RW%20021%20RT%2005%20(Posyandu%20Bunga%20Tanjung)%20Bojong%20Nangka!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid') ?>"
-                            width="100%" height="100%" style="border: 0; min-height: 400px" allowfullscreen=""
-                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                </div>
+                <a href="/lokasi" class="px-5 py-2.5 bg-purple-100 hover:bg-purple-200 text-purple-800 text-xs font-bold rounded-xl transition flex items-center gap-2">
+                    <svg class="w-4 h-4 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Lihat Peta Lokasi Sekretariat &rarr;
+                </a>
             </div>
+
+            <!-- ponytail: 2-column layout putting contact list and contact form side-by-side -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+                <!-- LEFT COLUMN: PEOPLE CONTACT ROWS -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                        <span>Pengurus & Penanggung Jawab Wilayah</span>
+                    </h2>
+                    <div class="bg-white rounded-2xl border border-gray-200 divide-y divide-gray-100 overflow-hidden shadow-sm">
+
+                        <!-- Row 1: KETUA RW -->
+                        <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-purple-50/50 transition">
+                            <div class="flex flex-wrap items-center gap-3">
+                                <h3 class="text-sm font-bold text-gray-900">Ketua RW 021</h3>
+                                <span class="text-gray-300 hidden sm:inline">•</span>
+                                <p class="text-xs text-gray-500 font-medium">0822-9900-7700</p>
+                            </div>
+                            <a href="https://wa.me/6282299007700" target="_blank" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 underline decoration-2 underline-offset-4 flex items-center gap-1.5 transition flex-shrink-0">
+                                <svg class="w-4 h-4 text-emerald-600 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.301-1.127z"/></svg>
+                                <span>Chat WA</span>
+                            </a>
+                        </div>
+
+                        <!-- Row 2: SEKRETARIS RW -->
+                        <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-purple-50/50 transition">
+                            <div class="flex flex-wrap items-center gap-3">
+                                <h3 class="text-sm font-bold text-gray-900">Sekretaris RW</h3>
+                                <span class="text-gray-300 hidden sm:inline">•</span>
+                                <p class="text-xs text-gray-500 font-medium">0878-8887-2828</p>
+                            </div>
+                            <a href="https://wa.me/6287888872828" target="_blank" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 underline decoration-2 underline-offset-4 flex items-center gap-1.5 transition flex-shrink-0">
+                                <svg class="w-4 h-4 text-emerald-600 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.301-1.127z"/></svg>
+                                <span>Chat WA</span>
+                            </a>
+                        </div>
+
+                        <!-- Row 3: BENDAHARA RW -->
+                        <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-purple-50/50 transition">
+                            <div class="flex flex-wrap items-center gap-3">
+                                <h3 class="text-sm font-bold text-gray-900">Bendahara RW</h3>
+                                <span class="text-gray-300 hidden sm:inline">•</span>
+                                <p class="text-xs text-gray-500 font-medium">0813-8012-6762</p>
+                            </div>
+                            <a href="https://wa.me/6281380126762" target="_blank" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 underline decoration-2 underline-offset-4 flex items-center gap-1.5 transition flex-shrink-0">
+                                <svg class="w-4 h-4 text-emerald-600 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.301-1.127z"/></svg>
+                                <span>Chat WA</span>
+                            </a>
+                        </div>
+
+                        <!-- Row 4: HUMAS & KEAMANAN -->
+                        <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-purple-50/50 transition">
+                            <div class="flex flex-wrap items-center gap-3">
+                                <h3 class="text-sm font-bold text-gray-900">Humas & Keamanan</h3>
+                                <span class="text-gray-300 hidden sm:inline">•</span>
+                                <p class="text-xs text-gray-500 font-medium">0815-1132-2022</p>
+                            </div>
+                            <a href="https://wa.me/6281511322022" target="_blank" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 underline decoration-2 underline-offset-4 flex items-center gap-1.5 transition flex-shrink-0">
+                                <svg class="w-4 h-4 text-emerald-600 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.301-1.127z"/></svg>
+                                <span>Chat WA</span>
+                            </a>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: SIMPLE CONTACT FORM -->
+                <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm space-y-6">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-gray-900">Formulir Pesan & Pertanyaan</h2>
+                    </div>
+
+                    <form onsubmit="submitContactForm(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Nama Lengkap *</label>
+                                <input type="text" id="contact_name" required placeholder="Contoh: Bpk. Ahmad Santoso" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-400" />
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">No. WhatsApp / Email *</label>
+                                <input type="text" id="contact_info" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-400" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Kategori Pesan *</label>
+                            <select id="contact_category" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-400">
+                                <option value="Pertanyaan Umum">Pertanyaan Umum</option>
+                                <option value="Saran & Masukan">Saran & Masukan</option>
+                                <option value="Pengaduan Lingkungan">Pengaduan Lingkungan</option>
+                                <option value="Informasi Layanan RW">Informasi Layanan RW</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Pesan / Isi Pertanyaan *</label>
+                            <textarea id="contact_message" required rows="4" placeholder="Tuliskan pesan atau pertanyaan Anda di sini..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                            <span>Kirim Pesan via WhatsApp RW</span>
+                            <span>&rarr;</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
     <!-- FOOTER -->
     <?php require base_path('views/partials/footer.php'); ?>
+
+    <script>
+        // ponytail: lightweight client-side contact submission handler
+        function submitContactForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('contact_name').value.trim();
+            const info = document.getElementById('contact_info').value.trim();
+            const category = document.getElementById('contact_category').value;
+            const message = document.getElementById('contact_message').value.trim();
+
+            if (!name || !info || !message) {
+                alert('Mohon isi semua bidang formulir kontak.');
+                return;
+            }
+
+            const text = `Halo Pengurus RW 021,\n\nSaya ingin mengirimkan *${category.toUpperCase()}*:\n\n👤 *Nama*: ${name}\n📱 *Kontak*: ${info}\n📌 *Kategori*: ${category}\n📝 *Pesan*: ${message}\n\nTerima kasih.`;
+            const encoded = encodeURIComponent(text);
+            window.open(`https://wa.me/6287888872828?text=${encoded}`, '_blank');
+        }
+    </script>
 </body>
 
 </html>
