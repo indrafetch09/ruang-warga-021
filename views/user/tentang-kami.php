@@ -53,12 +53,81 @@
                 </div>
             </div>
 
+            <!-- SECTION: LETAK GEOGRAFIS -->
+            <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-200 space-y-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-100 pb-4">
+                    <div>
+                        <span class="text-xs font-bold text-purple-600 uppercase tracking-widest">Informasi Wilayah</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-1">
+                            Letak <span class="text-purple-600">Geografis RW 021</span>
+                        </h2>
+                        <p class="text-xs md:text-sm text-gray-500 mt-1">Gambaran lokasi, batas wilayah administrasi, dan koordinat lingkungan RW 021 Bojong Nangka.</p>
+                    </div>
+                    <a href="/lokasi" class="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 font-extrabold text-xs rounded-xl border border-purple-200 transition inline-flex items-center gap-1.5">
+                        <span>Lihat Peta Lengkap</span>
+                        <span>&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Card 1: Alamat Administrasi -->
+                    <div class="bg-purple-50/60 p-6 rounded-2xl border border-purple-100 space-y-3">
+                        <div class="w-10 h-10 bg-purple-600 text-white rounded-xl flex items-center justify-center font-bold shadow-sm">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <h3 class="font-extrabold text-gray-900 text-base">Wilayah Administrasi</h3>
+                        <ul class="text-xs text-gray-600 space-y-1.5 font-medium">
+                            <li><strong class="text-gray-800">Pemukiman:</strong> Perumahan Dasana Indah</li>
+                            <li><strong class="text-gray-800">Cakupan RT:</strong> RT 01 s/d RT 06 (RW 021)</li>
+                            <li><strong class="text-gray-800">Kelurahan:</strong> Bojong Nangka</li>
+                            <li><strong class="text-gray-800">Kecamatan:</strong> Kelapa Dua</li>
+                            <li><strong class="text-gray-800">Kabupaten:</strong> Tangerang, Banten 15810</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2: Batas Wilayah -->
+                    <div class="bg-purple-50/60 p-6 rounded-2xl border border-purple-100 space-y-3">
+                        <div class="w-10 h-10 bg-emerald-600 text-white rounded-xl flex items-center justify-center font-bold shadow-sm">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                        </div>
+                        <h3 class="font-extrabold text-gray-900 text-base">Batas Wilayah</h3>
+                        <ul class="text-xs text-gray-600 space-y-1.5 font-medium">
+                            <li><strong class="text-gray-800">Utara:</strong> Wilayah Kelurahan Medang</li>
+                            <li><strong class="text-gray-800">Selatan:</strong> Curug Sangereng & Gading Serpong</li>
+                            <li><strong class="text-gray-800">Timur:</strong> Kawasan Kelapa Dua</li>
+                            <li><strong class="text-gray-800">Barat:</strong> Kecamatan Legok</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3: Pusat Sekretariat -->
+                    <div class="bg-purple-50/60 p-6 rounded-2xl border border-purple-100 space-y-3 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center font-bold shadow-sm mb-3">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                            </div>
+                            <h3 class="font-extrabold text-gray-900 text-base">Pusat Sekretariat</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed font-medium">
+                                Posko Sekretariat & Aula RW 021 berlokasi di RT 05 / RW 021 Dasana Indah. Berfungsi sebagai pusat posyandu, ruang musyawarah warga, dan balai olahraga.
+                            </p>
+                        </div>
+                        <a href="/lokasi" class="w-full py-2.5 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-xl transition text-center flex items-center justify-center gap-1.5 shadow-sm mt-3">
+                            <span>Buka Petunjuk Rute</span>
+                            <span>&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <!-- SECTION: JADWAL KEGIATAN RUTIN -->
-            <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-200 space-y-8">
-                <div class="text-center mb-8">
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900">
-                        Jadwal <span class="text-purple-600">Kegiatan Rutin</span>
-                    </h2>
+            <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-200 space-y-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-100 pb-4">
+                    <div>
+                        <span class="text-xs font-bold text-purple-600 uppercase tracking-widest">Agenda Warga</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-1">
+                            Jadwal <span class="text-purple-600">Kegiatan Rutin</span>
+                        </h2>
+                        <p class="text-xs md:text-sm text-gray-500 mt-1">Jadwal pelayanan administrasi, kegiatan olahraga, pelayanan posyandu, dan siskamling warga.</p>
+                    </div>
                 </div>
 
                 <!-- GRID 7 HARI -->
