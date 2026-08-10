@@ -58,24 +58,52 @@ class HomeController
      */
     public function pengurus()
     {
-        // A. Ambil semua data Pengurus via Model
-        $pengurusList = Pengurus::all();
+        $db = App::resolve(Database::class);
 
-        // B. EAGER LOADING: Menggunakan fungsi relasi warga() di model Pengurus
-        $pengurusList = Model::with($pengurusList, 'warga', Warga::class, 'warga_id', 'belongsTo');
+        $rawPengurus = $db->query("SELECT p.*, w.no_hp FROM pengurus p LEFT JOIN warga w ON p.warga_id = w.id ORDER BY p.id ASC")->get();
 
-        // C. Dekripsi No HP Warga
-        foreach ($pengurusList as $p) {
-            if ($p->warga && !empty($p->warga->no_hp)) {
-                $noHpPlain = Crypt::decrypt($p->warga->no_hp);
-                $p->no_hp_readable = $noHpPlain !== false ? $noHpPlain : $p->warga->no_hp;
+        $ketua = null;
+        $sekretaris = null;
+        $bendahara = null;
+        $seksiList = [];
+
+        foreach ($rawPengurus as $p) {
+            $nama = $p['nama'] ?? 'Pengurus';
+            $jabatan = $p['jabatan'] ?? '';
+            $foto = 'https://ui-avatars.com/api/?name=' . urlencode($nama) . '&background=7c3aed&color=fff&size=150';
+
+            if (stripos($jabatan, 'ketua rw') !== false || (stripos($jabatan, 'ketua') !== false && ($p['tingkat'] ?? '') === 'RW')) {
+                $ketua = ['nama' => $nama, 'jabatan' => $jabatan, 'periode' => 'Masa Bakti 2024 - 2027', 'foto' => $foto];
+            } elseif (stripos($jabatan, 'sekretaris') !== false) {
+                $sekretaris = ['nama' => $nama, 'foto' => $foto];
+            } elseif (stripos($jabatan, 'bendahara') !== false) {
+                $bendahara = ['nama' => $nama, 'foto' => $foto];
             } else {
-                $p->no_hp_readable = '-';
+                $seksiList[] = ['nama' => $nama, 'seksi' => $jabatan, 'color' => 'purple', 'foto' => $foto];
             }
         }
 
+        $rtStatsRaw = $db->query("SELECT rt, COUNT(DISTINCT no_kk) as kk, COUNT(id) as warga FROM warga WHERE status_verifikasi = 'verified' GROUP BY rt ORDER BY rt ASC")->get();
+        $listRt = [];
+        foreach ($rtStatsRaw as $row) {
+            $rtNum = sprintf('%02d', (int)$row['rt']);
+            $ketuaRtRow = array_filter($rawPengurus, fn($pr) => ($pr['tingkat'] ?? '') === 'RT' && ($pr['no_wilayah'] ?? '') === $rtNum);
+            $ketuaRtName = !empty($ketuaRtRow) ? reset($ketuaRtRow)['nama'] : 'Ketua RT ' . $rtNum;
+
+            $listRt[] = [
+                'rt' => $rtNum,
+                'ketua' => $ketuaRtName,
+                'kk' => (int)$row['kk'],
+                'warga' => (int)$row['warga']
+            ];
+        }
+
         return view('user/pengurus-rw.php', [
-            'pengurusList' => $pengurusList
+            'ketuaRw'      => $ketua,
+            'sekretarisRw' => $sekretaris,
+            'bendaharaRw'  => $bendahara,
+            'seksiList'    => $seksiList,
+            'listRt'       => $listRt
         ]);
     }
 }
