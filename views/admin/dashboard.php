@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
     <style>
-        body { font-family: "Plus Jakarta Sans", sans-serif; }
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
     </style>
 </head>
 
@@ -24,11 +26,11 @@
         <main class="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 space-y-8">
 
             <?php
-                // Helper Role Check
-                $isObject = is_object($user);
-                $isRw = ($isObject && method_exists($user, 'isRw')) ? $user->isRw() : (($user['role'] ?? $user->role ?? '') === 'admin' || ($user['role'] ?? $user->role ?? '') === 'rw' || ($user['role'] ?? $user->role ?? '') === 'pengurus_rw');
-                $isRt = ($isObject && method_exists($user, 'isRt')) ? $user->isRt() : (($user['role'] ?? $user->role ?? '') === 'rt' || ($user['role'] ?? $user->role ?? '') === 'pengurus_rt');
-                $assignedRt = ($isObject && method_exists($user, 'getRtAssigned')) ? $user->getRtAssigned() : ($user['rt'] ?? $user->rt ?? 1);
+            // Helper Role Check
+            $isObject = is_object($user);
+            $isRw = ($isObject && method_exists($user, 'isRw')) ? $user->isRw() : (($user['role'] ?? $user->role ?? '') === 'admin' || ($user['role'] ?? $user->role ?? '') === 'rw' || ($user['role'] ?? $user->role ?? '') === 'pengurus_rw');
+            $isRt = ($isObject && method_exists($user, 'isRt')) ? $user->isRt() : (($user['role'] ?? $user->role ?? '') === 'rt' || ($user['role'] ?? $user->role ?? '') === 'pengurus_rt');
+            $assignedRt = ($isObject && method_exists($user, 'getRtAssigned')) ? $user->getRtAssigned() : ($user['rt'] ?? $user->rt ?? 1);
             ?>
 
             <!-- Alert Message Flash (Jika Ada) -->

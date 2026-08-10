@@ -8,7 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        body { font-family: "Plus Jakarta Sans", sans-serif; }
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
     </style>
 </head>
 
@@ -52,7 +54,7 @@
                             </svg>
                             Informasi Kegiatan
                         </h3>
-                        
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Kegiatan <span class="text-rose-500">*</span></label>
@@ -134,4 +136,5 @@
         </main>
     </div>
 </body>
+
 </html>

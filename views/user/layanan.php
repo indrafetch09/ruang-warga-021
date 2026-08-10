@@ -61,7 +61,7 @@
                 </div>
 
                 <!-- GALERI SLIDER AKTIVITAS AULA -->
-                <?php 
+                <?php
                     $galeriAula = $galeriAula ?? [
                         ['foto' => '/images/aula_posyandu.jpg', 'judul' => 'Posyandu Bunga Tanjung'],
                         ['foto' => '/images/aula_rapat.jpg', 'judul' => 'Musyawarah Warga RW 021'],

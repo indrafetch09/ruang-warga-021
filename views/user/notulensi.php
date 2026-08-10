@@ -17,7 +17,7 @@
     <!-- MAIN CONTENT -->
     <div class="py-12 bg-white flex-1">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            
+
             <!-- SIMPLE PAGE HEADER -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
                 <div>
@@ -25,7 +25,7 @@
                     <p class="text-xs md:text-sm text-gray-500 mt-1">Transparansi dokumentasi hasil rapat dan keputusan bersama warga RW 021.</p>
                 </div>
             </div>
-            
+
             <!-- Filter & Search Bar (Method GET) -->
             <form action="/notulensi" method="GET" class="bg-white border border-gray-200 p-4 rounded-xl shadow-sm mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
                 <div class="w-full md:w-1/2 relative">
@@ -35,7 +35,7 @@
                     <input type="text" name="q" value="<?= htmlspecialchars($_GET['q'] ?? '') ?>" placeholder="Cari judul atau kata kunci rapat..."
                         class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm" />
                 </div>
-                
+
                 <div class="w-full md:w-auto flex gap-3">
                     <select name="kategori" onchange="this.form.submit()"
                         class="w-full md:w-auto px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white cursor-pointer">
@@ -54,7 +54,7 @@
             </form>
 
             <!-- List of Notulensi (100% Dynamic from Database) -->
-            <?php 
+            <?php
                 $listNotulensi = $notulensiList ?? $notulensi ?? [];
             ?>
 
@@ -70,7 +70,7 @@
             <?php else: ?>
                 <div class="flex flex-col space-y-6">
                     <?php foreach ($listNotulensi as $item): ?>
-                        <?php 
+                        <?php
                             $isObj = is_object($item);
                             $idVal = $isObj ? ($item->id ?? 1) : ($item['id'] ?? 1);
                             $tglVal = $isObj ? ($item->tanggal ?? 'now') : ($item['tanggal'] ?? 'now');

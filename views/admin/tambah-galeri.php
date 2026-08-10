@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
     <style>
-        body { font-family: "Plus Jakarta Sans", sans-serif; }
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
     </style>
 </head>
 
@@ -89,7 +91,7 @@
 
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Dokumentasi Foto <span class="text-rose-500">*</span></label>
-                                
+
                                 <!-- DRAG AND DROP ZONE -->
                                 <div id="dropzone" onclick="document.getElementById('file-input').click()" class="relative border-2 border-dashed border-purple-200 hover:border-purple-500 bg-purple-50/40 hover:bg-purple-50/80 rounded-2xl p-8 text-center cursor-pointer transition flex flex-col items-center justify-center space-y-3 group">
                                     <input type="file" id="file-input" name="foto_file" accept="image/*" class="hidden" onchange="handleFileSelect(event)" />
@@ -140,7 +142,9 @@
                             Batal
                         </a>
                         <button type="submit" class="px-6 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl transition shadow-md flex items-center gap-2">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
                             Simpan & Publikasikan Foto
                         </button>
                     </div>
@@ -178,94 +182,94 @@
                 </div>
             </div>
 
-    <!-- DRAG AND DROP SCRIPT -->
-    <script>
-        const dropzone = document.getElementById('dropzone');
-        const fileInput = document.getElementById('file-input');
-        const dropzoneEmpty = document.getElementById('dropzone-empty');
-        const dropzonePreview = document.getElementById('dropzone-preview');
-        const previewImage = document.getElementById('preview-image');
-        const fileName = document.getElementById('file-name');
-        const fotoUrlInput = document.getElementById('foto_url_input');
+            <!-- DRAG AND DROP SCRIPT -->
+            <script>
+                const dropzone = document.getElementById('dropzone');
+                const fileInput = document.getElementById('file-input');
+                const dropzoneEmpty = document.getElementById('dropzone-empty');
+                const dropzonePreview = document.getElementById('dropzone-preview');
+                const previewImage = document.getElementById('preview-image');
+                const fileName = document.getElementById('file-name');
+                const fotoUrlInput = document.getElementById('foto_url_input');
 
-        // Prevent default drag behaviors
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropzone.addEventListener(eventName, preventDefaults, false);
-            document.body.addEventListener(eventName, preventDefaults, false);
-        });
+                // Prevent default drag behaviors
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    dropzone.addEventListener(eventName, preventDefaults, false);
+                    document.body.addEventListener(eventName, preventDefaults, false);
+                });
 
-        function preventDefaults(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
+                function preventDefaults(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
 
-        // Highlight dropzone on drag over
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropzone.addEventListener(eventName, highlight, false);
-        });
+                // Highlight dropzone on drag over
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dropzone.addEventListener(eventName, highlight, false);
+                });
 
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropzone.addEventListener(eventName, unhighlight, false);
-        });
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dropzone.addEventListener(eventName, unhighlight, false);
+                });
 
-        function highlight() {
-            dropzone.classList.add('border-purple-600', 'bg-purple-100/60');
-        }
+                function highlight() {
+                    dropzone.classList.add('border-purple-600', 'bg-purple-100/60');
+                }
 
-        function unhighlight() {
-            dropzone.classList.remove('border-purple-600', 'bg-purple-100/60');
-        }
+                function unhighlight() {
+                    dropzone.classList.remove('border-purple-600', 'bg-purple-100/60');
+                }
 
-        // Handle dropped files
-        dropzone.addEventListener('drop', handleDrop, false);
+                // Handle dropped files
+                dropzone.addEventListener('drop', handleDrop, false);
 
-        function handleDrop(e) {
-            const dt = e.dataTransfer;
-            const files = dt.files;
-            if (files && files.length > 0) {
-                fileInput.files = files;
-                processFile(files[0]);
-            }
-        }
+                function handleDrop(e) {
+                    const dt = e.dataTransfer;
+                    const files = dt.files;
+                    if (files && files.length > 0) {
+                        fileInput.files = files;
+                        processFile(files[0]);
+                    }
+                }
 
-        function handleFileSelect(e) {
-            const files = e.target.files;
-            if (files && files.length > 0) {
-                processFile(files[0]);
-            }
-        }
+                function handleFileSelect(e) {
+                    const files = e.target.files;
+                    if (files && files.length > 0) {
+                        processFile(files[0]);
+                    }
+                }
 
-        function processFile(file) {
-            if (!file.type.startsWith('image/')) {
-                alert('Mohon pilih berkas berupa gambar (PNG, JPG, JPEG, WEBP).');
-                return;
-            }
+                function processFile(file) {
+                    if (!file.type.startsWith('image/')) {
+                        alert('Mohon pilih berkas berupa gambar (PNG, JPG, JPEG, WEBP).');
+                        return;
+                    }
 
-            fileName.innerText = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+                    fileName.innerText = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImage.src = e.target.result;
-                fotoUrlInput.value = e.target.result;
-                dropzoneEmpty.classList.add('hidden');
-                dropzonePreview.classList.remove('hidden');
-            };
-            reader.readAsDataURL(file);
-        }
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                        fotoUrlInput.value = e.target.result;
+                        dropzoneEmpty.classList.add('hidden');
+                        dropzonePreview.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
 
-        function removeFile() {
-            fileInput.value = '';
-            fotoUrlInput.value = '';
-            previewImage.src = '';
-            dropzoneEmpty.classList.remove('hidden');
-            dropzonePreview.classList.add('hidden');
-        }
+                function removeFile() {
+                    fileInput.value = '';
+                    fotoUrlInput.value = '';
+                    previewImage.src = '';
+                    dropzoneEmpty.classList.remove('hidden');
+                    dropzonePreview.classList.add('hidden');
+                }
 
-        function toggleUrlInput() {
-            const container = document.getElementById('url-input-container');
-            container.classList.toggle('hidden');
-        }
-    </script>
+                function toggleUrlInput() {
+                    const container = document.getElementById('url-input-container');
+                    container.classList.toggle('hidden');
+                }
+            </script>
 </body>
 
 </html>
