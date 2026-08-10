@@ -4,284 +4,268 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dasbor Pengurus - Ruang Warga 021</title>
+    <title>Kelola Galeri Kegiatan - Dasbor Pengurus RW 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
+    <style>
+        body { font-family: "Plus Jakarta Sans", sans-serif; }
+    </style>
 </head>
 
-<body class="text-gray-800 flex flex-col min-h-screen">
+<body class="text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+    <!-- ADMIN HEADER -->
     <?php require base_path('views/partials/admin-header.php'); ?>
 
     <!-- WRAPPER SIDEBAR & MAIN CONTENT -->
     <div class="flex flex-1 max-w-[1400px] w-full mx-auto relative">
         <?php require base_path('views/partials/admin-sidebar.php'); ?>
 
-        <!-- MAIN CONTENT -->
         <main class="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 space-y-8">
 
-            <!-- Alert Message Flash (Jika Ada) -->
-            <?php $sukses = \Core\Session::get('sukses'); ?>
-            <?php if ($sukses): ?>
-                <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-between text-emerald-800 text-sm font-semibold">
-                    <div class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            <!-- HEADER SECTION -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <a href="/dashboard" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-2 group">
+                        <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
-                        <span><?= htmlspecialchars($sukses) ?></span>
-                    </div>
-                </div>
-            <?php endif; ?>
-
-            <!-- Welcome Banner -->
-            <div class="bg-gradient-to-r from-purple-800 via-purple-700 to-indigo-800 rounded-2xl p-6 md:p-8 text-white shadow-md relative overflow-hidden">
-                <div class="relative z-10">
-                    <span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold tracking-wide uppercase mb-3 inline-block">Portal Pengurus RW 021</span>
-                    <h2 class="text-3xl md:text-4xl font-extrabold mb-2 leading-tight">
-                        Selamat Datang, <?= htmlspecialchars($user['name'] ?? 'Pengurus RW') ?>!
+                        Kembali ke Dasbor
+                    </a>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
+                        Galeri Dokumentasi <span class="text-purple-600">Kegiatan RW 021</span>
                     </h2>
-                    <p class="text-purple-100 text-sm max-w-2xl leading-relaxed">
-                        Kelola data kependudukan, pengumuman publik, arsip notulensi, dan laporan bulanan RW 021 secara terintegrasi dan aman.
+                    <p class="text-xs md:text-sm text-gray-500 mt-1">
+                        Unggah dan kelola foto kegiatan kemasyarakatan, Posyandu, olahraga, dan kerja bakti warga RW 021.
                     </p>
                 </div>
             </div>
 
-            <!-- RINGKASAN STATISTIK DARI DATABASE -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                <!-- Card 1: Total Penduduk -->
-                <div class="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm flex items-center gap-4 hover:-translate-y-0.5 transition duration-200">
-                    <div class="w-12 h-12 bg-purple-100 text-purple-700 rounded-2xl flex items-center justify-center flex-shrink-0 font-bold">
-                        <svg class="w-6 h-6 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider">Total Warga</p>
-                        <h3 class="text-2xl font-extrabold text-gray-900"><?= number_format($totalWarga ?? 0) ?></h3>
-                    </div>
+            <!-- FLASH MESSAGE NOTIFICATION -->
+            <?php if ($sukses = \Core\Session::get('sukses')): ?>
+                <div class="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-bold rounded-xl flex items-center gap-2 shadow-sm">
+                    <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <?= htmlspecialchars($sukses) ?>
                 </div>
+            <?php endif; ?>
 
-                <!-- Card 2: Total KK -->
-                <div class="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm flex items-center gap-4 hover:-translate-y-0.5 transition duration-200">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-2xl flex items-center justify-center flex-shrink-0 font-bold">
-                        <svg class="w-6 h-6 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider">Kepala Keluarga</p>
-                        <h3 class="text-2xl font-extrabold text-gray-900"><?= number_format($totalKK ?? 0) ?></h3>
-                    </div>
-                </div>
+            <!-- FORM UNGGAH FOTO GALERI -->
+            <div class="bg-white rounded-2xl shadow-sm border border-purple-100 overflow-hidden max-w-4xl">
+                <form action="/admin/galeri" method="POST" enctype="multipart/form-data">
+                    <?= \Core\Csrf::field() ?>
 
-                <!-- Card 3: Verifikasi Pending -->
-                <div class="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm flex items-center gap-4 hover:-translate-y-0.5 transition duration-200">
-                    <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center flex-shrink-0 font-bold">
-                        <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider">Pending Verifikasi</p>
-                        <h3 class="text-2xl font-extrabold text-amber-600"><?= number_format($totalPending ?? 0) ?></h3>
-                    </div>
-                </div>
+                    <div class="p-6 md:p-8 space-y-6">
+                        <h3 class="text-base font-bold text-purple-700 border-b border-purple-100 pb-3 flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            Unggah Foto Dokumentasi Baru
+                        </h3>
 
-                <!-- Card 4: Notulensi Rapat -->
-                <div class="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm flex items-center gap-4 hover:-translate-y-0.5 transition duration-200">
-                    <div class="w-12 h-12 bg-sky-100 text-sky-700 rounded-2xl flex items-center justify-center flex-shrink-0 font-bold">
-                        <svg class="w-6 h-6 text-sky-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Judul Kegiatan / Foto <span class="text-rose-500">*</span></label>
+                                <input type="text" name="judul" placeholder="Contoh: Kerja Bakti Massal RT 05 & Pembersihan Saluran Air" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Kategori Kegiatan <span class="text-rose-500">*</span></label>
+                                <select name="kategori" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold cursor-pointer" required>
+                                    <option value="" disabled selected>Pilih Kategori</option>
+                                    <option value="Kegiatan Warga">Kegiatan Warga & Gotong Royong</option>
+                                    <option value="Posyandu">Posyandu Bunga Tanjung</option>
+                                    <option value="Olahraga">Olahraga & PB Badminton</option>
+                                    <option value="Musyawarah">Musyawarah & Rapat RW</option>
+                                    <option value="Karang Taruna">Karang Taruna 021</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Tanggal Pelaksanaan <span class="text-rose-500">*</span></label>
+                                <input type="date" name="tanggal" value="<?= date('Y-m-d') ?>" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Dokumentasi Foto <span class="text-rose-500">*</span></label>
+                                
+                                <!-- DRAG AND DROP ZONE -->
+                                <div id="dropzone" onclick="document.getElementById('file-input').click()" class="relative border-2 border-dashed border-purple-200 hover:border-purple-500 bg-purple-50/40 hover:bg-purple-50/80 rounded-2xl p-8 text-center cursor-pointer transition flex flex-col items-center justify-center space-y-3 group">
+                                    <input type="file" id="file-input" name="foto_file" accept="image/*" class="hidden" onchange="handleFileSelect(event)" />
+                                    <input type="hidden" id="foto_url_input" name="foto_url" value="" />
+
+                                    <div id="dropzone-empty" class="flex flex-col items-center space-y-2">
+                                        <div class="w-14 h-14 bg-purple-100 group-hover:bg-purple-200 text-purple-700 rounded-2xl flex items-center justify-center shadow-sm transition">
+                                            <svg class="w-7 h-7 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="text-xs">
+                                            <span class="font-extrabold text-purple-700 hover:underline">Klik untuk telusuri foto</span> atau tarik & lepas (drag and drop) gambar di sini
+                                        </div>
+                                        <p class="text-[11px] text-gray-400">Format yang didukung: PNG, JPG, JPEG, WEBP (Maksimal 10 MB)</p>
+                                    </div>
+
+                                    <!-- PREVIEW CONTAINER (HIDDEN INITIALLY) -->
+                                    <div id="dropzone-preview" class="hidden flex flex-col items-center space-y-3 w-full">
+                                        <div class="relative w-full max-w-xs h-48 rounded-xl overflow-hidden shadow-md border border-purple-200">
+                                            <img id="preview-image" src="" alt="Pratinjau Foto" class="w-full h-full object-cover" />
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span id="file-name" class="text-xs font-bold text-gray-800">filename.jpg</span>
+                                            <button type="button" onclick="event.stopPropagation(); removeFile();" class="text-xs font-bold text-rose-600 hover:text-rose-800 underline">Ganti Foto</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 text-right">
+                                    <button type="button" onclick="toggleUrlInput()" class="text-[11px] font-bold text-purple-600 hover:text-purple-800 underline">Gunakan Tautan URL Foto Sebagai Alternatif</button>
+                                </div>
+
+                                <div id="url-input-container" class="hidden mt-3">
+                                    <input type="url" id="manual_url" placeholder="https://images.unsplash.com/... tautan foto" oninput="document.getElementById('foto_url_input').value=this.value" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-semibold focus:ring-2 focus:ring-purple-500 focus:outline-none" />
+                                </div>
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Keterangan / Deskripsi Singkat</label>
+                                <textarea name="keterangan" rows="3" placeholder="Tuliskan catatan singkat atau lokasi tempat dokumentasi foto diambil..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-medium"></textarea>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <p class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider">Arsip Rapat</p>
-                        <h3 class="text-2xl font-extrabold text-gray-900"><?= number_format($totalNotulensi ?? 0) ?></h3>
+
+                    <div class="p-6 bg-gray-50 border-t border-gray-100 flex items-center justify-end gap-3">
+                        <a href="/dashboard" class="px-5 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold text-xs rounded-xl transition">
+                            Batal
+                        </a>
+                        <button type="submit" class="px-6 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl transition shadow-md flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            Simpan & Publikasikan Foto
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ARSIP GALERI TERUNGGAH -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-200 max-w-4xl space-y-4">
+                <h3 class="text-base font-bold text-gray-900 border-b border-gray-100 pb-3">Dokumentasi Foto Terbaru</h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="group relative rounded-xl overflow-hidden border border-purple-100 shadow-sm hover:shadow-md transition">
+                        <img src="/images/aula_posyandu.jpg" alt="Posyandu" class="w-full h-36 object-cover transform group-hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80'" />
+                        <div class="p-3 bg-white">
+                            <span class="text-[10px] font-bold text-purple-700 uppercase block mb-0.5">Posyandu Bunga Tanjung</span>
+                            <h4 class="text-xs font-bold text-gray-900 truncate">Pemeriksaan Rutin Lansia & Balita</h4>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-xl overflow-hidden border border-purple-100 shadow-sm hover:shadow-md transition">
+                        <img src="/images/aula_badminton.jpg" alt="Badminton" class="w-full h-36 object-cover transform group-hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1521537634581-0dced2efa2a3?auto=format&fit=crop&w=600&q=80'" />
+                        <div class="p-3 bg-white">
+                            <span class="text-[10px] font-bold text-indigo-700 uppercase block mb-0.5">Olahraga Indoor</span>
+                            <h4 class="text-xs font-bold text-gray-900 truncate">Latihan PB DABO & Karang Taruna</h4>
+                        </div>
+                    </div>
+
+                    <div class="group relative rounded-xl overflow-hidden border border-purple-100 shadow-sm hover:shadow-md transition">
+                        <img src="/images/aula_rapat.jpg" alt="Musyawarah" class="w-full h-36 object-cover transform group-hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&q=80'" />
+                        <div class="p-3 bg-white">
+                            <span class="text-[10px] font-bold text-emerald-700 uppercase block mb-0.5">Musyawarah Warga</span>
+                            <h4 class="text-xs font-bold text-gray-900 truncate">Rapat Koordinasi Pengurus RW 021</h4>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- GRID MANAJEMEN UTAMA -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- DRAG AND DROP SCRIPT -->
+    <script>
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('file-input');
+        const dropzoneEmpty = document.getElementById('dropzone-empty');
+        const dropzonePreview = document.getElementById('dropzone-preview');
+        const previewImage = document.getElementById('preview-image');
+        const fileName = document.getElementById('file-name');
+        const fotoUrlInput = document.getElementById('foto_url_input');
 
-                <!-- KIRI (2-cols): MENU UTAMA & TABEL TERBARU -->
-                <div class="lg:col-span-2 space-y-8">
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
 
-                    <!-- Quick Actions Grid -->
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-4">Menu Akses Cepat</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <!-- Card Penduduk -->
-                            <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm hover:border-purple-300 transition flex flex-col justify-between">
-                                <div>
-                                    <div class="flex justify-between items-start mb-3">
-                                        <div class="w-10 h-10 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center font-bold">
-                                            <svg class="w-5 h-5 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            </svg>
-                                        </div>
-                                        <span class="text-xs bg-purple-50 text-purple-700 font-bold px-2.5 py-1 rounded-full"><?= $totalWarga ?> Terdaftar</span>
-                                    </div>
-                                    <h4 class="font-bold text-gray-900 text-base mb-1">Manajemen Penduduk</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Kelola data warga, status verifikasi RT/RW, dan NIK kependudukan.</p>
-                                </div>
-                                <div class="flex gap-2">
-                                    <a href="/admin/warga" class="flex-1 text-center bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold py-2 rounded-[10px] text-xs transition border border-purple-200">Lihat Data</a>
-                                    <a href="/warga/create" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-4 py-2 rounded-[10px] text-xs transition">+ Tambah</a>
-                                </div>
-                            </div>
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
 
-                            <!-- Card Pengumuman -->
-                            <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm hover:border-emerald-300 transition flex flex-col justify-between">
-                                <div>
-                                    <div class="flex justify-between items-start mb-3">
-                                        <div class="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center font-bold">
-                                            <svg class="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
-                                            </svg>
-                                        </div>
-                                        <span class="text-xs bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-full"><?= $totalPengumuman ?> Berita</span>
-                                    </div>
-                                    <h4 class="font-bold text-gray-900 text-base mb-1">Pengumuman Warga</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Buat dan publikasikan siaran penting di halaman utama publik.</p>
-                                </div>
-                                <div class="flex gap-2">
-                                    <a href="/admin/pengumuman/create" class="flex-1 text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-[10px] text-xs transition shadow-sm">+ Buat Pengumuman Baru</a>
-                                </div>
-                            </div>
+        // Highlight dropzone on drag over
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, highlight, false);
+        });
 
-                            <!-- Card Notulensi -->
-                            <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm hover:border-sky-300 transition flex flex-col justify-between">
-                                <div>
-                                    <div class="flex justify-between items-start mb-3">
-                                        <div class="w-10 h-10 bg-sky-100 text-sky-700 rounded-xl flex items-center justify-center font-bold">
-                                            <svg class="w-5 h-5 text-sky-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                                            </svg>
-                                        </div>
-                                        <span class="text-xs bg-sky-50 text-sky-700 font-bold px-2.5 py-1 rounded-full"><?= $totalNotulensi ?> Dokumen</span>
-                                    </div>
-                                    <h4 class="font-bold text-gray-900 text-base mb-1">Notulensi Rapat</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Catat dan simpan hasil musyawarah warga serta keputusan rapat.</p>
-                                </div>
-                                <div class="flex gap-2">
-                                    <a href="/notulensi" class="flex-1 text-center bg-gray-50 hover:bg-gray-100 text-gray-700 font-bold py-2 rounded-[10px] text-xs transition border border-gray-200">Arsip</a>
-                                    <a href="/admin/notulensi/create" class="bg-sky-600 hover:bg-sky-700 text-white font-bold px-4 py-2 rounded-[10px] text-xs transition">+ Tambah</a>
-                                </div>
-                            </div>
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, unhighlight, false);
+        });
 
-                            <!-- Card Laporan Bulanan -->
-                            <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm hover:border-amber-300 transition flex flex-col justify-between">
-                                <div>
-                                    <div class="flex justify-between items-start mb-3">
-                                        <div class="w-10 h-10 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center font-bold">
-                                            <svg class="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                            </svg>
-                                        </div>
-                                        <span class="text-xs bg-amber-50 text-amber-700 font-bold px-2.5 py-1 rounded-full"><?= $totalLaporan ?> Laporan</span>
-                                    </div>
-                                    <h4 class="font-bold text-gray-900 text-base mb-1">Laporan Bulanan RW</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Rekapitulasi bulanan resmi dan ekspor dokumen Word/PDF.</p>
-                                </div>
-                                <div class="flex gap-2">
-                                    <a href="/laporan" class="flex-1 text-center bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 rounded-[10px] text-xs transition shadow-sm">Kelola & Ekspor Laporan</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        function highlight() {
+            dropzone.classList.add('border-purple-600', 'bg-purple-100/60');
+        }
 
-                    <!-- Tabel Warga Terbaru -->
-                    <div class="bg-white rounded-2xl border border-purple-100 shadow-sm p-6">
-                        <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
-                            <h3 class="font-bold text-gray-900 text-base">Pendaftaran Warga Terbaru</h3>
-                            <a href="/admin/warga" class="text-xs font-bold text-purple-700 hover:underline">Lihat Semua Warga &rarr;</a>
-                        </div>
+        function unhighlight() {
+            dropzone.classList.remove('border-purple-600', 'bg-purple-100/60');
+        }
 
-                        <?php if (empty($recentWarga)): ?>
-                            <p class="text-xs text-gray-500 text-center py-6">Belum ada data warga terdaftar.</p>
-                        <?php else: ?>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left text-xs">
-                                    <thead>
-                                        <tr class="bg-purple-50 text-purple-900 font-bold uppercase tracking-wider">
-                                            <th class="p-3 rounded-l-lg">Nama Warga</th>
-                                            <th class="p-3">RT</th>
-                                            <th class="p-3">Status</th>
-                                            <th class="p-3 rounded-r-lg">Tanggal Input</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-gray-100">
-                                        <?php foreach ($recentWarga as $w): ?>
-                                            <tr class="hover:bg-gray-50 transition">
-                                                <td class="p-3 font-semibold text-gray-900"><?= htmlspecialchars($w['nama'] ?? 'Tanpa Nama') ?></td>
-                                                <td class="p-3 font-bold text-purple-700">RT <?= sprintf('%02d', $w['rt'] ?? 1) ?></td>
-                                                <td class="p-3">
-                                                    <?php if (($w['status_verifikasi'] ?? '') === 'verified'): ?>
-                                                        <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Terverifikasi</span>
-                                                    <?php else: ?>
-                                                        <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Pending</span>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td class="p-3 text-gray-500"><?= date('d M Y', strtotime($w['created_at'] ?? 'now')) ?></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <?php endif; ?>
-                    </div>
+        // Handle dropped files
+        dropzone.addEventListener('drop', handleDrop, false);
 
-                </div>
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files && files.length > 0) {
+                fileInput.files = files;
+                processFile(files[0]);
+            }
+        }
 
-                <!-- KANAN (1-col): ANALITIK SEBARAN RT & AKUN -->
-                <div class="space-y-6">
+        function handleFileSelect(e) {
+            const files = e.target.files;
+            if (files && files.length > 0) {
+                processFile(files[0]);
+            }
+        }
 
-                    <!-- Sebaran Warga per RT -->
-                    <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm">
-                        <h3 class="font-bold text-gray-900 text-base mb-4">Sebaran Penduduk per RT</h3>
-                        <div class="space-y-3">
-                            <?php for ($i = 1; $i <= 10; $i++):
-                                $count = $wargaPerRt[$i] ?? 0;
-                                $max = max(1, max($wargaPerRt ?: [1]));
-                                $pct = round(($count / $max) * 100);
-                            ?>
-                                <div>
-                                    <div class="flex justify-between text-xs font-semibold mb-1">
-                                        <span class="text-gray-700">RT <?= sprintf('%02d', $i) ?></span>
-                                        <span class="text-purple-700 font-bold"><?= $count ?> Jiwa</span>
-                                    </div>
-                                    <div class="w-full bg-gray-100 rounded-full h-2">
-                                        <div class="bg-purple-600 h-2 rounded-full" style="width: <?= $pct ?>%"></div>
-                                    </div>
-                                </div>
-                            <?php endfor; ?>
-                        </div>
-                    </div>
+        function processFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Mohon pilih berkas berupa gambar (PNG, JPG, JPEG, WEBP).');
+                return;
+            }
 
-                    <!-- Panel Info Akun -->
-                    <div class="bg-purple-50 p-6 rounded-2xl border border-purple-200 text-xs space-y-3">
-                        <h4 class="font-bold text-purple-900 text-sm">Informasi Akun Sesi</h4>
-                        <div class="flex justify-between border-b border-purple-200 pb-2">
-                            <span class="text-gray-600">Nama Pengurus</span>
-                            <span class="font-bold text-purple-900"><?= htmlspecialchars($user['name'] ?? 'Pengurus') ?></span>
-                        </div>
-                        <div class="flex justify-between border-b border-purple-200 pb-2">
-                            <span class="text-gray-600">Email</span>
-                            <span class="font-bold text-purple-900"><?= htmlspecialchars($user['email'] ?? '-') ?></span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Hak Akses</span>
-                            <span class="font-bold text-emerald-700 uppercase"><?= htmlspecialchars($user['role'] ?? 'Admin') ?></span>
-                        </div>
-                    </div>
+            fileName.innerText = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
 
-                </div>
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                fotoUrlInput.value = e.target.result;
+                dropzoneEmpty.classList.add('hidden');
+                dropzonePreview.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
 
-            </div>
+        function removeFile() {
+            fileInput.value = '';
+            fotoUrlInput.value = '';
+            previewImage.src = '';
+            dropzoneEmpty.classList.remove('hidden');
+            dropzonePreview.classList.add('hidden');
+        }
 
-        </main>
-    </div>
+        function toggleUrlInput() {
+            const container = document.getElementById('url-input-container');
+            container.classList.toggle('hidden');
+        }
+    </script>
 </body>
 
 </html>
