@@ -11,6 +11,16 @@ class Database
 
     public function __construct($config, $username = 'indra', $password = 'indrasql1')
     {
+        // ponytail: sqlite driver support for fast test execution
+        if (isset($config['driver']) && $config['driver'] === 'sqlite') {
+            $dsn = 'sqlite:' . ($config['database'] ?? ':memory:');
+            $this->connection = new PDO($dsn, null, null, [
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ]);
+            return;
+        }
+
         $dsn = 'mysql:' . http_build_query($config, '', ';');
 
         $this->connection = new PDO($dsn, $username, $password, [

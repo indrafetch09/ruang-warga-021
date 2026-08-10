@@ -20,7 +20,7 @@ class Crypt
      * @return string Data terenkripsi dalam format Base64
      * @throws Exception
      */
-    public static function encrypt(string $data, string $key = null): string
+    public static function encrypt(string $data, ?string $key = null): string
     {
         $key = $key ?? self::DEFAULT_KEY;
 
@@ -48,7 +48,7 @@ class Crypt
      * @param string|null $key Kunci opsional
      * @return string|false Teks asli, atau false jika gagal dekripsi
      */
-    public static function decrypt(string $payload, string $key = null)
+    public static function decrypt(string $payload, ?string $key = null)
     {
         $key = $key ?? self::DEFAULT_KEY;
 
