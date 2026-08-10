@@ -53,22 +53,16 @@
     <!-- NAVBAR -->
     <?php require base_path('views/partials/navbar.php'); ?>
 
-    <!-- PAGE HEADER -->
-    <div class="bg-purple-50 py-16 border-b border-purple-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-                Galeri <span class="text-purple-600">Kegiatan Warga</span>
-            </h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Dokumentasi momen-momen kebersamaan, gotong royong, dan perayaan warga
-                RW 021.
-            </p>
-        </div>
-    </div>
-
-    <!-- MAIN CONTENT - GALERI -->
+    <!-- MAIN CONTENT -->
     <div class="py-12 bg-gray-50 flex-1">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <!-- SIMPLE PAGE HEADER -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Detail Hasil <span class="text-purple-600">Notulensi Musyawarah</span></h1>
+                    <p class="text-xs md:text-sm text-gray-500 mt-1">Rincian pembahasan, peserta rapat, dan keputusan resmi forum RW 021.</p>
+                </div>
+            </div>
             <!-- Filter Kategori -->
             <div class="flex flex-wrap justify-center gap-2 mb-10">
                 <button
