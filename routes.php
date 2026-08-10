@@ -36,18 +36,58 @@ $router->get('/kebersihan', function () {
 $router->get('/notulensi', [NotulensiController::class, 'index']);
 $router->get('/notulensi/detail', [NotulensiController::class, 'show']);
 $router->get('/statistik', function () {
-    return view('user/statistik.php');
+    $db = \Core\App::resolve(\Core\Database::class);
+
+    $totalWarga = (int)($db->query("SELECT COUNT(id) as total FROM warga WHERE status_verifikasi = 'verified'")->find()['total'] ?? 0);
+    $totalKK    = (int)($db->query("SELECT COUNT(DISTINCT no_kk) as total FROM warga WHERE status_verifikasi = 'verified'")->find()['total'] ?? 0);
+    $totalAll   = (int)($db->query("SELECT COUNT(id) as total FROM warga")->find()['total'] ?? 0);
+
+    $pctVerified = $totalAll > 0 ? round(($totalWarga / $totalAll) * 100) . '%' : '0%';
+
+    $summaryData = [
+        'total_kk'   => $totalKK,
+        'total_jiwa' => $totalWarga,
+        'total_rt'   => 10,
+        'verifikasi' => $pctVerified
+    ];
+
+    $rtCountsRaw = $db->query("SELECT rt, COUNT(DISTINCT no_kk) as kk, COUNT(id) as jiwa FROM warga WHERE status_verifikasi = 'verified' GROUP BY rt")->get();
+
+    $listDataRt = [];
+    for ($i = 1; $i <= 10; $i++) {
+        $listDataRt[$i] = ['kk' => 0, 'jiwa' => 0];
+    }
+    foreach ($rtCountsRaw as $row) {
+        $rtNum = (int)$row['rt'];
+        if ($rtNum >= 1 && $rtNum <= 10) {
+            $listDataRt[$rtNum] = [
+                'kk'   => (int)$row['kk'],
+                'jiwa' => (int)$row['jiwa']
+            ];
+        }
+    }
+
+    return view('user/statistik.php', [
+        'summaryData' => $summaryData,
+        'listDataRt'  => $listDataRt
+    ]);
 });
 
 // Galeri Publik
 $router->get('/galeri', [GaleriController::class, 'index']);
 
-// Hubungi Kami / Contact
+// Hubungi Kami & Lokasi Maps
 $router->get('/contact', function () {
     return view('user/hubungi-kami.php');
 });
 $router->get('/hubungi-kami', function () {
     return view('user/hubungi-kami.php');
+});
+$router->get('/lokasi', function () {
+    return view('user/lokasi.php');
+});
+$router->get('/maps', function () {
+    return view('user/lokasi.php');
 });
 
 // Laporan Bulanan (Public list & Auth create/store)
