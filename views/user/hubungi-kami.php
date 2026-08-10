@@ -41,10 +41,9 @@
                     <div class="bg-white rounded-2xl border border-gray-200 divide-y divide-gray-100 overflow-hidden shadow-sm">
 
                         <!-- Row 1: KETUA RW -->
-                        <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-purple-50/50 transition">
-                            <div class="flex flex-wrap items-center gap-3">
+                        <div class="p-5 flex items-center justify-between gap-4 hover:bg-purple-50/50 transition">
+                            <div class="flex flex-col gap-0.5">
                                 <h3 class="text-sm font-bold text-gray-900">Ketua RW 021</h3>
-                                <span class="text-gray-300 hidden sm:inline">•</span>
                                 <p class="text-xs text-gray-500 font-medium">0822-9900-7700</p>
                             </div>
                             <a href="https://wa.me/6282299007700" target="_blank" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 underline decoration-2 underline-offset-4 flex items-center gap-1.5 transition flex-shrink-0">
@@ -54,10 +53,9 @@
                         </div>
 
                         <!-- Row 2: SEKRETARIS RW -->
-                        <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-purple-50/50 transition">
-                            <div class="flex flex-wrap items-center gap-3">
+                        <div class="p-5 flex items-center justify-between gap-4 hover:bg-purple-50/50 transition">
+                            <div class="flex flex-col gap-0.5">
                                 <h3 class="text-sm font-bold text-gray-900">Sekretaris RW</h3>
-                                <span class="text-gray-300 hidden sm:inline">•</span>
                                 <p class="text-xs text-gray-500 font-medium">0878-8887-2828</p>
                             </div>
                             <a href="https://wa.me/6287888872828" target="_blank" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 underline decoration-2 underline-offset-4 flex items-center gap-1.5 transition flex-shrink-0">
@@ -67,10 +65,9 @@
                         </div>
 
                         <!-- Row 3: BENDAHARA RW -->
-                        <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-purple-50/50 transition">
-                            <div class="flex flex-wrap items-center gap-3">
+                        <div class="p-5 flex items-center justify-between gap-4 hover:bg-purple-50/50 transition">
+                            <div class="flex flex-col gap-0.5">
                                 <h3 class="text-sm font-bold text-gray-900">Bendahara RW</h3>
-                                <span class="text-gray-300 hidden sm:inline">•</span>
                                 <p class="text-xs text-gray-500 font-medium">0813-8012-6762</p>
                             </div>
                             <a href="https://wa.me/6281380126762" target="_blank" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 underline decoration-2 underline-offset-4 flex items-center gap-1.5 transition flex-shrink-0">
@@ -80,10 +77,9 @@
                         </div>
 
                         <!-- Row 4: HUMAS & KEAMANAN -->
-                        <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-purple-50/50 transition">
-                            <div class="flex flex-wrap items-center gap-3">
+                        <div class="p-5 flex items-center justify-between gap-4 hover:bg-purple-50/50 transition">
+                            <div class="flex flex-col gap-0.5">
                                 <h3 class="text-sm font-bold text-gray-900">Humas & Keamanan</h3>
-                                <span class="text-gray-300 hidden sm:inline">•</span>
                                 <p class="text-xs text-gray-500 font-medium">0815-1132-2022</p>
                             </div>
                             <a href="https://wa.me/6281511322022" target="_blank" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 underline decoration-2 underline-offset-4 flex items-center gap-1.5 transition flex-shrink-0">
@@ -94,25 +90,21 @@
 
 
 
+
                     </div>
                 </div>
 
                 <!-- RIGHT COLUMN: SIMPLE CONTACT FORM -->
+                <!-- ponytail: YAGNI - WhatsApp automatically reveals sender number, so redundant contact info input is removed -->
                 <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm space-y-6">
                     <div>
                         <h2 class="text-xl font-extrabold text-gray-900">Formulir Pesan & Pertanyaan</h2>
                     </div>
 
                     <form onsubmit="submitContactForm(event)" class="space-y-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Nama Lengkap *</label>
-                                <input type="text" id="contact_name" required placeholder="Contoh: Bpk. Ahmad Santoso" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-400" />
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">No. WhatsApp / Email *</label>
-                                <input type="text" id="contact_info" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-400" />
-                            </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Nama Lengkap *</label>
+                            <input type="text" id="contact_name" required placeholder="Contoh: Bpk. Ahmad Santoso" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-400" />
                         </div>
 
                         <div>
@@ -130,7 +122,7 @@
                             <textarea id="contact_message" required rows="4" placeholder="Tuliskan pesan atau pertanyaan Anda di sini..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
                         </div>
 
-                        <button type="submit" class="w-full py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                        <button type="submit" class="w-full py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-2">
                             <span>Kirim Pesan via WhatsApp RW</span>
                             <span>&rarr;</span>
                         </button>
@@ -146,20 +138,19 @@
     <?php require base_path('views/partials/footer.php'); ?>
 
     <script>
-        // ponytail: lightweight client-side contact submission handler
+        // ponytail: YAGNI - WhatsApp chat automatically provides the sender's phone number
         function submitContactForm(e) {
             e.preventDefault();
             const name = document.getElementById('contact_name').value.trim();
-            const info = document.getElementById('contact_info').value.trim();
             const category = document.getElementById('contact_category').value;
             const message = document.getElementById('contact_message').value.trim();
 
-            if (!name || !info || !message) {
-                alert('Mohon isi semua bidang formulir kontak.');
+            if (!name || !message) {
+                alert('Mohon isi Nama Lengkap dan Pesan.');
                 return;
             }
 
-            const text = `Halo Pengurus RW 021,\n\nSaya ingin mengirimkan *${category.toUpperCase()}*:\n\n👤 *Nama*: ${name}\n📱 *Kontak*: ${info}\n📌 *Kategori*: ${category}\n📝 *Pesan*: ${message}\n\nTerima kasih.`;
+            const text = `Halo Pengurus RW 021,\n\nSaya ingin mengirimkan *${category.toUpperCase()}*:\n\n👤 *Nama*: ${name}\n📌 *Kategori*: ${category}\n📝 *Pesan*: ${message}\n\nTerima kasih.`;
             const encoded = encodeURIComponent(text);
             window.open(`https://wa.me/6287888872828?text=${encoded}`, '_blank');
         }
