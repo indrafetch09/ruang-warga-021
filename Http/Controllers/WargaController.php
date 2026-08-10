@@ -69,8 +69,6 @@ class WargaController
             $pendingList = Warga::getByRtAndStatus($rtAssigned, 'pending');
         }
 
-        dd($user);
-
         // DEKRIPSI: Buka gembok NIK dan No HP biar bisa dibaca di tabel view
         $decryptData = function ($wargaArray) {
             foreach ($wargaArray as $w) {
