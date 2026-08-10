@@ -60,53 +60,81 @@
         </div>
     </div>
 
-    <!-- STATISTIK SECTION (DINAMIS) -->
-    <div class="bg-gray-50 py-12 border-b border-gray-200 relative z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                <!-- Card 1: KK -->
-                <div class="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-purple-50 p-6 flex flex-col items-center text-center transform hover:-translate-y-1 transition-transform duration-300">
-                    <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
+    <!-- ponytail: Layanan Warga recap section -->
+    <!-- LAYANAN WARGA SECTION -->
+    <div class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div>
+                <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Layanan </h2>
+            </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Card 1: Aula & Fasilitas RW 021 -->
+                    <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-extrabold text-gray-900">Aula & Fasilitas Balai Warga</h3>
+                            <p class="text-xs text-gray-500 mt-1 leading-relaxed">Profil balai pertemuan, kegiatan Posyandu Bunga Tanjung, bulu tangkis indoor, dan peminjaman aula.</p>
+                        </div>
+                        <a href="/layanan" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
+                            <span>Selengkapnya</span>
+                            <span>&rarr;</span>
+                        </a>
                     </div>
-                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700"><?= number_format($stats['total_kk'] ?? 0) ?></span>
-                    <span class="mt-2 text-sm text-gray-500 font-medium">Kepala Keluarga</span>
-                </div>
-                <!-- Card 2: Total Warga -->
-                <div class="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-purple-50 p-6 flex flex-col items-center text-center transform hover:-translate-y-1 transition-transform duration-300">
-                    <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                        </svg>
+
+                    <!-- Card 2: Kebersihan & TPST RW 021 -->
+                    <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-extrabold text-gray-900">Pengelolaan Sampah & TPST 021</h3>
+                            <p class="text-xs text-gray-500 mt-1 leading-relaxed">Jadwal armada pengangkutan sampah lingkungan, pemilahan organik/anorganik, & iuran kebersihan.</p>
+                        </div>
+                        <a href="/tpst" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
+                            <span>Selengkapnya</span>
+                            <span>&rarr;</span>
+                        </a>
                     </div>
-                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700"><?= number_format($stats['total_warga'] ?? 0) ?></span>
-                    <span class="mt-2 text-sm text-gray-500 font-medium">Total Warga</span>
-                </div>
-                <!-- Card 3: Fasilitas -->
-                <div class="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-purple-50 p-6 flex flex-col items-center text-center transform hover:-translate-y-1 transition-transform duration-300">
-                    <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                        </svg>
+
+                    <!-- Card 3: Pengaduan & Kontak Pengurus -->
+                    <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-extrabold text-gray-900">Kontak Resmi & Pengaduan Warga</h3>
+                            <p class="text-xs text-gray-500 mt-1 leading-relaxed">Layanan komunikasi WhatsApp pengurus RW 021 & formulir pengiriman aspirasi/pertanyaan warga.</p>
+                        </div>
+                        <a href="/kontak" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
+                            <span>Selengkapnya</span>
+                            <span>&rarr;</span>
+                        </a>
                     </div>
-                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700"><?= number_format($stats['total_fasilitas'] ?? 0) ?></span>
-                    <span class="mt-2 text-sm text-gray-500 font-medium">Fasilitas Umum</span>
-                </div>
-                <!-- Card 4: UMKM -->
-                <div class="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-purple-50 p-6 flex flex-col items-center text-center transform hover:-translate-y-1 transition-transform duration-300">
-                    <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
+
+                    <!-- Card 4: Statistik & Demografi Warga -->
+                    <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-extrabold text-gray-900">Demografi & Statistik Warga</h3>
+                            <p class="text-xs text-gray-500 mt-1 leading-relaxed">Data statistik kependudukan RW 021, jumlah Kepala Keluarga, sebaran usia, & rincian per RT.</p>
+                        </div>
+                        <a href="/statistik" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
+                            <span>Selengkapnya</span>
+                            <span>&rarr;</span>
+                        </a>
                     </div>
-                    <span class="text-3xl md:text-4xl font-extrabold text-purple-700"><?= number_format($stats['total_umkm'] ?? 0) ?></span>
-                    <span class="mt-2 text-sm text-gray-500 font-medium">UMKM Aktif</span>
+
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- PENGUMUMAN WARGA SECTION -->
     <div class="py-16 bg-purple-50">
@@ -187,9 +215,6 @@
                     <h2 class="text-3xl font-extrabold text-black tracking-tight sm:text-4xl">
                         Notulen Rapat <span class="text-emerald-600">Terbaru</span>
                     </h2>
-                    <p class="mt-4 text-lg text-gray-500">
-                        Transparansi informasi dan hasil keputusan rapat pengurus beserta warga RW 021.
-                    </p>
                 </div>
                 <div class="hidden md:block">
                     <a href="/notulensi" class="text-purple-600 font-semibold hover:text-purple-700 flex items-center gap-1 group">
