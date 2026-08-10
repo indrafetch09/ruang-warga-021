@@ -2,21 +2,6 @@
 <footer class="bg-gray-50 border-t border-gray-200 text-gray-700 text-sm mt-auto pt-14 pb-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <!-- TOP BRAND STRIP -->
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-10 mb-10 border-b border-gray-200/80">
-            <div class="flex items-center gap-3 text-center md:text-left">
-                <div class="w-11 h-11 rounded-xl bg-purple-700 flex items-center justify-center text-white font-black text-lg shadow-sm">
-                    21
-                </div>
-                <div>
-                    <h3 class="text-xl font-extrabold text-gray-900 tracking-tight">Ruang Warga 021</h3>
-                    <p class="text-xs text-gray-500 font-medium">Sistem Informasi & Portal Services Bojong Nangka</p>
-                </div>
-            </div>
-
-            <!-- Status Badge & WA Fast Link -->
-        </div>
-
         <!-- 5 COLUMNS MAIN FOOTER GRID -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 pb-10">
 
@@ -31,7 +16,7 @@
 
                 <!-- Social & Action Outline Buttons -->
                 <div class="flex items-center gap-2 pt-1">
-                    <a href="/contact#maps" title="Peta Lokasi Sekretariat" class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-600 hover:text-purple-700 hover:border-purple-600 hover:bg-purple-50 transition shadow-sm">
+                    <a href="/lokasi" title="Peta Lokasi Sekretariat" class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-600 hover:text-purple-700 hover:border-purple-600 hover:bg-purple-50 transition shadow-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     </a>
                     <a href="https://instagram.com" target="_blank" title="Instagram Official" class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-600 hover:text-purple-700 hover:border-purple-600 hover:bg-purple-50 transition shadow-sm">
@@ -75,7 +60,7 @@
                 <ul class="space-y-2.5 text-xs md:text-sm">
                     <li><a href="/notulensi" class="text-gray-600 hover:text-purple-700 font-semibold transition">Notulensi Musyawarah</a></li>
                     <li><a href="/statistik" class="text-gray-600 hover:text-purple-700 font-semibold transition">Statistik Demografi Warga</a></li>
-                    <li><a href="/contact#maps" class="text-gray-600 hover:text-purple-700 font-semibold transition">Maps & Peta Lokasi</a></li>
+                    <li><a href="/lokasi" class="text-gray-600 hover:text-purple-700 font-semibold transition">Maps & Peta Lokasi</a></li>
                 </ul>
             </div>
 
