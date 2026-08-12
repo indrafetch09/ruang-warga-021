@@ -4,4 +4,4 @@ vendor/
 
 .env
 
-/tests/
+tests/
