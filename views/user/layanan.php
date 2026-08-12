@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,13 +11,23 @@
     <style>
         /* 2x2 Grid Directional Animations */
         @keyframes marquee-right {
-            from { transform: translateX(-50%); }
-            to { transform: translateX(0%); }
+            from {
+                transform: translateX(-50%);
+            }
+
+            to {
+                transform: translateX(0%);
+            }
         }
 
         @keyframes marquee-left {
-            from { transform: translateX(0%); }
-            to { transform: translateX(-50%); }
+            from {
+                transform: translateX(0%);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
         }
 
         .animate-slide-right {
@@ -33,6 +44,7 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
     <?php require base_path('views/partials/navbar.php'); ?>
@@ -41,7 +53,6 @@
     <div class="py-16 md:py-20 flex-1">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
-            <!-- ponytail: Page header with generous spacing and padding -->
             <!-- SIMPLE PAGE HEADER -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-4">
                 <div class="space-y-2">
@@ -51,135 +62,77 @@
             </div>
 
             <!-- SECTION AULA RW FULL -->
-            <div id="aula-rw" class="bg-white p-6 md:p-10 rounded-2xl shadow-sm border border-purple-100 space-y-10">
-
-                <div class="flex items-center justify-between border-b border-gray-100 pb-4">
-                    <div>
-                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-2">Profil & Fasilitas Aula RW 021</h2>
-                        <p class="text-sm text-gray-500 mt-1">Balai pertemuan yang fleksibel untuk musyawarah, pelayanan kesehatan rutin, dan kegiatan olahraga warga.</p>
-                    </div>
+            <div class="flex items-center justify-center">
+                <div>
+                    <h2 class="text-center text-2xl md:text-3xl font-extrabold text-gray-900">Profil & Fasilitas Aula RW 021</h2>
                 </div>
-
-                <!-- GALERI SLIDER AKTIVITAS AULA -->
-                <?php
-                    $galeriAula = $galeriAula ?? [
-                        ['foto' => '/images/aula_posyandu.jpg', 'judul' => 'Posyandu Bunga Tanjung'],
-                        ['foto' => '/images/aula_rapat.jpg', 'judul' => 'Musyawarah Warga RW 021'],
-                        ['foto' => '/images/aula_badminton.jpg', 'judul' => 'Badminton Indoor'],
-                        ['foto' => '/images/aula_senam.jpg', 'judul' => 'Senam Sehat Warga']
-                    ];
-                ?>
-
-                <div class="space-y-3">
-                    <div class="flex justify-between items-center px-1">
-                        <span class="text-lg text-purple-700 font-bold">Balai RW 021 RT 05</span>
-                    </div>
-
-                    <?php if (empty($galeriAula)): ?>
-                        <!-- EMPTY STATE GALERI AULA -->
-                        <div class="p-8 bg-gray-50 rounded-2xl border border-gray-200 text-center">
-                            <p class="text-gray-500 text-sm">Dokumentasi foto fasilitas Aula belum diunggah.</p>
-                        </div>
-                    <?php else: ?>
-                        <!-- TOP GRID ROW -->
-                        <div class="relative overflow-hidden rounded-xl">
-                            <div class="flex gap-4 w-max animate-slide-right">
-                                <?php foreach ($galeriAula as $item): ?>
-                                    <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md rounded-xl">
-                                        <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
-                                    </div>
-                                <?php endforeach; ?>
-                                <!-- Duplicate Loop for Seamless Infinite Scroll -->
-                                <?php foreach ($galeriAula as $item): ?>
-                                    <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md rounded-xl" aria-hidden="true">
-                                        <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-
-                        <!-- BOTTOM GRID ROW -->
-                        <div class="relative overflow-hidden rounded-xl">
-                            <div class="flex gap-4 w-max animate-slide-left">
-                                <?php foreach (array_reverse($galeriAula) as $item): ?>
-                                    <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md rounded-xl">
-                                        <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
-                                    </div>
-                                <?php endforeach; ?>
-                                <?php foreach (array_reverse($galeriAula) as $item): ?>
-                                    <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md rounded-xl" aria-hidden="true">
-                                        <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-                </div>
-
             </div>
 
+            <!-- GALERI SLIDER AKTIVITAS AULA -->
+            <?php
+            $galeriAula = $galeriAula ?? [
+                ['foto' => '/images/aula_posyandu.jpg', 'judul' => 'Posyandu Bunga Tanjung'],
+                ['foto' => '/images/aula_rapat.jpg', 'judul' => 'Musyawarah Warga RW 021'],
+                ['foto' => '/images/aula_badminton.jpg', 'judul' => 'Badminton Indoor'],
+                ['foto' => '/images/aula_senam.jpg', 'judul' => 'Senam Sehat Warga']
+            ];
+            ?>
+
+            <div class="space-y-3">
+                <div class="flex justify-between items-center px-1 pt-8">
+                    <h2 class="text-2xl text-purple-700 font-bold">Aula RW 021 RT 05</h2>
+                </div>
+
+                <?php if (empty($galeriAula)): ?>
+                    <!-- EMPTY STATE GALERI AULA -->
+                    <div class="p-8 bg-gray-50 border border-gray-200 text-center">
+                        <p class="text-gray-500 text-sm">Dokumentasi foto fasilitas Aula belum diunggah.</p>
+                    </div>
+                <?php else: ?>
+                    <!-- TOP GRID ROW -->
+                    <div class="relative overflow-hidden">
+                        <div class="flex gap-4 w-max animate-slide-right">
+                            <?php foreach ($galeriAula as $item): ?>
+                                <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md ">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                </div>
+                            <?php endforeach; ?>
+                            <!-- Duplicate Loop for Seamless Infinite Scroll -->
+                            <?php foreach ($galeriAula as $item): ?>
+                                <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md " aria-hidden="true">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <p class=" pt-5 text-start text-sm">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim veritatis ut dicta suscipit commodi exercitationem facilis dolorem, placeat fuga molestiae doloremque repellat corrupti velit dolorum obcaecati minima pariatur laboriosam eos.</p>
+                    </div>
+
+                    <div class="flex justify-between items-center px-1 pt-8">
+                        <h2 class="text-2xl text-purple-700 font-bold">Posyandu Bunga Tanjung</h2>
+                    </div>
+                    <!-- BOTTOM GRID ROW -->
+                    <div class="relative overflow-hidden ">
+                        <div class="flex gap-4 w-max animate-slide-left">
+                            <?php foreach (array_reverse($galeriAula) as $item): ?>
+                                <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                </div>
+                            <?php endforeach; ?>
+                            <?php foreach (array_reverse($galeriAula) as $item): ?>
+                                <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md " aria-hidden="true">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <p class=" pt-5 text-start text-sm">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim veritatis ut dicta suscipit commodi exercitationem facilis dolorem, placeat fuga molestiae doloremque repellat corrupti velit dolorum obcaecati minima pariatur laboriosam eos.</p>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
-
 
     <!-- FOOTER -->
     <?php require base_path('views/partials/footer.php'); ?>
-
-    <!-- MODAL DETAIL OVERLAY -->
-    <div id="detail-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
-            <!-- Modal Header -->
-            <div id="modal-header-bg" class="px-6 py-5 bg-purple-700 text-white flex justify-between items-center">
-                <div>
-                    <span id="modal-category" class="text-[10px] font-extrabold uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded">Aula RW 021</span>
-                    <h3 id="modal-title" class="text-xl font-bold mt-1">Detail Layanan</h3>
-                </div>
-                <button type="button" onclick="closeModal()" class="text-white/80 hover:text-white text-2xl font-bold p-1 focus:outline-none">&times;</button>
-            </div>
-
-            <!-- Modal Content -->
-            <div class="p-6 overflow-y-auto space-y-6 flex-1 text-gray-800">
-                <div>
-                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Deskripsi Singkat</h4>
-                    <p id="modal-description" class="text-sm text-gray-700 leading-relaxed"></p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-b border-gray-100 py-4">
-                    <div>
-                        <h4 class="text-xs font-bold text-purple-700 uppercase tracking-wider mb-2">Layanan & Fitur</h4>
-                        <ul id="modal-subitems" class="text-xs text-gray-600 space-y-1.5 list-disc list-inside"></ul>
-                    </div>
-
-                    <div>
-                        <h4 class="text-xs font-bold text-amber-700 uppercase tracking-wider mb-2">Persyaratan / Catatan</h4>
-                        <ul id="modal-requirements" class="text-xs text-gray-600 space-y-1.5"></ul>
-                    </div>
-                </div>
-
-                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                    <div>
-                        <span class="text-xs font-bold text-gray-400 uppercase block">Lokasi & Waktu Operasional</span>
-                        <span id="modal-schedule" class="text-xs font-bold text-gray-800"></span>
-                    </div>
-                    <div>
-                        <span class="text-xs font-bold text-gray-400 uppercase block">Koordinator Kontak</span>
-                        <span id="modal-coordinator" class="text-xs font-bold text-purple-700"></span>
-                    </div>
-                </div>
-
-                <div class="pt-2">
-                    <a id="modal-wa-btn" href="#" target="_blank" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition shadow-md">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.301-1.127z"/></svg>
-                        Hubungi Koordinator via WhatsApp
-                    </a>
-                </div>
-            </div>
-
-            <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end">
-                <button type="button" onclick="closeModal()" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold text-xs rounded-xl transition">Tutup</button>
-            </div>
-        </div>
-    </div>
 
     <script>
         const modalData = {
@@ -312,4 +265,5 @@
         });
     </script>
 </body>
+
 </html>
