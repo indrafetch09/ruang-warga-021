@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,13 +11,23 @@
     <style>
         /* 2x2 Grid Directional Animations */
         @keyframes marquee-right {
-            from { transform: translateX(-50%); }
-            to { transform: translateX(0%); }
+            from {
+                transform: translateX(-50%);
+            }
+
+            to {
+                transform: translateX(0%);
+            }
         }
 
         @keyframes marquee-left {
-            from { transform: translateX(0%); }
-            to { transform: translateX(-50%); }
+            from {
+                transform: translateX(0%);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
         }
 
         .animate-slide-right {
@@ -33,6 +44,7 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
     <?php require base_path('views/partials/navbar.php'); ?>
@@ -60,45 +72,19 @@
                     </div>
                 </div>
 
-<<<<<<< HEAD
                 <!-- GALERI SLIDER AKTIVITAS AULA -->
-                <?php 
-                    $galeriAula = $galeriAula ?? [
-                        ['foto' => '/images/aula_posyandu.jpg', 'judul' => 'Posyandu Bunga Tanjung'],
-                        ['foto' => '/images/aula_rapat.jpg', 'judul' => 'Musyawarah Warga RW 021'],
-                        ['foto' => '/images/aula_badminton.jpg', 'judul' => 'Badminton Indoor'],
-                        ['foto' => '/images/aula_senam.jpg', 'judul' => 'Senam Sehat Warga']
-                    ];
+                <?php
+                $galeriAula = $galeriAula ?? [
+                    ['foto' => '/images/aula_posyandu.jpg', 'judul' => 'Posyandu Bunga Tanjung'],
+                    ['foto' => '/images/aula_rapat.jpg', 'judul' => 'Musyawarah Warga RW 021'],
+                    ['foto' => '/images/aula_badminton.jpg', 'judul' => 'Badminton Indoor'],
+                    ['foto' => '/images/aula_senam.jpg', 'judul' => 'Senam Sehat Warga']
+                ];
                 ?>
 
                 <div class="space-y-3">
                     <div class="flex justify-between items-center px-1">
                         <span class="text-lg text-purple-700 font-bold">Balai RW 021 RT 05</span>
-=======
-                <?php if (empty($galeriAula)): ?>
-                    <!-- EMPTY STATE GALERI AULA -->
-                    <div class="p-8 bg-gray-50 border border-gray-200 text-center">
-                        <p class="text-gray-500 text-sm">Dokumentasi foto fasilitas Aula belum diunggah.</p>
-                    </div>
-                <?php else: ?>
-                    <!-- TOP GRID ROW -->
-                    <div class="relative overflow-hidden">
-                        <div class="flex gap-4 w-max animate-slide-right">
-                            <?php foreach ($galeriAula as $item): ?>
-                                <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md ">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
-                                </div>
-                            <?php endforeach; ?>
-                            <!-- Duplicate Loop for Seamless Infinite Scroll -->
-                            <?php foreach ($galeriAula as $item): ?>
-                                <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md " aria-hidden="true">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <!-- ponytail: simple font size & readability boost -->
-                        <p class="pt-5 text-start text-base md:text-lg text-gray-600 leading-relaxed">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim veritatis ut dicta suscipit commodi exercitationem facilis dolorem, placeat fuga molestiae doloremque repellat corrupti velit dolorum obcaecati minima pariatur laboriosam eos.</p>
->>>>>>> 94c3723 (fix: enhance footer icon SVGs for improved readability and consistency)
                     </div>
 
                     <?php if (empty($galeriAula)): ?>
@@ -106,7 +92,6 @@
                         <div class="p-8 bg-gray-50 rounded-2xl border border-gray-200 text-center">
                             <p class="text-gray-500 text-sm">Dokumentasi foto fasilitas Aula belum diunggah.</p>
                         </div>
-<<<<<<< HEAD
                     <?php else: ?>
                         <!-- TOP GRID ROW -->
                         <div class="relative overflow-hidden rounded-xl">
@@ -143,12 +128,6 @@
                     <?php endif; ?>
                 </div>
 
-=======
-                        <!-- ponytail: simple font size & readability boost -->
-                        <p class="pt-5 text-start text-base md:text-lg text-gray-600 leading-relaxed">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim veritatis ut dicta suscipit commodi exercitationem facilis dolorem, placeat fuga molestiae doloremque repellat corrupti velit dolorum obcaecati minima pariatur laboriosam eos.</p>
-                    </div>
-                <?php endif; ?>
->>>>>>> 94c3723 (fix: enhance footer icon SVGs for improved readability and consistency)
             </div>
 
         </div>
@@ -202,7 +181,9 @@
 
                 <div class="pt-2">
                     <a id="modal-wa-btn" href="#" target="_blank" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition shadow-md">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.301-1.127z"/></svg>
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.301-1.127z" />
+                        </svg>
                         Hubungi Koordinator via WhatsApp
                     </a>
                 </div>
@@ -345,4 +326,5 @@
         });
     </script>
 </body>
+
 </html>
