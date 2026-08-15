@@ -20,13 +20,97 @@ $pageDesc = $description ?? $pageDesc ?? 'Portal Sistem Informasi, Layanan Admin
 <meta property="og:site_name" content="Ruang Warga 021" />
 
 <!-- Stylesheets & Fonts -->
-<link rel="icon" type="image/webp" href="/images/logo_RW021.webp" />
+<!-- Favicon -->
+<link rel="icon" type="image/svg" href="/images/favicon.svg" />
 <link rel="apple-touch-icon" href="/images/logo_RW021.webp" />
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/css/theme.css" />
-<style>
-    body {
-        font-family: "Plus Jakarta Sans", sans-serif;
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: {
+                        50: 'var(--color-primary-50)',
+                        100: 'var(--color-primary-100)',
+                        200: 'var(--color-primary-200)',
+                        300: 'var(--color-primary-300)',
+                        400: 'var(--color-primary-400)',
+                        500: 'var(--color-primary-500)',
+                        600: 'var(--color-primary-600)',
+                        700: 'var(--color-primary-700)',
+                        800: 'var(--color-primary-800)',
+                        900: 'var(--color-primary-900)',
+                        accent: 'var(--color-primary-accent)',
+                    },
+                    secondary: {
+                        50: 'var(--color-secondary-50)',
+                        100: 'var(--color-secondary-100)',
+                        200: 'var(--color-secondary-200)',
+                        300: 'var(--color-secondary-300)',
+                        400: 'var(--color-secondary-400)',
+                        500: 'var(--color-secondary-500)',
+                        600: 'var(--color-secondary-600)',
+                        700: 'var(--color-secondary-700)',
+                        800: 'var(--color-secondary-800)',
+                        900: 'var(--color-secondary-900)',
+                        accent: 'var(--color-secondary-accent)',
+                    },
+                    accent: {
+                        50: 'var(--color-secondary-50)',
+                        100: 'var(--color-secondary-100)',
+                        200: 'var(--color-secondary-200)',
+                        300: 'var(--color-secondary-300)',
+                        400: 'var(--color-secondary-400)',
+                        500: 'var(--color-secondary-500)',
+                        600: 'var(--color-secondary-600)',
+                        700: 'var(--color-secondary-700)',
+                        800: 'var(--color-secondary-800)',
+                        900: 'var(--color-secondary-900)',
+                        DEFAULT: 'var(--color-secondary-accent)',
+                    },
+                    purple: {
+                        50: 'var(--color-primary-50)',
+                        100: 'var(--color-primary-100)',
+                        200: 'var(--color-primary-200)',
+                        300: 'var(--color-primary-300)',
+                        400: 'var(--color-primary-400)',
+                        500: 'var(--color-primary-500)',
+                        600: 'var(--color-primary-600)',
+                        700: 'var(--color-primary-700)',
+                        800: 'var(--color-primary-800)',
+                        900: 'var(--color-primary-900)',
+                    },
+                    emerald: {
+                        50: 'var(--color-emerald-50)',
+                        100: 'var(--color-emerald-100)',
+                        200: 'var(--color-emerald-200)',
+                        300: 'var(--color-emerald-300)',
+                        400: 'var(--color-emerald-400)',
+                        500: 'var(--color-emerald-500)',
+                        600: 'var(--color-emerald-600)',
+                        700: 'var(--color-emerald-700)',
+                        800: 'var(--color-emerald-800)',
+                        900: 'var(--color-emerald-900)',
+                    },
+                    amber: {
+                        50: 'var(--color-amber-50)',
+                        100: 'var(--color-amber-100)',
+                        200: 'var(--color-amber-200)',
+                        300: 'var(--color-amber-300)',
+                        400: 'var(--color-amber-400)',
+                        500: 'var(--color-amber-500)',
+                        600: 'var(--color-amber-600)',
+                        700: 'var(--color-amber-700)',
+                        800: 'var(--color-amber-800)',
+                        900: 'var(--color-amber-900)',
+                    }
+                },
+                fontFamily: {
+                    sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                }
+            }
+        }
     }
-</style>
+</script>
