@@ -20,10 +20,7 @@ $headDesc  = $description ?? $pageDesc ?? 'Portal Resmi Sistem Informasi & Layan
 <meta property="og:description" content="<?= htmlspecialchars($headDesc) ?>" />
 <meta property="og:site_name" content="Ruang Warga 021" />
 
-<!-- Icons -->
-<link rel="icon" type="image/svg" href="/images/favicon.svg">
-
-<!-- Fonts & Frameworks -->
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/theme.css" />
+<!-- Stylesheets & Fonts -->
+<link rel="icon" type="image/webp" href="/images/logo_RW021.webp" />
+<link rel="apple-touch-icon" href="/images/logo_RW021.webp" />
 <script src="https://cdn.tailwindcss.com"></script>
