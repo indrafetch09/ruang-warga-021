@@ -21,6 +21,9 @@ $headDesc  = $description ?? $pageDesc ?? 'Portal Resmi Sistem Informasi & Layan
 <meta property="og:site_name" content="Ruang Warga 021" />
 
 <!-- Stylesheets & Fonts -->
-<link rel="icon" type="image/webp" href="/images/logo_RW021.webp" />
+<!-- Favicon -->
+<link rel="icon" type="image/svg" href="/images/favicon.svg" />
 <link rel="apple-touch-icon" href="/images/logo_RW021.webp" />
+<link rel="stylesheet" href="/css/theme.css" />
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
