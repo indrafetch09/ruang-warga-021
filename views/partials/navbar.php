@@ -220,7 +220,7 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
             </a>
         </div>
 
-        <a href="/contact" class="block px-3 py-2.5 rounded-md bg-emerald-50 text-emerald-700 font-bold text-base">Hubungi Kami</a>
+        <a href="/contact" class="block px-3 py-2.5 rounded-md text-gray-700 font-bold text-base">Hubungi Kami</a>
 
         <!-- Portal Admin (Admin Warga) in Mobile Menu -->
         <?php if ($_SESSION['user'] ?? false): ?>
