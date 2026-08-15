@@ -20,6 +20,8 @@ $pageDesc = $description ?? $pageDesc ?? 'Portal Sistem Informasi, Layanan Admin
 <meta property="og:site_name" content="Ruang Warga 021" />
 
 <!-- Stylesheets & Fonts -->
+<link rel="icon" type="image/webp" href="/images/logo_RW021.webp" />
+<link rel="apple-touch-icon" href="/images/logo_RW021.webp" />
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/css/theme.css" />

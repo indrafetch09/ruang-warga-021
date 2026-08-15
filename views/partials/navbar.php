@@ -26,8 +26,8 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
             <a href="/" class="flex items-center gap-3 sm:pl-10 pl-0 group">
                 <div class="flex-shrink-0 h-100 w-28 bg-white logo-container flex flex-col items-center justify-center p-2 z-10 border border-purple-200 shadow-md rounded-b-2xl group-hover:border-purple-400 transition">
                     <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-center text-xs leading-tight mb-1 shadow-md group-hover:scale-105 transition p-1">
-                        <img class="w-12 h-12 absolute"
-                            src="../../public/images/logo_RW021.webp"
+                        <img class="w-14 h-14 absolute"
+                            src="/images/logo_RW021.webp"
                             alt="logo RW 021" />
                     </div>
                     <span class="text-[9px] text-center font-bold text-gray-700 leading-tight">RUANG<br />WARGA 021</span>
