@@ -2,14 +2,9 @@
 <html lang="id">
 
 <head>
-    <<<<<<< HEAD
-        <title>Statistik Demografi Warga - Ruang Warga 021</title>
-        <?php require base_path('views/partials/head.php'); ?>
-        =======
-        <?php $title = "Statistik Demografi Warga - Ruang Warga 021";
-        require base_path('views/partials/head.php'); ?>
-        >>>>>>> main
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <?php $title = "Statistik Demografi Warga - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="bg-gray-50 flex flex-col min-h-screen">
