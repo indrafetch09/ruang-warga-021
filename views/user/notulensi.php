@@ -2,12 +2,8 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arsip Notulen Rapat - Ruang Warga 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
+    <?php $title = "Arsip Notulen Rapat - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
 </head>
 
 <body class="bg-gray-50 flex flex-col min-h-screen">
@@ -55,7 +51,7 @@
 
             <!-- List of Notulensi (100% Dynamic from Database) -->
             <?php
-                $listNotulensi = $notulensiList ?? $notulensi ?? [];
+            $listNotulensi = $notulensiList ?? $notulensi ?? [];
             ?>
 
             <?php if (empty($listNotulensi)): ?>
@@ -71,27 +67,27 @@
                 <div class="flex flex-col space-y-6">
                     <?php foreach ($listNotulensi as $item): ?>
                         <?php
-                            $isObj = is_object($item);
-                            $idVal = $isObj ? ($item->id ?? 1) : ($item['id'] ?? 1);
-                            $tglVal = $isObj ? ($item->tanggal ?? 'now') : ($item['tanggal'] ?? 'now');
-                            $dayVal = date('d', strtotime($tglVal));
-                            $monthVal = date('M', strtotime($tglVal));
-                            $yearVal = date('Y', strtotime($tglVal));
-                            $katVal = $isObj ? ($item->kategori ?? 'rutin') : ($item['kategori'] ?? 'rutin');
-                            $waktuVal = $isObj ? ($item->waktu_mulai ?? '') : ($item['waktu'] ?? '');
-                            $judulVal = $isObj ? ($item->judul ?? '-') : ($item['judul'] ?? '-');
-                            $ringkasanVal = $isObj ? ($item->hasil_pembahasan ?? $item->agenda ?? '') : ($item['ringkasan'] ?? '');
+                        $isObj = is_object($item);
+                        $idVal = $isObj ? ($item->id ?? 1) : ($item['id'] ?? 1);
+                        $tglVal = $isObj ? ($item->tanggal ?? 'now') : ($item['tanggal'] ?? 'now');
+                        $dayVal = date('d', strtotime($tglVal));
+                        $monthVal = date('M', strtotime($tglVal));
+                        $yearVal = date('Y', strtotime($tglVal));
+                        $katVal = $isObj ? ($item->kategori ?? 'rutin') : ($item['kategori'] ?? 'rutin');
+                        $waktuVal = $isObj ? ($item->waktu_mulai ?? '') : ($item['waktu'] ?? '');
+                        $judulVal = $isObj ? ($item->judul ?? '-') : ($item['judul'] ?? '-');
+                        $ringkasanVal = $isObj ? ($item->hasil_pembahasan ?? $item->agenda ?? '') : ($item['ringkasan'] ?? '');
 
-                            $badgeColor = match(strtolower($katVal)) {
-                                'khusus' => 'text-purple-600 bg-purple-50 border-l-purple-500',
-                                'laporan' => 'text-amber-600 bg-amber-50 border-l-amber-500',
-                                default => 'text-emerald-600 bg-emerald-50 border-l-emerald-500',
-                            };
-                            $borderColor = match(strtolower($katVal)) {
-                                'khusus' => 'border-l-purple-500',
-                                'laporan' => 'border-l-amber-500',
-                                default => 'border-l-emerald-500',
-                            };
+                        $badgeColor = match (strtolower($katVal)) {
+                            'khusus' => 'text-purple-600 bg-purple-50 border-l-purple-500',
+                            'laporan' => 'text-amber-600 bg-amber-50 border-l-amber-500',
+                            default => 'text-emerald-600 bg-emerald-50 border-l-emerald-500',
+                        };
+                        $borderColor = match (strtolower($katVal)) {
+                            'khusus' => 'border-l-purple-500',
+                            'laporan' => 'border-l-amber-500',
+                            default => 'border-l-emerald-500',
+                        };
                         ?>
                         <div class="flex flex-col sm:flex-row gap-6 bg-white p-5 rounded-xl border border-gray-100 border-l-4 <?= $borderColor ?> hover:shadow-lg transition-all duration-300 group">
                             <!-- Tanggal Box -->

@@ -2,12 +2,8 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Peta & Lokasi Sekretariat - Ruang Warga 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
+    <?php $title = "Peta & Lokasi Sekretariat - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
 </head>
 
 <body class="bg-gray-50 flex flex-col min-h-screen">
@@ -31,7 +27,10 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="p-6 bg-purple-50/60 rounded-2xl border border-purple-100">
                     <div class="w-10 h-10 bg-purple-600 text-white rounded-xl flex items-center justify-center font-bold mb-3 shadow-sm">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
                     </div>
                     <h3 class="font-extrabold text-gray-900 text-base mb-1">Alamat Resmi</h3>
                     <p class="text-xs text-gray-600 leading-relaxed font-medium">
@@ -44,7 +43,9 @@
 
                 <div class="p-6 bg-purple-50/60 rounded-2xl border border-purple-100">
                     <div class="w-10 h-10 bg-emerald-600 text-white rounded-xl flex items-center justify-center font-bold mb-3 shadow-sm">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                     </div>
                     <h3 class="font-extrabold text-gray-900 text-base mb-1">Jam Operasional</h3>
                     <p class="text-xs text-gray-600 leading-relaxed font-medium">
@@ -57,7 +58,9 @@
                 <div class="p-6 bg-purple-50/60 rounded-2xl border border-purple-100 flex flex-col justify-between">
                     <div>
                         <div class="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center font-bold mb-3 shadow-sm">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
                         </div>
                         <h3 class="font-extrabold text-gray-900 text-base mb-1">Navigasi Google Maps</h3>
                         <p class="text-xs text-gray-600 leading-relaxed font-medium mb-3">Buka rute langsung melalui aplikasi Google Maps di smartphone Anda.</p>

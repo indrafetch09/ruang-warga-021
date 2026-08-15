@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Statistik Demografi Warga - Ruang Warga 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <?php $title = "Statistik Demografi Warga - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
 </head>
+
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
     <?php require base_path('views/partials/navbar.php'); ?>
@@ -26,20 +24,20 @@
             </div>
 
             <?php
-                // Data Kartu Ringkasan & Sebaran RT dari Database Controller
-                $summary = $summaryData ?? [
-                    'total_kk' => 0,
-                    'total_jiwa' => 0,
-                    'total_rt' => 10,
-                    'verifikasi' => '0%'
-                ];
+            // Data Kartu Ringkasan & Sebaran RT dari Database Controller
+            $summary = $summaryData ?? [
+                'total_kk' => 0,
+                'total_jiwa' => 0,
+                'total_rt' => 10,
+                'verifikasi' => '0%'
+            ];
 
-                $dataRt = $listDataRt ?? [];
-                for ($i = 1; $i <= 10; $i++) {
-                    if (!isset($dataRt[$i])) {
-                        $dataRt[$i] = ['kk' => 0, 'jiwa' => 0];
-                    }
+            $dataRt = $listDataRt ?? [];
+            for ($i = 1; $i <= 10; $i++) {
+                if (!isset($dataRt[$i])) {
+                    $dataRt[$i] = ['kk' => 0, 'jiwa' => 0];
                 }
+            }
             ?>
 
             <!-- SUMMARY CARDS -->
@@ -162,125 +160,162 @@
 
     <!-- SCRIPT INITIALIZE CHART.JS (DYNAMIC DATA INJECTION) -->
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Data Dynamic Injection dari Controller / Fallback JSON
-        const barLabels = <?= json_encode($chartBarLabels ?? ['RT 01', 'RT 02', 'RT 03', 'RT 04', 'RT 05', 'RT 06', 'RT 07', 'RT 08', 'RT 09', 'RT 10']) ?>;
-        const barKk = <?= json_encode($chartBarKk ?? [32, 35, 28, 40, 38, 30, 36, 34, 39, 38]) ?>;
-        const barJiwa = <?= json_encode($chartBarJiwa ?? [112, 123, 98, 140, 133, 105, 126, 119, 137, 133]) ?>;
+        document.addEventListener("DOMContentLoaded", function() {
+            // Data Dynamic Injection dari Controller / Fallback JSON
+            const barLabels = <?= json_encode($chartBarLabels ?? ['RT 01', 'RT 02', 'RT 03', 'RT 04', 'RT 05', 'RT 06', 'RT 07', 'RT 08', 'RT 09', 'RT 10']) ?>;
+            const barKk = <?= json_encode($chartBarKk ?? [32, 35, 28, 40, 38, 30, 36, 34, 39, 38]) ?>;
+            const barJiwa = <?= json_encode($chartBarJiwa ?? [112, 123, 98, 140, 133, 105, 126, 119, 137, 133]) ?>;
 
-        const usiaData = <?= json_encode($chartUsiaData ?? [215, 180, 680, 170]) ?>;
-        const genderData = <?= json_encode($chartGenderData ?? [635, 610]) ?>;
+            const usiaData = <?= json_encode($chartUsiaData ?? [215, 180, 680, 170]) ?>;
+            const genderData = <?= json_encode($chartGenderData ?? [635, 610]) ?>;
 
-        // 1. BAR CHART: Sebaran KK & Jiwa per RT
-        const ctxBar = document.getElementById('barChartRt').getContext('2d');
-        new Chart(ctxBar, {
-            type: 'bar',
-            data: {
-                labels: barLabels,
-                datasets: [
-                    {
-                        label: 'Jumlah KK',
-                        data: barKk,
-                        backgroundColor: '#9333ea',
-                        borderRadius: 6,
-                    },
-                    {
-                        label: 'Estimasi Jiwa',
-                        data: barJiwa,
-                        backgroundColor: '#059669',
-                        borderRadius: 6,
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: { font: { family: 'Plus Jakarta Sans', weight: 'bold' } }
-                    },
-                    tooltip: {
-                        backgroundColor: '#1e1b4b',
-                        titleFont: { family: 'Plus Jakarta Sans', size: 13, weight: 'bold' },
-                        bodyFont: { family: 'Plus Jakarta Sans', size: 12 }
-                    }
+            // 1. BAR CHART: Sebaran KK & Jiwa per RT
+            const ctxBar = document.getElementById('barChartRt').getContext('2d');
+            new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: barLabels,
+                    datasets: [{
+                            label: 'Jumlah KK',
+                            data: barKk,
+                            backgroundColor: '#9333ea',
+                            borderRadius: 6,
+                        },
+                        {
+                            label: 'Estimasi Jiwa',
+                            data: barJiwa,
+                            backgroundColor: '#059669',
+                            borderRadius: 6,
+                        }
+                    ]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: { color: '#f3f4f6' },
-                        ticks: { font: { family: 'Plus Jakarta Sans' } }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    family: 'Plus Jakarta Sans',
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e1b4b',
+                            titleFont: {
+                                family: 'Plus Jakarta Sans',
+                                size: 13,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                family: 'Plus Jakarta Sans',
+                                size: 12
+                            }
+                        }
                     },
-                    x: {
-                        grid: { display: false },
-                        ticks: { font: { family: 'Plus Jakarta Sans', weight: 'bold' } }
-                    }
-                }
-            }
-        });
-
-        // 2. PIE CHART: Kelompok Usia Warga
-        const ctxPie = document.getElementById('pieChartUsia').getContext('2d');
-        new Chart(ctxPie, {
-            type: 'pie',
-            data: {
-                labels: ['Anak (0-12 thn)', 'Remaja (13-18 thn)', 'Dewasa (19-59 thn)', 'Lansia (60+ thn)'],
-                datasets: [{
-                    data: usiaData,
-                    backgroundColor: ['#c084fc', '#38bdf8', '#7e22ce', '#f59e0b'],
-                    borderWidth: 2,
-                    borderColor: '#ffffff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { font: { family: 'Plus Jakarta Sans', weight: '600' }, padding: 15 }
-                    },
-                    tooltip: {
-                        backgroundColor: '#1e1b4b',
-                        callbacks: {
-                            label: function(context) {
-                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                const val = context.raw;
-                                const pct = ((val / total) * 100).toFixed(1);
-                                return ` ${context.label}: ${val} Jiwa (${pct}%)`;
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#f3f4f6'
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Plus Jakarta Sans'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Plus Jakarta Sans',
+                                    weight: 'bold'
+                                }
                             }
                         }
                     }
                 }
-            }
-        });
+            });
 
-        // 3. DOUGHNUT CHART: Komposisi Gender
-        const ctxGender = document.getElementById('pieChartGender').getContext('2d');
-        new Chart(ctxGender, {
-            type: 'doughnut',
-            data: {
-                labels: ['Laki-laki', 'Perempuan'],
-                datasets: [{
-                    data: genderData,
-                    backgroundColor: ['#2563eb', '#ec4899'],
-                    borderWidth: 3,
-                    borderColor: '#ffffff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { font: { family: 'Plus Jakarta Sans', weight: '600' }, padding: 12 }
+            // 2. PIE CHART: Kelompok Usia Warga
+            const ctxPie = document.getElementById('pieChartUsia').getContext('2d');
+            new Chart(ctxPie, {
+                type: 'pie',
+                data: {
+                    labels: ['Anak (0-12 thn)', 'Remaja (13-18 thn)', 'Dewasa (19-59 thn)', 'Lansia (60+ thn)'],
+                    datasets: [{
+                        data: usiaData,
+                        backgroundColor: ['#c084fc', '#38bdf8', '#7e22ce', '#f59e0b'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: 'Plus Jakarta Sans',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e1b4b',
+                            callbacks: {
+                                label: function(context) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const val = context.raw;
+                                    const pct = ((val / total) * 100).toFixed(1);
+                                    return ` ${context.label}: ${val} Jiwa (${pct}%)`;
+                                }
+                            }
+                        }
                     }
                 }
-            }
+            });
+
+            // 3. DOUGHNUT CHART: Komposisi Gender
+            const ctxGender = document.getElementById('pieChartGender').getContext('2d');
+            new Chart(ctxGender, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Laki-laki', 'Perempuan'],
+                    datasets: [{
+                        data: genderData,
+                        backgroundColor: ['#2563eb', '#ec4899'],
+                        borderWidth: 3,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: 'Plus Jakarta Sans',
+                                    weight: '600'
+                                },
+                                padding: 12
+                            }
+                        }
+                    }
+                }
+            });
         });
-    });
     </script>
 </body>
+
 </html>

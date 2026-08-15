@@ -2,12 +2,8 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Struktur Pengurus - Ruang Warga 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
+    <?php $title = "Struktur Pengurus - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
     <style>
         /* Garis penghubung hierarki (Desktop Only) */
         @media (min-width: 768px) {
@@ -67,22 +63,22 @@
             </div>
 
             <?php
-                $ketua = $ketuaRw ?? null;
-                $sekretaris = $sekretarisRw ?? null;
-                $bendahara = $bendaharaRw ?? null;
-                $seksi = $seksiList ?? [];
-                $dataRtList = $listRt ?? [];
+            $ketua = $ketuaRw ?? null;
+            $sekretaris = $sekretarisRw ?? null;
+            $bendahara = $bendaharaRw ?? null;
+            $seksi = $seksiList ?? [];
+            $dataRtList = $listRt ?? [];
 
-                $ketuaFoto = $ketua['foto'] ?? 'https://ui-avatars.com/api/?name=Ketua+RW&background=7c3aed&color=fff&size=150';
-                $ketuaJabatan = $ketua['jabatan'] ?? 'Ketua RW 021';
-                $ketuaNama = $ketua['nama'] ?? 'Belum Diinputkan';
-                $ketuaPeriode = $ketua['periode'] ?? 'Masa Bakti 2024 - 2027';
+            $ketuaFoto = $ketua['foto'] ?? 'https://ui-avatars.com/api/?name=Ketua+RW&background=7c3aed&color=fff&size=150';
+            $ketuaJabatan = $ketua['jabatan'] ?? 'Ketua RW 021';
+            $ketuaNama = $ketua['nama'] ?? 'Belum Diinputkan';
+            $ketuaPeriode = $ketua['periode'] ?? 'Masa Bakti 2024 - 2027';
 
-                $sekretarisFoto = $sekretaris['foto'] ?? 'https://ui-avatars.com/api/?name=Sekretaris&background=10b981&color=fff&size=150';
-                $sekretarisNama = $sekretaris['nama'] ?? 'Belum Diinputkan';
+            $sekretarisFoto = $sekretaris['foto'] ?? 'https://ui-avatars.com/api/?name=Sekretaris&background=10b981&color=fff&size=150';
+            $sekretarisNama = $sekretaris['nama'] ?? 'Belum Diinputkan';
 
-                $bendaharaFoto = $bendahara['foto'] ?? 'https://ui-avatars.com/api/?name=Bendahara&background=10b981&color=fff&size=150';
-                $bendaharaNama = $bendahara['nama'] ?? 'Belum Diinputkan';
+            $bendaharaFoto = $bendahara['foto'] ?? 'https://ui-avatars.com/api/?name=Bendahara&background=10b981&color=fff&size=150';
+            $bendaharaNama = $bendahara['nama'] ?? 'Belum Diinputkan';
             ?>
 
             <!-- LEVEL 1: KETUA RW -->
@@ -134,12 +130,12 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <?php foreach ($seksi as $s): ?>
                         <?php
-                            $badgeColor = match($s['color'] ?? 'purple') {
-                                'amber' => 'text-amber-600 border-amber-50',
-                                'sky'   => 'text-sky-600 border-sky-50',
-                                'rose'  => 'text-rose-600 border-rose-50',
-                                default => 'text-purple-600 border-purple-50'
-                            };
+                        $badgeColor = match ($s['color'] ?? 'purple') {
+                            'amber' => 'text-amber-600 border-amber-50',
+                            'sky'   => 'text-sky-600 border-sky-50',
+                            'rose'  => 'text-rose-600 border-rose-50',
+                            default => 'text-purple-600 border-purple-50'
+                        };
                         ?>
                         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col items-center text-center hover:shadow-md transition-shadow">
                             <img src="<?= htmlspecialchars($s['foto']) ?>" alt="Seksi" class="w-16 h-16 rounded-full mb-3 object-cover border-2 <?= $badgeColor ?>" />

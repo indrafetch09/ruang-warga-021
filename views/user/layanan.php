@@ -2,12 +2,8 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aula RW 021 & Fasilitas Balai Warga - Ruang Warga 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
+    <?php $title = "Aula RW 021 & Fasilitas Balai Warga - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
     <style>
         /* 2x2 Grid Directional Animations */
         @keyframes marquee-right {
@@ -94,13 +90,13 @@
                         <div class="flex gap-4 w-max animate-slide-right">
                             <?php foreach ($galeriAula as $item): ?>
                                 <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md ">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
                                 </div>
                             <?php endforeach; ?>
                             <!-- Duplicate Loop for Seamless Infinite Scroll -->
                             <?php foreach ($galeriAula as $item): ?>
                                 <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md " aria-hidden="true">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
                                 </div>
                             <?php endforeach; ?>
                         </div>
