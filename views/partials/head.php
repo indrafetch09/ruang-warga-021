@@ -24,7 +24,7 @@ $pageDesc = $description ?? $pageDesc ?? 'Portal Sistem Informasi, Layanan Admin
 <link rel="icon" type="image/svg" href="/images/favicon.svg" />
 <link rel="apple-touch-icon" href="/images/logo_RW021.webp" />
 <link rel="stylesheet" href="/css/theme.css" />
-<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
     tailwind.config = {

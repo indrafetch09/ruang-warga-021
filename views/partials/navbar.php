@@ -27,7 +27,7 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
                 <div class="flex-shrink-0 h-100 w-28 bg-white logo-container flex flex-col items-center justify-center p-2 z-10 border border-purple-200 shadow-md rounded-b-2xl group-hover:border-purple-400 transition">
                     <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-center text-xs leading-tight mb-1 shadow-md group-hover:scale-105 transition p-1">
                         <img class="w-14 h-14 absolute"
-                            src="/images/logo_RW021.webp"
+                            src="/images/logo_rw21.webp"
                             alt="logo RW 021" />
                     </div>
                     <span class="text-[9px] text-center font-bold text-gray-700 leading-tight">RUANG<br />WARGA 021</span>
@@ -132,12 +132,12 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
 
                 <!-- 6. PORTAL ADMIN (Admin Warga) -->
                 <?php if ($_SESSION['user'] ?? false): ?>
-                    <a href="/dashboard" class="px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium text-sm rounded-[10px] transition duration-150 flex items-center gap-2 shadow-sm">
+                    <a href="/dashboard" class="px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm rounded-[10px] transition duration-150 flex items-center gap-2 shadow-sm">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                         Admin Warga
                     </a>
                 <?php else: ?>
-                    <a href="/login" class="px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium text-sm rounded-[10px] transition duration-150 flex items-center gap-2 shadow-sm">
+                    <a href="/login" class="px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm rounded-[10px] transition duration-150 flex items-center gap-2 shadow-sm">
                         <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
                         </svg>
