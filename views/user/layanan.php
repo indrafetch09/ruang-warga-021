@@ -100,7 +100,8 @@
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                        <p class=" pt-5 text-start text-sm">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim veritatis ut dicta suscipit commodi exercitationem facilis dolorem, placeat fuga molestiae doloremque repellat corrupti velit dolorum obcaecati minima pariatur laboriosam eos.</p>
+                        <!-- ponytail: simple font size & readability boost -->
+                        <p class="pt-5 text-start text-base md:text-lg text-gray-600 leading-relaxed">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim veritatis ut dicta suscipit commodi exercitationem facilis dolorem, placeat fuga molestiae doloremque repellat corrupti velit dolorum obcaecati minima pariatur laboriosam eos.</p>
                     </div>
 
                     <div class="flex justify-between items-center px-1 pt-8">
@@ -120,7 +121,8 @@
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                        <p class=" pt-5 text-start text-sm">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim veritatis ut dicta suscipit commodi exercitationem facilis dolorem, placeat fuga molestiae doloremque repellat corrupti velit dolorum obcaecati minima pariatur laboriosam eos.</p>
+                        <!-- ponytail: simple font size & readability boost -->
+                        <p class="pt-5 text-start text-base md:text-lg text-gray-600 leading-relaxed">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim veritatis ut dicta suscipit commodi exercitationem facilis dolorem, placeat fuga molestiae doloremque repellat corrupti velit dolorum obcaecati minima pariatur laboriosam eos.</p>
                     </div>
                 <?php endif; ?>
             </div>
