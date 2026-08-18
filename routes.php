@@ -6,6 +6,9 @@ use App\Controllers\NotulensiController;
 use App\Controllers\PengumumanController;
 use App\Controllers\WargaController;
 use App\Controllers\LaporanController;
+use App\Controllers\KegiatanController;
+use App\Controllers\PengurusController;
+use App\Controllers\AdminController;
 
 $router = new \Core\Router();
 
@@ -17,7 +20,6 @@ $router = new \Core\Router();
 $router->get('/', [HomeController::class, 'index']);
 $router->get('/tentang-kami', [HomeController::class, 'about']);
 $router->get('/pengurus-rw', [HomeController::class, 'pengurus']);
-
 // Layanan Warga (Aula RW 021 & TPST)
 $router->get('/layanan', function () {
     return view('user/layanan.php');
@@ -32,9 +34,13 @@ $router->get('/kebersihan', function () {
     return view('user/tpst.php');
 });
 
+// Kegiatan Rutin Publik (Panduan Warga)
+$router->get('/kegiatan', [KegiatanController::class, 'index']);
+
 // Notulensi & Statistik Warga
 $router->get('/notulensi', [NotulensiController::class, 'index']);
 $router->get('/notulensi/detail', [NotulensiController::class, 'show']);
+
 $router->get('/statistik', function () {
     $db = \Core\App::resolve(\Core\Database::class);
 
@@ -106,7 +112,6 @@ $router->get('/login', function () {
 })->only('guest');
 
 $router->post('/login', function () {
-    // 1. Verifikasi CSRF Token
     if (!\Core\Csrf::verify($_POST['_csrf_token'] ?? null)) {
         \Core\Session::flash('errors', ['identity' => 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.']);
         return redirect('/login');
@@ -115,13 +120,11 @@ $router->post('/login', function () {
     $identity = trim($_POST['identity'] ?? $_POST['username'] ?? $_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
-    // 2. Form Validation & Rate Limiting Check
     $form = \Http\Forms\LoginForm::validate([
         'identity' => $identity,
         'password' => $password,
     ]);
 
-    // 3. Attempt Authentication
     $signedIn = (new \Core\Authenticator())->attempt($identity, $password);
 
     if (!$signedIn) {
@@ -145,37 +148,64 @@ $router->delete('/logout', function () {
 
 
 // ==========================================
-// 3. ROUTES ADMIN / PORTAL SIRW 021
+// 3. ROUTES ADMIN / PORTAL SIRW 021 (LENGKAP CRUD)
 // ==========================================
-
-use App\Controllers\AdminController;
 
 // Dasbor Utama Pengurus
 $router->get('/admin', [AdminController::class, 'dashboard'])->only('auth');
 $router->get('/dashboard', [AdminController::class, 'dashboard'])->only('auth');
 
-// Manajemen Data Warga (Penduduk)
+// --- A. Manajemen Data Warga ---
 $router->get('/admin/warga', [WargaController::class, 'index'])->only('auth');
-$router->get('/warga/create', [WargaController::class, 'create'])->only('auth');
+$router->get('/admin/warga/create', [WargaController::class, 'create'])->only('auth');
 $router->post('/warga', [WargaController::class, 'store'])->only('auth');
 
-// Manajemen Pengumuman
-$router->get('/admin/pengumuman/create', [PengumumanController::class, 'create'])->only('auth');
-$router->post('/admin/pengumuman', [PengumumanController::class, 'store'])->only('auth');
+// Edit, Update & Delete Warga
+$router->get('/admin/warga/edit', [WargaController::class, 'edit'])->only('auth');
+$router->post('/admin/warga/update', [WargaController::class, 'update'])->only('auth');
+$router->post('/admin/warga/delete', [WargaController::class, 'destroy'])->only('auth');
 
-// Manajemen Notulensi
+// Approve & Reject (RT ke RW)
+$router->post('/admin/warga/approve', [WargaController::class, 'approve'])->only('auth');
+$router->post('/admin/warga/reject', [WargaController::class, 'reject'])->only('auth');
+
+$router->get('/admin/pengurus', [PengurusController::class, 'index'])->only('auth');
+$router->get('/admin/pengurus/create', [PengurusController::class, 'create'])->only('auth');
+$router->post('/admin/pengurus', [PengurusController::class, 'store'])->only('auth');
+$router->get('/admin/pengurus/edit', [PengurusController::class, 'edit'])->only('auth');
+$router->post('/admin/pengurus/update', [PengurusController::class, 'update'])->only('auth');
+$router->post('/admin/pengurus/delete', [PengurusController::class, 'destroy'])->only('auth');
+// --- D. Manajemen Notulensi Rapat ---
+$router->get('/admin/notulensi', [NotulensiController::class, 'adminIndex'])->only('auth');
 $router->get('/admin/notulensi/create', [NotulensiController::class, 'create'])->only('auth');
 $router->post('/admin/notulensi', [NotulensiController::class, 'store'])->only('auth');
+$router->get('/admin/notulensi/edit', [NotulensiController::class, 'edit'])->only('auth');
+$router->post('/admin/notulensi/update', [NotulensiController::class, 'update'])->only('auth');
+$router->post('/admin/notulensi/delete', [NotulensiController::class, 'destroy'])->only('auth');
 
-// Manajemen Galeri
+// --- E. Manajemen Galeri Kegiatan ---
+$router->get('/admin/galeri', [GaleriController::class, 'adminIndex'])->only('auth');
 $router->get('/admin/galeri/create', [GaleriController::class, 'create'])->only('auth');
 $router->post('/admin/galeri', [GaleriController::class, 'store'])->only('auth');
+$router->get('/admin/galeri/edit', [GaleriController::class, 'edit'])->only('auth');
+$router->post('/admin/galeri/update', [GaleriController::class, 'update'])->only('auth');
+$router->post('/admin/galeri/delete', [GaleriController::class, 'destroy'])->only('auth');
 
-// Manajemen Kegiatan Rutin
-$router->get('/admin/kegiatan/create', function () {
-    return view('admin/tambah-kegiatan.php');
-})->only('auth');
+// --- F. Manajemen Kegiatan Rutin ---
+$router->get('/admin/kegiatan', [KegiatanController::class, 'adminIndex'])->only('auth');
+$router->get('/admin/kegiatan/create', [KegiatanController::class, 'create'])->only('auth');
+$router->post('/admin/kegiatan', [KegiatanController::class, 'store'])->only('auth');
+$router->get('/admin/kegiatan/edit', [KegiatanController::class, 'edit'])->only('auth');
+$router->post('/admin/kegiatan/update', [KegiatanController::class, 'update'])->only('auth');
+$router->post('/admin/kegiatan/delete', [KegiatanController::class, 'destroy'])->only('auth');
 
-$router->post('/admin/kegiatan', function () {
-    return redirect('/dashboard');
-})->only('auth');
+// --- C. Manajemen Pengumuman (DITAMBAHKAN) ---
+$router->get('/admin/pengumuman', [PengumumanController::class, 'adminIndex'])->only('auth');
+$router->get('/admin/pengumuman/create', [PengumumanController::class, 'create'])->only('auth');
+$router->post('/admin/pengumuman', [PengumumanController::class, 'store'])->only('auth');
+$router->get('/admin/pengumuman/edit', [PengumumanController::class, 'edit'])->only('auth');
+$router->post('/admin/pengumuman/update', [PengumumanController::class, 'update'])->only('auth');
+$router->post('/admin/pengumuman/delete', [PengumumanController::class, 'destroy'])->only('auth');
+
+$router->get('/admin/warga/template', [App\Controllers\WargaController::class, 'downloadTemplate'])->only('auth');
+$router->post('/admin/warga/import', [App\Controllers\WargaController::class, 'import'])->only('auth');

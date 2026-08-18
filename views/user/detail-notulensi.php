@@ -4,48 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Galeri Kegiatan - Ruang Warga 021</title>
+    <title><?= htmlspecialchars($notulensi->judul ?? $notulensi['judul'] ?? 'Detail Notulensi') ?> - Ruang Warga 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
     <style>
-        .logo-container {
-            border-radius: 0 0 24px 24px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--color-border-light);
-            border-top-width: 0;
-        }
-
-        /* Animasi untuk modal */
-        @keyframes fadeInZoom {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .animate-in {
-            animation: fadeInZoom 0.25s ease-out forwards;
-        }
-
-        /* Scrollbar halus untuk modal */
-        #postModal .overflow-y-auto::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        #postModal .overflow-y-auto::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        #postModal .overflow-y-auto::-webkit-scrollbar-thumb {
-            background: var(--color-scrollbar-thumb);
-            border-radius: 8px;
-        }
+        body { font-family: "Plus Jakarta Sans", sans-serif; }
     </style>
 </head>
 
@@ -53,298 +17,175 @@
     <!-- NAVBAR -->
     <?php require base_path('views/partials/navbar.php'); ?>
 
+    <?php
+    // Helper extract data (Aman dari Array vs Object error)
+    $isArr = is_array($notulensi);
+
+    $nJudul     = $isArr ? ($notulensi['judul'] ?? 'Notulensi Rapat') : ($notulensi->judul ?? 'Notulensi Rapat');
+    $nKategori  = $isArr ? ($notulensi['kategori'] ?? 'rutin') : ($notulensi->kategori ?? 'rutin');
+    $nNoSurat   = $isArr ? ($notulensi['no_surat'] ?? '-') : ($notulensi->no_surat ?? '-');
+    $nTanggal   = $isArr ? ($notulensi['tanggal'] ?? date('Y-m-d')) : ($notulensi->tanggal ?? date('Y-m-d'));
+    $nWMulai    = $isArr ? ($notulensi['waktu_mulai'] ?? '-') : ($notulensi->waktu_mulai ?? '-');
+    $nWSelesai  = $isArr ? ($notulensi['waktu_selesai'] ?? '') : ($notulensi->waktu_selesai ?? '');
+    $nLokasi    = $isArr ? ($notulensi['lokasi'] ?? '-') : ($notulensi->lokasi ?? '-');
+    $nNotulis   = $isArr ? ($notulensi['notulis'] ?? '-') : ($notulensi->notulis ?? '-');
+    $nAgenda    = $isArr ? ($notulensi['agenda'] ?? '-') : ($notulensi->agenda ?? '-');
+    $nHasil     = $isArr ? ($notulensi['hasil_pembahasan'] ?? '-') : ($notulensi->hasil_pembahasan ?? '-');
+    $nKeputusan = $isArr ? ($notulensi['keputusan_akhir'] ?? '-') : ($notulensi->keputusan_akhir ?? '-');
+    $nFile      = $isArr ? ($notulensi['file_lampiran'] ?? null) : ($notulensi->file_lampiran ?? null);
+
+    // Helper Format Hari Indonesia
+    $daftarHari = [
+        'Sunday' => 'Minggu', 'Monday' => 'Senin', 'Tuesday' => 'Selasa',
+        'Wednesday' => 'Rabu', 'Thursday' => 'Kamis', 'Friday' => 'Jumat', 'Saturday' => 'Sabtu'
+    ];
+    $namaHari = $daftarHari[date('l', strtotime($nTanggal))] ?? '';
+    $tglFormatIndo = $namaHari . ', ' . date('d F Y', strtotime($nTanggal));
+    ?>
+
     <!-- MAIN CONTENT -->
-    <div class="py-12 bg-gray-50 flex-1">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            <!-- SIMPLE PAGE HEADER -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Detail Hasil <span class="text-purple-600">Notulensi Musyawarah</span></h1>
-                    <p class="text-xs md:text-sm text-gray-500 mt-1">Rincian pembahasan, peserta rapat, dan keputusan resmi forum RW 021.</p>
-                </div>
-            </div>
-            <!-- Filter Kategori -->
-            <div class="flex flex-wrap justify-center gap-2 mb-10">
-                <button
-                    class="px-5 py-2 rounded-full bg-purple-600 text-white text-sm font-semibold shadow-md transition">
-                    Semua
-                </button>
-                <button
-                    class="px-5 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-medium hover:bg-gray-100 transition">
-                    Sosial & Kebersihan
-                </button>
-                <button
-                    class="px-5 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-medium hover:bg-gray-100 transition">
-                    Perayaan
-                </button>
-                <button
-                    class="px-5 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-medium hover:bg-gray-100 transition">
-                    Kesehatan
-                </button>
+    <main class="py-10 bg-gray-50 flex-1">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+
+            <!-- BREADCRUMB / TOMBOL KEMBALI -->
+            <div>
+                <a href="/notulensi" class="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-purple-600 transition group">
+                    <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Kembali ke Arsip Notulensi
+                </a>
             </div>
 
-            <!-- Grid Foto -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                <!-- Item 1 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Kerja Bakti Membersihkan Saluran Air', '03 Agustus 2026', 'Kegiatan gotong royong membersihkan lingkungan, saluran air, dan fasilitas umum setiap hari Minggu di minggu pertama. Kegiatan ini diikuti oleh warga dari RT 01 hingga RT 05 untuk menjaga kebersihan dan mengantisipasi genangan air di musim hujan.')"
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
-                    <div class="overflow-hidden relative h-56">
-                        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Kerja Bakti"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
-                            <span>Lihat Detail</span>
+            <!-- CONTAINER DOKUMEN NOTULENSI FORMAL -->
+            <article class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+                
+                <!-- HEADER NOTULENSI -->
+                <div class="p-6 md:p-8 bg-purple-50/60 border-b border-purple-100">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                        <div>
+                            <?php if ($nKategori === 'rutin'): ?>
+                                <span class="bg-emerald-100 text-emerald-800 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Rapat Rutin</span>
+                            <?php elseif ($nKategori === 'khusus'): ?>
+                                <span class="bg-purple-100 text-purple-800 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Rapat Khusus</span>
+                            <?php else: ?>
+                                <span class="bg-sky-100 text-sky-800 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Laporan Kas</span>
+                            <?php endif; ?>
                         </div>
-                        <span
-                            class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded">Sosial
-                            & Kebersihan</span>
+
+                        <span class="text-xs text-gray-500 font-medium">No. Dokumen: <strong class="text-gray-800 font-mono"><?= htmlspecialchars($nNoSurat) ?></strong></span>
                     </div>
-                    <div class="p-5">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                            Kerja Bakti Membersihkan Saluran Air
-                        </h3>
-                        <p class="text-xs text-gray-400 mb-3">03 Agustus 2026</p>
+
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 leading-tight mb-4">
+                        <?= htmlspecialchars($nJudul) ?>
+                    </h1>
+
+                    <!-- METADATA GRID -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-purple-100 text-xs">
+                        <div>
+                            <span class="block text-gray-400 font-medium uppercase text-[10px]">Hari & Tanggal</span>
+                            <strong class="text-gray-800 font-bold"><?= $tglFormatIndo ?></strong>
+                        </div>
+                        <div>
+                            <span class="block text-gray-400 font-medium uppercase text-[10px]">Waktu Pelaksanaan</span>
+                            <strong class="text-gray-800 font-bold"><?= htmlspecialchars($nWMulai) ?> <?= !empty($nWSelesai) ? '- ' . htmlspecialchars($nWSelesai) : '' ?></strong>
+                        </div>
+                        <div>
+                            <span class="block text-gray-400 font-medium uppercase text-[10px]">Tempat / Lokasi</span>
+                            <strong class="text-gray-800 font-bold"><?= htmlspecialchars($nLokasi) ?></strong>
+                        </div>
+                        <div>
+                            <span class="block text-gray-400 font-medium uppercase text-[10px]">Notulis / Pencatat</span>
+                            <strong class="text-purple-700 font-bold"><?= htmlspecialchars($nNotulis) ?></strong>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Item 2 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Posyandu & Pemeriksaan Lansia', '27 Juli 2026', 'Pelayanan kesehatan gratis untuk balita, ibu hamil, dan pemeriksaan kesehatan rutin bagi warga lanjut usia setiap bulan. Bekerja sama dengan Puskesmas setempat untuk menyediakan penimbangan balita, vitamin, serta cek tensi dan gula darah.')"
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
-                    <div class="overflow-hidden relative h-56">
-                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Posyandu"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
-                            <span>Lihat Detail</span>
-                        </div>
-                        <span
-                            class="absolute top-3 left-3 bg-rose-500 text-white text-[10px] font-bold px-2 py-1 rounded">Kesehatan</span>
+                <!-- ISI NOTULENSI -->
+                <div class="p-6 md:p-8 space-y-8">
+                    
+                    <!-- PARAGRAF PEMBUKA OTOMATIS (BERITA ACARA) -->
+                    <div class="bg-purple-50/50 border-l-4 border-purple-600 p-4 rounded-r-2xl text-gray-700 text-sm leading-relaxed italic">
+                        <strong>Berita Acara:</strong> Pada hari <span class="font-bold text-gray-900"><?= $tglFormatIndo ?></span>, bertempat di <span class="font-bold text-gray-900"><?= htmlspecialchars($nLokasi) ?></span>, telah diselenggarakan <span class="font-bold text-gray-900"><?= htmlspecialchars($nJudul) ?></span> yang dihadiri oleh pengurus RW 021, jajaran RT, serta perwakilan warga setempat. Berikut adalah rincian agenda dan hasil kesepakatan musyawarah:
                     </div>
-                    <div class="p-5">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                            Posyandu & Pemeriksaan Lansia
-                        </h3>
-                        <p class="text-xs text-gray-400 mb-3">27 Juli 2026</p>
-                    </div>
-                </div>
 
-                <!-- Item 3 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Bazar UMKM Makanan Tradisional', '15 Juli 2026', 'Mendukung perputaran ekonomi warga melalui bazar makanan dan kerajinan lokal pada setiap perayaan hari besar nasional. Diikuti lebih dari 20 pelaku UMKM lokal RW 021 untuk mempromosikan produk unggulan rumahan.')"
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
-                    <div class="overflow-hidden relative h-56">
-                        <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="UMKM"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
-                            <span>Lihat Detail</span>
-                        </div>
-                        <span
-                            class="absolute top-3 left-3 bg-amber-500 text-white text-[10px] font-bold px-2 py-1 rounded">Perayaan</span>
-                    </div>
-                    <div class="p-5">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                            Bazar UMKM Makanan Tradisional
+                    <!-- SECTION 1: AGENDA RAPAT -->
+                    <div>
+                        <h3 class="text-xs font-extrabold text-purple-700 uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full"></span>
+                            Agenda Utama Rapat
                         </h3>
-                        <p class="text-xs text-gray-400 mb-3">15 Juli 2026</p>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Rapat Koordinasi Pengurus RW & RT', '05 Juli 2026', 'Pertemuan rutin bulanan antara pengurus RW dan seluruh perwakilan RT untuk membahas program kerja bulan berikutnya, evaluasi kas, dan menampung aspirasi warga.')"
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
-                    <div class="overflow-hidden relative h-56">
-                        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Rapat"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
-                            <span>Lihat Detail</span>
+                        <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 text-gray-800 text-sm font-medium whitespace-pre-line leading-relaxed">
+                            <?= htmlspecialchars($nAgenda) ?>
                         </div>
-                        <span
-                            class="absolute top-3 left-3 bg-purple-500 text-white text-[10px] font-bold px-2 py-1 rounded">Pertemuan</span>
                     </div>
-                    <div class="p-5">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                            Rapat Koordinasi Pengurus RW & RT
-                        </h3>
-                        <p class="text-xs text-gray-400 mb-3">05 Juli 2026</p>
-                    </div>
-                </div>
 
-                <!-- Item 5 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Pembagian Sembako Bantuan', '20 Juni 2026', 'Penyaluran bantuan sembako kepada warga yang membutuhkan di sekitar lingkungan RW 021, terselenggara berkat donasi rutin kas warga dan sumbangan sukarela.')"
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
-                    <div class="overflow-hidden relative h-56">
-                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Bantuan"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                            </svg>
-                            <span>Lihat Detail</span>
+                    <!-- SECTION 2: HASIL PEMBAHASAN -->
+                    <div>
+                        <h3 class="text-xs font-extrabold text-purple-700 uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <span class="w-2 h-2 bg-purple-600 rounded-full"></span>
+                            Jalannya Rapat & Hasil Pembahasan
+                        </h3>
+                        <div class="text-gray-700 text-sm leading-relaxed whitespace-pre-line space-y-2">
+                            <?= htmlspecialchars($nHasil) ?>
                         </div>
-                        <span
-                            class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded">Sosial
-                            & Kebersihan</span>
                     </div>
-                    <div class="p-5">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                            Pembagian Sembako Bantuan
-                        </h3>
-                        <p class="text-xs text-gray-400 mb-3">20 Juni 2026</p>
-                    </div>
-                </div>
 
-                <!-- Item 6 -->
-                <div onclick="openModal('https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 'Senam Pagi Akhir Pekan', '14 Juni 2026', 'Kegiatan senam sehat bersama setiap Sabtu pagi di lapangan utama RW 021 untuk menjaga kebugaran dan mempererat tali silaturahmi antarwarga.')"
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
-                    <div class="overflow-hidden relative h-56">
-                        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Senam"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                    <!-- SECTION 3: KEPUTUSAN AKHIR (HIGHLIGHTED) -->
+                    <div class="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-5 md:p-6 shadow-sm">
+                        <h3 class="text-xs font-extrabold text-emerald-800 uppercase tracking-widest mb-2 flex items-center gap-2">
+                            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span>Lihat Detail</span>
-                        </div>
-                        <span
-                            class="absolute top-3 left-3 bg-rose-500 text-white text-[10px] font-bold px-2 py-1 rounded">Kesehatan</span>
-                    </div>
-                    <div class="p-5">
-                        <h3
-                            class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                            Senam Pagi Akhir Pekan
+                            Keputusan Akhir Musyawarah
                         </h3>
-                        <p class="text-xs text-gray-400 mb-3">14 Juni 2026</p>
+                        <div class="text-emerald-950 font-semibold text-sm leading-relaxed whitespace-pre-line">
+                            <?= htmlspecialchars($nKeputusan) ?>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Load More Button -->
-            <div class="text-center mt-12">
-                <button
-                    class="px-6 py-3 border border-purple-200 text-purple-700 font-bold rounded-full hover:bg-purple-50 transition w-full md:w-auto shadow-sm">
-                    Muat Lebih Banyak
-                </button>
-            </div>
+                    <!-- SECTION 4: LAMPIRAN DOKUMEN -->
+                    <?php if (!empty($nFile)): ?>
+                        <div class="pt-4 border-t border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div>
+                                <h4 class="text-sm font-bold text-gray-900">Dokumen Lampiran Resmi</h4>
+                                <p class="text-xs text-gray-500 mt-0.5">Unduh berkas fisik/PDF hasil ttd notulensi rapat ini.</p>
+                            </div>
+                            <a href="/uploads/notulensi/<?= htmlspecialchars($nFile) ?>" download class="px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                </svg>
+                                Unduh Lampiran Berkas
+                            </a>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- SECTION 5: BLOK PENGESAHAN / TANDA TANGAN (LEGALITAS) -->
+                    <div class="pt-8 border-t border-gray-200 mt-8">
+                        <p class="text-xs text-center text-gray-400 mb-6 italic">Demikian notulensi hasil musyawarah ini dibuat untuk dipergunakan sebagaimana mestinya.</p>
+                        
+                        <div class="grid grid-cols-2 gap-8 text-center text-xs">
+                            <div>
+                                <p class="text-gray-500 mb-12">Notulis / Pencatatan</p>
+                                <p class="font-bold text-gray-900 underline uppercase"><?= htmlspecialchars($nNotulis) ?></p>
+                                <p class="text-[10px] text-gray-400">Pengurus RW 021</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500 mb-12">Mengetahui,<br>Ketua RW 021</p>
+                                <p class="font-bold text-gray-900 underline uppercase">Ketua RW 021</p>
+                                <p class="text-[10px] text-gray-400">Ruang Warga 021</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
         </div>
-    </div>
+    </main>
 
     <!-- FOOTER -->
     <?php require base_path('views/partials/footer.php'); ?>
-
-    <!-- MODAL POPUP INSTAGRAM STYLE -->
-    <div id="postModal"
-        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
-        <div
-            class="bg-white rounded-2xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row shadow-2xl relative animate-in">
-            <button onclick="closeModal()"
-                class="absolute top-3 right-3 z-20 w-9 h-9 bg-black/50 hover:bg-black/80 text-white rounded-full flex items-center justify-center md:bg-gray-100 md:text-gray-600 md:hover:bg-gray-200 transition">
-                ✕
-            </button>
-
-            <div class="w-full md:w-3/5 bg-black flex items-center justify-center min-h-[250px] md:min-h-[500px]">
-                <img id="modalImage" src="" alt="Detail Kegiatan"
-                    class="w-full h-full object-cover max-h-[60vh] md:max-h-[80vh]" />
-            </div>
-
-            <div class="w-full md:w-2/3 p-6 flex flex-col justify-between bg-white overflow-y-auto">
-                <div>
-                    <div class="flex items-center gap-3 border-b border-gray-100 pb-4 mb-4">
-                        <div
-                            class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xs">
-                            RW21
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900 text-sm leading-tight">
-                                Pengurus RW 021
-                            </h4>
-                            <p id="modalDate" class="text-xs text-gray-500 mt-0.5"></p>
-                        </div>
-                        <span
-                            class="ml-auto px-2.5 py-1 bg-emerald-100 text-emerald-800 text-[11px] font-bold rounded-full">Kegiatan</span>
-                    </div>
-                    <h3 id="modalTitle" class="text-2xl font-extrabold text-gray-900 mb-3"></h3>
-                    <p id="modalDescription" class="text-gray-600 text-sm leading-relaxed whitespace-pre-line mb-6"></p>
-                </div>
-
-                <div class="border-t border-gray-100 pt-4 mt-auto">
-                    <div class="flex items-center justify-between text-gray-500 text-xs">
-                        <span class="flex items-center gap-1 text-emerald-600 font-semibold">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            Dokumentasi Terbuka
-                        </span>
-                        <button onclick="closeModal()"
-                            class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg text-xs transition">
-                            Tutup
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT UNTUK MODAL -->
-    <script>
-        function openModal(imageSrc, title, date, description) {
-            document.getElementById("modalImage").src = imageSrc;
-            document.getElementById("modalTitle").innerText = title;
-            document.getElementById("modalDate").innerText = date;
-            document.getElementById("modalDescription").innerText = description;
-            const modal = document.getElementById("postModal");
-            modal.classList.remove("hidden");
-            document.body.style.overflow = "hidden";
-        }
-
-        function closeModal() {
-            const modal = document.getElementById("postModal");
-            modal.classList.add("hidden");
-            document.body.style.overflow = "auto";
-        }
-
-        document
-            .getElementById("postModal")
-            .addEventListener("click", function (e) {
-                if (e.target === this) closeModal();
-            });
-
-        document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape") closeModal();
-        });
-    </script>
 </body>
 
 </html>

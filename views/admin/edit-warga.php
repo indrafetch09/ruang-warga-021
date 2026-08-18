@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tambah Data Warga - Dasbor Pengurus RW 021</title>
+    <title>Edit Data Warga - Dasbor Pengurus RW 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
@@ -18,18 +18,22 @@
 <body class="text-gray-800 bg-gray-50 flex flex-col min-h-screen">
     <?php require base_path('views/partials/admin-header.php'); ?>
 
-    <!-- WRAPPER SIDEBAR & MAIN CONTENT -->
     <div class="flex flex-1 max-w-[1400px] w-full mx-auto relative">
         <?php require base_path('views/partials/admin-sidebar.php'); ?>
 
         <main class="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 space-y-6">
 
             <?php
-            // Helper pengecekan hak akses user untuk penguncian RT
             $isObject = is_object($user);
-            $isRw = ($isObject && method_exists($user, 'isRw')) ? $user->isRw() : (($user['role'] ?? $user->data['role'] ?? '') === 'admin' || ($user['role'] ?? $user->data['role'] ?? '') === 'rw');
-            $isRt = ($isObject && method_exists($user, 'isRt')) ? $user->isRt() : (($user['role'] ?? $user->data['role'] ?? '') === 'rt');
-            $assignedRt = ($isObject && method_exists($user, 'getRtAssigned')) ? $user->getRtAssigned() : ($user['rt'] ?? $user->data['rt'] ?? 1);
+            $isRt = ($isObject && method_exists($user, 'isRt')) ? $user->isRt() : (($user['role'] ?? '') === 'rt');
+            $assignedRt = ($isObject && method_exists($user, 'getRtAssigned')) ? $user->getRtAssigned() : ($user['rt'] ?? 1);
+
+            // Helper ekstraksi data aman
+            $val = function($key, $default = '') use ($warga) {
+                if (is_array($warga)) return $warga[$key] ?? $default;
+                if (is_object($warga)) return $warga->$key ?? $default;
+                return $default;
+            };
             ?>
 
             <!-- HEADER SECTION -->
@@ -42,18 +46,19 @@
                         Kembali ke Data Penduduk
                     </a>
                     <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
-                        Tambah Data Warga Baru
+                        Edit Data Warga
                     </h2>
                     <p class="text-xs md:text-sm text-gray-500 mt-1">
-                        Masukkan data identitas warga dengan lengkap sesuai Kartu Keluarga (KK).
+                        Perbarui rincian identitas, hubungan keluarga, dan pekerjaan warga.
                     </p>
                 </div>
             </div>
 
             <!-- FORM CONTAINER -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden max-w-4xl mx-auto">
-                <form action="/admin/warga" method="POST">
+                <form action="/admin/warga/update" method="POST">
                     <?= \Core\Csrf::field() ?>
+                    <input type="hidden" name="id" value="<?= $val('id') ?>">
 
                     <!-- Bagian 1: Identitas Utama -->
                     <div class="p-6 md:p-8 border-b border-gray-100">
@@ -67,46 +72,47 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">NIK Warga <span class="text-rose-500">*</span></label>
-                                <input type="number" name="nik" placeholder="16 digit NIK Warga" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
+                                <input type="number" name="nik" value="<?= htmlspecialchars($val('nik_readable', $val('nik'))) ?>" placeholder="16 digit NIK Warga" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">NIK Kepala Keluarga <span class="text-rose-500">*</span></label>
-                                <input type="number" name="nik_kepala_keluarga" placeholder="16 digit NIK Kepala Keluarga" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
+                                <input type="number" name="nik_kepala_keluarga" value="<?= htmlspecialchars($val('nik_kk_readable', $val('nik_kepala_keluarga'))) ?>" placeholder="16 digit NIK Kepala Keluarga" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
                             </div>
 
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Lengkap (Sesuai KTP) <span class="text-rose-500">*</span></label>
-                                <input type="text" name="nama" placeholder="Masukkan nama lengkap" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
+                                <input type="text" name="nama" value="<?= htmlspecialchars($val('nama')) ?>" placeholder="Masukkan nama lengkap" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
                             </div>
 
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Hubungan Dalam Keluarga (Status KK) <span class="text-rose-500">*</span></label>
+                                <?php $sk = strtolower($val('status_keluarga', 'famili_lain')); ?>
                                 <select name="status_keluarga" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold cursor-pointer" required>
-                                    <option value="kepala_keluarga">Kepala Keluarga</option>
-                                    <option value="istri">Istri</option>
-                                    <option value="anak">Anak</option>
-                                    <option value="orang_tua">Orang Tua / Mertua</option>
-                                    <option value="famili_lain">Famili Lain / Lainnya</option>
+                                    <option value="kepala_keluarga" <?= $sk === 'kepala_keluarga' ? 'selected' : '' ?>>Kepala Keluarga</option>
+                                    <option value="istri" <?= $sk === 'istri' ? 'selected' : '' ?>>Istri</option>
+                                    <option value="anak" <?= $sk === 'anak' ? 'selected' : '' ?>>Anak</option>
+                                    <option value="orang_tua" <?= $sk === 'orang_tua' ? 'selected' : '' ?>>Orang Tua / Mertua</option>
+                                    <option value="famili_lain" <?= ($sk === 'famili_lain' || $sk === 'anggota_keluarga') ? 'selected' : '' ?>>Famili Lain / Lainnya</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Tempat Lahir</label>
-                                <input type="text" name="tempat_lahir" placeholder="Contoh: Tangerang" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" />
+                                <input type="text" name="tempat_lahir" value="<?= htmlspecialchars($val('tempat_lahir')) ?>" placeholder="Contoh: Tangerang" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" />
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Tanggal Lahir</label>
-                                <input type="date" name="tanggal_lahir" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold text-gray-700" />
+                                <input type="date" name="tanggal_lahir" value="<?= htmlspecialchars($val('tanggal_lahir')) ?>" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold text-gray-700" />
                             </div>
 
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Jenis Kelamin</label>
+                                <?php $jk = $val('jenis_kelamin'); ?>
                                 <select name="jenis_kelamin" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold cursor-pointer">
-                                    <option value="" disabled selected>Pilih Jenis Kelamin</option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
+                                    <option value="L" <?= $jk === 'L' ? 'selected' : '' ?>>Laki-laki</option>
+                                    <option value="P" <?= $jk === 'P' ? 'selected' : '' ?>>Perempuan</option>
                                 </select>
                             </div>
                         </div>
@@ -125,14 +131,14 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Rukun Tetangga (RT) <span class="text-rose-500">*</span></label>
+                                <?php $wRt = (int)$val('rt', 1); ?>
                                 <?php if ($isRt): ?>
                                     <input type="hidden" name="rt" value="<?= $assignedRt ?>">
                                     <input type="text" value="RT <?= sprintf('%02d', $assignedRt) ?> (Wilayah Anda)" class="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-sm font-bold text-purple-700 cursor-not-allowed" readonly />
                                 <?php else: ?>
                                     <select name="rt" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold cursor-pointer" required>
-                                        <option value="" disabled selected>Pilih RT asal warga</option>
                                         <?php for ($i = 1; $i <= 10; $i++): ?>
-                                            <option value="<?= $i ?>">RT <?= sprintf('%02d', $i) ?></option>
+                                            <option value="<?= $i ?>" <?= $wRt === $i ? 'selected' : '' ?>>RT <?= sprintf('%02d', $i) ?></option>
                                         <?php endfor; ?>
                                     </select>
                                 <?php endif; ?>
@@ -141,11 +147,11 @@
                             <div class="grid grid-cols-2 gap-3">
                                 <div>
                                     <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Blok <span class="text-rose-500">*</span></label>
-                                    <input type="text" name="blok" placeholder="Misal: TA 14" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold" required />
+                                    <input type="text" name="blok" value="<?= htmlspecialchars($val('blok')) ?>" placeholder="Misal: TA 14" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold" required />
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">No. Rumah <span class="text-rose-500">*</span></label>
-                                    <input type="text" name="nomor" placeholder="Misal: 11" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold" required />
+                                    <input type="text" name="nomor" value="<?= htmlspecialchars($val('nomor')) ?>" placeholder="Misal: 11" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold" required />
                                 </div>
                             </div>
                         </div>
@@ -163,14 +169,14 @@
                         <div class="space-y-6">
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Agama</label>
+                                <?php $wAgama = strtolower($val('agama')); ?>
                                 <select name="agama" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold cursor-pointer">
-                                    <option value="" disabled selected>Pilih Agama</option>
-                                    <option value="islam">Islam</option>
-                                    <option value="kristen">Kristen Protestan</option>
-                                    <option value="katolik">Katolik</option>
-                                    <option value="hindu">Hindu</option>
-                                    <option value="buddha">Buddha</option>
-                                    <option value="konghucu">Konghucu</option>
+                                    <option value="islam" <?= $wAgama === 'islam' ? 'selected' : '' ?>>Islam</option>
+                                    <option value="kristen" <?= $wAgama === 'kristen' ? 'selected' : '' ?>>Kristen Protestan</option>
+                                    <option value="katolik" <?= $wAgama === 'katolik' ? 'selected' : '' ?>>Katolik</option>
+                                    <option value="hindu" <?= $wAgama === 'hindu' ? 'selected' : '' ?>>Hindu</option>
+                                    <option value="buddha" <?= $wAgama === 'buddha' ? 'selected' : '' ?>>Buddha</option>
+                                    <option value="konghucu" <?= $wAgama === 'konghucu' ? 'selected' : '' ?>>Konghucu</option>
                                 </select>
                             </div>
 
@@ -181,7 +187,7 @@
                                         1. Kategori Bidang Pekerjaan <span class="text-rose-500">*</span>
                                     </label>
                                     <select id="selectKategoriPekerjaan" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm font-semibold cursor-pointer">
-                                        <option value="profesional" selected>Perdagangan & Jasa Profesional</option>
+                                        <option value="profesional">Perdagangan & Jasa Profesional</option>
                                         <option value="status_kondisi">Status & Kondisi Umum</option>
                                         <option value="aparatur">Aparatur Negara & Pejabat Publik</option>
                                         <option value="industri">Industri, Konstruksi & Transportasi</option>
@@ -201,7 +207,7 @@
                                         2. Profesi Pekerjaan Resmi <span class="text-rose-500">*</span>
                                     </label>
                                     <select id="selectPekerjaan" name="pekerjaan" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm font-semibold cursor-pointer">
-                                        <!-- Diisi Otomatis oleh script.js -->
+                                        <!-- Diisi otomatis oleh script.js -->
                                     </select>
                                 </div>
                             </div>
@@ -214,7 +220,7 @@
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                            Simpan Data Warga
+                            Perbarui Data Warga
                         </button>
                         <a href="/admin/warga" class="px-6 py-3 bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 text-sm font-bold rounded-xl transition text-center">
                             Batal
@@ -225,8 +231,9 @@
         </main>
     </div>
 
+    <!-- PENGATURAN AWAL NILAI PEKERJAAN & SCRIPT -->
     <script>
-        window.currentPekerjaan = "Karyawan Swasta";
+        window.currentPekerjaan = <?= json_encode($val('pekerjaan', 'Karyawan Swasta')) ?>;
     </script>
     <script src="/script.js"></script>
 </body>

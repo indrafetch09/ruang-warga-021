@@ -18,7 +18,6 @@
     <div class="py-16 md:py-20 bg-white flex-1">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
-            <!-- ponytail: Page header with generous spacing and padding -->
             <!-- SIMPLE PAGE HEADER -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-4">
                 <div class="space-y-2">
@@ -31,7 +30,6 @@
                 </a>
             </div>
 
-            <!-- ponytail: 2-column layout putting contact list and contact form side-by-side -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
 
                 <!-- LEFT COLUMN: PEOPLE CONTACT ROWS -->
@@ -89,14 +87,10 @@
                             </a>
                         </div>
 
-
-
-
                     </div>
                 </div>
 
-                <!-- RIGHT COLUMN: SIMPLE CONTACT FORM -->
-                <!-- ponytail: YAGNI - WhatsApp automatically reveals sender number, so redundant contact info input is removed -->
+                <!-- RIGHT COLUMN: CONTACT FORM -->
                 <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm space-y-6">
                     <div>
                         <h2 class="text-xl font-extrabold text-gray-900">Formulir Pesan & Pertanyaan</h2>
@@ -138,24 +132,8 @@
     <!-- FOOTER -->
     <?php require base_path('views/partials/footer.php'); ?>
 
-    <script>
-        // ponytail: YAGNI - WhatsApp chat automatically provides the sender's phone number
-        function submitContactForm(e) {
-            e.preventDefault();
-            const name = document.getElementById('contact_name').value.trim();
-            const category = document.getElementById('contact_category').value;
-            const message = document.getElementById('contact_message').value.trim();
-
-            if (!name || !message) {
-                alert('Mohon isi Nama Lengkap dan Pesan.');
-                return;
-            }
-
-            const text = `Halo Pengurus RW 021,\n\nSaya ingin mengirimkan *${category.toUpperCase()}*:\n\n👤 *Nama*: ${name}\n📌 *Kategori*: ${category}\n📝 *Pesan*: ${message}\n\nTerima kasih.`;
-            const encoded = encodeURIComponent(text);
-            window.open(`https://wa.me/6287888872828?text=${encoded}`, '_blank');
-        }
-    </script>
+    <!-- UNIVERSAL APP SCRIPT -->
+    <script src="/script.js"></script>
 </body>
 
 </html>

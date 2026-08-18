@@ -16,7 +16,6 @@
     <div class="py-16 md:py-20 flex-1">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
-            <!-- ponytail: Page header with generous spacing and padding -->
             <!-- SIMPLE PAGE HEADER -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-4">
                 <div class="space-y-2">
@@ -57,7 +56,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    <div onclick="openModal('tpst-jadwal')" class="p-6 bg-emerald-50/50 rounded-2xl border border-emerald-100 hover:border-emerald-400 hover:shadow-md transition duration-200 cursor-pointer flex flex-col justify-between group">
+                    <div onclick="openFacilityModal('tpst-jadwal')" class="p-6 bg-emerald-50/50 rounded-2xl border border-emerald-100 hover:border-emerald-400 hover:shadow-md transition duration-200 cursor-pointer flex flex-col justify-between group">
                         <div>
                             <h3 class="font-bold text-gray-900 text-lg mb-2 group-hover:text-emerald-700 transition">Jadwal Pengangkatan Sampah</h3>
                             <p class="text-xs text-gray-600 mb-4 leading-relaxed">Pengangkutan sampah dapur organik harian (06.00 - 09.00 WIB) dan sampah anorganik kering setiap Senin & Kamis.</p>
@@ -65,7 +64,7 @@
                         <span class="text-xs font-extrabold text-emerald-700">Rincian Aturan & Jam &rarr;</span>
                     </div>
 
-                    <div onclick="openModal('bank-sampah')" class="p-6 bg-emerald-50/50 rounded-2xl border border-emerald-100 hover:border-emerald-400 hover:shadow-md transition duration-200 cursor-pointer flex flex-col justify-between group">
+                    <div onclick="openFacilityModal('bank-sampah')" class="p-6 bg-emerald-50/50 rounded-2xl border border-emerald-100 hover:border-emerald-400 hover:shadow-md transition duration-200 cursor-pointer flex flex-col justify-between group">
                         <div>
                             <h3 class="font-bold text-gray-900 text-lg mb-2 group-hover:text-emerald-700 transition">Program Bank Sampah RW 021</h3>
                             <p class="text-xs text-gray-600 mb-4 leading-relaxed">Setor botol plastik, kardus, dan kaleng menjadi saldo rupiah tabungan warga RW 021.</p>
@@ -92,7 +91,7 @@
                     <span id="modal-category" class="text-[10px] font-extrabold uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded">TPST RW 021</span>
                     <h3 id="modal-title" class="text-xl font-bold mt-1">Detail Layanan</h3>
                 </div>
-                <button type="button" onclick="closeModal()" class="text-white/80 hover:text-white text-2xl font-bold p-1 focus:outline-none">&times;</button>
+                <button type="button" onclick="closeFacilityModal()" class="text-white/80 hover:text-white text-2xl font-bold p-1 focus:outline-none">&times;</button>
             </div>
 
             <!-- Modal Content -->
@@ -135,98 +134,12 @@
 
             <!-- Modal Footer -->
             <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end">
-                <button type="button" onclick="closeModal()" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold text-xs rounded-xl transition">Tutup</button>
+                <button type="button" onclick="closeFacilityModal()" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold text-xs rounded-xl transition">Tutup</button>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT DATA TPST -->
-    <script>
-        const modalData = {
-            'tpst-jadwal': {
-                category: 'Kebersihan Lingkungan (TPST)',
-                title: 'Jadwal Pengangkatan Sampah Lingkungan',
-                headerBg: 'bg-emerald-700',
-                description: 'Pengaturan armada kebersihan TPST RW 021 untuk pengangkutan sampah rumah tangga basah (organik) dan sampah kering (anorganik).',
-                subitems: [
-                    'Sampah Organik / Dapur: Diangkut Setiap Hari (Pukul 06.00 - 09.00 WIB)',
-                    'Sampah Anorganik & Kering: Diangkut Setiap Senin & Kamis'
-                ],
-                requirements: [
-                    'Membuang sampah dalam wadah tertutup / kantong terikat rapi',
-                    'Dilarang membuang puing bangunan & limbah B3 di bak sampah umum'
-                ],
-                schedule: 'Seluruh Jalur Perumahan RT 01 - RT 10 RW 021',
-                coordinator: 'Sudarno (Bendahara RW - 081380126762)',
-                wa: 'https://wa.me/6281380126762'
-            },
-            'bank-sampah': {
-                category: 'Kebersihan Lingkungan (TPST)',
-                title: 'Program Bank Sampah RW 021',
-                headerBg: 'bg-emerald-700',
-                description: 'Program pengolahan lingkungan berbasis ekonomi di mana warga menyetorkan sampah daur ulang terpilah menjadi saldo tabungan rupiah.',
-                subitems: [
-                    'Botol & Gelas Plastik Bersih',
-                    'Kardus, Kertas Gazet, & Buku Bekas',
-                    'Kaleng Alumunium & Besi Tua'
-                ],
-                requirements: [
-                    'Membawa sampah terpisah sesuai kategori (plastik/kertas/besi)',
-                    'Membawa Buku Tabungan Bank Sampah Warga'
-                ],
-                schedule: 'Posko TPST RW 021<br>Setiap Minggu Ke-2 & Ke-4 (Pukul 08.00 - 11.00 WIB)',
-                coordinator: 'Sudarno (Bendahara RW - 081380126762)',
-                wa: 'https://wa.me/6281380126762'
-            }
-        };
-
-        function openModal(key) {
-            const data = modalData[key];
-            if (!data) return;
-
-            document.getElementById('modal-category').innerText = data.category;
-            document.getElementById('modal-title').innerText = data.title;
-            document.getElementById('modal-header-bg').className = `px-6 py-5 ${data.headerBg} text-white flex justify-between items-center`;
-            document.getElementById('modal-description').innerText = data.description;
-
-            const subitemsContainer = document.getElementById('modal-subitems');
-            subitemsContainer.innerHTML = '';
-            data.subitems.forEach(item => {
-                const li = document.createElement('li');
-                li.innerText = item;
-                subitemsContainer.appendChild(li);
-            });
-
-            const reqContainer = document.getElementById('modal-requirements');
-            reqContainer.innerHTML = '';
-            data.requirements.forEach(req => {
-                const li = document.createElement('li');
-                li.innerHTML = `• ${req}`;
-                reqContainer.appendChild(li);
-            });
-
-            document.getElementById('modal-schedule').innerHTML = data.schedule;
-            document.getElementById('modal-coordinator').innerText = data.coordinator;
-            document.getElementById('modal-wa-btn').href = data.wa;
-
-            document.getElementById('detail-modal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('detail-modal').classList.add('hidden');
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const detailKey = urlParams.get('detail');
-            if (detailKey && modalData[detailKey]) {
-                openModal(detailKey);
-            }
-        });
-
-        document.getElementById('detail-modal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-    </script>
+    <!-- UNIVERSAL APP SCRIPT -->
+    <script src="/script.js"></script>
 </body>
 </html>

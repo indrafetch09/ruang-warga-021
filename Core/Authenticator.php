@@ -7,25 +7,20 @@ use Http\Forms\LoginForm;
 class Authenticator
 {
     /**
-     * Mencoba otentikasi user dengan Email / Username & Password
+     * Mencoba otentikasi user berdasarkan Username & Password
      */
     public function attempt(string $identity, string $password): bool
     {
         $db = App::resolve(Database::class);
 
-        // Cari berdasarkan email ATAU username
+        // Cari berdasarkan username di tabel 'user'
         $user = $db->query(
-            'SELECT * FROM users WHERE (email = :identity OR username = :identity) LIMIT 1',
+            'SELECT * FROM `users` WHERE username = :identity LIMIT 1',
             ['identity' => $identity]
         )->find();
 
         if ($user) {
-            // Cek status aktif akun jika ada kolom is_active
-            if (isset($user['is_active']) && (int)$user['is_active'] === 0) {
-                return false;
-            }
-
-            // Verifikasi password
+            // Verifikasi password (BCRYPT)
             if (password_verify($password, $user['password'])) {
                 $this->login($user);
                 LoginForm::clearRateLimit();
@@ -33,7 +28,7 @@ class Authenticator
             }
         }
 
-        // Catat percoban gagal untuk throttling brute force
+        // Catat percobaan gagal untuk throttling brute force
         LoginForm::recordFailedAttempt();
 
         return false;
@@ -45,12 +40,12 @@ class Authenticator
     public function login(array $user): void
     {
         $_SESSION['user'] = [
-            'id'       => $user['id'] ?? null,
-            'name'     => $user['name'] ?? 'Pengurus RW',
-            'email'    => $user['email'] ?? '',
-            'role'     => $user['role'] ?? 'pengurus_rw',
-            'rt_id'    => $user['rt_id'] ?? null,
-            'logged_at'=> time(),
+            'id'          => $user['id'] ?? null,
+            'username'    => $user['username'] ?? '',
+            'name'        => $user['username'] ?? 'Pengurus RW',
+            'role'        => $user['role'] ?? 'pengurus_rt',
+            'rt_assigned' => $user['rt_assigned'] ?? null,
+            'logged_at'   => time(),
         ];
 
         // Mencegah Session Fixation
@@ -72,7 +67,7 @@ class Authenticator
      */
     public static function check(): bool
     {
-        return !empty($_SESSION['user']['id']) || !empty($_SESSION['user']['email']);
+        return !empty($_SESSION['user']['id']) || !empty($_SESSION['user']['username']);
     }
 
     /**
@@ -92,7 +87,7 @@ class Authenticator
     }
 
     /**
-     * Dapatkan Role user (misal: 'admin_rw', ' ketua_rt', 'pengurus_rw')
+     * Dapatkan Role user ('admin', 'pengurus_rw', 'pengurus_rt')
      */
     public static function role(): ?string
     {
@@ -100,11 +95,11 @@ class Authenticator
     }
 
     /**
-     * Cek apakah user adalah Admin RW / Super Admin
+     * Cek apakah user adalah Admin atau Pengurus RW
      */
     public static function isAdmin(): bool
     {
         $role = self::role();
-        return $role === 'admin_rw' || $role === 'admin' || $role === 'rw';
+        return in_array($role, ['admin', 'pengurus_rw']);
     }
 }

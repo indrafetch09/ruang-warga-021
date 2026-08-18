@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
     <style>
-        body { font-family: "Plus Jakarta Sans", sans-serif; }
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
     </style>
 </head>
 
@@ -42,12 +44,27 @@
             </div>
 
             <!-- FLASH MESSAGE NOTIFICATION -->
-            <?php if ($sukses = \Core\Session::get('sukses')): ?>
-                <div class="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-bold rounded-xl flex items-center gap-2 shadow-sm">
+            <?php
+            $sukses = \Core\Session::get('sukses');
+            $flashError = \Core\Session::get('error');
+            $old = \Core\Session::get('old') ?? [];
+            ?>
+
+            <?php if (!empty($sukses)): ?>
+                <div class="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-bold rounded-xl flex items-center gap-2 shadow-sm max-w-4xl">
                     <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                     </svg>
                     <?= htmlspecialchars($sukses) ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (!empty($flashError)): ?>
+                <div class="p-4 bg-red-50 border border-red-200 text-red-700 text-sm font-bold rounded-xl flex items-center gap-2 shadow-sm max-w-4xl">
+                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <?= htmlspecialchars($flashError) ?>
                 </div>
             <?php endif; ?>
 
@@ -67,33 +84,32 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Judul Kegiatan / Foto <span class="text-rose-500">*</span></label>
-                                <input type="text" name="judul" placeholder="Contoh: Kerja Bakti Massal RT 05 & Pembersihan Saluran Air" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
+                                <input type="text" name="judul" value="<?= htmlspecialchars($old['judul'] ?? '') ?>" placeholder="Contoh: Kerja Bakti Massal RT 05 & Pembersihan Saluran Air" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Kategori Kegiatan <span class="text-rose-500">*</span></label>
+                                <?php $cat = $old['kategori'] ?? ''; ?>
                                 <select name="kategori" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold cursor-pointer" required>
-                                    <option value="" disabled selected>Pilih Kategori</option>
-                                    <option value="Kegiatan Warga">Kegiatan Warga & Gotong Royong</option>
-                                    <option value="Posyandu">Posyandu Bunga Tanjung</option>
-                                    <option value="Olahraga">Olahraga & PB Badminton</option>
-                                    <option value="Musyawarah">Musyawarah & Rapat RW</option>
-                                    <option value="Karang Taruna">Karang Taruna 021</option>
+                                    <option value="" disabled <?= empty($cat) ? 'selected' : '' ?>>Pilih Kategori</option>
+                                    <option value="sosial" <?= $cat === 'sosial' ? 'selected' : '' ?>>Sosial & Gotong Royong</option>
+                                    <option value="kesehatan" <?= $cat === 'kesehatan' ? 'selected' : '' ?>>Kesehatan & Posyandu</option>
+                                    <option value="perayaan" <?= $cat === 'perayaan' ? 'selected' : '' ?>>Perayaan & Olahraga</option>
+                                    <option value="pertemuan" <?= $cat === 'pertemuan' ? 'selected' : '' ?>>Musyawarah & Rapat RW</option>
+                                    <option value="lainnya" <?= $cat === 'lainnya' ? 'selected' : '' ?>>Lain-Lain / Umum</option>
                                 </select>
                             </div>
-
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Tanggal Pelaksanaan <span class="text-rose-500">*</span></label>
-                                <input type="date" name="tanggal" value="<?= date('Y-m-d') ?>" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
+                                <input type="date" name="tanggal" value="<?= htmlspecialchars($old['tanggal'] ?? date('Y-m-d')) ?>" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
                             </div>
 
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Dokumentasi Foto <span class="text-rose-500">*</span></label>
-                                
+
                                 <!-- DRAG AND DROP ZONE -->
                                 <div id="dropzone" onclick="document.getElementById('file-input').click()" class="relative border-2 border-dashed border-purple-200 hover:border-purple-500 bg-purple-50/40 hover:bg-purple-50/80 rounded-2xl p-8 text-center cursor-pointer transition flex flex-col items-center justify-center space-y-3 group">
-                                    <input type="file" id="file-input" name="foto_file" accept="image/*" class="hidden" onchange="handleFileSelect(event)" />
-                                    <input type="hidden" id="foto_url_input" name="foto_url" value="" />
+                                    <input type="file" id="file-input" name="foto_file" accept="image/*" class="hidden" onchange="handleFileSelect(event)" required />
 
                                     <div id="dropzone-empty" class="flex flex-col items-center space-y-2">
                                         <div class="w-14 h-14 bg-purple-100 group-hover:bg-purple-200 text-purple-700 rounded-2xl flex items-center justify-center shadow-sm transition">
@@ -107,7 +123,7 @@
                                         <p class="text-[11px] text-gray-400">Format yang didukung: PNG, JPG, JPEG, WEBP (Maksimal 10 MB)</p>
                                     </div>
 
-                                    <!-- PREVIEW CONTAINER (HIDDEN INITIALLY) -->
+                                    <!-- PREVIEW CONTAINER -->
                                     <div id="dropzone-preview" class="hidden flex flex-col items-center space-y-3 w-full">
                                         <div class="relative w-full max-w-xs h-48 rounded-xl overflow-hidden shadow-md border border-purple-200">
                                             <img id="preview-image" src="" alt="Pratinjau Foto" class="w-full h-full object-cover" />
@@ -118,19 +134,12 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="mt-2 text-right">
-                                    <button type="button" onclick="toggleUrlInput()" class="text-[11px] font-bold text-purple-600 hover:text-purple-800 underline">Gunakan Tautan URL Foto Sebagai Alternatif</button>
-                                </div>
-
-                                <div id="url-input-container" class="hidden mt-3">
-                                    <input type="url" id="manual_url" placeholder="https://images.unsplash.com/... tautan foto" oninput="document.getElementById('foto_url_input').value=this.value" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-semibold focus:ring-2 focus:ring-purple-500 focus:outline-none" />
-                                </div>
                             </div>
 
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Keterangan / Deskripsi Singkat</label>
-                                <textarea name="keterangan" rows="3" placeholder="Tuliskan catatan singkat atau lokasi tempat dokumentasi foto diambil..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-medium"></textarea>
+                                <!-- NAMA FIELD DISESUAIKAN DENGAN NAMA KOLOM DATABASE 'deskripsi' -->
+                                <textarea name="deskripsi" rows="3" placeholder="Tuliskan catatan singkat atau lokasi tempat dokumentasi foto diambil..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-medium"><?= htmlspecialchars($old['deskripsi'] ?? '') ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -140,132 +149,41 @@
                             Batal
                         </a>
                         <button type="submit" class="px-6 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl transition shadow-md flex items-center gap-2">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
                             Simpan & Publikasikan Foto
                         </button>
                     </div>
                 </form>
             </div>
 
-            <!-- ARSIP GALERI TERUNGGAH -->
+            <!-- ARSIP GALERI TERUNGGAH (DINAMIS DARI DATABASE) -->
             <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-200 max-w-4xl space-y-4">
                 <h3 class="text-base font-bold text-gray-900 border-b border-gray-100 pb-3">Dokumentasi Foto Terbaru</h3>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    <div class="group relative rounded-xl overflow-hidden border border-purple-100 shadow-sm hover:shadow-md transition">
-                        <img src="/images/aula_posyandu.jpg" alt="Posyandu" class="w-full h-36 object-cover transform group-hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80'" />
-                        <div class="p-3 bg-white">
-                            <span class="text-[10px] font-bold text-purple-700 uppercase block mb-0.5">Posyandu Bunga Tanjung</span>
-                            <h4 class="text-xs font-bold text-gray-900 truncate">Pemeriksaan Rutin Lansia & Balita</h4>
-                        </div>
+                <?php if (!empty($recentGaleri)): ?>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <?php foreach ($recentGaleri as $g): ?>
+                            <div class="group relative rounded-xl overflow-hidden border border-purple-100 shadow-sm hover:shadow-md transition">
+                                <img src="/uploads/galeri/<?= htmlspecialchars($g['file_foto']) ?>" alt="<?= htmlspecialchars($g['judul']) ?>" class="w-full h-36 object-cover transform group-hover:scale-105 transition duration-300" />
+                                <div class="p-3 bg-white">
+                                    <span class="text-[10px] font-bold text-purple-700 uppercase block mb-0.5"><?= htmlspecialchars($g['kategori']) ?></span>
+                                    <h4 class="text-xs font-bold text-gray-900 truncate"><?= htmlspecialchars($g['judul']) ?></h4>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-
-                    <div class="group relative rounded-xl overflow-hidden border border-purple-100 shadow-sm hover:shadow-md transition">
-                        <img src="/images/aula_badminton.jpg" alt="Badminton" class="w-full h-36 object-cover transform group-hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1521537634581-0dced2efa2a3?auto=format&fit=crop&w=600&q=80'" />
-                        <div class="p-3 bg-white">
-                            <span class="text-[10px] font-bold text-indigo-700 uppercase block mb-0.5">Olahraga Indoor</span>
-                            <h4 class="text-xs font-bold text-gray-900 truncate">Latihan PB DABO & Karang Taruna</h4>
-                        </div>
-                    </div>
-
-                    <div class="group relative rounded-xl overflow-hidden border border-purple-100 shadow-sm hover:shadow-md transition">
-                        <img src="/images/aula_rapat.jpg" alt="Musyawarah" class="w-full h-36 object-cover transform group-hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&q=80'" />
-                        <div class="p-3 bg-white">
-                            <span class="text-[10px] font-bold text-emerald-700 uppercase block mb-0.5">Musyawarah Warga</span>
-                            <h4 class="text-xs font-bold text-gray-900 truncate">Rapat Koordinasi Pengurus RW 021</h4>
-                        </div>
-                    </div>
-                </div>
+                <?php else: ?>
+                    <p class="text-xs text-gray-400 italic">Belum ada foto yang diunggah.</p>
+                <?php endif; ?>
             </div>
 
+        </main>
+    </div>
+
     <!-- DRAG AND DROP SCRIPT -->
-    <script>
-        const dropzone = document.getElementById('dropzone');
-        const fileInput = document.getElementById('file-input');
-        const dropzoneEmpty = document.getElementById('dropzone-empty');
-        const dropzonePreview = document.getElementById('dropzone-preview');
-        const previewImage = document.getElementById('preview-image');
-        const fileName = document.getElementById('file-name');
-        const fotoUrlInput = document.getElementById('foto_url_input');
-
-        // Prevent default drag behaviors
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropzone.addEventListener(eventName, preventDefaults, false);
-            document.body.addEventListener(eventName, preventDefaults, false);
-        });
-
-        function preventDefaults(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        // Highlight dropzone on drag over
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropzone.addEventListener(eventName, highlight, false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropzone.addEventListener(eventName, unhighlight, false);
-        });
-
-        function highlight() {
-            dropzone.classList.add('border-purple-600', 'bg-purple-100/60');
-        }
-
-        function unhighlight() {
-            dropzone.classList.remove('border-purple-600', 'bg-purple-100/60');
-        }
-
-        // Handle dropped files
-        dropzone.addEventListener('drop', handleDrop, false);
-
-        function handleDrop(e) {
-            const dt = e.dataTransfer;
-            const files = dt.files;
-            if (files && files.length > 0) {
-                fileInput.files = files;
-                processFile(files[0]);
-            }
-        }
-
-        function handleFileSelect(e) {
-            const files = e.target.files;
-            if (files && files.length > 0) {
-                processFile(files[0]);
-            }
-        }
-
-        function processFile(file) {
-            if (!file.type.startsWith('image/')) {
-                alert('Mohon pilih berkas berupa gambar (PNG, JPG, JPEG, WEBP).');
-                return;
-            }
-
-            fileName.innerText = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImage.src = e.target.result;
-                fotoUrlInput.value = e.target.result;
-                dropzoneEmpty.classList.add('hidden');
-                dropzonePreview.classList.remove('hidden');
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function removeFile() {
-            fileInput.value = '';
-            fotoUrlInput.value = '';
-            previewImage.src = '';
-            dropzoneEmpty.classList.remove('hidden');
-            dropzonePreview.classList.add('hidden');
-        }
-
-        function toggleUrlInput() {
-            const container = document.getElementById('url-input-container');
-            container.classList.toggle('hidden');
-        }
-    </script>
+    <script src="/script.js"></script>
 </body>
 
 </html>

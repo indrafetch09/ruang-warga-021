@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tambah Kegiatan Rutin - Dasbor Pengurus RW 021</title>
+    <title>Edit Kegiatan Rutin - Dasbor Pengurus RW 021</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
@@ -33,10 +33,10 @@
                         Kembali ke Daftar Kegiatan
                     </a>
                     <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
-                        Tambah Kegiatan Rutin
+                        Edit Kegiatan Rutin
                     </h2>
                     <p class="text-xs md:text-sm text-gray-500 mt-1">
-                        Masukkan jadwal kegiatan mingguan atau bulanan yang akan tampil pada panduan warga RW 021.
+                        Ubah data jadwal kegiatan mingguan atau bulanan RW 021.
                     </p>
                 </div>
             </div>
@@ -44,7 +44,6 @@
             <!-- ALERT ERROR / FLASH SESSION -->
             <?php
             $flashError = \Core\Session::get('error');
-            $old = \Core\Session::get('old') ?? [];
             ?>
 
             <?php if (!empty($flashError)): ?>
@@ -56,16 +55,30 @@
                 </div>
             <?php endif; ?>
 
+            <?php
+            // Helper parsing aman object / array
+            $kId        = is_object($kegiatan) ? ($kegiatan->id ?? '') : ($kegiatan['id'] ?? '');
+            $kNama      = is_object($kegiatan) ? ($kegiatan->nama_kegiatan ?? '') : ($kegiatan['nama_kegiatan'] ?? '');
+            $kHari      = strtolower(is_object($kegiatan) ? ($kegiatan->hari ?? '') : ($kegiatan['hari'] ?? ''));
+            $kKategori  = strtolower(is_object($kegiatan) ? ($kegiatan->kategori ?? '') : ($kegiatan['kategori'] ?? ''));
+            $kWaktu     = is_object($kegiatan) ? ($kegiatan->waktu_pelaksanaan ?? '') : ($kegiatan['waktu_pelaksanaan'] ?? '');
+            $kLokasi    = is_object($kegiatan) ? ($kegiatan->lokasi ?? '') : ($kegiatan['lokasi'] ?? '');
+            $kFrekuensi = is_object($kegiatan) ? ($kegiatan->keterangan_frekuensi ?? '') : ($kegiatan['keterangan_frekuensi'] ?? '');
+            $kSyarat    = is_object($kegiatan) ? ($kegiatan->persyaratan_ketentuan ?? '') : ($kegiatan['persyaratan_ketentuan'] ?? '');
+            $kDesk      = is_object($kegiatan) ? ($kegiatan->deskripsi_singkat ?? '') : ($kegiatan['deskripsi_singkat'] ?? '');
+            ?>
+
             <!-- FORM CONTAINER -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden max-w-4xl mx-auto">
-                <form action="/admin/kegiatan" method="POST">
+                <form action="/admin/kegiatan/update" method="POST">
                     <?= \Core\Csrf::field() ?>
+                    <input type="hidden" name="id" value="<?= $kId ?>">
 
                     <!-- Bagian 1: Detail Utama -->
                     <div class="p-6 md:p-8 border-b border-gray-100">
                         <h3 class="text-base font-bold text-purple-700 mb-6 flex items-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 022 2h2a2 2 0 022-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                             </svg>
                             Informasi Kegiatan
                         </h3>
@@ -73,34 +86,30 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Kegiatan <span class="text-rose-500">*</span></label>
-                                <input type="text" name="nama" value="<?= htmlspecialchars($old['nama'] ?? '') ?>" placeholder="Contoh: Senam Pagi Warga, Ronda Malam, Pengajian Rutin" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
+                                <input type="text" name="nama" value="<?= htmlspecialchars($kNama) ?>" placeholder="Contoh: Senam Pagi Warga, Ronda Malam" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required />
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Hari Pelaksanaan <span class="text-rose-500">*</span></label>
-                                <?php $hariSelect = $old['hari'] ?? ''; ?>
                                 <select name="hari" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold cursor-pointer" required>
-                                    <option value="" disabled <?= empty($hariSelect) ? 'selected' : '' ?>>Pilih Hari</option>
-                                    <option value="senin" <?= $hariSelect === 'senin' ? 'selected' : '' ?>>Senin</option>
-                                    <option value="selasa" <?= $hariSelect === 'selasa' ? 'selected' : '' ?>>Selasa</option>
-                                    <option value="rabu" <?= $hariSelect === 'rabu' ? 'selected' : '' ?>>Rabu</option>
-                                    <option value="kamis" <?= $hariSelect === 'kamis' ? 'selected' : '' ?>>Kamis</option>
-                                    <option value="jumat" <?= $hariSelect === 'jumat' ? 'selected' : '' ?>>Jumat</option>
-                                    <option value="sabtu" <?= $hariSelect === 'sabtu' ? 'selected' : '' ?>>Sabtu</option>
-                                    <option value="minggu" <?= $hariSelect === 'minggu' ? 'selected' : '' ?>>Minggu</option>
+                                    <option value="senin" <?= $kHari === 'senin' ? 'selected' : '' ?>>Senin</option>
+                                    <option value="selasa" <?= $kHari === 'selasa' ? 'selected' : '' ?>>Selasa</option>
+                                    <option value="rabu" <?= $kHari === 'rabu' ? 'selected' : '' ?>>Rabu</option>
+                                    <option value="kamis" <?= $kHari === 'kamis' ? 'selected' : '' ?>>Kamis</option>
+                                    <option value="jumat" <?= $kHari === 'jumat' ? 'selected' : '' ?>>Jumat</option>
+                                    <option value="sabtu" <?= $kHari === 'sabtu' ? 'selected' : '' ?>>Sabtu</option>
+                                    <option value="minggu" <?= $kHari === 'minggu' ? 'selected' : '' ?>>Minggu</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Kategori Kegiatan <span class="text-rose-500">*</span></label>
-                                <?php $katSelect = $old['kategori'] ?? ''; ?>
                                 <select name="kategori" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold cursor-pointer" required>
-                                    <option value="" disabled <?= empty($katSelect) ? 'selected' : '' ?>>Pilih Kategori (Tema / Warna)</option>
-                                    <option value="administrasi" <?= $katSelect === 'administrasi' ? 'selected' : '' ?>>Administrasi & Pelayanan (Ungu)</option>
-                                    <option value="kebersihan" <?= $katSelect === 'kebersihan' ? 'selected' : '' ?>>Kebersihan Lingkungan (Hijau)</option>
-                                    <option value="keamanan" <?= $katSelect === 'keamanan' ? 'selected' : '' ?>>Keamanan & Ronda (Kuning)</option>
-                                    <option value="sosial" <?= $katSelect === 'sosial' ? 'selected' : '' ?>>Kesehatan & Posyandu (Merah)</option>
-                                    <option value="keagamaan" <?= $katSelect === 'keagamaan' ? 'selected' : '' ?>>Keagamaan & Kajian (Biru)</option>
+                                    <option value="administrasi" <?= $kKategori === 'administrasi' ? 'selected' : '' ?>>Administrasi & Pelayanan (Ungu)</option>
+                                    <option value="kebersihan" <?= $kKategori === 'kebersihan' ? 'selected' : '' ?>>Kebersihan Lingkungan (Hijau)</option>
+                                    <option value="keamanan" <?= $kKategori === 'keamanan' ? 'selected' : '' ?>>Keamanan & Ronda (Kuning)</option>
+                                    <option value="sosial" <?= $kKategori === 'sosial' ? 'selected' : '' ?>>Kesehatan & Posyandu (Merah)</option>
+                                    <option value="keagamaan" <?= $kKategori === 'keagamaan' ? 'selected' : '' ?>>Keagamaan & Kajian (Biru)</option>
                                 </select>
                             </div>
                         </div>
@@ -119,32 +128,32 @@
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Waktu Pelaksanaan <span class="text-rose-500">*</span></label>
                                 <p class="text-[11px] text-gray-400 mb-2">Bisa berupa rentang jam atau teks spesifik.</p>
-                                <input type="text" name="waktu" value="<?= htmlspecialchars($old['waktu'] ?? '') ?>" placeholder="Contoh: 19.30 - 21.00 atau Ba'da Isya" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold" required />
+                                <input type="text" name="waktu" value="<?= htmlspecialchars($kWaktu) ?>" placeholder="Contoh: 19.30 - 21.00" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold" required />
                             </div>
 
                             <!-- INPUT LOKASI DITAMBAHKAN DI SINI -->
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Lokasi Pelaksanaan <span class="text-rose-500">*</span></label>
                                 <p class="text-[11px] text-gray-400 mb-2">Tempat atau patokan lokasi kegiatan.</p>
-                                <input type="text" name="lokasi" value="<?= htmlspecialchars($old['lokasi'] ?? '') ?>" placeholder="Contoh: Balai Warga RW 021 / Pos Ronda RT 03" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold" required />
+                                <input type="text" name="lokasi" value="<?= htmlspecialchars($kLokasi) ?>" placeholder="Contoh: Balai Warga RW 021 / Pos Ronda RT 03" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold" required />
                             </div>
 
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Keterangan Frekuensi</label>
                                 <p class="text-[11px] text-gray-400 mb-2">Opsional. Misal: Minggu ke-1, Setiap Pekan, dll.</p>
-                                <input type="text" name="frekuensi" value="<?= htmlspecialchars($old['frekuensi'] ?? '') ?>" placeholder="Contoh: Setiap Sabtu Pekan Pertama" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold" />
+                                <input type="text" name="frekuensi" value="<?= htmlspecialchars($kFrekuensi) ?>" placeholder="Contoh: Setiap Sabtu Pekan Pertama" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm font-semibold" />
                             </div>
 
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Syarat & Ketentuan</label>
                                 <p class="text-[11px] text-gray-400 mb-2">Opsional. Ketentuan atau dokumen/peralatan yang wajib dibawa peserta.</p>
-                                <textarea name="persyaratan_ketentuan" rows="2" placeholder="Contoh: Wajib membawa KTP asli, mengenakan pakaian olahraga, khusus warga RT 01 - RT 05..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm resize-none"><?= htmlspecialchars($old['persyaratan_ketentuan'] ?? '') ?></textarea>
+                                <textarea name="persyaratan_ketentuan" rows="2" placeholder="Contoh: Wajib membawa KTP asli..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm resize-none"><?= htmlspecialchars($kSyarat) ?></textarea>
                             </div>
 
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Deskripsi Singkat</label>
                                 <p class="text-[11px] text-gray-400 mb-2">Penjelasan singkat mengenai perlengkapan atau teknis kegiatan.</p>
-                                <textarea name="deskripsi" rows="3" placeholder="Contoh: Dilaksanakan di Balai Warga, dimohon membawa peralatan kebersihan masing-masing..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm resize-none"><?= htmlspecialchars($old['deskripsi'] ?? '') ?></textarea>
+                                <textarea name="deskripsi" rows="3" placeholder="Contoh: Dilaksanakan di Balai Warga..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm resize-none"><?= htmlspecialchars($kDesk) ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -155,7 +164,7 @@
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                            Simpan Kegiatan
+                            Perbarui Kegiatan
                         </button>
                         <a href="/admin/kegiatan" class="px-6 py-3 bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 text-sm font-bold rounded-xl transition text-center">
                             Batal

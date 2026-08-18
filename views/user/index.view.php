@@ -68,71 +68,79 @@
                 <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Layanan </h2>
             </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    <!-- Card 1: Aula & Fasilitas RW 021 -->
-                    <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-extrabold text-gray-900">Aula & Fasilitas Balai Warga</h3>
-                            <p class="text-xs text-gray-500 mt-1 leading-relaxed">Profil balai pertemuan, kegiatan Posyandu Bunga Tanjung, bulu tangkis indoor, dan peminjaman aula.</p>
-                        </div>
-                        <a href="/layanan" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
-                            <span>Selengkapnya</span>
-                            <span>&rarr;</span>
-                        </a>
+                <!-- Card 1: Aula & Fasilitas RW 021 -->
+                <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
                     </div>
-
-                    <!-- Card 2: Kebersihan & TPST RW 021 -->
-                    <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-extrabold text-gray-900">Pengelolaan Sampah & TPST 021</h3>
-                            <p class="text-xs text-gray-500 mt-1 leading-relaxed">Jadwal armada pengangkutan sampah lingkungan, pemilahan organik/anorganik, & iuran kebersihan.</p>
-                        </div>
-                        <a href="/tpst" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
-                            <span>Selengkapnya</span>
-                            <span>&rarr;</span>
-                        </a>
+                    <div>
+                        <h3 class="text-lg font-extrabold text-gray-900">Aula & Fasilitas Balai Warga</h3>
+                        <p class="text-xs text-gray-500 mt-1 leading-relaxed">Profil balai pertemuan, kegiatan Posyandu Bunga Tanjung, bulu tangkis indoor, dan peminjaman aula.</p>
                     </div>
-
-                    <!-- Card 3: Pengaduan & Kontak Pengurus -->
-                    <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-extrabold text-gray-900">Kontak Resmi & Pengaduan Warga</h3>
-                            <p class="text-xs text-gray-500 mt-1 leading-relaxed">Layanan komunikasi WhatsApp pengurus RW 021 & formulir pengiriman aspirasi/pertanyaan warga.</p>
-                        </div>
-                        <a href="/kontak" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
-                            <span>Selengkapnya</span>
-                            <span>&rarr;</span>
-                        </a>
-                    </div>
-
-                    <!-- Card 4: Statistik & Demografi Warga -->
-                    <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-extrabold text-gray-900">Demografi & Statistik Warga</h3>
-                            <p class="text-xs text-gray-500 mt-1 leading-relaxed">Data statistik kependudukan RW 021, jumlah Kepala Keluarga, sebaran usia, & rincian per RT.</p>
-                        </div>
-                        <a href="/statistik" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
-                            <span>Selengkapnya</span>
-                            <span>&rarr;</span>
-                        </a>
-                    </div>
-
+                    <a href="/layanan" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
+                        <span>Selengkapnya</span>
+                        <span>&rarr;</span>
+                    </a>
                 </div>
+
+                <!-- Card 2: Kebersihan & TPST RW 021 -->
+                <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-extrabold text-gray-900">Pengelolaan Sampah & TPST 021</h3>
+                        <p class="text-xs text-gray-500 mt-1 leading-relaxed">Jadwal armada pengangkutan sampah lingkungan, pemilahan organik/anorganik, & iuran kebersihan.</p>
+                    </div>
+                    <a href="/tpst" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
+                        <span>Selengkapnya</span>
+                        <span>&rarr;</span>
+                    </a>
+                </div>
+
+                <!-- Card 3: Pengaduan & Kontak Pengurus -->
+                <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-extrabold text-gray-900">Kontak Resmi & Pengaduan Warga</h3>
+                        <p class="text-xs text-gray-500 mt-1 leading-relaxed">Layanan komunikasi WhatsApp pengurus RW 021 & formulir pengiriman aspirasi/pertanyaan warga.</p>
+                    </div>
+                    <a href="/kontak" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
+                        <span>Selengkapnya</span>
+                        <span>&rarr;</span>
+                    </a>
+                </div>
+
+                <!-- Card 4: Statistik & Demografi Warga -->
+                <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-extrabold text-gray-900">Demografi & Statistik Warga</h3>
+                        <p class="text-xs text-gray-500 mt-1 leading-relaxed">Data statistik kependudukan RW 021, jumlah Kepala Keluarga, sebaran usia, & rincian per RT.</p>
+                    </div>
+                    <a href="/statistik" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
+                        <span>Selengkapnya</span>
+                        <span>&rarr;</span>
+                    </a>
+                </div>
+
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -153,7 +161,7 @@
                     <p class="text-lg text-gray-500">Informasi terbaru seputar lingkungan RW 021.</p>
                 </div>
                 <div class="hidden md:block">
-                    <a href="/informasi" class="text-purple-600 font-semibold hover:text-purple-700 flex items-center gap-1 group">
+                    <a href="/pengumuman" class="text-purple-600 font-semibold hover:text-purple-700 flex items-center gap-1 group">
                         Lihat Papan Informasi
                         <span aria-hidden="true" class="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
                     </a>

@@ -18,22 +18,21 @@ class AdminController
         $db = App::resolve(Database::class);
         $user = Authenticator::user();
 
-        // 1. Hitung Statistik Real dari Database (Pakai Raw Count agar cepat)
+        // 1. Hitung Statistik Real dari Database
         $totalWarga      = (int)($db->query("SELECT COUNT(id) as count FROM warga")->find()['count'] ?? 0);
-        $totalKK         = (int)($db->query("SELECT COUNT(DISTINCT no_kk) as count FROM warga WHERE no_kk IS NOT NULL AND no_kk != ''")->find()['count'] ?? 0);
+        $totalKK         = (int)($db->query("SELECT COUNT(id) as count FROM warga WHERE status_keluarga = 'kepala_keluarga'")->find()['count'] ?? 0);
         $totalVerified   = (int)($db->query("SELECT COUNT(id) as count FROM warga WHERE status_verifikasi = 'verified'")->find()['count'] ?? 0);
         $totalPending    = (int)($db->query("SELECT COUNT(id) as count FROM warga WHERE status_verifikasi = 'pending'")->find()['count'] ?? 0);
 
         $totalPengumuman = (int)($db->query("SELECT COUNT(id) as count FROM pengumuman")->find()['count'] ?? 0);
         $totalNotulensi  = (int)($db->query("SELECT COUNT(id) as count FROM notulensi")->find()['count'] ?? 0);
         $totalGaleri     = (int)($db->query("SELECT COUNT(id) as count FROM galeri")->find()['count'] ?? 0);
-        $totalLaporan    = (int)($db->query("SELECT COUNT(id) as count FROM laporan_bulanan")->find()['count'] ?? 0);
 
-        // 2. Data Warga Terbaru (Mapping ke Model Warga)
+        // 2. Data Warga Terbaru
         $recentWargaRaw = $db->query("SELECT * FROM warga ORDER BY created_at DESC LIMIT 5")->get();
         $recentWarga    = array_map(fn($row) => new Warga($row), $recentWargaRaw);
 
-        // 3. Data Notulensi Rapat Terbaru (Mapping ke Model Notulensi)
+        // 3. Data Notulensi Rapat Terbaru
         $recentNotulensiRaw = $db->query("SELECT * FROM notulensi ORDER BY tanggal DESC LIMIT 5")->get();
         $recentNotulensi    = array_map(fn($row) => new Notulensi($row), $recentNotulensiRaw);
 
@@ -53,7 +52,6 @@ class AdminController
             'totalPengumuman'  => $totalPengumuman,
             'totalNotulensi'   => $totalNotulensi,
             'totalGaleri'      => $totalGaleri,
-            'totalLaporan'     => $totalLaporan,
             'recentWarga'      => $recentWarga,
             'recentNotulensi'  => $recentNotulensi,
             'wargaPerRt'       => $wargaPerRt,

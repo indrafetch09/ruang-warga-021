@@ -37,6 +37,21 @@
                 </div>
             </div>
 
+            <!-- ALERT ERROR / FLASH SESSION -->
+            <?php
+            $flashError = \Core\Session::get('error');
+            $old = \Core\Session::get('old') ?? [];
+            ?>
+
+            <?php if (!empty($flashError)): ?>
+                <div class="p-4 bg-red-50 border border-red-200 rounded-xl text-xs text-red-600 font-semibold max-w-5xl mx-auto mb-4 flex items-center gap-2">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span><?= htmlspecialchars($flashError) ?></span>
+                </div>
+            <?php endif; ?>
+
             <!-- FORM CONTAINER -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden max-w-5xl mx-auto">
                 <form action="/admin/notulensi" method="POST" enctype="multipart/form-data">
@@ -54,48 +69,50 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Judul Rapat <span class="text-rose-500">*</span></label>
-                                <input type="text" name="judul" placeholder="Contoh: Rapat Persiapan HUT RI ke-81 Wilayah RW 021" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required>
+                                <input type="text" name="judul" value="<?= htmlspecialchars($old['judul'] ?? '') ?>" placeholder="Contoh: Rapat Persiapan HUT RI ke-81 Wilayah RW 021" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Kategori Rapat <span class="text-rose-500">*</span></label>
+                                <?php $cat = $old['kategori'] ?? ''; ?>
                                 <select name="kategori" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold cursor-pointer" required>
-                                    <option value="" disabled selected>Pilih Kategori</option>
-                                    <option value="Rapat Rutin">Rapat Rutin</option>
-                                    <option value="Rapat Khusus">Rapat Khusus / Insidental</option>
-                                    <option value="Laporan Kas">Laporan Pertanggungjawaban / Kas</option>
+                                    <?php $cat = $old['kategori'] ?? ''; ?>
+                                    <option value="" disabled <?= empty($cat) ? 'selected' : '' ?>>Pilih Kategori</option>
+                                    <option value="rutin" <?= $cat === 'rutin' ? 'selected' : '' ?>>Rapat Rutin</option>
+                                    <option value="khusus" <?= $cat === 'khusus' ? 'selected' : '' ?>>Rapat Khusus / Insidental</option>
+                                    <option value="laporan" <?= $cat === 'laporan' ? 'selected' : '' ?>>Laporan Pertanggungjawaban / Kas</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nomor Surat / Arsip</label>
-                                <input type="text" name="no_surat" placeholder="Contoh: 014/RW21/VIII/2026" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold">
+                                <input type="text" name="no_surat" value="<?= htmlspecialchars($old['no_surat'] ?? '') ?>" placeholder="Contoh: 014/RW21/VIII/2026" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold">
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Tanggal Pelaksanaan <span class="text-rose-500">*</span></label>
-                                <input type="date" name="tanggal" value="<?= date('Y-m-d') ?>" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold text-gray-700" required>
+                                <input type="date" name="tanggal" value="<?= htmlspecialchars($old['tanggal'] ?? date('Y-m-d')) ?>" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold text-gray-700" required>
                             </div>
 
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Waktu Mulai <span class="text-rose-500">*</span></label>
-                                    <input type="time" name="waktu_mulai" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold text-gray-700" required>
+                                    <input type="time" name="waktu_mulai" value="<?= htmlspecialchars($old['waktu_mulai'] ?? '') ?>" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold text-gray-700" required>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Waktu Selesai</label>
-                                    <input type="time" name="waktu_selesai" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold text-gray-700">
+                                    <input type="time" name="waktu_selesai" value="<?= htmlspecialchars($old['waktu_selesai'] ?? '') ?>" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold text-gray-700">
                                 </div>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Lokasi <span class="text-rose-500">*</span></label>
-                                <input type="text" name="lokasi" placeholder="Contoh: Balai Warga RW 021" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required>
+                                <input type="text" name="lokasi" value="<?= htmlspecialchars($old['lokasi'] ?? '') ?>" placeholder="Contoh: Balai Warga RW 021" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Notulis / Penulis <span class="text-rose-500">*</span></label>
-                                <input type="text" name="notulis" value="<?= htmlspecialchars($user['name'] ?? '') ?>" placeholder="Nama penulis notulensi" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required>
+                                <input type="text" name="notulis" value="<?= htmlspecialchars($old['notulis'] ?? $user['name'] ?? '') ?>" placeholder="Nama penulis notulensi" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold" required>
                             </div>
                         </div>
                     </div>
@@ -113,19 +130,19 @@
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Agenda Rapat <span class="text-rose-500">*</span></label>
                                 <p class="text-[11px] text-gray-400 mb-2">Tuliskan poin-poin utama agenda musyawarah.</p>
-                                <textarea name="agenda" rows="3" placeholder="1. Pembentukan Panitia 17-an&#10;2. Pembahasan Anggaran Kebersihan..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm" required></textarea>
+                                <textarea name="agenda" rows="3" placeholder="1. Pembentukan Panitia 17-an&#10;2. Pembahasan Anggaran Kebersihan..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm" required><?= htmlspecialchars($old['agenda'] ?? '') ?></textarea>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Hasil Pembahasan <span class="text-rose-500">*</span></label>
                                 <p class="text-[11px] text-gray-400 mb-2">Uraikan ringkasan diskusi dan masukan dari peserta rapat.</p>
-                                <textarea name="hasil_pembahasan" rows="5" placeholder="Berdasarkan hasil musyawarah warga, beberapa ketua RT menyampaikan usulan..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm" required></textarea>
+                                <textarea name="hasil_pembahasan" rows="5" placeholder="Berdasarkan hasil musyawarah warga, beberapa ketua RT menyampaikan usulan..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm" required><?= htmlspecialchars($old['hasil_pembahasan'] ?? '') ?></textarea>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Keputusan Akhir <span class="text-rose-500">*</span></label>
                                 <p class="text-[11px] text-gray-400 mb-2">Tuliskan kesimpulan dan poin keputusan final yang disepakati.</p>
-                                <textarea name="keputusan_akhir" rows="4" placeholder="1. Iuran kegiatan disepakati sebesar Rp 50.000/KK...&#10;2. Pelaksanaan kerja bakti serentak pada tanggal..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm" required></textarea>
+                                <textarea name="keputusan_akhir" rows="4" placeholder="1. Iuran kegiatan disepakati sebesar Rp 50.000/KK...&#10;2. Pelaksanaan kerja bakti serentak pada tanggal..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm" required><?= htmlspecialchars($old['keputusan_akhir'] ?? '') ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -149,8 +166,8 @@
                                     </svg>
                                     <div class="flex text-sm text-gray-600 justify-center">
                                         <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-bold text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-purple-500">
-                                            <span>Pilih file dokumen</span>
-                                            <input id="file-upload" name="lampiran" type="file" class="sr-only" accept=".pdf,.doc,.docx">
+                                            <span id="file-label-text">Pilih file dokumen</span>
+                                            <input id="file-upload" name="lampiran" type="file" class="sr-only" accept=".pdf,.doc,.docx" onchange="document.getElementById('file-label-text').innerText = this.files[0] ? this.files[0].name : 'Pilih file dokumen'">
                                         </label>
                                         <p class="pl-1">atau *drag and drop*</p>
                                     </div>

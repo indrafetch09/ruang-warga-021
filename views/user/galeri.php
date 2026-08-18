@@ -63,14 +63,16 @@
                 </div>
             </div>
 
-            <!-- Filter Kategori Dinamis -->
+            <!-- Filter Kategori Dinamis (Disamakan dengan ENUM Database) -->
             <?php
             $activeKategori = $_GET['kategori'] ?? '';
             $categories = [
-                '' => 'Semua',
-                'Sosial & Kebersihan' => 'Sosial & Kebersihan',
-                'Perayaan' => 'Perayaan',
-                'Kesehatan' => 'Kesehatan'
+                ''          => 'Semua',
+                'sosial'    => 'Sosial & Gotong Royong',
+                'kesehatan' => 'Kesehatan & Posyandu',
+                'perayaan'  => 'Perayaan & Olahraga',
+                'pertemuan' => 'Musyawarah & Rapat',
+                'lainnya'   => 'Lain-Lain'
             ];
             ?>
             <div class="flex flex-wrap justify-center gap-2 mb-10">
@@ -93,7 +95,7 @@
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-1">Belum Ada Foto Galeri</h3>
                     <p class="text-gray-500 text-sm mb-6">
-                        <?= !empty($activeKategori) ? 'Tidak ditemukan foto untuk kategori "' . htmlspecialchars($activeKategori) . '".' : 'Dokumentasi foto kegiatan belum tersedia saat ini.' ?>
+                        <?= !empty($activeKategori) ? 'Tidak ditemukan foto untuk kategori "' . htmlspecialchars($categories[$activeKategori] ?? $activeKategori) . '".' : 'Dokumentasi foto kegiatan belum tersedia saat ini.' ?>
                     </p>
                     <?php if (!empty($activeKategori)): ?>
                         <a href="/galeri" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white font-medium text-xs rounded-lg hover:bg-purple-700 transition">
@@ -105,26 +107,33 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     <?php foreach ($galeriList as $item): ?>
                         <?php
-                        // Tentukan URL Foto (jika dari database atau Unsplash fallback)
-                        $imgSrc = !empty($item->file_foto)
-                            ? '/uploads/galeri/' . htmlspecialchars($item->file_foto)
+                        // HELPER AMBIL DATA (Bisa baca Array maupun Object)
+                        $fileFoto  = is_array($item) ? ($item['file_foto'] ?? '') : ($item->file_foto ?? '');
+                        $judul     = is_array($item) ? ($item['judul'] ?? 'Kegiatan') : ($item->judul ?? 'Kegiatan');
+                        $tanggal   = is_array($item) ? ($item['tanggal'] ?? '') : ($item->tanggal ?? '');
+                        $kategori  = is_array($item) ? ($item['kategori'] ?? 'umum') : ($item->kategori ?? 'umum');
+                        $deskripsi = is_array($item) ? ($item['deskripsi'] ?? '') : ($item->deskripsi ?? '');
+
+                        // Tentukan URL Foto
+                        $imgSrc = !empty($fileFoto)
+                            ? '/uploads/galeri/' . htmlspecialchars($fileFoto)
                             : 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
 
-                        $tglFormatted = !empty($item->tanggal) ? date('d F Y', strtotime($item->tanggal)) : '-';
+                        $tglFormatted = !empty($tanggal) ? date('d F Y', strtotime($tanggal)) : '-';
 
-                        // Badge color berdasarkan kategori
+                        // Badge color berdasarkan kategori ENUM
                         $badgeColor = 'bg-purple-500';
-                        if (($item->kategori ?? '') === 'Sosial & Kebersihan') $badgeColor = 'bg-emerald-500';
-                        elseif (($item->kategori ?? '') === 'Kesehatan') $badgeColor = 'bg-rose-500';
-                        elseif (($item->kategori ?? '') === 'Perayaan') $badgeColor = 'bg-amber-500';
+                        if ($kategori === 'sosial') $badgeColor = 'bg-emerald-500';
+                        elseif ($kategori === 'kesehatan') $badgeColor = 'bg-rose-500';
+                        elseif ($kategori === 'perayaan') $badgeColor = 'bg-amber-500';
+                        elseif ($kategori === 'pertemuan') $badgeColor = 'bg-blue-500';
                         ?>
 
-                        <div onclick="openModal('<?= $imgSrc ?>', '<?= htmlspecialchars(addslashes($item->judul ?? 'Kegiatan')) ?>', '<?= $tglFormatted ?>', '<?= htmlspecialchars(addslashes($item->deskripsi ?? '')) ?>')"
+                        <div onclick="openModal('<?= $imgSrc ?>', '<?= htmlspecialchars(addslashes($judul)) ?>', '<?= $tglFormatted ?>', '<?= htmlspecialchars(addslashes($deskripsi)) ?>', '<?= htmlspecialchars($categories[$kategori] ?? ucfirst($kategori)) ?>')"
                             class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-gray-100">
                             <div class="overflow-hidden relative h-56">
-                                <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($item->judul ?? 'Foto') ?>"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    onerror="this.src='https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'" />
+                                <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($judul) ?>"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
 
                                 <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-medium text-sm gap-1">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -132,13 +141,13 @@
                                     </svg>
                                     <span>Lihat Detail</span>
                                 </div>
-                                <span class="absolute top-3 left-3 <?= $badgeColor ?> text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    <?= htmlspecialchars($item->kategori ?? 'Kegiatan') ?>
+                                <span class="absolute top-3 left-3 <?= $badgeColor ?> text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+                                    <?= htmlspecialchars($categories[$kategori] ?? ucfirst($kategori)) ?>
                                 </span>
                             </div>
                             <div class="p-5">
                                 <h3 class="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors line-clamp-1">
-                                    <?= htmlspecialchars($item->judul ?? '-') ?>
+                                    <?= htmlspecialchars($judul) ?>
                                 </h3>
                                 <p class="text-xs text-gray-400 mb-3"><?= $tglFormatted ?></p>
                             </div>
@@ -176,7 +185,7 @@
                             </h4>
                             <p id="modalDate" class="text-xs text-gray-500 mt-0.5"></p>
                         </div>
-                        <span class="ml-auto px-2.5 py-1 bg-emerald-100 text-emerald-800 text-[11px] font-bold rounded-full">Kegiatan</span>
+                        <span id="modalCategory" class="ml-auto px-2.5 py-1 bg-purple-100 text-purple-800 text-[11px] font-bold rounded-full">Kegiatan</span>
                     </div>
                     <h3 id="modalTitle" class="text-2xl font-extrabold text-gray-900 mb-3"></h3>
                     <p id="modalDescription" class="text-gray-600 text-sm leading-relaxed whitespace-pre-line mb-6"></p>
@@ -199,32 +208,8 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT UNTUK MODAL -->
-    <script>
-        function openModal(imageSrc, title, date, description) {
-            document.getElementById("modalImage").src = imageSrc;
-            document.getElementById("modalTitle").innerText = title;
-            document.getElementById("modalDate").innerText = date;
-            document.getElementById("modalDescription").innerText = description;
-            const modal = document.getElementById("postModal");
-            modal.classList.remove("hidden");
-            document.body.style.overflow = "hidden";
-        }
+        <script src="/script.js"></script>
 
-        function closeModal() {
-            const modal = document.getElementById("postModal");
-            modal.classList.add("hidden");
-            document.body.style.overflow = "auto";
-        }
-
-        document.getElementById("postModal").addEventListener("click", function(e) {
-            if (e.target === this) closeModal();
-        });
-
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "Escape") closeModal();
-        });
-    </script>
-</body>
+    </body>
 
 </html>
