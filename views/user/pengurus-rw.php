@@ -2,12 +2,8 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Struktur Pengurus - Ruang Warga 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
+    <?php $title = "Struktur Pengurus - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
     <style>
         /* Garis penghubung hierarki (Desktop Only) */
         @media (min-width: 768px) {
@@ -54,70 +50,49 @@
     <!-- NAVBAR -->
     <?php require base_path('views/partials/navbar.php'); ?>
 
-    <!-- PAGE HEADER -->
-    <div class="bg-purple-50 py-16 border-b border-purple-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-                Struktur <span class="text-purple-600">Pengurus & Data RT</span>
-            </h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Mengenal lebih dekat sosok-sosok yang mengabdi serta persebaran warga
-                di lingkungan RW 021 (Periode 2024-2027).
-            </p>
-        </div>
-    </div>
-
     <!-- MAIN CONTENT - STRUKTUR ORGANISASI -->
-    <div class="py-20 bg-gray-50 flex-1">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <?php 
-                // Data Inti Pengurus (Fallback jika belum di-set dari Controller)
-                $ketua = $ketuaRw ?? [
-                    'nama' => 'Drs. Ahmad Santoso',
-                    'jabatan' => 'Ketua RW 021',
-                    'periode' => 'Masa Bakti: 2024 - 2027',
-                    'foto' => 'https://ui-avatars.com/api/?name=Ahmad+Santoso&background=7c3aed&color=fff&size=150'
-                ];
+    <div class="py-12 bg-gray-50 flex-1">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
-                $sekretaris = $sekretarisRw ?? [
-                    'nama' => 'Hj. Rina Melati, S.E.',
-                    'foto' => 'https://ui-avatars.com/api/?name=Rina+Melati&background=10b981&color=fff&size=150'
-                ];
+            <!-- SIMPLE PAGE HEADER -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Struktur <span class="text-purple-600">Pengurus & Data RT</span></h1>
+                    <p class="text-xs md:text-sm text-gray-500 mt-1">Bagan organisasi pengurus RW 021 dan rekap data Rukun Tetangga (RT).</p>
+                </div>
+            </div>
 
-                $bendahara = $bendaharaRw ?? [
-                    'nama' => 'Hendra Wijaya',
-                    'foto' => 'https://ui-avatars.com/api/?name=Hendra+Wijaya&background=10b981&color=fff&size=150'
-                ];
+            <?php
+            $ketua = $ketuaRw ?? null;
+            $sekretaris = $sekretarisRw ?? null;
+            $bendahara = $bendaharaRw ?? null;
+            $seksi = $seksiList ?? [];
+            $dataRtList = $listRt ?? [];
 
-                $seksi = $seksiList ?? [
-                    ['nama' => 'Budi Purnomo', 'seksi' => 'Keamanan (Kamtib)', 'color' => 'amber', 'foto' => 'https://ui-avatars.com/api/?name=Budi+Purnomo&background=f59e0b&color=fff&size=150'],
-                    ['nama' => 'Yanto Basuki', 'seksi' => 'Lingkungan & Kebersihan', 'color' => 'sky', 'foto' => 'https://ui-avatars.com/api/?name=Yanto+Basuki&background=0ea5e9&color=fff&size=150'],
-                    ['nama' => 'Ibu Siti Aminah', 'seksi' => 'Sosial & PKK', 'color' => 'rose', 'foto' => 'https://ui-avatars.com/api/?name=Siti+Aminah&background=f43f5e&color=fff&size=150'],
-                    ['nama' => 'Rizky Aditama', 'seksi' => 'Pemuda & Olahraga', 'color' => 'purple', 'foto' => 'https://ui-avatars.com/api/?name=Rizky+Aditama&background=8b5cf6&color=fff&size=150']
-                ];
+            $ketuaFoto = $ketua['foto'] ?? 'https://ui-avatars.com/api/?name=Ketua+RW&background=7c3aed&color=fff&size=150';
+            $ketuaJabatan = $ketua['jabatan'] ?? 'Ketua RW 021';
+            $ketuaNama = $ketua['nama'] ?? 'Belum Diinputkan';
+            $ketuaPeriode = $ketua['periode'] ?? 'Masa Bakti 2024 - 2027';
 
-                $dataRtList = $listRt ?? [
-                    ['rt' => '01', 'ketua' => 'Bpk. Agus S.', 'kk' => 65, 'warga' => 230],
-                    ['rt' => '02', 'ketua' => 'Bpk. Herman', 'kk' => 80, 'warga' => 285],
-                    ['rt' => '03', 'ketua' => 'Bpk. Dedi J.', 'kk' => 75, 'warga' => 260],
-                    ['rt' => '04', 'ketua' => 'Ibu Wahyuni', 'kk' => 60, 'warga' => 220],
-                    ['rt' => '05', 'ketua' => 'Bpk. Suryo', 'kk' => 70, 'warga' => 250]
-                ];
+            $sekretarisFoto = $sekretaris['foto'] ?? 'https://ui-avatars.com/api/?name=Sekretaris&background=10b981&color=fff&size=150';
+            $sekretarisNama = $sekretaris['nama'] ?? 'Belum Diinputkan';
+
+            $bendaharaFoto = $bendahara['foto'] ?? 'https://ui-avatars.com/api/?name=Bendahara&background=10b981&color=fff&size=150';
+            $bendaharaNama = $bendahara['nama'] ?? 'Belum Diinputkan';
             ?>
 
             <!-- LEVEL 1: KETUA RW -->
             <div class="flex justify-center mb-6 md:mb-12">
                 <div class="relative w-full max-w-sm hierarchy-line-bottom">
                     <div class="bg-white rounded-2xl shadow-lg border border-purple-100 p-8 flex flex-col items-center text-center transform hover:-translate-y-1 transition-transform duration-300">
-                        <img src="<?= htmlspecialchars($ketua['foto']) ?>" alt="Ketua RW" class="w-28 h-28 rounded-full mb-4 object-cover border-4 border-purple-50 shadow-md" />
+                        <img src="<?= htmlspecialchars($ketuaFoto) ?>" alt="Ketua RW" class="w-28 h-28 rounded-full mb-4 object-cover border-4 border-purple-50 shadow-md" />
                         <span class="bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
-                            <?= htmlspecialchars($ketua['jabatan']) ?>
+                            <?= htmlspecialchars($ketuaJabatan) ?>
                         </span>
                         <h3 class="text-xl font-bold text-gray-900 mb-1">
-                            <?= htmlspecialchars($ketua['nama']) ?>
+                            <?= htmlspecialchars($ketuaNama) ?>
                         </h3>
-                        <p class="text-sm text-gray-500"><?= htmlspecialchars($ketua['periode']) ?></p>
+                        <p class="text-sm text-gray-500"><?= htmlspecialchars($ketuaPeriode) ?></p>
                     </div>
                 </div>
             </div>
@@ -126,18 +101,18 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 max-w-4xl mx-auto mb-16 hierarchy-branch">
                 <!-- Sekretaris -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex flex-col items-center text-center hierarchy-branch-item hover:border-purple-300 transition-colors">
-                    <img src="<?= htmlspecialchars($sekretaris['foto']) ?>" alt="Sekretaris" class="w-20 h-20 rounded-full mb-4 object-cover border-4 border-emerald-50 shadow-md" />
+                    <img src="<?= htmlspecialchars($sekretarisFoto) ?>" alt="Sekretaris" class="w-20 h-20 rounded-full mb-4 object-cover border-4 border-emerald-50 shadow-md" />
                     <span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-2">Sekretaris</span>
                     <h3 class="text-lg font-bold text-gray-900 mb-1">
-                        <?= htmlspecialchars($sekretaris['nama']) ?>
+                        <?= htmlspecialchars($sekretarisNama) ?>
                     </h3>
                 </div>
                 <!-- Bendahara -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex flex-col items-center text-center hierarchy-branch-item hover:border-purple-300 transition-colors">
-                    <img src="<?= htmlspecialchars($bendahara['foto']) ?>" alt="Bendahara" class="w-20 h-20 rounded-full mb-4 object-cover border-4 border-emerald-50 shadow-md" />
+                    <img src="<?= htmlspecialchars($bendaharaFoto) ?>" alt="Bendahara" class="w-20 h-20 rounded-full mb-4 object-cover border-4 border-emerald-50 shadow-md" />
                     <span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-2">Bendahara</span>
                     <h3 class="text-lg font-bold text-gray-900 mb-1">
-                        <?= htmlspecialchars($bendahara['nama']) ?>
+                        <?= htmlspecialchars($bendaharaNama) ?>
                     </h3>
                 </div>
             </div>
@@ -154,13 +129,13 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <?php foreach ($seksi as $s): ?>
-                        <?php 
-                            $badgeColor = match($s['color'] ?? 'purple') {
-                                'amber' => 'text-amber-600 border-amber-50',
-                                'sky'   => 'text-sky-600 border-sky-50',
-                                'rose'  => 'text-rose-600 border-rose-50',
-                                default => 'text-purple-600 border-purple-50'
-                            };
+                        <?php
+                        $badgeColor = match ($s['color'] ?? 'purple') {
+                            'amber' => 'text-amber-600 border-amber-50',
+                            'sky'   => 'text-sky-600 border-sky-50',
+                            'rose'  => 'text-rose-600 border-rose-50',
+                            default => 'text-purple-600 border-purple-50'
+                        };
                         ?>
                         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col items-center text-center hover:shadow-md transition-shadow">
                             <img src="<?= htmlspecialchars($s['foto']) ?>" alt="Seksi" class="w-16 h-16 rounded-full mb-3 object-cover border-2 <?= $badgeColor ?>" />

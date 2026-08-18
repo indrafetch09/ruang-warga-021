@@ -2,17 +2,8 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tambah Data Warga - Dasbor Pengurus RW 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
-    <style>
-        body {
-            font-family: "Plus Jakarta Sans", sans-serif;
-        }
-    </style>
+    <?php $title = "Tambah Data Warga - Dasbor Pengurus RW 021";
+    require base_path('views/partials/head.php'); ?>
 </head>
 
 <body class="text-gray-800 bg-gray-50 flex flex-col min-h-screen">
@@ -26,9 +17,10 @@
 
             <?php
             // Helper pengecekan hak akses user untuk penguncian RT
-            $isRw = method_exists($user, 'isRw') ? $user->isRw() : (($user['role'] ?? '') === 'admin' || ($user['role'] ?? '') === 'rw');
-            $isRt = method_exists($user, 'isRt') ? $user->isRt() : (($user['role'] ?? '') === 'rt');
-            $assignedRt = method_exists($user, 'getRtAssigned') ? $user->getRtAssigned() : ($user['rt'] ?? 1);
+            $isObject = is_object($user);
+            $isRw = ($isObject && method_exists($user, 'isRw')) ? $user->isRw() : (($user['role'] ?? $user->data['role'] ?? '') === 'admin' || ($user['role'] ?? $user->data['role'] ?? '') === 'rw');
+            $isRt = ($isObject && method_exists($user, 'isRt')) ? $user->isRt() : (($user['role'] ?? $user->data['role'] ?? '') === 'rt');
+            $assignedRt = ($isObject && method_exists($user, 'getRtAssigned')) ? $user->getRtAssigned() : ($user['rt'] ?? $user->data['rt'] ?? 1);
             ?>
 
             <!-- HEADER SECTION -->

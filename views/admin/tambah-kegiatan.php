@@ -2,14 +2,8 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tambah Kegiatan Rutin - Dasbor Pengurus RW 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-        body { font-family: "Plus Jakarta Sans", sans-serif; }
-    </style>
+    <?php $title = "Tambah Kegiatan Rutin - Dasbor Pengurus RW 021";
+    require base_path('views/partials/head.php'); ?>
 </head>
 
 <body class="text-gray-800 bg-gray-50 flex flex-col min-h-screen">
@@ -52,7 +46,7 @@
                             </svg>
                             Informasi Kegiatan
                         </h3>
-                        
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="md:col-span-2">
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Kegiatan <span class="text-rose-500">*</span></label>
@@ -134,4 +128,5 @@
         </main>
     </div>
 </body>
+
 </html>

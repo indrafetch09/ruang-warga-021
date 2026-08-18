@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kebersihan Lingkungan (TPST & Bank Sampah) - Ruang Warga 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
+    <?php $title = "Kebersihan Lingkungan (TPST & Bank Sampah) - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
 </head>
+
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
     <?php require base_path('views/partials/navbar.php'); ?>
 
-    <!-- HEADER -->
-    <div class="bg-emerald-50 py-12 border-b border-emerald-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Layanan <span class="text-emerald-600">Kebersihan TPST & Bank Sampah</span></h1>
-            <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">Informasi pengangkutan sampah rumah tangga teratur, tata tertib pembuangan limbah, dan program daur ulang Bank Sampah RW 021.</p>
-        </div>
-    </div>
-
     <!-- MAIN CONTENT -->
-    <div class="py-12 flex-1">
+    <div class="py-16 md:py-20 flex-1">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+            <!-- ponytail: Page header with generous spacing and padding -->
+            <!-- SIMPLE PAGE HEADER -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-4">
+                <div class="space-y-2">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Layanan <span class="text-emerald-600">Kebersihan TPST & Bank Sampah</span></h1>
+                    <p class="text-xs md:text-sm text-gray-500 max-w-2xl leading-relaxed">Jadwal pengangkutan sampah rumah tangga dan program daur ulang Bank Sampah RW 021.</p>
+                </div>
+            </div>
 
             <!-- SUMMARY STATS TPST -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
@@ -126,7 +125,9 @@
 
                 <div class="pt-2">
                     <a id="modal-wa-btn" href="#" target="_blank" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition shadow-md">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.301-1.127z"/></svg>
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.301-1.127z" />
+                        </svg>
                         Hubungi Koordinator TPST via WhatsApp
                     </a>
                 </div>
@@ -228,4 +229,5 @@
         });
     </script>
 </body>
+
 </html>

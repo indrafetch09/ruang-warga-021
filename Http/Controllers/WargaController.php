@@ -120,9 +120,9 @@ class WargaController
 
         // Simpan ke Database
         $db->query(
-            "INSERT INTO " . Warga::$table . " 
-            (no_kk, nik, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, rt, blok, nomor, no_hp, status_warga, jml_anggota_keluarga, agama, pekerjaan, status_verifikasi, created_by) 
-            VALUES 
+            "INSERT INTO " . Warga::$table . "
+            (no_kk, nik, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, rt, blok, nomor, no_hp, status_warga, jml_anggota_keluarga, agama, pekerjaan, status_verifikasi, created_by)
+            VALUES
             (:no_kk, :nik, :nama, :tempat_lahir, :tanggal_lahir, :jenis_kelamin, :rt, :blok, :nomor, :no_hp, :status_warga, :jml_anggota_keluarga, :agama, :pekerjaan, :status_verifikasi, :created_by)",
             [
                 'no_kk'                => $_POST['no_kk'],

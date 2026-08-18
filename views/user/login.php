@@ -2,15 +2,11 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Pengurus - Ruang Warga 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
+    <?php $title = "Login Pengurus - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
     <style>
         .bg-login-image {
-            background-image: url("https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
+            background-image: url("/images/kkn_rw21.webp");
             background-size: cover;
             background-position: center;
         }
@@ -25,7 +21,7 @@
 
 <body class="bg-gray-50 flex min-h-screen">
     <!-- KIRI: GAMBAR & BRANDING (Layar Besar) -->
-    <div class="hidden lg:flex lg:w-1/2 bg-login-image relative">
+    <div class="hidden md:flex lg:w-1/2 bg-login-image relative">
         <div class="absolute inset-0 overlay-gradient"></div>
         <div class="relative z-10 flex flex-col justify-between p-12 text-white w-full">
             <!-- Logo Kiri Atas -->
