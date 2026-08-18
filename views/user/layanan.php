@@ -60,6 +60,7 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <!-- GALERI SLIDER AKTIVITAS AULA -->
                 <?php 
                     $galeriAula = $galeriAula ?? [
@@ -73,6 +74,31 @@
                 <div class="space-y-3">
                     <div class="flex justify-between items-center px-1">
                         <span class="text-lg text-purple-700 font-bold">Balai RW 021 RT 05</span>
+=======
+                <?php if (empty($galeriAula)): ?>
+                    <!-- EMPTY STATE GALERI AULA -->
+                    <div class="p-8 bg-gray-50 border border-gray-200 text-center">
+                        <p class="text-gray-500 text-sm">Dokumentasi foto fasilitas Aula belum diunggah.</p>
+                    </div>
+                <?php else: ?>
+                    <!-- TOP GRID ROW -->
+                    <div class="relative overflow-hidden">
+                        <div class="flex gap-4 w-max animate-slide-right">
+                            <?php foreach ($galeriAula as $item): ?>
+                                <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md ">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
+                                </div>
+                            <?php endforeach; ?>
+                            <!-- Duplicate Loop for Seamless Infinite Scroll -->
+                            <?php foreach ($galeriAula as $item): ?>
+                                <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md " aria-hidden="true">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" />
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <!-- ponytail: simple font size & readability boost -->
+                        <p class="pt-5 text-start text-base md:text-lg text-gray-600 leading-relaxed">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim veritatis ut dicta suscipit commodi exercitationem facilis dolorem, placeat fuga molestiae doloremque repellat corrupti velit dolorum obcaecati minima pariatur laboriosam eos.</p>
+>>>>>>> 94c3723 (fix: enhance footer icon SVGs for improved readability and consistency)
                     </div>
 
                     <?php if (empty($galeriAula)): ?>
@@ -80,6 +106,7 @@
                         <div class="p-8 bg-gray-50 rounded-2xl border border-gray-200 text-center">
                             <p class="text-gray-500 text-sm">Dokumentasi foto fasilitas Aula belum diunggah.</p>
                         </div>
+<<<<<<< HEAD
                     <?php else: ?>
                         <!-- TOP GRID ROW -->
                         <div class="relative overflow-hidden rounded-xl">
@@ -116,6 +143,12 @@
                     <?php endif; ?>
                 </div>
 
+=======
+                        <!-- ponytail: simple font size & readability boost -->
+                        <p class="pt-5 text-start text-base md:text-lg text-gray-600 leading-relaxed">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim veritatis ut dicta suscipit commodi exercitationem facilis dolorem, placeat fuga molestiae doloremque repellat corrupti velit dolorum obcaecati minima pariatur laboriosam eos.</p>
+                    </div>
+                <?php endif; ?>
+>>>>>>> 94c3723 (fix: enhance footer icon SVGs for improved readability and consistency)
             </div>
 
         </div>
