@@ -16,7 +16,10 @@ $currentUser = \Core\Authenticator::user() ?? ($_SESSION['user'] ?? ['name' => '
 
                 <a href="/dashboard" class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-md">
-                        RW 021
+                        <img
+                            class="w-10 h-10 absolute"
+                            src="/images/logo_rw21.webp"
+                            alt="logo RW 021" />
                     </div>
                     <div>
                         <h1 class="text-base font-extrabold text-gray-900 leading-tight">

@@ -1,88 +1,88 @@
 /* Ruang Warga 021 - Unified Theming & Color Design System */
 
 :root {
-    /* Primary Purple Theme Palette */
-    --color-primary-50: #faf5ff;
-    --color-primary-100: #f3e8ff;
-    --color-primary-200: #e9d5ff;
-    --color-primary-300: #d8b4fe;
-    --color-primary-400: #c084fc;
-    --color-primary-500: #a855f7;
-    --color-primary-600: #9333ea;
-    --color-primary-700: #7e22ce;
-    --color-primary-800: #6b21a8;
-    --color-primary-900: #581c87;
-    --color-primary-accent: #7c3aed;
+  /* Primary Purple Theme Palette */
+  --color-primary-50: #faf5ff;
+  --color-primary-100: #f3e8ff;
+  --color-primary-200: #e9d5ff;
+  --color-primary-300: #d8b4fe;
+  --color-primary-400: #c084fc;
+  --color-primary-500: #a855f7;
+  --color-primary-600: #9333ea;
+  --color-primary-700: #7e22ce;
+  --color-primary-800: #6b21a8;
+  --color-primary-900: #581c87;
+  --color-primary-accent: #7c3aed;
 
-    /* Secondary Emerald Palette */
-    --color-emerald-50: #ecfdf5;
-    --color-emerald-100: #d1fae5;
-    --color-emerald-200: #a7f3d0;
-    --color-emerald-600: #059669;
-    --color-emerald-700: #047857;
-    --color-emerald-800: #065f46;
+  /* Secondary Emerald Palette */
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065f46;
 
-    /* Warning & Amber Palette */
-    --color-amber-50: #fffbeb;
-    --color-amber-100: #fef3c7;
-    --color-amber-500: #f59e0b;
-    --color-amber-700: #b45309;
+  /* Warning & Amber Palette */
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-500: #f59e0b;
+  --color-amber-700: #b45309;
 
-    /* Neutral Background & Surface Colors */
-    --color-bg-main: #f8fafc;
-    --color-bg-surface: #ffffff;
-    --color-bg-muted: #f3f4f6;
+  /* Neutral Background & Surface Colors */
+  --color-bg-main: #f8fafc;
+  --color-bg-surface: #ffffff;
+  --color-bg-muted: #f3f4f6;
 
-    /* Text Typography Colors */
-    --color-text-main: #111827;
-    --color-text-muted: #6b7280;
-    --color-text-subtle: #9ca3af;
+  /* Text Typography Colors */
+  --color-text-main: #111827;
+  --color-text-muted: #6b7280;
+  --color-text-subtle: #9ca3af;
 
-    /* Border & Separator Colors */
-    --color-border-light: #e9d5ff;
-    --color-border-muted: #e5e7eb;
+  /* Border & Separator Colors */
+  --color-border-light: #e9d5ff;
+  --color-border-muted: #e5e7eb;
 
-    /* Scrollbar Palette */
-    --color-scrollbar-track: #f3f4f6;
-    --color-scrollbar-thumb: #d1d5db;
-    --color-scrollbar-thumb-hover: #9ca3af;
+  /* Scrollbar Palette */
+  --color-scrollbar-track: #f3f4f6;
+  --color-scrollbar-thumb: #d1d5db;
+  --color-scrollbar-thumb-hover: #9ca3af;
 }
 
 /* Global Reset & Typography */
 body {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    background-color: var(--color-bg-main);
-    color: var(--color-text-main);
+  font-family: "PT Sans", sans-serif;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
 }
 
 /* Container & Logo Styling */
 .logo-container {
-    border-radius: 0 0 24px 24px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--color-border-light);
-    border-top-width: 0;
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-border-light);
+  border-top-width: 0;
 }
 
 /* Custom Scrollbar */
 .sidebar-scroll::-webkit-scrollbar,
 .table-container::-webkit-scrollbar {
-    width: 6px;
-    height: 8px;
+  width: 6px;
+  height: 8px;
 }
 
 .sidebar-scroll::-webkit-scrollbar-track,
 .table-container::-webkit-scrollbar-track {
-    background: var(--color-scrollbar-track);
-    border-radius: 8px;
+  background: var(--color-scrollbar-track);
+  border-radius: 8px;
 }
 
 .sidebar-scroll::-webkit-scrollbar-thumb,
 .table-container::-webkit-scrollbar-thumb {
-    background: var(--color-scrollbar-thumb);
-    border-radius: 8px;
+  background: var(--color-scrollbar-thumb);
+  border-radius: 8px;
 }
 
 .sidebar-scroll::-webkit-scrollbar-thumb:hover,
 .table-container::-webkit-scrollbar-thumb:hover {
-    background: var(--color-scrollbar-thumb-hover);
+  background: var(--color-scrollbar-thumb-hover);
 }
