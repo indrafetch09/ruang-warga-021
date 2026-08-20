@@ -330,54 +330,6 @@ class WargaController
         return redirect('/admin/warga');
     }
 
-    public function downloadTemplate()
-    {
-        $filename = "template_import_warga_rw021.csv";
-
-        header('Content-Type: text/csv; charset=utf-8');
-        header('Content-Disposition: attachment; filename="' . $filename . '"');
-
-        $output = fopen('php://output', 'w');
-
-        fputcsv($output, [
-            'NIK',
-            'NAMA',
-            'ALAMAT',
-            'JENIS KELAMIN',
-            'TEMPAT/TANGGAL LAHIR',
-            'AGAMA',
-            'PENDIDIKAN',
-            'JENIS PEKERJAAN',
-            'STATUS HUBUNGAN DALAM KELUARGA'
-        ], ';');
-
-        fputcsv($output, [
-            '3603281507670006',
-            'Drs. SONNIFA',
-            'DASANA INDAH, BLOK TA. 14 NO. 11',
-            'LAKI-LAKI',
-            'MUARA ENIM, 15-07-1967',
-            'ISLAM',
-            'DIPLOMA IV/STRATA I',
-            'KARYAWAN SWASTA',
-            'KEPALA KELUARGA'
-        ], ';');
-
-        fputcsv($output, [
-            '3603285405690004',
-            'MARWIYAH M.ARIF',
-            'DASANA INDAH, BLOK TA. 14 NO. 11',
-            'PEREMPUAN',
-            'MUARA ENIM, 14-05-1969',
-            'ISLAM',
-            'SLTA/SEDERAJAT',
-            'MENGURUS RUMAH TANGGA',
-            'ISTRI'
-        ], ';');
-
-        fclose($output);
-        exit;
-    }
 
     /**
      * IMPORT CERDAS: Universal Address Parser (Blok/Jalan/Gang & No)

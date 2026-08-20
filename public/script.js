@@ -9,10 +9,10 @@
 
 // Mapping Jabatan Pengurus berdasarkan Kategori Hirarki
 const jabatanPengurusMapping = {
-    penasehat: ["Penasehat"],
-    ketua: ["Ketua RW 021"],
-    sekretaris: ["Sekretaris"],
-    bendahara: ["Bendahara"],
+    penasehat: [ "Penasehat" ],
+    ketua: [ "Ketua RW 021" ],
+    sekretaris: [ "Sekretaris" ],
+    bendahara: [ "Bendahara" ],
     seksi: [
         "Pembangunan & Infrastruktur",
         "Keamanan & Ketertiban",
@@ -158,8 +158,8 @@ const pekerjaanMapping = {
         "Nelayan / Perikanan",
         "Buruh Tani / Perkebunan",
     ],
-    olahraga: ["Atlet", "Pelatih Olahraga"],
-    lainnya: ["Lainnya"],
+    olahraga: [ "Atlet", "Pelatih Olahraga" ],
+    lainnya: [ "Lainnya" ],
 };
 
 // Data Modal Statis untuk Fasilitas & Layanan Lingkungan
@@ -303,7 +303,7 @@ function closeModal() {
 
 // --- B. Modal Static Fasilitas ---
 function openFacilityModal(key) {
-    const data = modalData[key];
+    const data = modalData[ key ];
     if (!data) return;
 
     const catEl = document.getElementById("modal-category");
@@ -372,7 +372,7 @@ function openDynamicJadwalModal(data) {
         keagamaan: "bg-blue-700",
     };
 
-    const bgClass = headerBgMap[category] || "bg-purple-700";
+    const bgClass = headerBgMap[ category ] || "bg-purple-700";
 
     const catEl = document.getElementById("jmodal-category");
     const titleEl = document.getElementById("jmodal-title");
@@ -462,7 +462,7 @@ function showDetailModal(data) {
         famili_lain: "Famili Lain / Lainnya",
     };
     const skKey = (data.status_keluarga || "famili_lain").toLowerCase();
-    setElText("m-status-keluarga", statusMap[skKey] || "Famili Lain");
+    setElText("m-status-keluarga", statusMap[ skKey ] || "Famili Lain");
 
     const tempat = data.tempat_lahir || "";
     const tgl = data.tanggal_lahir || "";
@@ -661,7 +661,7 @@ function populatePekerjaan(selectedCategory, defaultPekerjaan = "") {
     if (!selectPekerjaan) return;
 
     selectPekerjaan.innerHTML = "";
-    const listOpsi = pekerjaanMapping[selectedCategory] || [];
+    const listOpsi = pekerjaanMapping[ selectedCategory ] || [];
 
     listOpsi.forEach((pekerjaan) => {
         const opt = document.createElement("option");
@@ -683,7 +683,7 @@ function populatePekerjaan(selectedCategory, defaultPekerjaan = "") {
 
 function findCategoryByPekerjaan(targetPekerjaan) {
     if (!targetPekerjaan) return "profesional";
-    for (const [category, list] of Object.entries(pekerjaanMapping)) {
+    for (const [ category, list ] of Object.entries(pekerjaanMapping)) {
         if (
             list.some((item) => item.toLowerCase() === targetPekerjaan.toLowerCase())
         ) {
@@ -698,7 +698,7 @@ function initDependentPekerjaan() {
     const pekSelect = document.getElementById("selectPekerjaan");
     if (!katSelect || !pekSelect) return;
 
-    katSelect.onchange = function() {
+    katSelect.onchange = function () {
         populatePekerjaan(this.value);
     };
 
@@ -714,7 +714,7 @@ function populateJabatan(selectedCategory, defaultJabatan = "") {
     if (!selectJabatanPengurus) return;
 
     selectJabatanPengurus.innerHTML = "";
-    const listOpsi = jabatanPengurusMapping[selectedCategory] || [];
+    const listOpsi = jabatanPengurusMapping[ selectedCategory ] || [];
 
     listOpsi.forEach((jabatan) => {
         const opt = document.createElement("option");
@@ -748,7 +748,7 @@ function initDemographicCharts() {
             "RT 09",
             "RT 10",
         ];
-        const barKk = window.chartBarKk || [32, 35, 28, 40, 38, 30, 36, 34, 39, 38];
+        const barKk = window.chartBarKk || [ 32, 35, 28, 40, 38, 30, 36, 34, 39, 38 ];
         const barJiwa = window.chartBarJiwa || [
             112, 123, 98, 140, 133, 105, 126, 119, 137, 133,
         ];
@@ -807,7 +807,7 @@ function initDemographicCharts() {
 
     const pieEl = document.getElementById("pieChartUsia");
     if (pieEl) {
-        const usiaData = window.chartUsiaData || [215, 180, 680, 170];
+        const usiaData = window.chartUsiaData || [ 215, 180, 680, 170 ];
 
         new Chart(pieEl.getContext("2d"), {
             type: "pie",
@@ -821,7 +821,7 @@ function initDemographicCharts() {
                 datasets: [
                     {
                         data: usiaData,
-                        backgroundColor: ["#c084fc", "#38bdf8", "#7e22ce", "#f59e0b"],
+                        backgroundColor: [ "#c084fc", "#38bdf8", "#7e22ce", "#f59e0b" ],
                         borderWidth: 2,
                         borderColor: "#ffffff",
                     },
@@ -841,7 +841,7 @@ function initDemographicCharts() {
                     tooltip: {
                         backgroundColor: "#1e1b4b",
                         callbacks: {
-                            label: function(context) {
+                            label: function (context) {
                                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                 const val = context.raw;
                                 const pct = ((val / total) * 100).toFixed(1);
@@ -856,16 +856,16 @@ function initDemographicCharts() {
 
     const genderEl = document.getElementById("pieChartGender");
     if (genderEl) {
-        const genderData = window.chartGenderData || [635, 610];
+        const genderData = window.chartGenderData || [ 635, 610 ];
 
         new Chart(genderEl.getContext("2d"), {
             type: "doughnut",
             data: {
-                labels: ["Laki-laki", "Perempuan"],
+                labels: [ "Laki-laki", "Perempuan" ],
                 datasets: [
                     {
                         data: genderData,
-                        backgroundColor: ["#2563eb", "#ec4899"],
+                        backgroundColor: [ "#2563eb", "#ec4899" ],
                         borderWidth: 3,
                         borderColor: "#ffffff",
                     },
@@ -892,9 +892,9 @@ function initDemographicCharts() {
    7. DOM CONTENT LOADED (Initialization & Unified Event Listeners)
    ========================================================================== */
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // 1. Tombol ESC Menutup Semua Modal
-    document.addEventListener("keydown", function(e) {
+    document.addEventListener("keydown", function (e) {
         if (e.key === "Escape") {
             closeModal();
             closeFacilityModal();
@@ -915,7 +915,7 @@ document.addEventListener("DOMContentLoaded", function() {
     registeredModals.forEach((modalId) => {
         const modalEl = document.getElementById(modalId);
         if (modalEl) {
-            modalEl.addEventListener("click", function(e) {
+            modalEl.addEventListener("click", function (e) {
                 if (e.target === this) {
                     if (modalId === "postModal") closeModal();
                     if (modalId === "detail-modal") closeFacilityModal();
@@ -930,7 +930,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 3. Auto Open Facility Modal via URL Query Param
     const urlParams = new URLSearchParams(window.location.search);
     const detailKey = urlParams.get("detail");
-    if (detailKey && modalData[detailKey]) {
+    if (detailKey && modalData[ detailKey ]) {
         openFacilityModal(detailKey);
     }
 
@@ -940,7 +940,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 5. Inisialisasi Dynamic Dropdown Jabatan
     const selectKategoriPengurus = document.getElementById("selectKategori");
     if (selectKategoriPengurus) {
-        selectKategoriPengurus.addEventListener("change", function() {
+        selectKategoriPengurus.addEventListener("change", function () {
             populateJabatan(this.value);
         });
 

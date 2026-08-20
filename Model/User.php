@@ -11,7 +11,7 @@ class User extends Model
     // Relasi ke tabel Warga
     public function isAdmin(): bool
     {
-        return($this->role ?? '') === 'admin';
+        return ($this->role ?? '') === 'admin';
     }
     public function warga()
     {
