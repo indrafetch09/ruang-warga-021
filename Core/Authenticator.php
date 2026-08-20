@@ -7,19 +7,27 @@ use Http\Forms\LoginForm;
 class Authenticator
 {
     /**
-     * Mencoba otentikasi user berdasarkan Username & Password
+     * Mencoba otentikasi user berdasarkan Username / Email & Password
      */
     public function attempt(string $identity, string $password): bool
     {
         $db = App::resolve(Database::class);
 
-        // Cari berdasarkan username di tabel 'user'
+        // Cari berdasarkan username ATAU email di tabel 'users'
         $user = $db->query(
-            'SELECT * FROM `users` WHERE username = :identity LIMIT 1',
-            ['identity' => $identity]
+            'SELECT * FROM `users` WHERE (username = :identity OR email = :email) LIMIT 1',
+            [
+                'identity' => $identity,
+                'email'    => $identity,
+            ]
         )->find();
 
         if ($user) {
+            // Cek status aktif akun
+            if (isset($user['is_active']) && (int)$user['is_active'] === 0) {
+                return false;
+            }
+
             // Verifikasi password (BCRYPT)
             if (password_verify($password, $user['password'])) {
                 $this->login($user);
@@ -42,14 +50,15 @@ class Authenticator
         $_SESSION['user'] = [
             'id'          => $user['id'] ?? null,
             'username'    => $user['username'] ?? '',
-            'name'        => $user['username'] ?? 'Pengurus RW',
-            'role'        => $user['role'] ?? 'pengurus_rt',
-            'rt_assigned' => $user['rt_assigned'] ?? null,
+            'name'        => $user['name'] ?? $user['username'] ?? 'Pengurus RW',
+            'email'       => $user['email'] ?? '',
+            'role'        => $user['role'] ?? 'admin',
+            'is_active'   => (int)($user['is_active'] ?? 1),
             'logged_at'   => time(),
         ];
 
         // Mencegah Session Fixation
-        if (session_status() === PHP_SESSION_ACTIVE) {
+        if (session_status() === PHP_SESSION_ACTIVE && !headers_sent()) {
             session_regenerate_id(true);
         }
     }
