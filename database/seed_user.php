@@ -1,19 +1,17 @@
 #!/usr/bin/env php
 <?php
 
-// ponytail: single-file CLI user seeder script for RW 021
-
 const BASE_PATH = __DIR__ . '/../';
 
 $config = require BASE_PATH . 'config.php';
 $c = $config['database'];
 
-$host = $c['host'] ?? '127.0.0.1';
-$port = $c['port'] ?? '3306';
-$charset = $c['charset'] ?? 'utf8mb4';
-$dbname = $c['dbname'] ?? 'sisrw21';
-$user = $c['user'] ?? $c['username'] ?? 'root';
-$pass = $c['pass'] ?? $c['password'] ?? '';
+$host = $c['host'];
+$port = $c['port'];
+$charset = $c['charset'];
+$dbname = $c['dbname'];
+$user = $c['user'] ?? $c['username'];
+$pass = $c['pass'] ?? $c['password'];
 
 $dsn = "mysql:host={$host};port={$port};dbname={$dbname};charset={$charset}";
 
@@ -30,6 +28,7 @@ try {
         // 1. Super Admin
         [
             'username'    => 'admin',
+            'email'       => 'admin@rw021.local',
             'password'    => password_hash('admin123', PASSWORD_BCRYPT),
             'role'        => 'admin',
             'rt_assigned' => null
@@ -38,6 +37,7 @@ try {
         // 2. Pengurus RW
         [
             'username'    => 'rw021',
+            'email'       => 'pengurus@rw021.local',
             'password'    => password_hash('rw123', PASSWORD_BCRYPT),
             'role'        => 'pengurus_rw',
             'rt_assigned' => null
@@ -46,30 +46,35 @@ try {
         // 3. Pengurus RT (RT 01 sampai RT 05)
         [
             'username'    => 'rt01',
+            'email'       => 'rt01@rw021.local',
             'password'    => password_hash('rt01123', PASSWORD_BCRYPT),
             'role'        => 'pengurus_rt',
             'rt_assigned' => '01'
         ],
         [
             'username'    => 'rt02',
+            'email'       => 'rt02@rw021.local',
             'password'    => password_hash('rt02123', PASSWORD_BCRYPT),
             'role'        => 'pengurus_rt',
             'rt_assigned' => '02'
         ],
         [
             'username'    => 'rt03',
+            'email'       => 'rt03@rw021.local',
             'password'    => password_hash('rt03123', PASSWORD_BCRYPT),
             'role'        => 'pengurus_rt',
             'rt_assigned' => '03'
         ],
         [
             'username'    => 'rt04',
+            'email'       => 'rt04@rw021.local',
             'password'    => password_hash('rt04123', PASSWORD_BCRYPT),
             'role'        => 'pengurus_rt',
             'rt_assigned' => '04'
         ],
         [
             'username'    => 'rt05',
+            'email'       => 'rt05@rw021.local',
             'password'    => password_hash('rt05123', PASSWORD_BCRYPT),
             'role'        => 'pengurus_rt',
             'rt_assigned' => '05'
@@ -77,9 +82,10 @@ try {
     ];
 
     $stmt = $pdo->prepare("
-        INSERT INTO `user` (`username`, `password`, `role`, `rt_assigned`, `created_at`) 
-        VALUES (:username, :password, :role, :rt_assigned, NOW())
+        INSERT INTO `users` (`username`, `email`, `password`, `role`, `rt_assigned`, `created_at`) 
+        VALUES (:username, :email, :password, :role, :rt_assigned, NOW())
         ON DUPLICATE KEY UPDATE 
+            `email` = VALUES(`email`),
             `password` = VALUES(`password`),
             `role` = VALUES(`role`),
             `rt_assigned` = VALUES(`rt_assigned`)
@@ -87,8 +93,8 @@ try {
 
     foreach ($users as $u) {
         $stmt->execute($u);
-        $rtLabel = $u['rt_assigned'] ? " (Wilayah RT {$u['rt_assigned']})" : "";
-        echo "  [+] User: {$u['username']} | Role: {$u['role']}{$rtLabel}\n";
+        $rtInfo = $u['rt_assigned'] ? " (RT {$u['rt_assigned']})" : "";
+        echo "  [+] User: {$u['username']} | Role: {$u['role']}{$rtInfo}\n";
     }
 
     echo "\n✓ User seeding completed successfully!\n";

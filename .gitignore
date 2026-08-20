@@ -5,3 +5,5 @@ vendor
 .env
 
 tests/
+
+/seed_user.php

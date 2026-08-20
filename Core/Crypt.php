@@ -22,7 +22,7 @@ class Crypt
      */
     public static function encrypt(string $data, string $key = null): string
     {
-        $key = $key ?? self::DEFAULT_KEY;
+        $key = $key ?? env('APP_KEY', self::DEFAULT_KEY);
 
         // 1. Generate IV (Initialization Vector) acak biar hasil enkripsi selalu unik
         $ivLength = openssl_cipher_iv_length(self::CIPHER_ALGO);
@@ -50,7 +50,7 @@ class Crypt
      */
     public static function decrypt(string $payload, string $key = null)
     {
-        $key = $key ?? self::DEFAULT_KEY;
+        $key = $key ?? env('APP_KEY', self::DEFAULT_KEY);
 
         // 1. Decode dari Base64
         $rawPayload = base64_decode($payload);

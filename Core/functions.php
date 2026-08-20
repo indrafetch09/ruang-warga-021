@@ -34,7 +34,7 @@ function authorize($condition, $status = Response::FORBIDDEN)
     return true;
 }
 
-function base_path($path)
+function base_path($path = '')
 {
     return BASE_PATH . $path;
 }
@@ -79,4 +79,30 @@ function csrf_field()
 {
     $token = csrf_token();
     return "<input type='hidden' name='_token' value='{$token}'>";
+}
+
+function env($key, $default = null)
+{
+    $value = $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key);
+
+    if ($value === false || $value === null) {
+        return $default;
+    }
+
+    switch (strtolower($value)) {
+        case 'true':
+        case '(true)':
+            return true;
+        case 'false':
+        case '(false)':
+            return false;
+        case 'empty':
+        case '(empty)':
+            return '';
+        case 'null':
+        case '(null)':
+            return null;
+    }
+
+    return $value;
 }
