@@ -8,6 +8,7 @@ use App\Controllers\WargaController;
 use App\Controllers\LaporanController;
 use App\Controllers\KegiatanController;
 use App\Controllers\PengurusController;
+use App\Controllers\StatistikController;
 use App\Controllers\AdminController;
 
 $router = new \Core\Router();
@@ -40,44 +41,7 @@ $router->get('/kegiatan', [KegiatanController::class, 'index']);
 // Notulensi & Statistik Warga
 $router->get('/notulensi', [NotulensiController::class, 'index']);
 $router->get('/notulensi/detail', [NotulensiController::class, 'show']);
-
-$router->get('/statistik', function () {
-    $db = \Core\App::resolve(\Core\Database::class);
-
-    $totalWarga = (int)($db->query("SELECT COUNT(id) as total FROM warga WHERE status_verifikasi = 'verified'")->find()['total'] ?? 0);
-    $totalKK    = (int)($db->query("SELECT COUNT(DISTINCT no_kk) as total FROM warga WHERE status_verifikasi = 'verified'")->find()['total'] ?? 0);
-    $totalAll   = (int)($db->query("SELECT COUNT(id) as total FROM warga")->find()['total'] ?? 0);
-
-    $pctVerified = $totalAll > 0 ? round(($totalWarga / $totalAll) * 100) . '%' : '0%';
-
-    $summaryData = [
-        'total_kk'   => $totalKK,
-        'total_jiwa' => $totalWarga,
-        'total_rt'   => 10,
-        'verifikasi' => $pctVerified
-    ];
-
-    $rtCountsRaw = $db->query("SELECT rt, COUNT(DISTINCT no_kk) as kk, COUNT(id) as jiwa FROM warga WHERE status_verifikasi = 'verified' GROUP BY rt")->get();
-
-    $listDataRt = [];
-    for ($i = 1; $i <= 10; $i++) {
-        $listDataRt[$i] = ['kk' => 0, 'jiwa' => 0];
-    }
-    foreach ($rtCountsRaw as $row) {
-        $rtNum = (int)$row['rt'];
-        if ($rtNum >= 1 && $rtNum <= 10) {
-            $listDataRt[$rtNum] = [
-                'kk'   => (int)$row['kk'],
-                'jiwa' => (int)$row['jiwa']
-            ];
-        }
-    }
-
-    return view('user/statistik.php', [
-        'summaryData' => $summaryData,
-        'listDataRt'  => $listDataRt
-    ]);
-});
+$router->get('/statistik', [StatistikController::class, 'index']);
 
 // Galeri Publik
 $router->get('/galeri', [GaleriController::class, 'index']);

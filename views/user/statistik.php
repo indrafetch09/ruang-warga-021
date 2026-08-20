@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/theme.css" />
 </head>
+
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
     <?php require base_path('views/partials/navbar.php'); ?>
@@ -26,19 +28,19 @@
             </div>
 
             <?php
-                $summary = $summaryData ?? [
-                    'total_kk' => 0,
-                    'total_jiwa' => 0,
-                    'total_rt' => 10,
-                    'verifikasi' => '0%'
-                ];
+            $summary = $summaryData ?? [
+                'total_kk' => 0,
+                'total_jiwa' => 0,
+                'total_rt' => 10,
+                'verifikasi' => '0%'
+            ];
 
-                $dataRt = $listDataRt ?? [];
-                for ($i = 1; $i <= 10; $i++) {
-                    if (!isset($dataRt[$i])) {
-                        $dataRt[$i] = ['kk' => 0, 'jiwa' => 0];
-                    }
+            $dataRt = $listDataRt ?? [];
+            for ($i = 1; $i <= 10; $i++) {
+                if (!isset($dataRt[$i])) {
+                    $dataRt[$i] = ['kk' => 0, 'jiwa' => 0];
                 }
+            }
             ?>
 
             <!-- SUMMARY CARDS -->
@@ -109,15 +111,22 @@
                             <canvas id="pieChartGender"></canvas>
                         </div>
                     </div>
+                    <?php
+                    $lCount = $genderStats['L'] ?? $chartGenderData[0] ?? 0;
+                    $pCount = $genderStats['P'] ?? $chartGenderData[1] ?? 0;
+                    $gTotal = max($lCount + $pCount, 1);
+                    $pctL = ($lCount > 0) ? round(($lCount / $gTotal) * 100) : 0;
+                    $pctP = ($pCount > 0) ? round(($pCount / $gTotal) * 100) : 0;
+                    ?>
                     <div class="mt-6 pt-4 border-t border-gray-100 flex justify-around text-center">
                         <div>
                             <span class="text-xs font-bold text-gray-400 uppercase">Laki-laki</span>
-                            <span class="text-lg font-extrabold text-blue-600 block">635 Jiwa (51%)</span>
+                            <span class="text-lg font-extrabold text-blue-600 block"><?= number_format($lCount) ?> Jiwa (<?= $pctL ?>%)</span>
                         </div>
                         <div class="border-r border-gray-200"></div>
                         <div>
                             <span class="text-xs font-bold text-gray-400 uppercase">Perempuan</span>
-                            <span class="text-lg font-extrabold text-pink-600 block">610 Jiwa (49%)</span>
+                            <span class="text-lg font-extrabold text-pink-600 block"><?= number_format($pCount) ?> Jiwa (<?= $pctP ?>%)</span>
                         </div>
                     </div>
                 </div>
@@ -153,20 +162,18 @@
 
             </div>
 
-        </div>
-    </div>
+            <!-- FOOTER -->
+            <?php require base_path('views/partials/footer.php'); ?>
 
-    <!-- FOOTER -->
-    <?php require base_path('views/partials/footer.php'); ?>
-
-    <!-- DYNAMIC DATA BINDING UNTUK CHART.JS -->
-    <script>
-        window.chartBarLabels = <?= json_encode($chartBarLabels ?? ['RT 01', 'RT 02', 'RT 03', 'RT 04', 'RT 05', 'RT 06', 'RT 07', 'RT 08', 'RT 09', 'RT 10']) ?>;
-        window.chartBarKk     = <?= json_encode($chartBarKk ?? [32, 35, 28, 40, 38, 30, 36, 34, 39, 38]) ?>;
-        window.chartBarJiwa   = <?= json_encode($chartBarJiwa ?? [112, 123, 98, 140, 133, 105, 126, 119, 137, 133]) ?>;
-        window.chartUsiaData  = <?= json_encode($chartUsiaData ?? [215, 180, 680, 170]) ?>;
-        window.chartGenderData= <?= json_encode($chartGenderData ?? [635, 610]) ?>;
-    </script>
-    <script src="/script.js"></script>
+            <!-- DYNAMIC DATA BINDING UNTUK CHART.JS -->
+            <script>
+                window.chartBarLabels = <?= json_encode($chartBarLabels ?? ['RT 01', 'RT 02', 'RT 03', 'RT 04', 'RT 05', 'RT 06', 'RT 07', 'RT 08', 'RT 09', 'RT 10']) ?>;
+                window.chartBarKk = <?= json_encode($chartBarKk ?? [32, 35, 28, 40, 38, 30, 36, 34, 39, 38]) ?>;
+                window.chartBarJiwa = <?= json_encode($chartBarJiwa ?? [112, 123, 98, 140, 133, 105, 126, 119, 137, 133]) ?>;
+                window.chartUsiaData = <?= json_encode($chartUsiaData ?? [215, 180, 680, 170]) ?>;
+                window.chartGenderData = <?= json_encode($chartGenderData ?? [635, 610]) ?>;
+            </script>
+            <script src="/script.js"></script>
 </body>
+
 </html>
