@@ -12,7 +12,41 @@ use App\Models\Pengumuman;
 class PengumumanController
 {
     /**
-     * 1. Menampilkan Form Tambah Pengumuman (Khusus Admin/Pengurus)
+     * 1. Menampilkan Papan Informasi & Pengumuman Publik (/pengumuman)
+     */
+    public function index()
+    {
+        $db = App::resolve(Database::class);
+
+        $search   = trim($_GET['q'] ?? $_GET['search'] ?? '');
+        $kategori = trim($_GET['kategori'] ?? '');
+
+        $query  = "SELECT * FROM " . (Pengumuman::$table ?? 'pengumuman') . " WHERE is_published = 1";
+        $params = [];
+
+        if (!empty($search)) {
+            $query .= " AND (judul LIKE :search OR pesan LIKE :search)";
+            $params['search'] = "%{$search}%";
+        }
+
+        if (!empty($kategori) && $kategori !== 'semua') {
+            $query .= " AND LOWER(kategori) = :kategori";
+            $params['kategori'] = strtolower($kategori);
+        }
+
+        $query .= " ORDER BY tanggal_publikasi DESC, id DESC";
+
+        $pengumumanList = $db->query($query, $params)->get();
+
+        return view('user/pengumuman.php', [
+            'pengumumanList' => $pengumumanList,
+            'search'         => $search,
+            'kategori'       => $kategori
+        ]);
+    }
+
+    /**
+     * 2. Menampilkan Form Tambah Pengumuman (Khusus Admin/Pengurus)
      */
     public function create()
     {

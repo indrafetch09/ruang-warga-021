@@ -14,7 +14,7 @@ $currentUri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
 $isProfilActive  = str_starts_with($currentUri, '/tentang-kami') || str_starts_with($currentUri, '/pengurus-rw') || str_starts_with($currentUri, '/galeri');
 $isLayananActive = str_starts_with($currentUri, '/layanan') || str_starts_with($currentUri, '/tpst');
-$isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with($currentUri, '/statistik') || str_starts_with($currentUri, '/lokasi') || str_starts_with($currentUri, '/maps');
+$isInfoActive    = str_starts_with($currentUri, '/pengumuman') || str_starts_with($currentUri, '/notulensi') || str_starts_with($currentUri, '/statistik') || str_starts_with($currentUri, '/lokasi') || str_starts_with($currentUri, '/maps');
 ?>
 <!-- NAVBAR UTAMA (Berdasarkan spesifikasi docs/features/users.md) -->
 <nav class="bg-white border-b border-purple-100 sticky top-0 z-50 shadow-sm">
@@ -91,7 +91,11 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div class="absolute left-0 top-full hidden group-hover:block w-52 bg-white border border-purple-100 rounded-xl shadow-xl py-2 z-50">
+                    <div class="absolute left-0 top-full hidden group-hover:block w-56 bg-white border border-purple-100 rounded-xl shadow-xl py-2 z-50">
+                        <a href="/pengumuman" class="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">
+                            <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                            <span>Papan Informasi</span>
+                        </a>
                         <a href="/notulensi" class="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">
                             <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                             <span>Notulensi</span>
@@ -172,6 +176,10 @@ $isInfoActive    = str_starts_with($currentUri, '/notulensi') || str_starts_with
         <!-- Mobile Submenu: Informasi -->
         <div class="pl-3 py-1 border-l-2 border-purple-300 space-y-2">
             <span class="block text-xs font-medium text-purple-700 uppercase tracking-wider">Informasi</span>
+            <a href="/pengumuman" class="flex items-center gap-2 px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">
+                <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                Papan Informasi
+            </a>
             <a href="/notulensi" class="flex items-center gap-2 px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">
                 <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                 Notulensi Rapat

@@ -170,48 +170,80 @@
 
             <?php if (empty($pengumumanList)): ?>
                 <!-- EMPTY STATE PENGUMUMAN -->
-                <div class="bg-white rounded-xl p-10 text-center border border-purple-100 shadow-sm">
+                <div class="bg-white rounded-2xl p-10 text-center border border-purple-100 shadow-sm">
                     <p class="text-gray-500 text-sm">Belum ada pengumuman terbaru untuk warga.</p>
                 </div>
             <?php else: ?>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="space-y-4">
                     <?php foreach ($pengumumanList as $pengumuman): ?>
                         <?php
-                        $kategori = $pengumuman->kategori ?? 'Umum';
-                        $borderColor = 'border-purple-100';
-                        $bgColor = 'bg-purple-500';
-                        $textColor = 'text-purple-600';
+                        $kat = strtolower($pengumuman->kategori ?? 'umum');
+                        $tgl = !empty($pengumuman->tanggal_publikasi) ? strtotime($pengumuman->tanggal_publikasi) : time();
+                        $isToday = (date('Y-m-d', $tgl) === date('Y-m-d'));
 
-                        if ($kategori === 'Mendesak' || $kategori === 'Penting') {
-                            $borderColor = 'border-rose-100';
-                            $bgColor = 'bg-rose-500';
-                            $textColor = 'text-rose-600';
-                        } elseif ($kategori === 'Kegiatan' || $kategori === 'Sosial') {
-                            $borderColor = 'border-emerald-100';
-                            $bgColor = 'bg-emerald-500';
-                            $textColor = 'text-emerald-600';
+                        // Retain theme colors with matching soft background tones
+                        $badgeBg = 'bg-purple-100 text-purple-800';
+                        $btnStyle = 'border border-gray-200 text-gray-700 hover:border-purple-300 hover:text-purple-700 hover:bg-purple-50';
+
+                        if (in_array($kat, ['mendesak', 'darurat', 'penting'])) {
+                            $badgeBg = 'bg-rose-100 text-rose-800';
+                            $btnStyle = 'bg-rose-600 text-white hover:bg-rose-700 shadow-sm';
+                        } elseif (in_array($kat, ['kegiatan', 'sosial', 'agenda'])) {
+                            $badgeBg = 'bg-emerald-100 text-emerald-800';
+                            $btnStyle = 'border border-emerald-200 text-emerald-700 hover:bg-emerald-50';
                         }
                         ?>
-                        <div class="bg-white rounded-xl p-6 border <?= $borderColor ?> shadow-sm relative overflow-hidden group hover:shadow-md transition">
-                            <div class="absolute top-0 left-0 w-1 h-full <?= $bgColor ?>"></div>
-                            <div class="flex justify-between items-start mb-4">
-                                <span class="text-xs text-gray-400 font-medium">
-                                    <?= !empty($pengumuman->tanggal_publikasi) ? date('d M Y', strtotime($pengumuman->tanggal_publikasi)) : 'Baru saja' ?>
+                        <div class="bg-white rounded-2xl p-4 sm:p-5 border border-purple-100/70 shadow-sm hover:shadow-md transition duration-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group">
+                            
+                            <!-- KIRI: KOTAK TANGGAL / INFO (Matching Image UI) -->
+                            <div class="flex-shrink-0 w-28 h-20 sm:w-32 sm:h-20 <?= $badgeBg ?> rounded-2xl flex flex-col items-center justify-center text-center p-2">
+                                <span class="text-[11px] font-bold uppercase tracking-wider">
+                                    <?= $isToday ? 'HARI INI' : date('d M', $tgl) ?>
+                                </span>
+                                <span class="text-xl sm:text-2xl font-extrabold tracking-tight mt-0.5">
+                                    <?= date('Y', $tgl) ?>
                                 </span>
                             </div>
-                            <h3 class="text-lg font-bold text-gray-900 mb-2"><?= htmlspecialchars($pengumuman->judul ?? '-') ?></h3>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                                <?= htmlspecialchars($pengumuman->pesan ?? '') ?>
-                            </p>
-                            <?php if (!empty($pengumuman->tautan_url)): ?>
-                                <a href="<?= htmlspecialchars($pengumuman->tautan_url) ?>" class="<?= $textColor ?> text-sm font-semibold hover:underline">
-                                    <?= htmlspecialchars($pengumuman->label_tombol ?? 'Baca selengkapnya') ?> &rarr;
-                                </a>
-                            <?php endif; ?>
+
+                            <!-- TENGAH: JUDUL & DESKRIPSI -->
+                            <div class="flex-1 min-w-0 pr-0 sm:pr-4 space-y-1">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <h3 class="text-base sm:text-lg font-bold text-gray-900 group-hover:text-purple-700 transition">
+                                        <?= htmlspecialchars($pengumuman->judul ?? '-') ?>
+                                    </h3>
+                                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider <?= $badgeBg ?>">
+                                        <?= htmlspecialchars(ucfirst($kat)) ?>
+                                    </span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-gray-500 leading-relaxed line-clamp-2">
+                                    <?= htmlspecialchars($pengumuman->pesan ?? '') ?>
+                                </p>
+                            </div>
+
+                            <!-- KANAN: CALL TO ACTION BUTTON (Matching Image UI "+ Add to calendar" look) -->
+                            <div class="flex-shrink-0 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-gray-100 flex justify-end">
+                                <?php if (!empty($pengumuman->tautan_url)): ?>
+                                    <a href="<?= htmlspecialchars($pengumuman->tautan_url) ?>" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold transition <?= $btnStyle ?>">
+                                        <span>+ <?= htmlspecialchars($pengumuman->label_tombol ?? 'Buka Tautan') ?></span>
+                                    </a>
+                                <?php else: ?>
+                                    <a href="/pengumuman" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold transition <?= $btnStyle ?>">
+                                        <span>+ Detail Info</span>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+
                         </div>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
+
+            <!-- Tombol Lihat Semua Pengumuman (Mobile) -->
+            <div class="mt-8 text-center md:hidden">
+                <a href="/pengumuman" class="inline-flex items-center justify-center px-6 py-3 border border-purple-200 text-purple-700 font-bold text-sm rounded-xl hover:bg-purple-50 transition duration-150 w-full bg-white shadow-sm">
+                    Lihat Papan Informasi &rarr;
+                </a>
+            </div>
         </div>
     </div>
 

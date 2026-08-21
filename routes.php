@@ -42,6 +42,7 @@ $router->get('/kegiatan', [KegiatanController::class, 'index']);
 $router->get('/notulensi', [NotulensiController::class, 'index']);
 $router->get('/notulensi/detail', [NotulensiController::class, 'show']);
 $router->get('/statistik', [StatistikController::class, 'index']);
+$router->get('/pengumuman', [PengumumanController::class, 'index']);
 
 // Galeri Publik
 $router->get('/galeri', [GaleriController::class, 'index']);
