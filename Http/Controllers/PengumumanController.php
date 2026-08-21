@@ -5,8 +5,6 @@ namespace App\Controllers;
 use Core\App;
 use Core\Database;
 use Core\Session;
-use Core\Authenticator;
-use Core\ValidationException;
 use Core\Validator;
 use Core\Csrf;
 use App\Models\Pengumuman;
@@ -177,7 +175,7 @@ class PengumumanController
         );
 
         Session::flash('sukses', 'Pengumuman berhasil diperbarui!');
-        return redirect('/dashboard');
+        return redirect('/admin/pengumuman');
     }
 
     /**
@@ -188,7 +186,7 @@ class PengumumanController
         // 1. Verifikasi CSRF Token
         if (!Csrf::verify($_POST['_csrf_token'] ?? null)) {
             Session::flash('error', 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.');
-            return redirect('/dashboard');
+            return redirect('/admin/pengumuman');
         }
 
         $id = $_POST['id'] ?? null;
@@ -199,7 +197,7 @@ class PengumumanController
             Session::flash('sukses', 'Pengumuman berhasil dihapus.');
         }
 
-        return redirect('/dashboard');
+        return redirect('/admin/pengumuman');
     }
 
     public function adminIndex()
