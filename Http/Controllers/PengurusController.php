@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Pengurus;
 use App\Models\Warga;
+use App\Models\User;
 use Core\App;
 use Core\Database;
 use Core\Session;
@@ -12,36 +13,53 @@ use Core\Csrf;
 class PengurusController
 {
     /**
-     * 1. Form Tambah Pengurus
+     * 1. Daftar Struktur Pengurus (Admin Panel)
      */
-
     public function index()
     {
+        $user = User::current();
         $db = App::resolve(Database::class);
         $pengurusList = $db->query("SELECT * FROM pengurus ORDER BY urutan ASC, id ASC")->get();
 
-        // Diubah dari 'admin/manajemen-pengurus.php' menjadi 'admin/pengurus.php'
         return view('admin/pengurus.php', [
+            'user'         => $user,
             'pengurusList' => $pengurusList
         ]);
     }
+
+    /**
+     * 2. Form Tambah Pengurus (Khusus Super Admin)
+     */
     public function create()
     {
+        $user = User::current();
+        if (!$user->isAdmin()) {
+            Session::flash('error', 'Akses ditolak. Hanya Super Admin yang berhak menugaskan pengurus.');
+            return redirect('/admin/pengurus');
+        }
+
         $wargaList = Warga::getByStatus('verified');
 
         return view('admin/tambah-pengurus.php', [
+            'user'      => $user,
             'wargaList' => $wargaList
         ]);
     }
 
     /**
-     * 2. Simpan Data Pengurus Baru
+     * 3. Simpan Data Pengurus Baru (Khusus Super Admin)
      */
     public function store()
     {
         if (!Csrf::verify($_POST['_csrf_token'] ?? null)) {
             Session::flash('error', 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.');
             return redirect('/admin/pengurus/create');
+        }
+
+        $user = User::current();
+        if (!$user->isAdmin()) {
+            Session::flash('error', 'Akses ditolak. Hanya Super Admin yang berhak menugaskan pengurus.');
+            return redirect('/admin/pengurus');
         }
 
         $db = App::resolve(Database::class);
@@ -92,7 +110,7 @@ class PengurusController
             }
         }
 
-        // Query INSERT Bersih (Tanpa tingkat & no_wilayah)
+        // Query INSERT Bersih
         $db->query(
             "INSERT INTO pengurus 
             (warga_id, nama, jabatan, kategori_jabatan, urutan, periode) 
@@ -110,14 +128,20 @@ class PengurusController
 
         Session::flash('sukses', 'Pengurus RW 021 berhasil ditambahkan!');
 
-        return redirect('/pengurus-rw');
+        return redirect('/admin/pengurus');
     }
 
     /**
-     * 3. Form Edit Pengurus
+     * 4. Form Edit Pengurus (Khusus Super Admin)
      */
     public function edit()
     {
+        $user = User::current();
+        if (!$user->isAdmin()) {
+            Session::flash('error', 'Akses ditolak. Hanya Super Admin yang berhak mengedit data pengurus.');
+            return redirect('/admin/pengurus');
+        }
+
         $id = $_GET['id'] ?? null;
 
         if (!$id) {
@@ -134,19 +158,26 @@ class PengurusController
         $wargaList = Warga::getByStatus('verified');
 
         return view('admin/edit-pengurus.php', [
+            'user'      => $user,
             'pengurus'  => $pengurus,
             'wargaList' => $wargaList
         ]);
     }
 
     /**
-     * 4. Update Data Pengurus
+     * 5. Update Data Pengurus (Khusus Super Admin)
      */
     public function update()
     {
         if (!Csrf::verify($_POST['_csrf_token'] ?? null)) {
             Session::flash('error', 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.');
-            return redirect('/pengurus-rw');
+            return redirect('/admin/pengurus');
+        }
+
+        $user = User::current();
+        if (!$user->isAdmin()) {
+            Session::flash('error', 'Akses ditolak. Hanya Super Admin yang berhak mengubah data pengurus.');
+            return redirect('/admin/pengurus');
         }
 
         $id = $_POST['id'] ?? null;
@@ -199,7 +230,7 @@ class PengurusController
             }
         }
 
-        // Query UPDATE Bersih (Tanpa tingkat & no_wilayah)
+        // Query UPDATE
         $db = App::resolve(Database::class);
         $db->query(
             "UPDATE pengurus SET 
@@ -223,17 +254,23 @@ class PengurusController
 
         Session::flash('sukses', 'Data pengurus berhasil diperbarui!');
 
-        return redirect('/pengurus-rw');
+        return redirect('/admin/pengurus');
     }
 
     /**
-     * 5. Hapus Pengurus
+     * 6. Hapus Pengurus (Khusus Super Admin)
      */
     public function destroy()
     {
         if (!Csrf::verify($_POST['_csrf_token'] ?? null)) {
             Session::flash('error', 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.');
-            return redirect('/pengurus-rw');
+            return redirect('/admin/pengurus');
+        }
+
+        $user = User::current();
+        if (!$user->isAdmin()) {
+            Session::flash('error', 'Akses ditolak. Hanya Super Admin yang berhak menghapus data pengurus.');
+            return redirect('/admin/pengurus');
         }
 
         $id = $_POST['id'] ?? null;
@@ -244,6 +281,6 @@ class PengurusController
             Session::flash('sukses', 'Pengurus berhasil dihapus.');
         }
 
-        return redirect('/pengurus-rw');
+        return redirect('/admin/pengurus');
     }
 }

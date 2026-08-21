@@ -104,11 +104,26 @@ class Authenticator
     }
 
     /**
-     * Cek apakah user adalah Admin atau Pengurus RW
+     * Cek apakah user adalah Super Admin
      */
     public static function isAdmin(): bool
     {
-        $role = self::role();
-        return in_array($role, ['admin', 'pengurus_rw']);
+        return self::role() === 'admin';
+    }
+
+    /**
+     * Cek apakah user adalah Super Admin atau Pengurus RW
+     */
+    public static function isRw(): bool
+    {
+        return in_array(self::role(), ['admin', 'pengurus_rw', 'rw']);
+    }
+
+    /**
+     * Cek apakah user adalah Pengurus RT
+     */
+    public static function isRt(): bool
+    {
+        return in_array(self::role(), ['pengurus_rt', 'rt']);
     }
 }
