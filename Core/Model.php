@@ -2,7 +2,7 @@
 
 namespace Core;
 
-abstract class Model
+abstract class Model implements \ArrayAccess
 {
     protected static $table;
     public $attributes = [];
@@ -37,6 +37,43 @@ abstract class Model
     public function __set($key, $value)
     {
         $this->attributes[$key] = $value;
+    }
+
+    public function __isset($key): bool
+    {
+        return isset($this->attributes[$key]);
+    }
+
+    public function __unset($key): void
+    {
+        unset($this->attributes[$key]);
+    }
+
+    // -----------------------------------------------------------------
+    // ARRAY ACCESS IMPLEMENTATION
+    // -----------------------------------------------------------------
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->attributes[$offset]) || method_exists($this, $offset);
+    }
+
+    public function offsetGet(mixed $offset): mixed
+    {
+        return $this->__get($offset);
+    }
+
+    public function offsetSet(mixed $offset, mixed $value): void
+    {
+        if (is_null($offset)) {
+            $this->attributes[] = $value;
+        } else {
+            $this->attributes[$offset] = $value;
+        }
+    }
+
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->attributes[$offset]);
     }
 
     // -----------------------------------------------------------------
