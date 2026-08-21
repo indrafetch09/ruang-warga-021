@@ -21,8 +21,11 @@ $router = new \Core\Router();
 $router->get('/', [HomeController::class, 'index']);
 $router->get('/tentang-kami', [HomeController::class, 'about']);
 $router->get('/pengurus-rw', [HomeController::class, 'pengurus']);
-// Layanan Warga (Aula RW 021 & TPST)
+// Layanan Warga (Balai RW 021 & TPST)
 $router->get('/layanan', function () {
+    return view('user/layanan.php');
+});
+$router->get('/balai-rw', function () {
     return view('user/layanan.php');
 });
 $router->get('/aula-rw', function () {

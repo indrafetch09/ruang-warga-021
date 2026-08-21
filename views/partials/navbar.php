@@ -27,7 +27,7 @@ $isInfoActive    = str_starts_with($currentUri, '/pengumuman') || str_starts_wit
                 <div class="flex-shrink-0 h-100 w-28 bg-white logo-container flex flex-col items-center justify-center p-2 z-10 border border-purple-200 shadow-md rounded-b-2xl group-hover:border-purple-400 transition">
                     <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-center text-xs leading-tight mb-1 shadow-md group-hover:scale-105 transition p-1">
                         <img class="w-14 h-14 absolute"
-                            src="/images/logo_RW021.webp"
+                            src="/images/logo_rw21.webp"
                             alt="logo RW 021" />
                     </div>
                     <span class="text-[9px] text-center font-bold text-gray-700 leading-tight">RUANG<br />WARGA 021</span>
@@ -84,7 +84,7 @@ $isInfoActive    = str_starts_with($currentUri, '/pengumuman') || str_starts_wit
                             <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                             </svg>
-                            <span>Aula RW 021 & Fasilitas</span>
+                            <span>Balai RW 021 & Fasilitas</span>
                         </a>
                         <a href="/tpst" class="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">
                             <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,7 +192,7 @@ $isInfoActive    = str_starts_with($currentUri, '/pengumuman') || str_starts_wit
                 <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                 </svg>
-                Aula RW 021 & Fasilitas
+                Balai RW 021 & Fasilitas
             </a>
             <a href="/tpst" class="flex items-center gap-2 px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">
                 <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

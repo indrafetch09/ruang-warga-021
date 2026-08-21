@@ -9,7 +9,7 @@
             <div class="sm:col-span-2 lg:col-span-1 space-y-4">
                 <h4 class="text-gray-900 font-extrabold text-base tracking-tight">Sekretariat RW 021</h4>
                 <p class="text-gray-600 text-xs leading-relaxed font-medium">
-                    Aula RW 021 (Posyandu Bunga Tanjung)<br />
+                    Balai RW 021 (Posyandu Bunga Tanjung)<br />
                     Perumahan Dasana Indah, Bojong Nangka,<br />
                     Kelapa Dua, Kab. Tangerang, Banten 15810
                 </p>
@@ -61,9 +61,9 @@
             <div class="space-y-3">
                 <h4 class="text-gray-900 font-extrabold text-base tracking-tight">Layanan</h4>
                 <ul class="space-y-2.5 text-xs md:text-sm">
-                    <li><a href="/layanan" class="text-gray-600 hover:text-purple-700 font-semibold transition">Aula RW 021 & Fasilitas</a></li>
+                    <li><a href="/layanan" class="text-gray-600 hover:text-purple-700 font-semibold transition">Balai RW 021 & Fasilitas</a></li>
                     <li><a href="/tpst" class="text-gray-600 hover:text-purple-700 font-semibold transition">Kebersihan Lingkungan (TPST)</a></li>
-                    <li><a href="/layanan#form-peminjaman" class="text-gray-600 hover:text-purple-700 font-semibold transition">Peminjaman Gedung Aula</a></li>
+                    <li><a href="/layanan#form-peminjaman" class="text-gray-600 hover:text-purple-700 font-semibold transition">Peminjaman Gedung Balai</a></li>
                 </ul>
             </div>
 

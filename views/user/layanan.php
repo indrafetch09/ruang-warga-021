@@ -2,12 +2,8 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aula RW 021 & Fasilitas Balai Warga - Ruang Warga 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
+    <title>Balai RW 021 & Fasilitas Balai Warga - Ruang Warga 021</title>
+    <?php require base_path('views/partials/head.php'); ?>
     <style>
         /* 2x2 Grid Directional Animations */
         @keyframes marquee-right {
@@ -53,28 +49,27 @@
     <div class="py-16 md:py-20 flex-1">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
-            <!-- ponytail: Page header with generous spacing and padding -->
             <!-- SIMPLE PAGE HEADER -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-4">
                 <div class="space-y-2">
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Aula <span class="text-purple-600">RW 021 & Posyandu Bunga Tanjung</span></h1>
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Balai <span class="text-purple-600">RW 021 & Posyandu Bunga Tanjung</span></h1>
                     <p class="text-xs md:text-sm text-gray-500 max-w-2xl leading-relaxed">Gedung balai pertemuan utama warga, pelayanan Posyandu, serta izin peminjaman gedung.</p>
                 </div>
             </div>
 
-            <!-- SECTION AULA RW FULL -->
-            <div id="aula-rw" class="bg-white p-6 md:p-10 rounded-2xl shadow-sm border border-purple-100 space-y-10">
+            <!-- SECTION BALAI RW FULL -->
+            <div id="balai-rw" class="bg-white p-6 md:p-10 rounded-2xl shadow-sm border border-purple-100 space-y-10">
 
                 <div class="flex items-center justify-between border-b border-gray-100 pb-4">
                     <div>
-                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-2">Profil & Fasilitas Aula RW 021</h2>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-2">Profil & Fasilitas Balai RW 021</h2>
                         <p class="text-sm text-gray-500 mt-1">Balai pertemuan yang fleksibel untuk musyawarah, pelayanan kesehatan rutin, dan kegiatan olahraga warga.</p>
                     </div>
                 </div>
 
-                <!-- GALERI SLIDER AKTIVITAS AULA -->
+                <!-- GALERI SLIDER AKTIVITAS BALAI -->
                 <?php
-                $galeriAula = $galeriAula ?? [
+                $galeriBalai = $galeriBalai ?? $galeriAula ?? [
                     ['foto' => '/images/aula_posyandu.jpg', 'judul' => 'Posyandu Bunga Tanjung'],
                     ['foto' => '/images/aula_rapat.jpg', 'judul' => 'Musyawarah Warga RW 021'],
                     ['foto' => '/images/aula_badminton.jpg', 'judul' => 'Badminton Indoor'],
@@ -87,22 +82,22 @@
                         <span class="text-lg text-purple-700 font-bold">Balai RW 021 RT 05</span>
                     </div>
 
-                    <?php if (empty($galeriAula)): ?>
-                        <!-- EMPTY STATE GALERI AULA -->
+                    <?php if (empty($galeriBalai)): ?>
+                        <!-- EMPTY STATE GALERI BALAI -->
                         <div class="p-8 bg-gray-50 rounded-2xl border border-gray-200 text-center">
-                            <p class="text-gray-500 text-sm">Dokumentasi foto fasilitas Aula belum diunggah.</p>
+                            <p class="text-gray-500 text-sm">Dokumentasi foto fasilitas Balai belum diunggah.</p>
                         </div>
                     <?php else: ?>
                         <!-- TOP GRID ROW -->
                         <div class="relative overflow-hidden rounded-xl">
                             <div class="flex gap-4 w-max animate-slide-right">
-                                <?php foreach ($galeriAula as $item): ?>
+                                <?php foreach ($galeriBalai as $item): ?>
                                     <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md rounded-xl">
                                         <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
                                     </div>
                                 <?php endforeach; ?>
                                 <!-- Duplicate Loop for Seamless Infinite Scroll -->
-                                <?php foreach ($galeriAula as $item): ?>
+                                <?php foreach ($galeriBalai as $item): ?>
                                     <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md rounded-xl" aria-hidden="true">
                                         <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
                                     </div>
@@ -113,12 +108,12 @@
                         <!-- BOTTOM GRID ROW -->
                         <div class="relative overflow-hidden rounded-xl">
                             <div class="flex gap-4 w-max animate-slide-left">
-                                <?php foreach (array_reverse($galeriAula) as $item): ?>
+                                <?php foreach (array_reverse($galeriBalai) as $item): ?>
                                     <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md rounded-xl">
                                         <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
                                     </div>
                                 <?php endforeach; ?>
-                                <?php foreach (array_reverse($galeriAula) as $item): ?>
+                                <?php foreach (array_reverse($galeriBalai) as $item): ?>
                                     <div class="w-72 sm:w-96 flex-shrink-0 relative group overflow-hidden shadow-md rounded-xl" aria-hidden="true">
                                         <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-52 sm:h-64 object-cover transform group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
                                     </div>
@@ -143,7 +138,7 @@
             <!-- Modal Header -->
             <div id="modal-header-bg" class="px-6 py-5 bg-purple-700 text-white flex justify-between items-center">
                 <div>
-                    <span id="modal-category" class="text-[10px] font-extrabold uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded">Aula RW 021</span>
+                    <span id="modal-category" class="text-[10px] font-extrabold uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded">Balai RW 021</span>
                     <h3 id="modal-title" class="text-xl font-bold mt-1">Detail Layanan</h3>
                 </div>
                 <button type="button" onclick="closeModal()" class="text-white/80 hover:text-white text-2xl font-bold p-1 focus:outline-none">&times;</button>
@@ -197,11 +192,30 @@
 
     <script>
         const modalData = {
-            'peminjaman-aula': {
-                category: 'Aula RW 021 & Fasilitas',
+            'peminjaman-balai': {
+                category: 'Balai RW 021 & Fasilitas',
                 title: 'Peminjaman & Sewa Gedung Balai RW 021',
                 headerBg: 'bg-purple-700',
-                description: 'Prosedur izin penggunaan dan peminjaman fasilitas Aula RW 021 Bojong Nangka untuk syukuran keluarga, rapat organisasi, sosialisasi dinas, dan kegiatan warga.',
+                description: 'Prosedur izin penggunaan dan peminjaman fasilitas Balai RW 021 Bojong Nangka untuk syukuran keluarga, rapat organisasi, sosialisasi dinas, dan kegiatan warga.',
+                subitems: [
+                    'Penggunaan untuk Acara Syukuran / Pernikahan Warga',
+                    'Rapat RT, Karang Taruna, & Keagamaan',
+                    'Kegiatan Sosialisasi Pemerintah & Puskesmas'
+                ],
+                requirements: [
+                    'Warga RW 021 / Penyewa Berizin Pengurus RT',
+                    'Mengisi Form Peminjaman Online di Halaman Ini',
+                    'Mematuhi Jam Operasional & Ketertiban Lingkungan'
+                ],
+                schedule: 'Balai Warga RW 021 RT 05<br>Sesuai Pengajuan Jadwal Peminjaman',
+                coordinator: 'Galih Wirapati (Sekretaris RW - 087888872828)',
+                wa: 'https://wa.me/6287888872828'
+            },
+            'peminjaman-aula': {
+                category: 'Balai RW 021 & Fasilitas',
+                title: 'Peminjaman & Sewa Gedung Balai RW 021',
+                headerBg: 'bg-purple-700',
+                description: 'Prosedur izin penggunaan dan peminjaman fasilitas Balai RW 021 Bojong Nangka untuk syukuran keluarga, rapat organisasi, sosialisasi dinas, dan kegiatan warga.',
                 subitems: [
                     'Penggunaan untuk Acara Syukuran / Pernikahan Warga',
                     'Rapat RT, Karang Taruna, & Keagamaan',
@@ -217,7 +231,7 @@
                 wa: 'https://wa.me/6287888872828'
             },
             'posyandu-info': {
-                category: 'Aula RW 021 & Fasilitas',
+                category: 'Balai RW 021 & Fasilitas',
                 title: 'Layanan Posyandu Bunga Tanjung RW 021',
                 headerBg: 'bg-purple-700',
                 description: 'Pusat pelayanan kesehatan ibu, balita, dan lansia rutin bulanan yang diselenggarakan oleh kader Posyandu Bunga Tanjung RW 021.',
@@ -230,15 +244,15 @@
                     'Membawa Buku KIA (Kartu Menuju Sehat / KMS)',
                     'Warga RW 021 RT 01 - RT 10'
                 ],
-                schedule: 'Aula RW 021 Posyandu Bunga Tanjung<br>Setiap Minggu Ke-4 (Pukul 08.00 - 11.30 WIB)',
+                schedule: 'Balai RW 021 Posyandu Bunga Tanjung<br>Setiap Minggu Ke-4 (Pukul 08.00 - 11.30 WIB)',
                 coordinator: 'Pengurus Kader Posyandu Bunga Tanjung',
                 wa: 'https://wa.me/6282299007700'
             },
             'badminton-info': {
-                category: 'Aula RW 021 & Fasilitas',
+                category: 'Balai RW 021 & Fasilitas',
                 title: 'Jadwal Olahraga & Badminton Indoor',
                 headerBg: 'bg-purple-700',
-                description: 'Penggunaan lapangan bulu tangkis indoor Aula RW 021 bagi perkumpulan PB warga, latihan Karate anak, dan Senam Jasmani.',
+                description: 'Penggunaan lapangan bulu tangkis indoor Balai RW 021 bagi perkumpulan PB warga, latihan Karate anak, dan Senam Jasmani.',
                 subitems: [
                     'PB DABO (Senin & Rabu 19.30 WIB)',
                     'PB SELSAB (Selasa & Sabtu 19.30 WIB)',
@@ -250,13 +264,13 @@
                     'Wajib Menggunakan Sepatu Olahraga Indoor',
                     'Menjaga Kebersihan & Mematikan Lampu Usai Pakai'
                 ],
-                schedule: 'Aula RW 021 Dasana Indah<br>Sesuai Pembagian Jadwal Klub',
+                schedule: 'Balai RW 021 Dasana Indah<br>Sesuai Pembagian Jadwal Klub',
                 coordinator: 'Khusairi (Humas & Keamanan RW - 081511322022)',
                 wa: 'https://wa.me/6281511322022'
             }
         };
 
-        function submitBookingAula(e) {
+        function submitBookingBalai(e) {
             e.preventDefault();
             const nama = document.getElementById('book_nama').value.trim();
             const rt = document.getElementById('book_rt').value;
@@ -271,11 +285,14 @@
                 return;
             }
 
-            const text = `Halo Pengurus RW 021 (Sekretaris Galih Wirapati),\n\nSaya ingin mengajukan *PEMINJAMAN AULA RW 021*:\n\n👤 *Nama Pemohon*: ${nama}\n🏡 *Asal Wilayah*: RT ${rt} RW 021\n📱 *No. WhatsApp*: ${wa}\n📅 *Tanggal Acara*: ${tanggal}\n⏰ *Jam/Waktu*: ${waktu}\n🎉 *Jenis Acara*: ${acara}\n📝 *Catatan Keperluan*: ${catatan || '-'}\n\nMohon informasi persetujuan & ketersediaan gedung Aula. Terima kasih.`;
+            const text = `Halo Pengurus RW 021 (Sekretaris Galih Wirapati),\n\nSaya ingin mengajukan *PEMINJAMAN BALAI RW 021*:\n\n👤 *Nama Pemohon*: ${nama}\n🏡 *Asal Wilayah*: RT ${rt} RW 021\n📱 *No. WhatsApp*: ${wa}\n📅 *Tanggal Acara*: ${tanggal}\n⏰ *Jam/Waktu*: ${waktu}\n🎉 *Jenis Acara*: ${acara}\n📝 *Catatan Keperluan*: ${catatan || '-'}\n\nMohon informasi persetujuan & ketersediaan gedung Balai. Terima kasih.`;
 
             const encoded = encodeURIComponent(text);
             window.open(`https://wa.me/6287888872828?text=${encoded}`, '_blank');
         }
+
+        // Backward compatibility
+        const submitBookingAula = submitBookingBalai;
 
         function openModal(key) {
             const data = modalData[key];

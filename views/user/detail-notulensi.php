@@ -2,15 +2,8 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?= htmlspecialchars($notulensi->judul ?? $notulensi['judul'] ?? 'Detail Notulensi') ?> - Ruang Warga 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
-    <style>
-        body { font-family: "Plus Jakarta Sans", sans-serif; }
-    </style>
+    <?php require base_path('views/partials/head.php'); ?>
 </head>
 
 <body class="bg-gray-50 flex flex-col min-h-screen">
@@ -36,8 +29,13 @@
 
     // Helper Format Hari Indonesia
     $daftarHari = [
-        'Sunday' => 'Minggu', 'Monday' => 'Senin', 'Tuesday' => 'Selasa',
-        'Wednesday' => 'Rabu', 'Thursday' => 'Kamis', 'Friday' => 'Jumat', 'Saturday' => 'Sabtu'
+        'Sunday' => 'Minggu',
+        'Monday' => 'Senin',
+        'Tuesday' => 'Selasa',
+        'Wednesday' => 'Rabu',
+        'Thursday' => 'Kamis',
+        'Friday' => 'Jumat',
+        'Saturday' => 'Sabtu'
     ];
     $namaHari = $daftarHari[date('l', strtotime($nTanggal))] ?? '';
     $tglFormatIndo = $namaHari . ', ' . date('d F Y', strtotime($nTanggal));
@@ -59,7 +57,7 @@
 
             <!-- CONTAINER DOKUMEN NOTULENSI FORMAL -->
             <article class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
-                
+
                 <!-- HEADER NOTULENSI -->
                 <div class="p-6 md:p-8 bg-purple-50/60 border-b border-purple-100">
                     <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
@@ -103,7 +101,7 @@
 
                 <!-- ISI NOTULENSI -->
                 <div class="p-6 md:p-8 space-y-8">
-                    
+
                     <!-- PARAGRAF PEMBUKA OTOMATIS (BERITA ACARA) -->
                     <div class="bg-purple-50/50 border-l-4 border-purple-600 p-4 rounded-r-2xl text-gray-700 text-sm leading-relaxed italic">
                         <strong>Berita Acara:</strong> Pada hari <span class="font-bold text-gray-900"><?= $tglFormatIndo ?></span>, bertempat di <span class="font-bold text-gray-900"><?= htmlspecialchars($nLokasi) ?></span>, telah diselenggarakan <span class="font-bold text-gray-900"><?= htmlspecialchars($nJudul) ?></span> yang dihadiri oleh pengurus RW 021, jajaran RT, serta perwakilan warga setempat. Berikut adalah rincian agenda dan hasil kesepakatan musyawarah:
@@ -163,7 +161,7 @@
                     <!-- SECTION 5: BLOK PENGESAHAN / TANDA TANGAN (LEGALITAS) -->
                     <div class="pt-8 border-t border-gray-200 mt-8">
                         <p class="text-xs text-center text-gray-400 mb-6 italic">Demikian notulensi hasil musyawarah ini dibuat untuk dipergunakan sebagaimana mestinya.</p>
-                        
+
                         <div class="grid grid-cols-2 gap-8 text-center text-xs">
                             <div>
                                 <p class="text-gray-500 mb-12">Notulis / Pencatatan</p>

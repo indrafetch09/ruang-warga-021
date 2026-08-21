@@ -2,12 +2,8 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ruang Warga 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
+    <?php require base_path('views/partials/head.php'); ?>
     <style>
         .logo-container {
             border-radius: 0 0 24px 24px;
@@ -70,7 +66,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                <!-- Card 1: Aula & Fasilitas RW 021 -->
+                <!-- Card 1: Balai & Fasilitas RW 021 -->
                 <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
                     <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -78,8 +74,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="text-lg font-extrabold text-gray-900">Aula & Fasilitas Balai Warga</h3>
-                        <p class="text-xs text-gray-500 mt-1 leading-relaxed">Profil balai pertemuan, kegiatan Posyandu Bunga Tanjung, bulu tangkis indoor, dan peminjaman aula.</p>
+                        <h3 class="text-lg font-extrabold text-gray-900">Balai & Fasilitas Balai Warga</h3>
+                        <p class="text-xs text-gray-500 mt-1 leading-relaxed">Profil balai pertemuan, kegiatan Posyandu Bunga Tanjung, bulu tangkis indoor, dan peminjaman balai.</p>
                     </div>
                     <a href="/layanan" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
                         <span>Selengkapnya</span>

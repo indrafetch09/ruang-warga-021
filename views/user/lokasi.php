@@ -2,12 +2,8 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Peta & Lokasi Sekretariat - Ruang Warga 021</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/theme.css" />
+    <?php require base_path('views/partials/head.php'); ?>
 </head>
 
 <body class="bg-gray-50 flex flex-col min-h-screen">
@@ -23,7 +19,7 @@
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-4">
                 <div class="space-y-2">
                     <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Peta & Lokasi <span class="text-purple-600">Sekretariat RW 021</span></h1>
-                    <p class="text-xs md:text-sm text-gray-500 max-w-2xl leading-relaxed">Denah balai pertemuan Aula RW 021 (Posyandu Bunga Tanjung) Dasana Indah.</p>
+                    <p class="text-xs md:text-sm text-gray-500 max-w-2xl leading-relaxed">Denah Balai Pertemuan RW 021 (Posyandu Bunga Tanjung) Dasana Indah.</p>
                 </div>
             </div>
 
