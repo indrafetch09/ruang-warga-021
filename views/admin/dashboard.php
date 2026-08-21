@@ -26,11 +26,10 @@
         <main class="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 space-y-8">
 
             <?php
-            // Helper Role Check
-            $isObject = is_object($user);
-            $isRw = ($isObject && method_exists($user, 'isRw')) ? $user->isRw() : (($user['role'] ?? $user->role ?? '') === 'admin' || ($user['role'] ?? $user->role ?? '') === 'rw' || ($user['role'] ?? $user->role ?? '') === 'pengurus_rw');
-            $isRt = ($isObject && method_exists($user, 'isRt')) ? $user->isRt() : (($user['role'] ?? $user->role ?? '') === 'rt' || ($user['role'] ?? $user->role ?? '') === 'pengurus_rt');
-            $assignedRt = ($isObject && method_exists($user, 'getRtAssigned')) ? $user->getRtAssigned() : ($user['rt'] ?? $user->rt ?? 1);
+            // Role & Wilayah Pengurus
+            $isRw = $user->isRw();
+            $isRt = $user->isRt();
+            $assignedRt = (int)($user->getRtAssigned() ?? 1);
             ?>
 
             <!-- Alert Message Flash (Jika Ada) -->

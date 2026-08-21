@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Core\App;
 use Core\Database;
-use Core\Authenticator;
+use App\Models\User;
 use App\Models\Warga;
 use App\Models\Notulensi;
 
@@ -16,7 +16,7 @@ class AdminController
     public function dashboard()
     {
         $db = App::resolve(Database::class);
-        $user = Authenticator::user();
+        $user = User::current();
 
         // 1. Hitung Statistik Real dari Database
         $totalWarga      = (int)($db->query("SELECT COUNT(id) as count FROM warga")->find()['count'] ?? 0);

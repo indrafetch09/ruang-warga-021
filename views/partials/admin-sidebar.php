@@ -9,16 +9,20 @@ $isNotulensi  = str_contains($uri, '/notulensi');
 $isGaleri     = str_contains($uri, '/galeri');
 $isSettings   = str_contains($uri, '/pengaturan') || str_contains($uri, '/warga#settings');
 
-function getNavClass($isActive)
-{
-    return $isActive
-        ? 'flex items-center gap-3 px-3.5 py-2.5 bg-purple-700 text-white rounded-[10px] font-bold text-sm transition shadow-sm'
-        : 'flex items-center gap-3 px-3.5 py-2.5 text-gray-600 hover:bg-purple-50 hover:text-purple-700 rounded-[10px] font-medium text-sm transition group';
+if (!function_exists('getNavClass')) {
+    function getNavClass($isActive)
+    {
+        return $isActive
+            ? 'flex items-center gap-3 px-3.5 py-2.5 bg-purple-700 text-white rounded-[10px] font-bold text-sm transition shadow-sm'
+            : 'flex items-center gap-3 px-3.5 py-2.5 text-gray-600 hover:bg-purple-50 hover:text-purple-700 rounded-[10px] font-medium text-sm transition group';
+    }
 }
 
-function getIconClass($isActive)
-{
-    return $isActive ? 'w-5 h-5 text-white' : 'w-5 h-5 text-gray-400 group-hover:text-purple-600 transition';
+if (!function_exists('getIconClass')) {
+    function getIconClass($isActive)
+    {
+        return $isActive ? 'w-5 h-5 text-white' : 'w-5 h-5 text-gray-400 group-hover:text-purple-600 transition';
+    }
 }
 ?>
 

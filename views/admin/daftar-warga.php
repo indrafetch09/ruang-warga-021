@@ -25,11 +25,10 @@
         <main class="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 space-y-6">
 
             <?php
-            // Helper pengecekan role user
-            $isObject = is_object($user);
-            $isRw = ($isObject && method_exists($user, 'isRw')) ? $user->isRw() : (($user['role'] ?? $user->data['role'] ?? '') === 'admin' || ($user['role'] ?? $user->data['role'] ?? '') === 'rw');
-            $isRt = ($isObject && method_exists($user, 'isRt')) ? $user->isRt() : (($user['role'] ?? $user->data['role'] ?? '') === 'rt');
-            $assignedRt = ($isObject && method_exists($user, 'getRtAssigned')) ? $user->getRtAssigned() : ($user['rt'] ?? $user->data['rt'] ?? 1);
+            // Role & Wilayah Pengurus
+            $isRw = $user->isRw();
+            $isRt = $user->isRt();
+            $assignedRt = (int)($user->getRtAssigned() ?? 1);
 
             // Helper Ambil Properti Object / Array secara aman
             $getVal = function ($item, $key, $default = '-') {

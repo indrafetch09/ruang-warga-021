@@ -24,12 +24,13 @@
         <main class="flex-1 w-full min-w-0 p-4 sm:p-6 lg:p-8 space-y-6">
 
             <?php
-            $isObject = is_object($user);
-            $isRt = ($isObject && method_exists($user, 'isRt')) ? $user->isRt() : (($user['role'] ?? '') === 'rt');
-            $assignedRt = ($isObject && method_exists($user, 'getRtAssigned')) ? $user->getRtAssigned() : ($user['rt'] ?? 1);
+            // Role & Wilayah Pengurus
+            $isRw = $user->isRw();
+            $isRt = $user->isRt();
+            $assignedRt = (int)($user->getRtAssigned() ?? 1);
 
             // Helper ekstraksi data aman
-            $val = function($key, $default = '') use ($warga) {
+            $val = function ($key, $default = '') use ($warga) {
                 if (is_array($warga)) return $warga[$key] ?? $default;
                 if (is_object($warga)) return $warga->$key ?? $default;
                 return $default;

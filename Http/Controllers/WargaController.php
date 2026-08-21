@@ -8,55 +8,13 @@ use Core\App;
 use Core\Database;
 use Core\Crypt;
 use Core\Session;
-use Core\Authenticator;
 use Core\Csrf;
 
 class WargaController
 {
-    private function getCurrentUser()
+    private function getCurrentUser(): User
     {
-        $userData = Authenticator::user() ?? Session::get('user') ?? ['id' => 1, 'username' => 'rw021', 'role' => 'pengurus_rw', 'rt_assigned' => null];
-
-        if (is_object($userData) && method_exists($userData, 'isRw')) {
-            return $userData;
-        }
-
-        $data = is_object($userData) ? get_object_vars($userData) : $userData;
-
-        return new class($data) {
-            public array $data;
-            public int $id;
-            public string $role;
-            public ?int $rtAssigned;
-
-            public function __construct($d)
-            {
-                $this->data       = $d;
-                $this->id         = (int)($d['id'] ?? 1);
-                $this->role       = strtolower($d['role'] ?? 'pengurus_rw');
-                $this->rtAssigned = isset($d['rt_assigned']) ? (int)$d['rt_assigned'] : (isset($d['rt']) ? (int)$d['rt'] : null);
-            }
-
-            public function isRw(): bool
-            {
-                return in_array($this->role, ['admin', 'pengurus_rw', 'rw']);
-            }
-
-            public function isRt(): bool
-            {
-                return in_array($this->role, ['pengurus_rt', 'rt']);
-            }
-
-            public function getRtAssigned(): ?int
-            {
-                return $this->rtAssigned;
-            }
-
-            public function __get($name)
-            {
-                return $this->data[$name] ?? null;
-            }
-        };
+        return  User::current();
     }
 
     public function index()
