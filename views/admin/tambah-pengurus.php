@@ -64,7 +64,12 @@
                     <!-- Indikator Warga Terpilih -->
                     <div id="selectedWargaBadge" class="hidden p-3 bg-purple-600 text-white rounded-xl text-xs font-bold flex items-center justify-between shadow-sm">
                         <span id="selectedWargaText">Warga Terpilih: -</span>
-                        <span class="text-[10px] bg-purple-800 px-2 py-0.5 rounded uppercase">Terpilih ✓</span>
+                        <span class="text-[10px] bg-purple-800 px-2 py-0.5 rounded uppercase flex items-center gap-1">
+                            <span>Terpilih</span>
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </span>
                     </div>
 
                     <!-- List Kartu Warga Terverifikasi -->
@@ -87,7 +92,11 @@
                                     <h4 class="text-xs font-bold text-gray-900"><?= htmlspecialchars($wNama) ?></h4>
                                     <p class="text-[11px] text-gray-500">RT <?= htmlspecialchars($rtFormatted) ?> • Blok <?= htmlspecialchars($wBlok) ?>/<?= htmlspecialchars($wNomor) ?></p>
                                 </div>
-                                <span class="check-icon hidden text-purple-600 font-bold text-sm">✓</span>
+                                <span class="check-icon hidden text-purple-600 font-bold">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </span>
                             </div>
                         <?php endforeach; ?>
                         <div id="noWargaMsg" class="hidden p-4 text-center text-xs text-gray-400">
