@@ -11,13 +11,6 @@
             border: 1px solid var(--color-border-light);
             border-top-width: 0;
         }
-
-        .hero-gradient {
-            background: linear-gradient(90deg,
-                    rgba(255, 255, 255, 1) 0%,
-                    rgba(255, 255, 255, 1) 45%,
-                    rgba(255, 255, 255, 0) 100%);
-        }
     </style>
 </head>
 
@@ -26,12 +19,12 @@
     <?php require base_path('views/partials/navbar.php'); ?>
 
     <!-- HERO SECTION -->
-    <div class="relative bg-white overflow-hidden min-h-[600px] flex items-center">
+    <div class="relative bg-white overflow-hidden min-h-[650px] flex items-center">
         <div class="absolute inset-0">
             <img class="w-full h-full object-cover object-right"
                 src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
                 alt="Warga" />
-            <div class="absolute inset-0 hero-gradient"></div>
+            <div class="absolute inset-0 bg-white/75"></div>
         </div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center w-full">
@@ -190,7 +183,7 @@
                         }
                         ?>
                         <div class="bg-white rounded-2xl p-4 sm:p-5 border border-purple-100/70 shadow-sm hover:shadow-md transition duration-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group">
-                            
+
                             <!-- KIRI: KOTAK TANGGAL / INFO (Matching Image UI) -->
                             <div class="flex-shrink-0 w-28 h-20 sm:w-32 sm:h-20 <?= $badgeBg ?> rounded-2xl flex flex-col items-center justify-center text-center p-2">
                                 <span class="text-[11px] font-bold uppercase tracking-wider">
