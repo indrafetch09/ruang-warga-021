@@ -5,7 +5,7 @@ $headDesc  = $description ?? $pageDesc ?? 'Portal Resmi Sistem Informasi & Layan
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <?php if (!empty($headTitle)): ?>
-<title><?= htmlspecialchars($headTitle) ?></title>
+    <title><?= htmlspecialchars($headTitle) ?></title>
 <?php endif; ?>
 
 <!-- SEO & Meta Tags -->
@@ -20,12 +20,11 @@ $headDesc  = $description ?? $pageDesc ?? 'Portal Resmi Sistem Informasi & Layan
 <meta property="og:description" content="<?= htmlspecialchars($headDesc) ?>" />
 <meta property="og:site_name" content="Ruang Warga 021" />
 
+<!-- Icons -->
+<link rel="icon" type="image/svg" href="/images/favicon.svg">
+
 <!-- Fonts & Frameworks -->
-<script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/theme.css" />
-<style>
-    body {
-        font-family: "Plus Jakarta Sans", sans-serif;
-    }
-</style>
+<script src="https://cdn.tailwindcss.com"></script>
