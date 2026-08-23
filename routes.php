@@ -177,3 +177,10 @@ $router->post('/admin/pengumuman/delete', [PengumumanController::class, 'destroy
 
 $router->get('/admin/warga/template', [App\Controllers\WargaController::class, 'downloadTemplate'])->only('auth');
 $router->post('/admin/warga/import', [App\Controllers\WargaController::class, 'import'])->only('auth');
+
+// --- G. Pengaturan Sistem & Akun ---
+$router->get('/admin/pengaturan', [\App\Controllers\PengaturanController::class, 'index'])->only('auth');
+$router->post('/admin/pengaturan/profile', [\App\Controllers\PengaturanController::class, 'updateProfile'])->only('auth');
+$router->post('/admin/pengaturan/password', [\App\Controllers\PengaturanController::class, 'updatePassword'])->only('auth');
+$router->post('/admin/pengaturan/reset-password', [\App\Controllers\PengaturanController::class, 'resetUserPassword'])->only('auth');
+
