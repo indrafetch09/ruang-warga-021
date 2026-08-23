@@ -99,14 +99,20 @@
             ?>
 
             <?php if (!empty($flashSukses)): ?>
-                <div class="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-700 font-semibold">
-                    ✓ <?= htmlspecialchars($flashSukses) ?>
+                <div class="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-700 font-semibold flex items-center gap-2">
+                    <svg class="w-4 h-4 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span><?= htmlspecialchars($flashSukses) ?></span>
                 </div>
             <?php endif; ?>
 
             <?php if (!empty($flashError)): ?>
-                <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-xs text-red-600 font-semibold">
-                    ⚠ <?= htmlspecialchars($flashError) ?>
+                <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-xs text-red-600 font-semibold flex items-center gap-2">
+                    <svg class="w-4 h-4 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                    <span><?= htmlspecialchars($flashError) ?></span>
                 </div>
             <?php endif; ?>
 
@@ -178,9 +184,9 @@
                         </label>
                     </div>
                     <div class="text-sm">
-                        <a href="/contact" class="font-semibold text-purple-600 hover:text-purple-500 transition">
+                        <button type="button" onclick="openForgotModal()" class="font-semibold text-purple-600 hover:text-purple-500 transition">
                             Lupa sandi?
-                        </a>
+                        </button>
                     </div>
                 </div>
 
@@ -195,10 +201,71 @@
 
             <div class="mt-8 text-center text-xs text-gray-500">
                 Mengalami kendala login?
-                <a href="/contact" class="font-bold text-purple-600 hover:underline">Hubungi Tim IT</a>
+                <button type="button" onclick="openForgotModal()" class="font-bold text-purple-600 hover:underline">Hubungi Tim IT</button>
             </div>
         </div>
     </div>
+
+    <!-- MODAL BANTUAN LUPA KATA SANDI -->
+    <div id="forgot-password-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 relative">
+            <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+                <h3 class="text-base font-bold text-gray-900 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                    </svg>
+                    <span>Pemulihan Kata Sandi Pengurus</span>
+                </h3>
+                <button type="button" onclick="closeForgotModal()" class="text-gray-400 hover:text-gray-700 text-xl font-bold">&times;</button>
+            </div>
+
+            <div class="space-y-3 text-xs text-gray-600 leading-relaxed">
+                <p>
+                    Untuk menjaga keamanan data warga RW 021, reset kata sandi akun Pengurus RT dan RW dilakukan secara terpusat oleh <strong>Administrator Sistem RW 021</strong>.
+                </p>
+                <div class="p-3 bg-purple-50 rounded-xl border border-purple-100 text-purple-900">
+                    <p class="font-bold mb-1.5 flex items-center gap-1.5 text-xs">
+                        <svg class="w-4 h-4 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                        </svg>
+                        <span>Langkah Pemulihan Akun:</span>
+                    </p>
+                    <ol class="list-decimal list-inside space-y-1 text-[11px] text-purple-800">
+                        <li>Hubungi Administrator RW melalui WhatsApp resmi.</li>
+                        <li>Sebutkan <strong>Nama Lengkap</strong> dan <strong>Wilayah RT</strong> Anda.</li>
+                        <li>Admin akan mereset dan memberikan kata sandi sementara yang dapat langsung Anda ubah di menu Pengaturan.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2 pt-2 border-t border-gray-100">
+                <a href="https://wa.me/6282299007700?text=Halo%20Admin%20RW%20021,%20saya%20pengurus%20ingin%20mengajukan%20reset%20kata%20sandi%20akun%20dasbor." target="_blank"
+                    class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                    <span>Hubungi Admin RW via WhatsApp</span>
+                </a>
+                <button type="button" onclick="closeForgotModal()" class="w-full py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold transition">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openForgotModal() {
+            document.getElementById('forgot-password-modal').classList.remove('hidden');
+        }
+
+        function closeForgotModal() {
+            document.getElementById('forgot-password-modal').classList.add('hidden');
+        }
+
+        document.getElementById('forgot-password-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeForgotModal();
+        });
+    </script>
 </body>
 
 </html>
