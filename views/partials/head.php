@@ -24,7 +24,6 @@ $headDesc  = $description ?? $pageDesc ?? 'Portal Resmi Sistem Informasi & Layan
 <link rel="icon" type="image/svg" href="/images/favicon.svg">
 
 <!-- Fonts & Frameworks -->
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/theme.css" />
 <script src="https://cdn.tailwindcss.com"></script>
