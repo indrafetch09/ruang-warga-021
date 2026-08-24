@@ -41,18 +41,30 @@ class KegiatanController
     }
 
     /**
-     * 2. Menampilkan Form Tambah Kegiatan Rutin
+     * 2. Menampilkan Form Tambah Kegiatan Rutin (Khusus Admin/Pengurus RW)
      */
     public function create()
     {
+        $user = \App\Models\User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses untuk menambah kegiatan.');
+            return redirect('/dashboard');
+        }
+
         return view('admin/tambah-kegiatan.php');
     }
 
     /**
-     * 3. Memproses Simpan Data Kegiatan Rutin
+     * 3. Memproses Simpan Data Kegiatan Rutin (Khusus Admin/Pengurus RW)
      */
     public function store()
     {
+        $user = \App\Models\User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses untuk menambah kegiatan.');
+            return redirect('/dashboard');
+        }
+
         if (!Csrf::verify($_POST['_csrf_token'] ?? null)) {
             Session::flash('error', 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.');
             Session::flash('old', $_POST);
@@ -106,10 +118,16 @@ class KegiatanController
     }
 
     /**
-     * 4. Menampilkan Form Edit Kegiatan Rutin
+     * 4. Menampilkan Form Edit Kegiatan Rutin (Khusus Admin/Pengurus RW)
      */
     public function edit()
     {
+        $user = \App\Models\User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses untuk mengedit kegiatan.');
+            return redirect('/dashboard');
+        }
+
         $id = $_GET['id'] ?? null;
 
         if (!$id) {
@@ -129,10 +147,16 @@ class KegiatanController
     }
 
     /**
-     * 5. Memproses Update Data Kegiatan Rutin
+     * 5. Memproses Update Data Kegiatan Rutin (Khusus Admin/Pengurus RW)
      */
     public function update()
     {
+        $user = \App\Models\User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses untuk mengedit kegiatan.');
+            return redirect('/dashboard');
+        }
+
         if (!Csrf::verify($_POST['_csrf_token'] ?? null)) {
             Session::flash('error', 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.');
             return redirect('/admin/kegiatan');
@@ -195,10 +219,16 @@ class KegiatanController
     }
 
     /**
-     * 6. Hapus Data Kegiatan Rutin
+     * 6. Hapus Data Kegiatan Rutin (Khusus Admin/Pengurus RW)
      */
     public function destroy()
     {
+        $user = \App\Models\User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses untuk menghapus kegiatan.');
+            return redirect('/dashboard');
+        }
+
         if (!Csrf::verify($_POST['_csrf_token'] ?? null)) {
             Session::flash('error', 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.');
             return redirect('/admin/kegiatan');
@@ -217,6 +247,12 @@ class KegiatanController
 
     public function adminIndex()
     {
+        $user = \App\Models\User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses manajemen kegiatan.');
+            return redirect('/dashboard');
+        }
+
         $db = App::resolve(Database::class);
 
         $search   = $_GET['search'] ?? '';

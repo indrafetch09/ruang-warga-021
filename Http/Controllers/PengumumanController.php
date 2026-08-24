@@ -46,18 +46,30 @@ class PengumumanController
     }
 
     /**
-     * 2. Menampilkan Form Tambah Pengumuman (Khusus Admin/Pengurus)
+     * 2. Menampilkan Form Tambah Pengumuman (Khusus Admin/Pengurus RW)
      */
     public function create()
     {
+        $user = \App\Models\User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses untuk menambah pengumuman.');
+            return redirect('/dashboard');
+        }
+
         return view('admin/tambah-pengumuman.php');
     }
 
     /**
-     * 2. Memproses & Menyimpan Data Pengumuman Baru Ke Database
+     * 2. Memproses & Menyimpan Data Pengumuman Baru Ke Database (Khusus Admin/Pengurus RW)
      */
     public function store()
     {
+        $user = \App\Models\User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses untuk menambah pengumuman.');
+            return redirect('/dashboard');
+        }
+
         // 1. Verifikasi CSRF Token
         if (!Csrf::verify($_POST['_csrf_token'] ?? null)) {
             Session::flash('error', 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.');
@@ -117,10 +129,16 @@ class PengumumanController
     }
 
     /**
-     * 3. Menampilkan Form Edit Pengumuman (Khusus Admin/Pengurus)
+     * 3. Menampilkan Form Edit Pengumuman (Khusus Admin/Pengurus RW)
      */
     public function edit()
     {
+        $user = \App\Models\User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses untuk mengedit pengumuman.');
+            return redirect('/dashboard');
+        }
+
         $id = $_GET['id'] ?? null;
 
         if (!$id) {
@@ -140,10 +158,16 @@ class PengumumanController
     }
 
     /**
-     * 4. Memproses Update Data Pengumuman Ke Database
+     * 4. Memproses Update Data Pengumuman Ke Database (Khusus Admin/Pengurus RW)
      */
     public function update()
     {
+        $user = \App\Models\User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses untuk mengedit pengumuman.');
+            return redirect('/dashboard');
+        }
+
         // 1. Verifikasi CSRF Token
         if (!Csrf::verify($_POST['_csrf_token'] ?? null)) {
             Session::flash('error', 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.');
@@ -213,10 +237,16 @@ class PengumumanController
     }
 
     /**
-     * 5. Memproses Hapus Data Pengumuman
+     * 5. Memproses Hapus Data Pengumuman (Khusus Admin/Pengurus RW)
      */
     public function destroy()
     {
+        $user = \App\Models\User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses untuk menghapus pengumuman.');
+            return redirect('/dashboard');
+        }
+
         // 1. Verifikasi CSRF Token
         if (!Csrf::verify($_POST['_csrf_token'] ?? null)) {
             Session::flash('error', 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.');
@@ -236,6 +266,12 @@ class PengumumanController
 
     public function adminIndex()
     {
+        $user = \App\Models\User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses manajemen pengumuman.');
+            return redirect('/dashboard');
+        }
+
         $db = App::resolve(Database::class);
 
         $search   = $_GET['search'] ?? '';

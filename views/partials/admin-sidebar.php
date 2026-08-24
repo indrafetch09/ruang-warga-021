@@ -9,6 +9,9 @@ $isNotulensi  = str_contains($uri, '/notulensi');
 $isGaleri     = str_contains($uri, '/galeri');
 $isSettings   = str_contains($uri, '/pengaturan') || str_contains($uri, '/warga#settings');
 
+$sidebarUser = \App\Models\User::current();
+$isRwUser    = $sidebarUser->isRw();
+
 if (!function_exists('getNavClass')) {
     function getNavClass($isActive)
     {
@@ -49,29 +52,31 @@ if (!function_exists('getIconClass')) {
             Data Penduduk
         </a>
 
-        <!-- 3. Manajemen Pengurus (DIRUBAH KE /admin/pengurus) -->
-        <a href="/admin/pengurus" class="<?= getNavClass($isPengurus) ?>">
-            <svg class="<?= getIconClass($isPengurus) ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
-            Manajemen Pengurus
-        </a>
+        <?php if ($isRwUser): ?>
+            <!-- 3. Manajemen Pengurus (Khusus RW/Admin) -->
+            <a href="/admin/pengurus" class="<?= getNavClass($isPengurus) ?>">
+                <svg class="<?= getIconClass($isPengurus) ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                Manajemen Pengurus
+            </a>
 
-        <!-- 4. Pengumuman Admin -->
-        <a href="/admin/pengumuman" class="<?= getNavClass($isPengumuman) ?>">
-            <svg class="<?= getIconClass($isPengumuman) ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
-            </svg>
-            Pengumuman
-        </a>
+            <!-- 4. Pengumuman Admin (Khusus RW/Admin) -->
+            <a href="/admin/pengumuman" class="<?= getNavClass($isPengumuman) ?>">
+                <svg class="<?= getIconClass($isPengumuman) ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
+                </svg>
+                Pengumuman
+            </a>
 
-        <!-- 5. Kegiatan Admin -->
-        <a href="/admin/kegiatan" class="<?= getNavClass($isKegiatan) ?>">
-            <svg class="<?= getIconClass($isKegiatan) ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-            </svg>
-            Kegiatan Rutin
-        </a>
+            <!-- 5. Kegiatan Admin (Khusus RW/Admin) -->
+            <a href="/admin/kegiatan" class="<?= getNavClass($isKegiatan) ?>">
+                <svg class="<?= getIconClass($isKegiatan) ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                Kegiatan Rutin
+            </a>
+        <?php endif; ?>
 
         <p class="text-[10px] font-extrabold text-purple-700 uppercase tracking-widest px-3 mb-1 mt-4">
             Arsip & Dokumentasi
@@ -144,29 +149,35 @@ if (!function_exists('getIconClass')) {
                 <span>Data Penduduk</span>
             </a>
 
-            <!-- 3. Manajemen Pengurus -->
-            <a href="/admin/pengurus" class="<?= getNavClass($isPengurus) ?>">
-                <svg class="<?= getIconClass($isPengurus) ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                </svg>
-                <span>Manajemen Pengurus</span>
-            </a>
+            <?php if ($isRwUser): ?>
+                <!-- 3. Manajemen Pengurus (Khusus RW/Admin) -->
+                <a href="/admin/pengurus" class="<?= getNavClass($isPengurus) ?>">
+                    <svg class="<?= getIconClass($isPengurus) ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span>Manajemen Pengurus</span>
+                </a>
 
-            <!-- 4. Pengumuman -->
-            <a href="/admin/pengumuman" class="<?= getNavClass($isPengumuman) ?>">
-                <svg class="<?= getIconClass($isPengumuman) ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
-                </svg>
-                <span>Pengumuman</span>
-            </a>
+                <!-- 4. Pengumuman (Khusus RW/Admin) -->
+                <a href="/admin/pengumuman" class="<?= getNavClass($isPengumuman) ?>">
+                    <svg class="<?= getIconClass($isPengumuman) ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
+                    </svg>
+                    <span>Pengumuman</span>
+                </a>
 
-            <!-- 5. Kegiatan Rutin -->
-            <a href="/admin/kegiatan" class="<?= getNavClass($isKegiatan) ?>">
-                <svg class="<?= getIconClass($isKegiatan) ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                </svg>
-                <span>Kegiatan Rutin</span>
-            </a>
+                <!-- 5. Kegiatan Rutin (Khusus RW/Admin) -->
+                <a href="/admin/kegiatan" class="<?= getNavClass($isKegiatan) ?>">
+                    <svg class="<?= getIconClass($isKegiatan) ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Kegiatan Rutin</span>
+                </a>
+            <?php endif; ?>
+
+            <p class="text-[10px] font-extrabold text-purple-700 uppercase tracking-widest px-3 mb-1 mt-3">
+                Arsip & Dokumentasi
+            </p>
 
             <!-- 6. Notulensi Rapat -->
             <a href="/admin/notulensi" class="<?= getNavClass($isNotulensi) ?>">
@@ -183,6 +194,10 @@ if (!function_exists('getIconClass')) {
                 </svg>
                 <span>Galeri Kegiatan</span>
             </a>
+
+            <p class="text-[10px] font-extrabold text-purple-700 uppercase tracking-widest px-3 mb-1 mt-3">
+                Sistem & Konfigurasi
+            </p>
 
             <!-- 8. Pengaturan Sistem -->
             <a href="/admin/pengaturan" class="<?= getNavClass($isSettings) ?>">

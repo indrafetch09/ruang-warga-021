@@ -18,6 +18,11 @@ class PengurusController
     public function index()
     {
         $user = User::current();
+        if (!$user->isRw()) {
+            Session::flash('error', 'Akses ditolak. Pengurus RT tidak memiliki hak akses manajemen pengurus.');
+            return redirect('/dashboard');
+        }
+
         $db = App::resolve(Database::class);
         $pengurusList = $db->query("SELECT * FROM pengurus ORDER BY urutan ASC, id ASC")->get();
 

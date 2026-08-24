@@ -142,8 +142,12 @@
                                     <h4 class="font-bold text-gray-900 text-base mb-1">Pengumuman Warga</h4>
                                 </div>
                                 <div class="flex gap-2">
-                                    <a href="/admin/pengumuman" class="flex-1 text-center bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold py-2 rounded-[10px] text-xs transition border border-emerald-200">Lihat List</a>
-                                    <a href="/admin/pengumuman/create" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-[10px] text-xs transition">+ Tambah</a>
+                                    <?php if ($isRw): ?>
+                                        <a href="/admin/pengumuman" class="flex-1 text-center bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold py-2 rounded-[10px] text-xs transition border border-emerald-200">Lihat List</a>
+                                        <a href="/admin/pengumuman/create" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-[10px] text-xs transition">+ Tambah</a>
+                                    <?php else: ?>
+                                        <a href="/pengumuman" target="_blank" class="flex-1 text-center bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold py-2 rounded-[10px] text-xs transition border border-emerald-200">Lihat Pengumuman Warga &rarr;</a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
