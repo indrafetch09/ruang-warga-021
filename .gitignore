@@ -6,4 +6,6 @@ vendor
 
 tests/
 
-/seed_user.php
+seed_user.php
+
+uploads/
