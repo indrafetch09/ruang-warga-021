@@ -76,7 +76,7 @@
                     </a>
                 </div>
 
-                <!-- Card 2: Kebersihan & TPST RW 021 -->
+                <!-- Card 2: Kebersihan & TPS RW 021 -->
                 <div class="bg-white rounded-2xl border border-purple-100 p-6 md:p-8 shadow-sm space-y-4 hover:shadow-md transition">
                     <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-sm">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,7 +84,7 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="text-lg font-extrabold text-gray-900">Pengelolaan Sampah & TPST 021</h3>
+                        <h3 class="text-lg font-extrabold text-gray-900">Pengelolaan Sampah & TPS</h3>
                         <p class="text-xs text-gray-500 mt-1 leading-relaxed">Jadwal armada pengangkutan sampah lingkungan, pemilahan organik/anorganik, & iuran kebersihan.</p>
                     </div>
                     <a href="/tpst" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
@@ -104,7 +104,7 @@
                         <h3 class="text-lg font-extrabold text-gray-900">Kontak Resmi & Pengaduan Warga</h3>
                         <p class="text-xs text-gray-500 mt-1 leading-relaxed">Layanan komunikasi WhatsApp pengurus RW 021 & formulir pengiriman aspirasi/pertanyaan warga.</p>
                     </div>
-                    <a href="/kontak" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
+                    <a href="/hubungi-kami" class="text-xs font-extrabold text-purple-600 hover:text-purple-800 inline-flex items-center gap-1.5 transition">
                         <span>Selengkapnya</span>
                         <span>&rarr;</span>
                     </a>
