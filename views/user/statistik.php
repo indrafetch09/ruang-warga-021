@@ -11,17 +11,24 @@
 
     <?php require base_path('views/partials/navbar.php'); ?>
 
-    <!-- MAIN CONTENT -->
-    <div class="py-12 flex-1">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-
-            <!-- SIMPLE PAGE HEADER -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Statistik <span class="text-purple-600">Demografi Penduduk</span></h1>
-                    <p class="text-xs md:text-sm text-gray-500 mt-1">Grafik rekapitulasi data demografi dan sebaran jumlah KK per RT 01 s/d 10.</p>
-                </div>
+    <!-- HERO / HEADER BANNER -->
+    <div class="bg-purple-900 text-white py-12 md:py-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+                    Statistik Demografi Penduduk
+                </h1>
+                <p class="text-base md:text-lg text-purple-200 leading-relaxed">
+                    Grafik rekapitulasi data kependudukan, jumlah Kepala Keluarga, sebaran usia, dan statistik per RT 01 s/d RT 10 RW 021.
+                </p>
             </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="py-10 flex-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
             <?php
             $summary = $summaryData ?? [
@@ -41,19 +48,19 @@
 
             <!-- SUMMARY CARDS -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-                <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center hover:shadow-md transition">
+                <div class="bg-white p-6 rounded-lg border border-purple-100 shadow-sm text-center hover:shadow-md transition">
                     <span class="text-3xl md:text-4xl font-extrabold text-purple-700 block mb-1"><?= number_format($summary['total_kk']) ?></span>
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Kepala Keluarga (KK)</span>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center hover:shadow-md transition">
+                <div class="bg-white p-6 rounded-lg border border-purple-100 shadow-sm text-center hover:shadow-md transition">
                     <span class="text-3xl md:text-4xl font-extrabold text-purple-700 block mb-1"><?= number_format($summary['total_jiwa']) ?></span>
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Total Jiwa Warga</span>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center hover:shadow-md transition">
+                <div class="bg-white p-6 rounded-lg border border-purple-100 shadow-sm text-center hover:shadow-md transition">
                     <span class="text-3xl md:text-4xl font-extrabold text-purple-700 block mb-1"><?= htmlspecialchars($summary['total_rt']) ?></span>
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Rukun Tetangga (RT 01-10)</span>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center hover:shadow-md transition">
+                <div class="bg-white p-6 rounded-lg border border-purple-100 shadow-sm text-center hover:shadow-md transition">
                     <span class="text-3xl md:text-4xl font-extrabold text-emerald-600 block mb-1"><?= htmlspecialchars($summary['verifikasi']) ?></span>
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Terverifikasi Digital</span>
                 </div>
@@ -63,7 +70,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
                 <!-- BAR CHART -->
-                <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-2xl border border-purple-100 shadow-sm flex flex-col justify-between">
+                <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-lg border border-purple-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
                             <div>
@@ -79,7 +86,7 @@
                 </div>
 
                 <!-- PIE CHART -->
-                <div class="bg-white p-6 md:p-8 rounded-2xl border border-purple-100 shadow-sm flex flex-col justify-between">
+                <div class="bg-white p-6 md:p-8 rounded-lg border border-purple-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="mb-6 border-b border-gray-100 pb-4">
                             <h2 class="text-lg md:text-xl font-extrabold text-gray-900">Diagram Lingkaran: Kelompok Usia</h2>
@@ -97,7 +104,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
                 <!-- DOUGHNUT CHART -->
-                <div class="bg-white p-6 md:p-8 rounded-2xl border border-purple-100 shadow-sm flex flex-col justify-between">
+                <div class="bg-white p-6 md:p-8 rounded-lg border border-purple-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="mb-6 border-b border-gray-100 pb-4">
                             <h2 class="text-lg md:text-xl font-extrabold text-gray-900">Komposisi Gender Warga</h2>
@@ -128,7 +135,7 @@
                 </div>
 
                 <!-- TABEL RINCIAN SEBARAN RT -->
-                <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-2xl border border-purple-100 shadow-sm">
+                <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-lg border border-purple-100 shadow-sm">
                     <h2 class="text-lg md:text-xl font-extrabold text-gray-900 mb-6 border-b border-gray-100 pb-4">Rincian Data Kependudukan RT 01 - RT 10</h2>
 
                     <?php if (empty($dataRt)): ?>
@@ -158,18 +165,21 @@
 
             </div>
 
-            <!-- FOOTER -->
-            <?php require base_path('views/partials/footer.php'); ?>
+        </div>
+    </div>
 
-            <!-- DYNAMIC DATA BINDING UNTUK CHART.JS -->
-            <script>
-                window.chartBarLabels = <?= json_encode($chartBarLabels ?? ['RT 01', 'RT 02', 'RT 03', 'RT 04', 'RT 05', 'RT 06', 'RT 07', 'RT 08', 'RT 09', 'RT 10']) ?>;
-                window.chartBarKk = <?= json_encode($chartBarKk ?? [32, 35, 28, 40, 38, 30, 36, 34, 39, 38]) ?>;
-                window.chartBarJiwa = <?= json_encode($chartBarJiwa ?? [112, 123, 98, 140, 133, 105, 126, 119, 137, 133]) ?>;
-                window.chartUsiaData = <?= json_encode($chartUsiaData ?? [215, 180, 680, 170]) ?>;
-                window.chartGenderData = <?= json_encode($chartGenderData ?? [635, 610]) ?>;
-            </script>
-            <script src="/script.js"></script>
+    <!-- FOOTER -->
+    <?php require base_path('views/partials/footer.php'); ?>
+
+    <!-- DYNAMIC DATA BINDING UNTUK CHART.JS -->
+    <script>
+        window.chartBarLabels = <?= json_encode($chartBarLabels ?? ['RT 01', 'RT 02', 'RT 03', 'RT 04', 'RT 05', 'RT 06', 'RT 07', 'RT 08', 'RT 09', 'RT 10']) ?>;
+        window.chartBarKk = <?= json_encode($chartBarKk ?? [32, 35, 28, 40, 38, 30, 36, 34, 39, 38]) ?>;
+        window.chartBarJiwa = <?= json_encode($chartBarJiwa ?? [112, 123, 98, 140, 133, 105, 126, 119, 137, 133]) ?>;
+        window.chartUsiaData = <?= json_encode($chartUsiaData ?? [215, 180, 680, 170]) ?>;
+        window.chartGenderData = <?= json_encode($chartGenderData ?? [635, 610]) ?>;
+    </script>
+    <script src="/script.js"></script>
 </body>
 
 </html>

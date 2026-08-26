@@ -5,7 +5,6 @@
     <title>Struktur Pengurus RW 021 Periode 2025 - 2028</title>
     <?php require base_path('views/partials/head.php'); ?>
     <style>
-
         @media (min-width: 768px) {
             .hierarchy-line-bottom::after {
                 content: "";
@@ -88,31 +87,33 @@
     };
     ?>
 
+    <!-- HERO / HEADER BANNER -->
+    <div class="bg-purple-900 text-white py-12 md:py-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <span class="bg-amber-400 text-purple-950 text-xs font-black px-3.5 py-1 rounded-lg uppercase tracking-widest inline-block mb-3 shadow-sm">
+                    PERIODE 2025 - 2028
+                </span>
+                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+                    Struktur Organisasi Pengurus RW 021
+                </h1>
+                <p class="text-base md:text-lg text-purple-200 leading-relaxed">
+                    Bagan organisasi, susunan kepengurusan, dan penanggung jawab seksi pelayanan lingkungan RW 021 Bojong Nangka.
+                </p>
+            </div>
+        </div>
+    </div>
+
     <!-- MAIN CONTENT -->
     <main class="py-10 bg-gray-50 flex-1">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-
-            <!-- HEADER BANNER STRUKTUR -->
-            <div class="bg-gradient-to-r from-purple-800 via-purple-700 to-indigo-800 text-white rounded-3xl p-6 md:p-8 shadow-lg text-center relative overflow-hidden">
-                <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
-                <div class="relative z-10 space-y-2">
-                    <span class="bg-amber-400 text-purple-950 text-xs md:text-sm font-black px-4 py-1.5 rounded-full uppercase tracking-widest inline-block shadow-sm">
-                        PERIODE 2025 - 2028
-                    </span>
-                    <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight uppercase">
-                        Struktur Organisasi Pengurus RW 021
-                    </h1>
-                    <p class="text-xs md:text-sm text-purple-100 font-medium max-w-2xl mx-auto">
-                        Perumahan Dasana Indah, Kel. Bojong Nangka, Kec. Kelapa Dua, Kab. Tangerang, Banten
-                    </p>
-                </div>
-            </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
             <!-- LEVEL 1: PENASEHAT -->
             <?php $penasehatInfo = $getSlotInfo('Penasehat'); ?>
             <div class="flex justify-center">
-                <div class="w-full max-w-2xl bg-white rounded-2xl p-6 border border-rose-100 shadow-sm text-center">
-                    <span class="bg-rose-600 text-white text-[11px] font-black px-4 py-1 rounded-md uppercase tracking-wider inline-block mb-4 shadow-sm">
+                <div class="w-full max-w-2xl bg-white rounded-lg p-6 border border-rose-100 shadow-sm text-center">
+                    <span class="bg-rose-600 text-white text-[11px] font-black px-4 py-1 rounded-lg uppercase tracking-wider inline-block mb-4 shadow-sm">
                         Penasehat
                     </span>
 
@@ -131,9 +132,9 @@
             <?php $ketuaInfo = $getSlotInfo('Ketua RW 021'); ?>
             <div class="flex justify-center my-8">
                 <div class="relative w-full max-w-sm hierarchy-line-bottom">
-                    <div class="bg-white rounded-3xl shadow-xl border-2 border-purple-300 p-8 flex flex-col items-center text-center transform hover:-translate-y-1 transition-all">
+                    <div class="bg-white rounded-lg shadow-xl border-2 border-purple-300 p-8 flex flex-col items-center text-center transform hover:-translate-y-1 transition-all">
                         <img src="<?= $getAvatar($ketuaInfo['nama'], $ketuaInfo['assigned'] ? '7c3aed' : 'cbd5e1') ?>" alt="Ketua RW" class="w-28 h-28 rounded-full mb-4 object-cover border-4 border-purple-100 shadow-md" />
-                        <span class="bg-amber-400 text-purple-950 text-xs font-black px-4 py-1 rounded-full uppercase tracking-widest mb-3 shadow-sm">
+                        <span class="bg-amber-400 text-purple-950 text-xs font-black px-4 py-1 rounded-lg uppercase tracking-widest mb-3 shadow-sm">
                             KETUA RW 021
                         </span>
                         <h3 class="text-xl md:text-2xl font-black <?= $ketuaInfo['assigned'] ? 'text-gray-900' : 'text-gray-400 italic' ?> mb-1">
@@ -149,18 +150,18 @@
             <?php $bendaharaInfo  = $getSlotInfo('Bendahara'); ?>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 max-w-4xl mx-auto my-8 hierarchy-branch">
                 <!-- Sekretaris -->
-                <div class="bg-white rounded-2xl shadow-md border border-purple-100 p-6 flex flex-col items-center text-center hierarchy-branch-item">
+                <div class="bg-white rounded-lg shadow-md border border-purple-100 p-6 flex flex-col items-center text-center hierarchy-branch-item">
                     <img src="<?= $getAvatar($sekretarisInfo['nama'], $sekretarisInfo['assigned'] ? '059669' : 'cbd5e1') ?>" alt="Sekretaris" class="w-20 h-20 rounded-full mb-3 object-cover border-4 border-emerald-50 shadow-sm" />
-                    <span class="bg-amber-400 text-purple-950 text-[11px] font-black px-3 py-1 rounded-md uppercase tracking-wider mb-2">SEKRETARIS</span>
+                    <span class="bg-amber-400 text-purple-950 text-[11px] font-black px-3 py-1 rounded-lg uppercase tracking-wider mb-2">SEKRETARIS</span>
                     <h3 class="text-lg font-extrabold <?= $sekretarisInfo['assigned'] ? 'text-gray-900' : 'text-gray-400 italic' ?>">
                         <?= htmlspecialchars($sekretarisInfo['nama']) ?>
                     </h3>
                 </div>
 
                 <!-- Bendahara -->
-                <div class="bg-white rounded-2xl shadow-md border border-purple-100 p-6 flex flex-col items-center text-center hierarchy-branch-item">
+                <div class="bg-white rounded-lg shadow-md border border-purple-100 p-6 flex flex-col items-center text-center hierarchy-branch-item">
                     <img src="<?= $getAvatar($bendaharaInfo['nama'], $bendaharaInfo['assigned'] ? '059669' : 'cbd5e1') ?>" alt="Bendahara" class="w-20 h-20 rounded-full mb-3 object-cover border-4 border-emerald-50 shadow-sm" />
-                    <span class="bg-amber-400 text-purple-950 text-[11px] font-black px-3 py-1 rounded-md uppercase tracking-wider mb-2">BENDAHARA</span>
+                    <span class="bg-amber-400 text-purple-950 text-[11px] font-black px-3 py-1 rounded-lg uppercase tracking-wider mb-2">BENDAHARA</span>
                     <h3 class="text-lg font-extrabold <?= $bendaharaInfo['assigned'] ? 'text-gray-900' : 'text-gray-400 italic' ?>">
                         <?= htmlspecialchars($bendaharaInfo['nama']) ?>
                     </h3>
@@ -180,7 +181,7 @@
             <div class="space-y-6">
                 <div class="flex items-center justify-center gap-4">
                     <div class="h-px bg-purple-200 flex-1"></div>
-                    <span class="bg-amber-400 text-purple-950 text-xs font-black px-6 py-2 rounded-full uppercase tracking-widest shadow-sm">
+                    <span class="bg-amber-400 text-purple-950 text-xs font-black px-6 py-2 rounded-lg uppercase tracking-widest shadow-sm">
                         SEKSI - SEKSI
                     </span>
                     <div class="h-px bg-purple-200 flex-1"></div>
@@ -189,9 +190,9 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                     <?php foreach ($seksiListDef as $seksiName): ?>
                         <?php $seksiInfo = $getSlotInfo($seksiName); ?>
-                        <div class="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm text-center flex flex-col justify-between">
+                        <div class="bg-white p-5 rounded-lg border border-purple-100 shadow-sm text-center flex flex-col justify-between">
                             <div>
-                                <span class="bg-amber-300 text-purple-950 text-[10px] font-extrabold px-2.5 py-1 rounded uppercase tracking-wider block mb-3 leading-tight min-h-[28px] flex items-center justify-center">
+                                <span class="bg-amber-300 text-purple-950 text-[10px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider block mb-3 leading-tight min-h-[28px] flex items-center justify-center">
                                     <?= htmlspecialchars($seksiName) ?>
                                 </span>
                                 <img src="<?= $getAvatar($seksiInfo['nama'], $seksiInfo['assigned'] ? '7c3aed' : 'cbd5e1') ?>" class="w-14 h-14 rounded-full mx-auto mb-2 border-2 border-purple-100" />
@@ -217,8 +218,8 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                 <?php foreach ($timListDef as $timName): ?>
                     <?php $timInfo = $getSlotInfo($timName); ?>
-                    <div class="bg-white p-4 rounded-2xl border border-gray-200 text-center">
-                        <span class="bg-amber-300 text-purple-950 text-[10px] font-extrabold px-2 py-0.5 rounded block mb-2">
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 text-center">
+                        <span class="bg-amber-300 text-purple-950 text-[10px] font-extrabold px-2 py-0.5 rounded-lg block mb-2">
                             <?= htmlspecialchars($timName) ?>
                         </span>
                         <h5 class="font-bold text-xs <?= $timInfo['assigned'] ? 'text-gray-900' : 'text-gray-400 italic' ?>">
@@ -232,7 +233,7 @@
             <div class="pt-8">
                 <div class="flex items-center justify-center gap-4 mb-8">
                     <div class="h-px bg-purple-200 flex-1"></div>
-                    <span class="bg-purple-900 text-white text-xs font-black px-6 py-2 rounded-full uppercase tracking-widest shadow-sm">
+                    <span class="bg-purple-900 text-white text-xs font-black px-6 py-2 rounded-lg uppercase tracking-widest shadow-sm">
                         JAJARAN KETUA RT 001 - RT 010
                     </span>
                     <div class="h-px bg-purple-200 flex-1"></div>
@@ -246,9 +247,9 @@
                         $rtJabatanKey = "Ketua RT {$noRt}";
                         $rtInfo = $getSlotInfo($rtJabatanKey);
                         ?>
-                        <div class="bg-white rounded-2xl border border-purple-100 p-4 flex flex-col items-center text-center justify-between">
+                        <div class="bg-white rounded-lg border border-purple-100 p-4 flex flex-col items-center text-center justify-between">
                             <div class="flex flex-col items-center">
-                                <span class="bg-amber-300 text-purple-950 text-[10px] font-black px-3 py-0.5 rounded uppercase tracking-wider mb-2">
+                                <span class="bg-amber-300 text-purple-950 text-[10px] font-black px-3 py-0.5 rounded-lg uppercase tracking-wider mb-2">
                                     KETUA RT <?= $noRtFormatted ?>
                                 </span>
                                 <img src="<?= $getAvatar($rtInfo['nama'], $rtInfo['assigned'] ? '581c87' : 'cbd5e1') ?>" class="w-14 h-14 rounded-full mb-2 border-2 border-purple-100 shadow-sm" alt="Ketua RT" />

@@ -10,20 +10,27 @@
     <!-- NAVBAR -->
     <?php require base_path('views/partials/navbar.php'); ?>
 
-    <!-- MAIN CONTENT -->
-    <div class="py-12 bg-white flex-1">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            
-            <!-- SIMPLE PAGE HEADER -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Arsip <span class="text-purple-600">Notulen Musyawarah</span></h1>
-                    <p class="text-xs md:text-sm text-gray-500 mt-1">Transparansi dokumentasi hasil rapat dan keputusan bersama warga RW 021.</p>
-                </div>
+    <!-- HERO / HEADER BANNER -->
+    <div class="bg-purple-900 text-white py-12 md:py-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+                    Arsip Notulen Musyawarah
+                </h1>
+                <p class="text-base md:text-lg text-purple-200 leading-relaxed">
+                    Transparansi dokumentasi hasil rapat, musyawarah warga, dan keputusan bersama pengurus RW 021.
+                </p>
             </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="py-10 bg-white flex-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             
             <!-- Filter & Search Bar (Method GET) -->
-            <form action="/notulensi" method="GET" class="bg-white border border-gray-200 p-4 rounded-xl shadow-sm mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
+            <form action="/notulensi" method="GET" class="bg-white border border-gray-200 p-4 rounded-lg shadow-sm mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
                 <div class="w-full md:w-1/2 relative">
                     <svg class="w-5 h-5 text-gray-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -56,7 +63,7 @@
 
             <?php if (empty($listNotulensi)): ?>
                 <!-- EMPTY STATE NOTULENSI -->
-                <div class="py-16 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-300">
+                <div class="py-16 text-center bg-gray-50 rounded-lg border border-dashed border-gray-300">
                     <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                     </svg>
@@ -89,9 +96,9 @@
                                 default => 'border-l-emerald-500',
                             };
                         ?>
-                        <div class="flex flex-col sm:flex-row gap-6 bg-white p-5 rounded-xl border border-gray-100 border-l-4 <?= $borderColor ?> hover:shadow-lg transition-all duration-300 group">
+                        <div class="flex flex-col sm:flex-row gap-6 bg-white p-5 rounded-lg border border-gray-100 border-l-4 <?= $borderColor ?> hover:shadow-lg transition-all duration-300 group">
                             <!-- Tanggal Box -->
-                            <div class="flex-shrink-0 w-24 flex flex-col rounded-md overflow-hidden shadow-sm border border-purple-100">
+                            <div class="flex-shrink-0 w-24 flex flex-col rounded-lg overflow-hidden shadow-sm border border-purple-100">
                                 <div class="bg-purple-100 py-2 flex flex-col items-center justify-center relative">
                                     <div class="absolute top-2 left-2 w-2 h-2 bg-purple-800 rounded-full"></div>
                                     <div class="absolute top-2 right-2 w-2 h-2 bg-purple-800 rounded-full"></div>
@@ -106,7 +113,7 @@
                             <!-- Konten Notulensi -->
                             <div class="flex-1 flex flex-col justify-center">
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="text-xs font-semibold px-2.5 py-1 rounded <?= $badgeColor ?>">
+                                    <span class="text-xs font-semibold px-2.5 py-1 rounded-lg <?= $badgeColor ?>">
                                         <?= htmlspecialchars(ucfirst($katVal)) ?>
                                     </span>
                                     <?php if (!empty($waktuVal)): ?>

@@ -15,10 +15,6 @@
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-3xl">
-                <div class="inline-flex items-center gap-2 px-3 py-1 bg-purple-800/80 rounded-full text-purple-200 text-xs font-bold uppercase tracking-wider mb-4 border border-purple-700">
-                    <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
-                    <span>Papan Informasi Digital</span>
-                </div>
                 <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
                     Pengumuman & Informasi Warga
                 </h1>
@@ -34,16 +30,16 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
 
             <!-- FILTER & SEARCH BAR -->
-            <div class="bg-white rounded-2xl shadow-sm border border-purple-100 p-5 md:p-6">
+            <div class="bg-white rounded-lg shadow-sm border border-purple-100 p-5 md:p-6">
                 <form action="/pengumuman" method="GET" class="flex flex-col md:flex-row gap-4 items-center justify-between">
-                    
+
                     <!-- Search Input -->
                     <div class="w-full md:w-1/2 relative">
                         <svg class="w-5 h-5 text-gray-400 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                         <input type="text" name="q" value="<?= htmlspecialchars($search ?? '') ?>" placeholder="Cari judul atau isi pengumuman..."
-                            class="w-full pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white transition text-sm text-gray-800 placeholder-gray-400" />
+                            class="w-full pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white transition text-sm text-gray-800 placeholder-gray-400" />
                     </div>
 
                     <!-- Category Pills / Select -->
@@ -62,7 +58,7 @@
                         <?php foreach ($categories as $catKey => $catLabel): ?>
                             <?php $isActive = ($selectedCat === $catKey); ?>
                             <a href="/pengumuman<?= !empty($catKey) ? '?kategori=' . urlencode($catKey) : '' ?><?= !empty($search) ? (!empty($catKey) ? '&' : '?') . 'q=' . urlencode($search) : '' ?>"
-                               class="px-4 py-2 rounded-xl text-xs font-bold transition <?= $isActive ? 'bg-purple-600 text-white shadow-sm' : 'bg-gray-100 text-gray-600 hover:bg-purple-50 hover:text-purple-700' ?>">
+                                class="px-4 py-2 rounded-lg text-xs font-bold transition <?= $isActive ? 'bg-purple-600 text-white shadow-sm' : 'bg-gray-100 text-gray-600 hover:bg-purple-50 hover:text-purple-700' ?>">
                                 <?= $catLabel ?>
                             </a>
                         <?php endforeach; ?>
@@ -73,7 +69,7 @@
             <!-- GRID DAFTAR PENGUMUMAN -->
             <?php if (empty($pengumumanList)): ?>
                 <!-- Empty State -->
-                <div class="bg-white rounded-2xl p-12 text-center border border-purple-100 shadow-sm space-y-4">
+                <div class="bg-white rounded-lg p-12 text-center border border-purple-100 shadow-sm space-y-4">
                     <div class="w-16 h-16 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mx-auto">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
@@ -84,7 +80,7 @@
                         Tidak ditemukan pengumuman sesuai filter atau kata kunci pencarian yang Anda masukkan.
                     </p>
                     <?php if (!empty($search) || !empty($kategori)): ?>
-                        <a href="/pengumuman" class="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-xl text-xs font-bold hover:bg-purple-700 transition shadow-sm">
+                        <a href="/pengumuman" class="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-lg text-xs font-bold hover:bg-purple-700 transition shadow-sm">
                             Reset Filter & Tampilkan Semua
                         </a>
                     <?php endif; ?>
@@ -115,7 +111,7 @@
                             $accentColor = 'bg-blue-600';
                         }
                         ?>
-                        <div class="bg-white rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col justify-between overflow-hidden relative group">
+                        <div class="bg-white rounded-lg border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col justify-between overflow-hidden relative group">
                             <div class="h-1.5 w-full <?= $accentColor ?>"></div>
                             <div class="p-6 space-y-4 flex-1">
                                 <!-- Badge & Tanggal -->
