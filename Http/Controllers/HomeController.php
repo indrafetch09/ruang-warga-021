@@ -6,6 +6,7 @@ use App\Models\Pengumuman;
 use App\Models\Notulensi;
 use App\Models\Pengurus;
 use App\Models\Warga;
+use App\Models\Galeri;
 use Core\Model;
 use Core\Crypt;
 use Core\App;
@@ -28,11 +29,15 @@ class HomeController
         $notulensiRaw     = $db->query("SELECT * FROM " . (Notulensi::$table ?? 'notulensi') . " ORDER BY tanggal DESC LIMIT 3")->get();
         $notulensiTerbaru = array_map(fn($row) => new Notulensi($row), $notulensiRaw);
 
+        $galeriRaw        = $db->query("SELECT * FROM " . (Galeri::$table ?? 'galeri') . " ORDER BY tanggal DESC, id DESC LIMIT 6")->get();
+        $galeriTerbaru    = array_map(fn($row) => new Galeri($row), $galeriRaw);
+
         return view('user/index.view.php', [
             'totalWarga'       => $totalWarga,
             'totalKK'          => $totalKK,
             'pengumumanList'   => $pengumumanTerbaru,
-            'notulensiList'    => $notulensiTerbaru
+            'notulensiList'    => $notulensiTerbaru,
+            'galeriList'       => $galeriTerbaru
         ]);
     }
 
