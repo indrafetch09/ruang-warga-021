@@ -109,13 +109,14 @@
                 ];
                 ?>
 
-                <div class="space-y-4">
+                <!-- ponytail: balanced animated marquee image cards -->
+                <div class="space-y-4 sm:space-y-5">
                     <!-- TOP GRID ROW -->
                     <div class="relative overflow-hidden rounded-lg">
                         <div class="flex gap-4 w-max animate-slide-right">
                             <?php foreach ($galeriBalai as $item): ?>
-                                <div class="w-72 sm:w-80 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-48 sm:h-52 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
                                         <span class="text-[10px] font-bold uppercase tracking-wider text-purple-300"><?= htmlspecialchars($item['sub'] ?? 'Fasilitas RW 021') ?></span>
                                         <h4 class="text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h4>
@@ -124,8 +125,8 @@
                             <?php endforeach; ?>
                             <!-- Duplicate Loop for Infinite Scroll -->
                             <?php foreach ($galeriBalai as $item): ?>
-                                <div class="w-72 sm:w-80 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900" aria-hidden="true">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-48 sm:h-52 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900" aria-hidden="true">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
                                         <span class="text-[10px] font-bold uppercase tracking-wider text-purple-300"><?= htmlspecialchars($item['sub'] ?? 'Fasilitas RW 021') ?></span>
                                         <h4 class="text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h4>
@@ -139,8 +140,8 @@
                     <div class="relative overflow-hidden rounded-lg">
                         <div class="flex gap-4 w-max animate-slide-left">
                             <?php foreach (array_reverse($galeriBalai) as $item): ?>
-                                <div class="w-72 sm:w-80 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-48 sm:h-52 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
                                         <span class="text-[10px] font-bold uppercase tracking-wider text-purple-300"><?= htmlspecialchars($item['sub'] ?? 'Fasilitas RW 021') ?></span>
                                         <h4 class="text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h4>
@@ -149,8 +150,8 @@
                             <?php endforeach; ?>
                             <!-- Duplicate Loop for Infinite Scroll -->
                             <?php foreach (array_reverse($galeriBalai) as $item): ?>
-                                <div class="w-72 sm:w-80 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900" aria-hidden="true">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-48 sm:h-52 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                                <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900" aria-hidden="true">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
                                         <span class="text-[10px] font-bold uppercase tracking-wider text-purple-300"><?= htmlspecialchars($item['sub'] ?? 'Fasilitas RW 021') ?></span>
                                         <h4 class="text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h4>
