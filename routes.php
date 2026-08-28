@@ -183,4 +183,3 @@ $router->get('/admin/pengaturan', [\App\Controllers\PengaturanController::class,
 $router->post('/admin/pengaturan/profile', [\App\Controllers\PengaturanController::class, 'updateProfile'])->only('auth');
 $router->post('/admin/pengaturan/password', [\App\Controllers\PengaturanController::class, 'updatePassword'])->only('auth');
 $router->post('/admin/pengaturan/reset-password', [\App\Controllers\PengaturanController::class, 'resetUserPassword'])->only('auth');
-

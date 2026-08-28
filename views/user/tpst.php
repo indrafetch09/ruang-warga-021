@@ -51,12 +51,8 @@
             <!-- PAGE HEADER -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-2">
                 <div class="space-y-2">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold rounded-lg uppercase tracking-wider">
-                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-                        Kebersihan & Lingkungan Hidup
-                    </div>
                     <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-                        Layanan Kebersihan <span class="text-emerald-600">TPST & Bank Sampah RW 021</span>
+                        Layanan Kebersihan <span class="text-emerald-600">TPS & Bank Sampah RW 021</span>
                     </h1>
                     <p class="text-sm md:text-base text-gray-600 max-w-3xl leading-relaxed">
                         Sistem pengelolaan sampah mandiri dan terpadu RW 021 Bojong Nangka. Melayani jadwal armada pengangkutan sampah rumah tangga harian, pemilahan organik/anorganik, serta tabungan daur ulang Bank Sampah untuk mewujudkan lingkungan yang sehat, asri, dan produktif.
@@ -109,13 +105,14 @@
                     </div>
                 </div>
 
-                <div class="space-y-4">
+                <!-- ponytail: balanced animated marquee image cards -->
+                <div class="space-y-4 sm:space-y-5">
                     <!-- TOP GRID ROW -->
                     <div class="relative overflow-hidden rounded-lg">
                         <div class="flex gap-4 w-max animate-slide-right">
                             <?php foreach ($galeriTpst as $item): ?>
-                                <div class="w-72 sm:w-80 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-48 sm:h-52 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80'" />
+                                <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80'" />
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
                                         <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-300"><?= htmlspecialchars($item['sub']) ?></span>
                                         <h4 class="text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h4>
@@ -124,8 +121,8 @@
                             <?php endforeach; ?>
                             <!-- Duplicate Loop for Infinite Scroll -->
                             <?php foreach ($galeriTpst as $item): ?>
-                                <div class="w-72 sm:w-80 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900" aria-hidden="true">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-48 sm:h-52 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80'" />
+                                <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900" aria-hidden="true">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80'" />
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
                                         <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-300"><?= htmlspecialchars($item['sub']) ?></span>
                                         <h4 class="text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h4>
@@ -139,8 +136,8 @@
                     <div class="relative overflow-hidden rounded-lg">
                         <div class="flex gap-4 w-max animate-slide-left">
                             <?php foreach ($galeriTpst as $item): ?>
-                                <div class="w-72 sm:w-80 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-48 sm:h-52 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80'" />
+                                <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80'" />
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
                                         <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-300"><?= htmlspecialchars($item['sub']) ?></span>
                                         <h4 class="text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h4>
@@ -149,8 +146,8 @@
                             <?php endforeach; ?>
                             <!-- Duplicate Loop for Infinite Scroll -->
                             <?php foreach ($galeriTpst as $item): ?>
-                                <div class="w-72 sm:w-80 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900" aria-hidden="true">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-48 sm:h-52 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80'" />
+                                <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900" aria-hidden="true">
+                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80'" />
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
                                         <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-300"><?= htmlspecialchars($item['sub']) ?></span>
                                         <h4 class="text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h4>

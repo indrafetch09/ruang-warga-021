@@ -51,7 +51,7 @@
 
     <?php
     // Helper Avatar Auto Generator
-    $getAvatar = function($nama, $bg = '7c3aed', $color = 'fff') {
+    $getAvatar = function ($nama, $bg = '7c3aed', $color = 'fff') {
         $cleanName = (!empty($nama) && $nama !== 'Belum Ditugaskan') ? $nama : 'Belum Ada';
         $nameEnc = urlencode($cleanName);
         return "https://ui-avatars.com/api/?name={$nameEnc}&background={$bg}&color={$color}&size=150&bold=true";
@@ -68,7 +68,7 @@
         }
     }
 
-    $getSlotInfo = function($jabatanKey) use ($mapJabatan) {
+    $getSlotInfo = function ($jabatanKey) use ($mapJabatan) {
         if (!empty($mapJabatan[$jabatanKey])) {
             $items = $mapJabatan[$jabatanKey];
             $names = array_map(fn($item) => is_object($item) ? $item->nama : $item['nama'], $items);
@@ -241,7 +241,7 @@
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                     <?php for ($i = 1; $i <= 10; $i++): ?>
-                        <?php 
+                        <?php
                         $noRt = sprintf('%03d', $i);
                         $noRtFormatted = sprintf('%02d', $i);
                         $rtJabatanKey = "Ketua RT {$noRt}";
