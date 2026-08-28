@@ -88,70 +88,16 @@
     <!-- LAYANAN WARGA & IMAGE RECAP SECTION -->
     <div class="bg-gray-50 py-16 overflow-x-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+            <div class="flex flex-col md:flex-row justify-between text-base md:items-end gap-4">
                 <div>
-                    <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Layanan Unggulan RW 021</h2>
+                    <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Berbagai Layanan <span class="text-purple-600">Tersedia</span></h2>
                     <p class="text-sm text-gray-500 mt-1 max-w-2xl">Akses mudah untuk fasilitas balai pertemuan, posyandu balita & lansia, kebersihan lingkungan, hingga informasi demografi.</p>
                 </div>
-                <div>
-                    <a href="/layanan" class="text-purple-600 font-semibold hover:text-purple-700 flex items-center gap-1 group text-sm">
-                        <span>Lihat Semua Layanan</span>
-                        <span aria-hidden="true" class="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
-                    </a>
-                </div>
             </div>
         </div>
 
-        <!-- FULL WIDTH ANIMATED IMAGE RECAP SLIDER -->
-        <?php
-        $galeriLayananRecap = [
-            ['foto' => '/images/posyandu.jpg', 'judul' => 'Posyandu Bunga Tanjung', 'sub' => 'Pelayanan Balita & Lansia'],
-            ['foto' => '/images/balairw21.jpg', 'judul' => 'Musyawarah & Rapat Warga', 'sub' => 'Balai Pertemuan RW 021'],
-            ['foto' => '/images/badminton.jpg', 'judul' => 'Badminton Indoor', 'sub' => 'Olahraga & Kebersamaan'],
-            ['foto' => '/images/masjid.jpg', 'judul' => 'Senam Sehat Warga', 'sub' => 'Kebugaran Mingguan'],
-            ['foto' => '/images/tps.jpg', 'judul' => 'Pengelolaan TPST Mandiri', 'sub' => 'Kebersihan Lingkungan'],
-        ];
-        ?>
-
-        <div class="w-full space-y-4 sm:space-y-5 mb-14 overflow-hidden">
-            <!-- TOP ANIMATED ROW -->
-            <div class="relative overflow-hidden w-full">
-                <div class="flex gap-4 w-max animate-slide-right">
-                    <?php foreach ($galeriLayananRecap as $item): ?>
-                        <div class="w-72 sm:w-80 flex-shrink-0 relative group overflow-hidden shadow-sm">
-                            <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-44 sm:h-48 object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
-                        </div>
-                    <?php endforeach; ?>
-                    <!-- Duplicate Loop for Seamless Infinite Scroll -->
-                    <?php foreach ($galeriLayananRecap as $item): ?>
-                        <div class="w-72 sm:w-80 flex-shrink-0 relative group overflow-hidden shadow-sm" aria-hidden="true">
-                            <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-44 sm:h-48 object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-
-            <!-- BOTTOM ANIMATED ROW -->
-            <div class="relative overflow-hidden w-full">
-                <div class="flex gap-4 w-max animate-slide-left">
-                    <?php foreach (array_reverse($galeriLayananRecap) as $item): ?>
-                        <div class="w-72 sm:w-80 flex-shrink-0 relative group overflow-hidden shadow-sm  ">
-                            <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-44 sm:h-48 object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
-                        </div>
-                    <?php endforeach; ?>
-                    <!-- Duplicate Loop for Seamless Infinite Scroll -->
-                    <?php foreach (array_reverse($galeriLayananRecap) as $item): ?>
-                        <div class="w-72 sm:w-80 flex-shrink-0 relative group overflow-hidden shadow-sm  " aria-hidden="true">
-                            <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-44 sm:h-48 object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-
-            <!-- LAYANAN CARDS GRID -->
+        <!-- LAYANAN CARDS GRID -->
+        <div class="max-w-7xl mx-auto mb-28 px-4 sm:px-6 lg:px-8 space-y-12">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                 <!-- Card 1: Balai & Fasilitas RW 021 -->
@@ -221,9 +167,61 @@
                         <span>&rarr;</span>
                     </a>
                 </div>
+            </div>
+        </div>
 
+        <!-- FULL WIDTH ANIMATED IMAGE RECAP SLIDER -->
+        <?php
+        $galeriLayananRecap = [
+            ['foto' => '/images/posyandu.jpg', 'judul' => 'Posyandu Bunga Tanjung', 'sub' => 'Pelayanan Balita & Lansia'],
+            ['foto' => '/images/balairw21.jpg', 'judul' => 'Musyawarah & Rapat Warga', 'sub' => 'Balai Pertemuan RW 021'],
+            ['foto' => '/images/badminton.jpg', 'judul' => 'Badminton Indoor', 'sub' => 'Olahraga & Kebersamaan'],
+            ['foto' => '/images/masjid.jpg', 'judul' => 'Senam Sehat Warga', 'sub' => 'Kebugaran Mingguan'],
+            ['foto' => '/images/tps.jpg', 'judul' => 'Pengelolaan TPST Mandiri', 'sub' => 'Kebersihan Lingkungan'],
+        ];
+        ?>
+
+        <div class="w-full space-y-4 sm:space-y-5 overflow-hidden">
+            <!-- TOP ANIMATED ROW -->
+            <div class="relative overflow-hidden w-full">
+                <div class="flex gap-4 w-max animate-slide-right">
+                    <?php foreach ($galeriLayananRecap as $item): ?>
+                        <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg">
+                            <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-48 sm:h-52 md:h-56 object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                        </div>
+                    <?php endforeach; ?>
+                    <!-- Duplicate Loop for Seamless Infinite Scroll -->
+                    <?php foreach ($galeriLayananRecap as $item): ?>
+                        <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg" aria-hidden="true">
+                            <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-48 sm:h-52 md:h-56 object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
+            <!-- BOTTOM ANIMATED ROW -->
+            <div class="relative overflow-hidden w-full">
+                <div class="flex gap-4 w-max animate-slide-left">
+                    <?php foreach (array_reverse($galeriLayananRecap) as $item): ?>
+                        <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg">
+                            <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-48 sm:h-52 md:h-56 object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                        </div>
+                    <?php endforeach; ?>
+                    <!-- Duplicate Loop for Seamless Infinite Scroll -->
+                    <?php foreach (array_reverse($galeriLayananRecap) as $item): ?>
+                        <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg" aria-hidden="true">
+                            <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-48 sm:h-52 md:h-56 object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80'" />
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <!-- Centered Button at Bottom of Galeri Images -->
+                <div class="pt-12 flex justify-center">
+                    <a href="/galeri" class="inline-flex items-center justify-center gap-2 rounded-lg px-8 py-3.5 bg-white text-purple-700 font-bold text-sm border-2 border-purple-600 hover:bg-purple-50 transition duration-150 shadow-sm">
+                        <span>Lihat Semua Layanan</span>
+                        <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
