@@ -275,78 +275,7 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
-            <!-- SECTION FORM PEMINJAMAN BALAI (INTEGRASI WA) -->
-            <div id="form-peminjaman" class="bg-white p-6 md:p-10 rounded-lg shadow-sm border border-purple-100 space-y-6">
-                <div class="border-b border-gray-100 pb-4">
-                    <span class="text-xs font-extrabold text-purple-700 uppercase tracking-widest block mb-1">Pengajuan Digital</span>
-                    <h2 class="text-2xl font-extrabold text-gray-900">Formulir Peminjaman Balai RW 021</h2>
-                    <p class="text-xs sm:text-sm text-gray-500 mt-1">Isi formulir di bawah ini untuk mengajukan jadwal peminjaman gedung balai. Sistem akan menghubungkan Anda langsung ke WhatsApp Sekretaris RW.</p>
-                </div>
-
-                <form onsubmit="submitBookingBalai(event)" class="space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                        <div>
-                            <label for="book_nama" class="block text-xs font-bold text-gray-700 mb-1">Nama Pemohon / Penanggung Jawab *</label>
-                            <input type="text" id="book_nama" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-purple-600 text-xs" />
-                        </div>
-
-                        <div>
-                            <label for="book_rt" class="block text-xs font-bold text-gray-700 mb-1">Asal Wilayah RT *</label>
-                            <select id="book_rt" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-purple-600 text-xs">
-                                <?php for ($i = 1; $i <= 10; $i++): ?>
-                                    <option value="<?= sprintf('%02d', $i) ?>">RT <?= sprintf('%02d', $i) ?> / RW 021</option>
-                                <?php endfor; ?>
-                                <option value="Luar RW 021">Warga Luar RW 021</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label for="book_wa" class="block text-xs font-bold text-gray-700 mb-1">No. WhatsApp Aktif *</label>
-                            <input type="tel" id="book_wa" required placeholder="08xxxxxxxxxx" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-purple-600 text-xs" />
-                        </div>
-
-                        <div>
-                            <label for="book_tanggal" class="block text-xs font-bold text-gray-700 mb-1">Tanggal Acara / Penggunaan *</label>
-                            <input type="date" id="book_tanggal" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-purple-600 text-xs" />
-                        </div>
-
-                        <div>
-                            <label for="book_waktu" class="block text-xs font-bold text-gray-700 mb-1">Waktu / Jam Penggunaan *</label>
-                            <input type="text" id="book_waktu" required placeholder="Contoh: 09.00 - 13.00 WIB" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-purple-600 text-xs" />
-                        </div>
-
-                        <div>
-                            <label for="book_acara" class="block text-xs font-bold text-gray-700 mb-1">Jenis Acara / Keperluan *</label>
-                            <select id="book_acara" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-purple-600 text-xs">
-                                <option value="Syukuran / Pernikahan / Keluarga">Syukuran / Pernikahan / Acara Keluarga</option>
-                                <option value="Rapat RT / Organisasi / Komunitas">Rapat RT / Organisasi / Komunitas</option>
-                                <option value="Pengajian / Kegiatan Keagamaan">Pengajian / Kegiatan Keagamaan</option>
-                                <option value="Sosialisasi / Pelatihan Instansi">Sosialisasi / Pelatihan Instansi</option>
-                                <option value="Kegiatan Olahraga / Perlombaan">Kegiatan Olahraga / Perlombaan</option>
-                                <option value="Lainnya">Lainnya</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="book_catatan" class="block text-xs font-bold text-gray-700 mb-1">Catatan Tambahan & Kebutuhan Fasilitas</label>
-                        <textarea id="book_catatan" rows="3" placeholder="Tuliskan estimasi jumlah undangan, kebutuhan kursi/meja/sound system..." class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-purple-600 text-xs"></textarea>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-2">
-                        <span class="text-xs text-gray-500">
-                            * Pengajuan peminjaman akan diproses oleh Sekretariat RW 021 untuk konfirmasi ketersediaan jadwal.
-                        </span>
-                        <button type="submit" class="px-8 py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-lg transition duration-150 shadow-md flex items-center gap-2">
-                            <span>Kirim Pengajuan ke WhatsApp &rarr;</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-
         </div>
     </div>
 
