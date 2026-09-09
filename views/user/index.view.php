@@ -56,7 +56,7 @@
     <div class="relative bg-white overflow-hidden min-h-[650px] flex items-center">
         <div class="absolute inset-0">
             <img class="w-full h-full object-cover object-right"
-                src="/images/"
+                src="/images/balairw21.jpg"
                 alt="Warga" />
             <div class="absolute inset-0 bg-white/75"></div>
         </div>
