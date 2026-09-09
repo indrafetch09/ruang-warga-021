@@ -76,28 +76,21 @@
                     <div id="content-visi" class="flex flex-col md:flex-row gap-8 items-start">
                         <div class="w-full md:w-1/3">
                             <h3 class="text-3xl font-extrabold text-gray-900 mb-2">Visi Kami</h3>
+                            <p class="text-sm text-gray-500 leading-relaxed">
+                                Komitmen dan cita-cita luhur bagi seluruh warga lingkungan RW 021.
+                            </p>
                         </div>
-                        <div class="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div class="bg-purple-50/60 border border-purple-100 p-6 rounded-lg hover:border-purple-300 transition-all">
+                        <div class="w-full md:w-2/3">
+                            <div class="bg-purple-50/60 border border-purple-100 p-6 md:p-8 rounded-lg hover:border-purple-300 transition-all">
                                 <div class="w-12 h-12 bg-purple-600 text-white rounded-lg flex items-center justify-center mb-4 shadow-sm">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m-9 9a9 9 0 019-9"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                                     </svg>
                                 </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">Digitalisasi Pelayanan</h4>
-                                <p class="text-gray-600 text-sm leading-relaxed">
-                                    Mewujudkan sistem administrasi kependudukan yang cepat, transparan, dan dapat diakses melalui portal warga.
-                                </p>
-                            </div>
-                            <div class="bg-purple-50/60 border border-purple-100 p-6 rounded-lg hover:border-purple-300 transition-all">
-                                <div class="w-12 h-12 bg-purple-600 text-white rounded-lg flex items-center justify-center mb-4 shadow-sm">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                                    </svg>
-                                </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">Lingkungan Inklusif</h4>
-                                <p class="text-gray-600 text-sm leading-relaxed">
-                                    Membangun komunitas warga yang saling peduli, guyub rukun, dan menjunjung tinggi nilai toleransi antar tetangga.
+                                <h4 class="text-xl font-bold text-gray-900 mb-3">Visi RW 021</h4>
+                                <p class="text-gray-700 text-base md:text-lg leading-relaxed font-medium">
+                                    &ldquo;Terwujudnya lingkungan RW.21 yang aman, rukun, bersih, harmonis, serta pelayanan warga yang transparan dan berbasis kekeluargaan.&rdquo;
                                 </p>
                             </div>
                         </div>
@@ -107,28 +100,73 @@
                     <div id="content-misi" class="hidden flex flex-col md:flex-row gap-8 items-start">
                         <div class="w-full md:w-1/3">
                             <h3 class="text-3xl font-extrabold text-gray-900 mb-2">Misi Kami</h3>
+                            <p class="text-sm text-gray-500 leading-relaxed">
+                                Langkah nyata dan program kerja terpadu untuk merealisasikan visi lingkungan RW 021.
+                            </p>
                         </div>
                         <div class="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <!-- Misi 1 -->
+                            <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-lg hover:border-emerald-300 transition-all">
+                                <div class="w-12 h-12 bg-emerald-600 text-white rounded-lg flex items-center justify-center mb-4 shadow-sm">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">Pelayanan Prima</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Memberikan pelayanan administrasi kependudukan yang cepat, tulus, dan transparan kepada seluruh warga.
+                                </p>
+                            </div>
+
+                            <!-- Misi 2 -->
                             <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-lg hover:border-emerald-300 transition-all">
                                 <div class="w-12 h-12 bg-emerald-600 text-white rounded-lg flex items-center justify-center mb-4 shadow-sm">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                                     </svg>
                                 </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">Keamanan & Ketertiban 24 Jam</h4>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">Keamanan & Ketertiban</h4>
                                 <p class="text-gray-600 text-sm leading-relaxed">
-                                    Optimalisasi sistem jam malam portal, penambahan CCTV lingkungan, dan pos ronda aktif di tiap RT.
+                                    Meningkatkan sistem keamanan lingkungan secara swadaya dan terpadu.
                                 </p>
                             </div>
+
+                            <!-- Misi 3 -->
                             <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-lg hover:border-emerald-300 transition-all">
                                 <div class="w-12 h-12 bg-emerald-600 text-white rounded-lg flex items-center justify-center mb-4 shadow-sm">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                                     </svg>
                                 </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">Pengelolaan Kebersihan</h4>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">Kebersihan & Lingkungan</h4>
                                 <p class="text-gray-600 text-sm leading-relaxed">
-                                    Penguatan armada pengangkutan sampah, pemilahan sampah, serta kerja bakti rutin warga.
+                                    Menjaga kebersihan, keindahan, dan kesehatan lingkungan hidup di wilayah RW.
+                                </p>
+                            </div>
+
+                            <!-- Misi 4 -->
+                            <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-lg hover:border-emerald-300 transition-all">
+                                <div class="w-12 h-12 bg-emerald-600 text-white rounded-lg flex items-center justify-center mb-4 shadow-sm">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">Kerukunan Sosial</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Mempererat tali silaturahmi, gotong royong, dan kepedulian sosial antarwarga.
+                                </p>
+                            </div>
+
+                            <!-- Misi 5 -->
+                            <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-lg hover:border-emerald-300 transition-all md:col-span-2">
+                                <div class="w-12 h-12 bg-emerald-600 text-white rounded-lg flex items-center justify-center mb-4 shadow-sm">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">Sinergi Program</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Mendukung dan menyukseskan program kerja dari kelurahan.
                                 </p>
                             </div>
                         </div>

@@ -85,41 +85,6 @@
 
                     </div>
                 </div>
-
-                <!-- RIGHT COLUMN: CONTACT FORM -->
-                <div class="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 shadow-sm space-y-6">
-                    <div>
-                        <h2 class="text-xl font-extrabold text-gray-900">Formulir Pesan & Pertanyaan</h2>
-                    </div>
-
-                    <form onsubmit="submitContactForm(event)" class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Nama Lengkap *</label>
-                            <input type="text" id="contact_name" required placeholder="Contoh: Bpk. Ahmad Santoso" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-400" />
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Kategori Pesan *</label>
-                            <select id="contact_category" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-400">
-                                <option value="Pertanyaan Umum">Pertanyaan Umum</option>
-                                <option value="Saran & Masukan">Saran & Masukan</option>
-                                <option value="Pengaduan Lingkungan">Pengaduan Lingkungan</option>
-                                <option value="Informasi Layanan RW">Informasi Layanan RW</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Pesan / Isi Pertanyaan *</label>
-                            <textarea id="contact_message" required rows="4" placeholder="Tuliskan pesan atau pertanyaan Anda di sini..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-2">
-                            <span>Kirim Pesan via WhatsApp RW</span>
-                            <span>&rarr;</span>
-                        </button>
-                    </form>
-                </div>
-
             </div>
 
         </div>
