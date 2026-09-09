@@ -71,7 +71,7 @@ try {
             'password'    => password_hash('rt04123', PASSWORD_BCRYPT),
             'role'        => 'pengurus_rt',
             'rt_assigned' => '04'
-        ],
+        ],  
         [
             'username'    => 'rt05',
             'email'       => 'rt05@rw021.local',
