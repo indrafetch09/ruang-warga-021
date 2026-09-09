@@ -75,11 +75,9 @@
                 <div class="mt-8 flex flex-wrap gap-4 items-center">
                     <a href="/tentang-kami" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition duration-150 shadow-md">
                         <span>Lihat Profil RW</span>
-                        <span>&rarr;</span>
                     </a>
                     <a href="/layanan" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/95 text-purple-700 font-semibold rounded-lg hover:bg-white hover:text-purple-800 transition duration-150 shadow-sm border border-purple-200">
                         <span>Layanan Balai & Warga</span>
-                        <span>&rarr;</span>
                     </a>
                 </div>
             </div>
