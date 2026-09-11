@@ -85,7 +85,7 @@ $router->post('/login', function () {
         return redirect('/login');
     }
 
-    $identity = trim($_POST['identity'] ?? $_POST['username'] ?? $_POST['email'] ?? '');
+    $identity = trim($_POST['identity'] ?? $_POST['username'] ??  '');
     $password = $_POST['password'] ?? '';
 
     $form = \Http\Forms\LoginForm::validate([
@@ -96,7 +96,7 @@ $router->post('/login', function () {
     $signedIn = (new \Core\Authenticator())->attempt($identity, $password);
 
     if (!$signedIn) {
-        $form->error('identity', 'Email/ID Pengurus atau kata sandi yang Anda masukkan salah.')->throw();
+        $form->error('identity', 'Username Pengurus atau kata sandi yang Anda masukkan salah.')->throw();
     }
 
     \Core\Session::flash('sukses', 'Selamat datang kembali di Portal Ruang Warga 021!');

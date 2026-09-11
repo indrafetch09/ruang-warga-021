@@ -34,7 +34,7 @@ class PengaturanController
         $allUsers = [];
         if ($user->isAdmin()) {
             $allUsers = $db->query(
-                'SELECT id, username, email, role, rt_assigned, created_at FROM users ORDER BY role ASC, rt_assigned ASC, username ASC'
+                'SELECT id, username, role, rt_assigned, created_at FROM users ORDER BY role ASC, rt_assigned ASC, username ASC'
             )->get();
         }
 

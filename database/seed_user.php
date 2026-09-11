@@ -24,10 +24,9 @@ try {
     echo "🌱 Seeding users into database [{$dbname}]...\n\n";
 
     $stmt = $pdo->prepare("
-        INSERT INTO `users` (`username`, `email`, `password`, `role`, `rt_assigned`, `created_at`) 
-        VALUES (:username, :email, :password, :role, :rt_assigned, NOW())
+        INSERT INTO `users` (`username`, `password`, `role`, `rt_assigned`, `created_at`) 
+        VALUES (:username, :password, :role, :rt_assigned, NOW())
         ON DUPLICATE KEY UPDATE 
-            `email` = VALUES(`email`),
             `password` = VALUES(`password`),
             `role` = VALUES(`role`),
             `rt_assigned` = VALUES(`rt_assigned`)
