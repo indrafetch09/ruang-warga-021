@@ -17,7 +17,7 @@ class LoginForm
         $this->checkRateLimit();
 
         if (!Validator::string($attributes['identity'] ?? '', 1, 255)) {
-            $this->errors['identity'] = 'Silakan masukkan Email atau Username yang valid.';
+            $this->errors['identity'] = 'Silakan masukkan Username yang valid.';
         }
 
         if (!Validator::string($attributes['password'] ?? '', 1, 255)) {

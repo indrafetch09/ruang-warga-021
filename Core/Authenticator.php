@@ -15,10 +15,9 @@ class Authenticator
 
         // Cari berdasarkan username ATAU email di tabel 'users'
         $user = $db->query(
-            'SELECT * FROM `users` WHERE (username = :identity OR email = :email) LIMIT 1',
+            'SELECT * FROM `users` WHERE username = :identity LIMIT 1',
             [
                 'identity' => $identity,
-                'email'    => $identity,
             ]
         )->find();
 
@@ -51,7 +50,6 @@ class Authenticator
             'id'          => $user['id'] ?? null,
             'username'    => $user['username'] ?? '',
             'name'        => $user['name'] ?? $user['username'] ?? 'Pengurus RW',
-            'email'       => $user['email'] ?? '',
             'role'        => $user['role'] ?? 'admin',
             'is_active'   => (int)($user['is_active'] ?? 1),
             'logged_at'   => time(),
