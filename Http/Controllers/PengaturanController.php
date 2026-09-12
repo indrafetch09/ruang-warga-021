@@ -20,12 +20,11 @@ class PengaturanController
 
         // Ambil data user lengkap dari database
         $userData = $db->query(
-            'SELECT id, username, email, role, rt_assigned, created_at FROM users WHERE id = :id LIMIT 1',
+            'SELECT id, username,  role, rt_assigned, created_at FROM users WHERE id = :id LIMIT 1',
             ['id' => $user->id]
         )->find() ?? [
             'id'          => $user->id,
             'username'    => $user->username ?? 'admin',
-            'email'       => $user->email ?? 'admin@ruangwarga021.id',
             'role'        => $user->role ?? 'admin',
             'rt_assigned' => $user->rt_assigned ?? null,
         ];
@@ -46,7 +45,7 @@ class PengaturanController
     }
 
     /**
-     * Perbarui Profil Akun Sendiri (Username & Email)
+     * Perbarui Profil Akun Sendiri (Username)
      */
     public function updateProfile()
     {
@@ -54,7 +53,6 @@ class PengaturanController
         $user = User::current();
 
         $username = trim($_POST['username'] ?? '');
-        $email    = trim($_POST['email'] ?? '');
 
         $errors = [];
 
@@ -64,9 +62,6 @@ class PengaturanController
             $errors['username'] = 'Username minimal 3 karakter.';
         }
 
-        if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = 'Format email tidak valid.';
-        }
 
         // Cek duplikasi username untuk user lain
         $existingUser = $db->query(
@@ -78,27 +73,16 @@ class PengaturanController
             $errors['username'] = 'Username sudah digunakan oleh akun lain.';
         }
 
-        // Cek duplikasi email untuk user lain
-        $existingEmail = $db->query(
-            'SELECT id FROM users WHERE email = :email AND id != :id LIMIT 1',
-            ['email' => $email, 'id' => $user->id]
-        )->find();
-
-        if ($existingEmail) {
-            $errors['email'] = 'Email sudah terdaftar pada akun lain.';
-        }
-
         if (!empty($errors)) {
             Session::flash('errors', $errors);
-            Session::flash('old', ['username' => $username, 'email' => $email]);
+            Session::flash('old', ['username' => $username,]);
             redirect('/admin/pengaturan');
         }
 
         $db->query(
-            'UPDATE users SET username = :username, email = :email WHERE id = :id',
+            'UPDATE users SET username = :username,  WHERE id = :id',
             [
                 'username' => $username,
-                'email'    => $email,
                 'id'       => $user->id,
             ]
         );
@@ -106,7 +90,6 @@ class PengaturanController
         // Perbarui sesi aktif
         if (isset($_SESSION['user'])) {
             $_SESSION['user']['username'] = $username;
-            $_SESSION['user']['email']    = $email;
         }
 
         Session::flash('sukses', 'Profil akun berhasil diperbarui.');

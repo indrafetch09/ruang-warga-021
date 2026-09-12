@@ -78,12 +78,6 @@
                                 class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-500" />
                         </div>
 
-                        <div>
-                            <label for="email" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Alamat Email</label>
-                            <input type="email" id="email" name="email" value="<?= htmlspecialchars($userData['email'] ?? '') ?>" required
-                                class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-500" />
-                        </div>
-
                         <div class="grid grid-cols-2 gap-4 pt-1">
                             <div>
                                 <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Peran / Role</span>
@@ -180,7 +174,6 @@
                             <thead class="bg-gray-50 text-gray-500 uppercase tracking-wider font-extrabold border-b border-gray-200">
                                 <tr>
                                     <th class="py-3 px-4">Pengguna</th>
-                                    <th class="py-3 px-4">Email</th>
                                     <th class="py-3 px-4">Peran (Role)</th>
                                     <th class="py-3 px-4">Wilayah RT</th>
                                     <th class="py-3 px-4 text-right">Aksi Pemulihan</th>
@@ -194,9 +187,6 @@
                                             <?php if ($u['id'] === $user->id): ?>
                                                 <span class="ml-1 px-2 py-0.5 bg-purple-100 text-purple-700 text-[10px] rounded-full font-extrabold">Akun Anda</span>
                                             <?php endif; ?>
-                                        </td>
-                                        <td class="py-3.5 px-4 text-gray-600 font-medium">
-                                            <?= htmlspecialchars($u['email']) ?>
                                         </td>
                                         <td class="py-3.5 px-4">
                                             <?php

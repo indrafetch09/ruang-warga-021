@@ -256,7 +256,7 @@
                         <div class="space-y-3">
                             <?php for ($i = 1; $i <= 10; $i++):
                                 $count = $wargaPerRt[$i] ?? 0;
-                                $max = max(1, max($wargaPerRt ?: [1]));
+                                $max = max(1, max($count ?: [1]));
                                 $pct = round(($count / $max) * 100);
                             ?>
                                 <div>
@@ -280,19 +280,16 @@
                             <span class="font-bold text-purple-900"><?= htmlspecialchars($user['name'] ?? 'Pengurus') ?></span>
                         </div>
                         <div class="flex justify-between border-b border-purple-200 pb-2">
-                            <span class="text-gray-600">Email</span>
-                            <span class="font-bold text-purple-900"><?= htmlspecialchars($user['email'] ?? '-') ?></span>
+                            <span class="text-gray-600">Username</span>
+                            <span class="font-bold text-purple-900"><?= htmlspecialchars($user['username'] ?? '-') ?></span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Hak Akses</span>
                             <span class="font-bold text-emerald-700 uppercase"><?= htmlspecialchars($user['role'] ?? 'Admin') ?></span>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </main>
     </div>
 </body>
