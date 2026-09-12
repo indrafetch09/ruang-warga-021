@@ -75,6 +75,7 @@ $router->post('/laporan', [LaporanController::class, 'store'])->only('auth');
 // ==========================================
 
 // Login (Guest Only)
+// pls make a LoginController for this, so it wont make the routes dirty
 $router->get('/login', function () {
     return view('user/login.php');
 })->only('guest');
