@@ -41,9 +41,11 @@ function base_path($path = '')
 
 function view($path, $attributes = [])
 {
+    if (!isset($attributes['user']) && \Core\Authenticator::check()) {
+        $attributes['user'] = \App\Models\User::current();
+    }
     extract($attributes);
 
-    // ponytail: resolution logic for filtered user/ and admin/ views architecture
     $fullPath = base_path('views/' . $path);
     if (!file_exists($fullPath)) {
         if (file_exists(base_path('views/user/' . $path))) {
