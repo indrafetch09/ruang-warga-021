@@ -90,7 +90,7 @@
                                 </div>
                                 <h4 class="text-xl font-bold text-gray-900 mb-3">Visi RW 021</h4>
                                 <p class="text-gray-700 text-base md:text-lg leading-relaxed font-medium">
-                                    &ldquo;Terwujudnya lingkungan RW.21 yang aman, rukun, bersih, harmonis, serta pelayanan warga yang transparan dan berbasis kekeluargaan.&rdquo;
+                                    &ldquo;Terwujudnya lingkungan RW 021 yang aman, rukun, bersih, harmonis, serta pelayanan warga yang transparan dan berbasis kekeluargaan.&rdquo;
                                 </p>
                             </div>
                         </div>

@@ -62,7 +62,7 @@
                 <h4 class="text-gray-900 font-extrabold text-base tracking-tight">Layanan</h4>
                 <ul class="space-y-2.5 text-xs md:text-sm">
                     <li><a href="/layanan" class="text-gray-600 hover:text-purple-700 font-semibold transition">Balai RW 021 & Fasilitas</a></li>
-                    <li><a href="/tpst" class="text-gray-600 hover:text-purple-700 font-semibold transition">Kebersihan Lingkungan (TPST)</a></li>
+                    <li><a href="/tpst" class="text-gray-600 hover:text-purple-700 font-semibold transition">Kebersihan Lingkungan (TPS)</a></li>
                     <li><a href="/layanan#form-peminjaman" class="text-gray-600 hover:text-purple-700 font-semibold transition">Peminjaman Gedung Balai</a></li>
                 </ul>
             </div>
