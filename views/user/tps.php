@@ -192,7 +192,7 @@
                         </div>
                     </div>
                     <div>
-                        <button type="button" onclick="openFacilityModal('tpst-jadwal')" class="text-xs font-bold text-emerald-700 hover:text-emerald-900 inline-flex items-center gap-1">
+                        <button type="button" onclick="openFacilityModal('tps-jadwal')" class="text-xs font-bold text-emerald-700 hover:text-emerald-900 inline-flex items-center gap-1">
                             <span>Lihat Rincian Jadwal & Wilayah</span>
                             <span>&rarr;</span>
                         </button>
@@ -266,7 +266,7 @@
                         </div>
                     </div>
                     <div>
-                        <button type="button" onclick="openFacilityModal('tpst-aturan')" class="text-xs font-bold text-teal-700 hover:text-teal-900 inline-flex items-center gap-1">
+                        <button type="button" onclick="openFacilityModal('tps-aturan')" class="text-xs font-bold text-teal-700 hover:text-teal-900 inline-flex items-center gap-1">
                             <span>Lihat SOP & Regulasi</span>
                             <span>&rarr;</span>
                         </button>
@@ -327,7 +327,7 @@
             <!-- Modal Header -->
             <div id="modal-header-bg" class="px-6 py-5 bg-emerald-700 text-white flex justify-between items-center">
                 <div>
-                    <span id="modal-category" class="text-[10px] font-extrabold uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded-lg">TPST RW 021</span>
+                    <span id="modal-category" class="text-[10px] font-extrabold uppercase tracking-widest bg-white/20 px-2.5 py-0.5 rounded-lg">TPS RW 021</span>
                     <h3 id="modal-title" class="text-xl font-bold mt-1">Detail Layanan</h3>
                 </div>
                 <button type="button" onclick="closeFacilityModal()" class="text-white/80 hover:text-white text-2xl font-bold p-1 focus:outline-none">&times;</button>
@@ -368,7 +368,7 @@
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.301-1.127z" />
                         </svg>
-                        Hubungi Koordinator TPST via WhatsApp
+                        Hubungi Koordinator TPS via WhatsApp
                     </a>
                 </div>
             </div>
@@ -382,7 +382,7 @@
 
     <script>
         const facilityModalData = {
-            'tpst-jadwal': {
+            'tps-jadwal': {
                 category: 'Pengangkutan Sampah RW 021',
                 title: 'Jadwal Operasional Armada Gerobak Sampah',
                 headerBg: 'bg-emerald-700',
@@ -421,9 +421,9 @@
                 coordinator: 'Pengurus Bank Sampah Berkah RW 021',
                 wa: 'https://wa.me/6281511322022'
             },
-            'tpst-aturan': {
+            'tps-aturan': {
                 category: 'Tata Tertib & SOP Kebersihan',
-                title: 'Regulasi & SOP Pengelolaan TPST 021',
+                title: 'Regulasi & SOP Pengelolaan TPS 021',
                 headerBg: 'bg-teal-700',
                 description: 'Peraturan bersama demi menjaga kebersihan, ketertiban, dan kenyamanan lingkungan hidup seluruh warga RW 021.',
                 subitems: [
@@ -436,7 +436,7 @@
                     'Dilarang keras membakar sampah dalam bentuk apa pun di pemukiman',
                     'Laporkan jika armada pengangkut tidak melintas lebih dari 2 hari berturut-turut'
                 ],
-                schedule: 'Kantor Sekretariat TPST RW 021<br>Senin - Sabtu (08.00 - 16.00 WIB)',
+                schedule: 'Kantor Sekretariat TPS RW 021<br>Senin - Sabtu (08.00 - 16.00 WIB)',
                 coordinator: 'Seksi Lingkungan Hidup & Kebersihan RW 021',
                 wa: 'https://wa.me/6281511322022'
             }
