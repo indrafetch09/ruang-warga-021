@@ -21,7 +21,7 @@ $router = new \Core\Router();
 $router->get('/', [HomeController::class, 'index']);
 $router->get('/tentang-kami', [HomeController::class, 'about']);
 $router->get('/pengurus-rw', [HomeController::class, 'pengurus']);
-// Layanan Warga (Balai RW 021 & TPST)
+// Layanan Warga (Balai RW 021 & TPS)
 $router->get('/layanan', function () {
     return view('user/layanan.php');
 });
@@ -31,11 +31,11 @@ $router->get('/balai-rw', function () {
 $router->get('/aula-rw', function () {
     return view('user/layanan.php');
 });
-$router->get('/tpst', function () {
-    return view('user/tpst.php');
+$router->get('/tps', function () {
+    return view('user/tps.php');
 });
 $router->get('/kebersihan', function () {
-    return view('user/tpst.php');
+    return view('user/tps.php');
 });
 
 // Kegiatan Rutin Publik (Panduan Warga)
