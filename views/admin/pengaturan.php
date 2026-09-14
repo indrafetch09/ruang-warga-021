@@ -73,7 +73,7 @@
                         <?= \Core\Csrf::field() ?>
 
                         <div>
-                            <label for="username" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Username / ID Pengurus</label>
+                            <label for="username" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Username</label>
                             <input type="text" id="username" name="username" value="<?= htmlspecialchars($userData['username'] ?? '') ?>" required
                                 class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-500" />
                         </div>

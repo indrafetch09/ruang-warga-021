@@ -13,7 +13,7 @@ class Authenticator
     {
         $db = App::resolve(Database::class);
 
-        // Cari berdasarkan username ATAU email di tabel 'users'
+        // Cari berdasarkan username di tabel users
         $user = $db->query(
             'SELECT * FROM `users` WHERE username = :identity LIMIT 1',
             [

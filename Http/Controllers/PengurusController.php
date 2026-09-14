@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\Pengurus;
 use App\Models\Warga;
 use App\Models\User;
 use Core\App;

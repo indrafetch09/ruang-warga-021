@@ -5,7 +5,6 @@ namespace App\Controllers;
 use Core\App;
 use Core\Database;
 use Core\Session;
-use Core\Authenticator;
 use App\Models\User;
 
 class PengaturanController
@@ -66,7 +65,10 @@ class PengaturanController
         // Cek duplikasi username untuk user lain
         $existingUser = $db->query(
             'SELECT id FROM users WHERE username = :username AND id != :id LIMIT 1',
-            ['username' => $username, 'id' => $user->id]
+            [
+                'id' => $user->id,
+                'username' => $username
+            ]
         )->find();
 
         if ($existingUser) {
@@ -80,10 +82,10 @@ class PengaturanController
         }
 
         $db->query(
-            'UPDATE users SET username = :username,  WHERE id = :id',
+            'UPDATE users SET username = :username WHERE id = :id',
             [
-                'username' => $username,
                 'id'       => $user->id,
+                'username' => $username,
             ]
         );
 

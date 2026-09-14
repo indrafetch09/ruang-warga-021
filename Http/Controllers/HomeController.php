@@ -4,11 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Pengumuman;
 use App\Models\Notulensi;
-use App\Models\Pengurus;
-use App\Models\Warga;
 use App\Models\Galeri;
-use Core\Model;
-use Core\Crypt;
 use Core\App;
 use Core\Database;
 
