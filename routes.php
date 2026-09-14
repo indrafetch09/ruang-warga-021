@@ -1,15 +1,17 @@
 <?php
 
-use App\Controllers\HomeController;
+use App\Controllers\AdminController;
+use App\Controllers\AuthController;
 use App\Controllers\GaleriController;
-use App\Controllers\NotulensiController;
-use App\Controllers\PengumumanController;
-use App\Controllers\WargaController;
-use App\Controllers\LaporanController;
+use App\Controllers\HomeController;
 use App\Controllers\KegiatanController;
+use App\Controllers\LaporanController;
+use App\Controllers\NotulensiController;
+use App\Controllers\PengaturanController;
+use App\Controllers\PengumumanController;
 use App\Controllers\PengurusController;
 use App\Controllers\StatistikController;
-use App\Controllers\AdminController;
+use App\Controllers\WargaController;
 
 $router = new \Core\Router();
 
@@ -25,16 +27,7 @@ $router->get('/pengurus-rw', [HomeController::class, 'pengurus']);
 $router->get('/layanan', function () {
     return view('user/layanan.php');
 });
-$router->get('/balai-rw', function () {
-    return view('user/layanan.php');
-});
-$router->get('/aula-rw', function () {
-    return view('user/layanan.php');
-});
 $router->get('/tps', function () {
-    return view('user/tps.php');
-});
-$router->get('/kebersihan', function () {
     return view('user/tps.php');
 });
 
@@ -75,46 +68,11 @@ $router->post('/laporan', [LaporanController::class, 'store'])->only('auth');
 // ==========================================
 
 // Login (Guest Only)
-// pls make a LoginController for this, so it wont make the routes dirty
-$router->get('/login', function () {
-    return view('user/login.php');
-})->only('guest');
-
-$router->post('/login', function () {
-    if (!\Core\Csrf::verify($_POST['_csrf_token'] ?? null)) {
-        \Core\Session::flash('errors', ['identity' => 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.']);
-        return redirect('/login');
-    }
-
-    $identity = trim($_POST['identity'] ?? $_POST['username'] ??  '');
-    $password = $_POST['password'] ?? '';
-
-    $form = \Http\Forms\LoginForm::validate([
-        'identity' => $identity,
-        'password' => $password,
-    ]);
-
-    $signedIn = (new \Core\Authenticator())->attempt($identity, $password);
-
-    if (!$signedIn) {
-        $form->error('identity', 'Username Pengurus atau kata sandi yang Anda masukkan salah.')->throw();
-    }
-
-    \Core\Session::flash('sukses', 'Selamat datang kembali di Portal Ruang Warga 021!');
-    redirect('/dashboard');
-})->only('guest');
+$router->get('/login', [AuthController::class, 'showLogin'])->only('guest');
+$router->post('/login', [AuthController::class, 'login'])->only('guest');
 
 // Logout (Auth Only)
-$router->post('/logout', function () {
-    (new \Core\Authenticator())->logout();
-    redirect('/');
-})->only('auth');
-
-$router->delete('/logout', function () {
-    (new \Core\Authenticator())->logout();
-    redirect('/');
-})->only('auth');
-
+$router->post('/logout', [AuthController::class, 'logout'])->only('auth');
 
 // ==========================================
 // 3. ROUTES ADMIN / PORTAL SIRW 021 (LENGKAP CRUD)
@@ -180,7 +138,7 @@ $router->get('/admin/warga/template', [App\Controllers\WargaController::class, '
 $router->post('/admin/warga/import', [App\Controllers\WargaController::class, 'import'])->only('auth');
 
 // --- G. Pengaturan Sistem & Akun ---
-$router->get('/admin/pengaturan', [\App\Controllers\PengaturanController::class, 'index'])->only('auth');
-$router->post('/admin/pengaturan/profile', [\App\Controllers\PengaturanController::class, 'updateProfile'])->only('auth');
-$router->post('/admin/pengaturan/password', [\App\Controllers\PengaturanController::class, 'updatePassword'])->only('auth');
-$router->post('/admin/pengaturan/reset-password', [\App\Controllers\PengaturanController::class, 'resetUserPassword'])->only('auth');
+$router->get('/admin/pengaturan', [PengaturanController::class, 'index'])->only('auth');
+$router->post('/admin/pengaturan/profile', [PengaturanController::class, 'updateProfile'])->only('auth');
+$router->post('/admin/pengaturan/password', [PengaturanController::class, 'updatePassword'])->only('auth');
+$router->post('/admin/pengaturan/reset-password', [PengaturanController::class, 'resetUserPassword'])->only('auth');
