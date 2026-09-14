@@ -16,9 +16,8 @@ class User extends Model
     public static function current(): self
     {
         $userData = Authenticator::user() ?? Session::get('user') ?? [
-            'id'          => 1,
+            'id'          => null,
             'username'    => 'rw021',
-            'name'        => 'Pengurus RW 021',
             'role'        => 'pengurus_rw',
             'rt_assigned' => null
         ];
