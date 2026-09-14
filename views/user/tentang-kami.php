@@ -176,7 +176,7 @@
             </div>
 
             <!-- SECTION: LETAK GEOGRAFIS & GIS MAPS -->
-            <div class="flex flex-col md:flex-row justify-center items-center md:items-center gap-4 border-b border-gray-100 pt-8">
+            <div class="flex flex-col md:flex-row justify-center items-center md:items-center gap-4 border-b border-gray-100 pt-20">
                 <div>
                     <h2 class="text-2xl text-center md:text-3xl font-extrabold text-gray-900 mt-1">
                         Letak <span class="text-purple-600">Geografis & Peta GIS RW 021</span>

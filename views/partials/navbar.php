@@ -14,7 +14,7 @@ if (!function_exists('navClass')) {
 $currentUri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
 $isProfilActive  = str_starts_with($currentUri, '/tentang-kami') || str_starts_with($currentUri, '/pengurus-rw') || str_starts_with($currentUri, '/galeri');
-$isLayananActive = str_starts_with($currentUri, '/layanan') || str_starts_with($currentUri, '/tpst');
+$isLayananActive = str_starts_with($currentUri, '/layanan') || str_starts_with($currentUri, '/tps');
 $isInfoActive    = str_starts_with($currentUri, '/pengumuman') || str_starts_with($currentUri, '/notulensi') || str_starts_with($currentUri, '/statistik') || str_starts_with($currentUri, '/lokasi') || str_starts_with($currentUri, '/maps');
 ?>
 <!-- NAVBAR UTAMA (Berdasarkan spesifikasi docs/features/users.md) -->
@@ -84,9 +84,9 @@ $isInfoActive    = str_starts_with($currentUri, '/pengumuman') || str_starts_wit
                             <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                             </svg>
-                            <span>Balai RW 021 & Fasilitas</span>
+                            <span>Balai RW 021 & Posyandu</span>
                         </a>
-                        <a href="/tpst" class="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">
+                        <a href="/tps" class="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">
                             <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                             </svg>
@@ -194,7 +194,7 @@ $isInfoActive    = str_starts_with($currentUri, '/pengumuman') || str_starts_wit
                 </svg>
                 Balai RW 021 & Fasilitas
             </a>
-            <a href="/tpst" class="flex items-center gap-2 px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">
+            <a href="/tps" class="flex items-center gap-2 px-2 py-1 rounded text-sm font-medium text-gray-700 hover:text-purple-700">
                 <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                 </svg>
