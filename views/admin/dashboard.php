@@ -39,7 +39,7 @@
             <!-- SIMPLE PAGE HEADER -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
                 <div>
-                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Selamat Datang di <span class="text-purple-600">Admin RW 021</span></h1>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Selamat Datang di <span class="text-purple-600">Portal Admin RW 021</span></h1>
                 </div>
             </div>
 
@@ -244,7 +244,6 @@
                             </div>
                         <?php endif; ?>
                     </div>
-
                 </div>
 
                 <!-- KANAN (1-col): ANALITIK SEBARAN RT & AKUN -->
@@ -254,10 +253,11 @@
                     <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm">
                         <h3 class="font-bold text-gray-900 text-base mb-4">Sebaran Penduduk per RT</h3>
                         <div class="space-y-3">
-                            <?php for ($i = 1; $i <= 10; $i++):
-                                $count = $wargaPerRt[$i] ?? 0;
-                                $max = max(1, max($count ?: [1]));
-                                $pct = round(($count / $max) * 100);
+                            <?php
+                            $max = max(1, max(array_values($wargaPerRt))); // Perhitungan banyak RT
+                            for ($i = 1; $i <= 10; $i++): // Perhitungan jumlah RT 
+                                $count = $wargaPerRt[$i] ?? 0; // Jumlah jiwa
+                                $pct = round(($count / $max) * 100); // Perhitungan garis bar ungu
                             ?>
                                 <div>
                                     <div class="flex justify-between text-xs font-semibold mb-1">
