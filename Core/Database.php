@@ -9,7 +9,7 @@ class Database
     public $connection;
     public $statement;
 
-    public function __construct($config, $username = 'indra', $password = 'indrasql1')
+    public function __construct($config, $username = 'root', $password = '')
     {
         // ponytail: sqlite driver support for fast test execution
         if (isset($config['driver']) && $config['driver'] === 'sqlite') {

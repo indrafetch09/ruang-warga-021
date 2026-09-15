@@ -11,20 +11,26 @@
 
     <?php require base_path('views/partials/navbar.php'); ?>
 
+    <!-- HERO / HEADER BANNER -->
+    <div class="bg-purple-900 text-white py-12 md:py-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+                    Statistik Demografi Penduduk
+                </h1>
+                <p class="text-base md:text-lg text-purple-200 leading-relaxed">
+                    Grafik rekapitulasi data kependudukan, jumlah Kepala Keluarga, sebaran usia, dan statistik per RT 01 s/d RT 10 RW 021.
+                </p>
+            </div>
+        </div>
+    </div>
+
     <!-- MAIN CONTENT -->
-    <div class="py-12 flex-1">
+    <div class="py-10 flex-1">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
-            <!-- SIMPLE PAGE HEADER -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">Statistik <span class="text-purple-600">Demografi Penduduk</span></h1>
-                    <p class="text-xs md:text-sm text-gray-500 mt-1">Grafik rekapitulasi data demografi dan sebaran jumlah KK per RT 01 s/d 10.</p>
-                </div>
-            </div>
-
             <?php
-            // Data Kartu Ringkasan & Sebaran RT dari Database Controller
             $summary = $summaryData ?? [
                 'total_kk' => 0,
                 'total_jiwa' => 0,
@@ -42,29 +48,29 @@
 
             <!-- SUMMARY CARDS -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-                <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center hover:shadow-md transition">
+                <div class="bg-white p-6 rounded-lg border border-purple-100 shadow-sm text-center hover:shadow-md transition">
                     <span class="text-3xl md:text-4xl font-extrabold text-purple-700 block mb-1"><?= number_format($summary['total_kk']) ?></span>
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Kepala Keluarga (KK)</span>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center hover:shadow-md transition">
+                <div class="bg-white p-6 rounded-lg border border-purple-100 shadow-sm text-center hover:shadow-md transition">
                     <span class="text-3xl md:text-4xl font-extrabold text-purple-700 block mb-1"><?= number_format($summary['total_jiwa']) ?></span>
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Total Jiwa Warga</span>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center hover:shadow-md transition">
+                <div class="bg-white p-6 rounded-lg border border-purple-100 shadow-sm text-center hover:shadow-md transition">
                     <span class="text-3xl md:text-4xl font-extrabold text-purple-700 block mb-1"><?= htmlspecialchars($summary['total_rt']) ?></span>
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Rukun Tetangga (RT 01-10)</span>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center hover:shadow-md transition">
+                <div class="bg-white p-6 rounded-lg border border-purple-100 shadow-sm text-center hover:shadow-md transition">
                     <span class="text-3xl md:text-4xl font-extrabold text-emerald-600 block mb-1"><?= htmlspecialchars($summary['verifikasi']) ?></span>
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Terverifikasi Digital</span>
                 </div>
             </div>
 
-            <!-- CHARTS SECTION: BAR CHART & PIE CHARTS -->
+            <!-- CHARTS SECTION -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-                <!-- BAR CHART: SEBARAN KK & JIWA PER RT -->
-                <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-2xl border border-purple-100 shadow-sm flex flex-col justify-between">
+                <!-- BAR CHART -->
+                <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-lg border border-purple-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
                             <div>
@@ -79,8 +85,8 @@
                     </div>
                 </div>
 
-                <!-- PIE CHART: DEMOGRAFI USIA -->
-                <div class="bg-white p-6 md:p-8 rounded-2xl border border-purple-100 shadow-sm flex flex-col justify-between">
+                <!-- PIE CHART -->
+                <div class="bg-white p-6 md:p-8 rounded-lg border border-purple-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="mb-6 border-b border-gray-100 pb-4">
                             <h2 class="text-lg md:text-xl font-extrabold text-gray-900">Diagram Lingkaran: Kelompok Usia</h2>
@@ -97,8 +103,8 @@
             <!-- SECONDARY CHARTS & DATA TABLE -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-                <!-- DOUGHNUT CHART: GENDER -->
-                <div class="bg-white p-6 md:p-8 rounded-2xl border border-purple-100 shadow-sm flex flex-col justify-between">
+                <!-- DOUGHNUT CHART -->
+                <div class="bg-white p-6 md:p-8 rounded-lg border border-purple-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <div class="mb-6 border-b border-gray-100 pb-4">
                             <h2 class="text-lg md:text-xl font-extrabold text-gray-900">Komposisi Gender Warga</h2>
@@ -108,21 +114,28 @@
                             <canvas id="pieChartGender"></canvas>
                         </div>
                     </div>
+                    <?php
+                    $lCount = $genderStats['L'] ?? $chartGenderData[0] ?? 0;
+                    $pCount = $genderStats['P'] ?? $chartGenderData[1] ?? 0;
+                    $gTotal = max($lCount + $pCount, 1);
+                    $pctL = ($lCount > 0) ? round(($lCount / $gTotal) * 100) : 0;
+                    $pctP = ($pCount > 0) ? round(($pCount / $gTotal) * 100) : 0;
+                    ?>
                     <div class="mt-6 pt-4 border-t border-gray-100 flex justify-around text-center">
                         <div>
                             <span class="text-xs font-bold text-gray-400 uppercase">Laki-laki</span>
-                            <span class="text-lg font-extrabold text-blue-600 block">635 Jiwa (51%)</span>
+                            <span class="text-lg font-extrabold text-blue-600 block"><?= number_format($lCount) ?> Jiwa (<?= $pctL ?>%)</span>
                         </div>
                         <div class="border-r border-gray-200"></div>
                         <div>
                             <span class="text-xs font-bold text-gray-400 uppercase">Perempuan</span>
-                            <span class="text-lg font-extrabold text-pink-600 block">610 Jiwa (49%)</span>
+                            <span class="text-lg font-extrabold text-pink-600 block"><?= number_format($pCount) ?> Jiwa (<?= $pctP ?>%)</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- TABEL RINCIAN SEBARAN RT -->
-                <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-2xl border border-purple-100 shadow-sm">
+                <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-lg border border-purple-100 shadow-sm">
                     <h2 class="text-lg md:text-xl font-extrabold text-gray-900 mb-6 border-b border-gray-100 pb-4">Rincian Data Kependudukan RT 01 - RT 10</h2>
 
                     <?php if (empty($dataRt)): ?>
@@ -158,164 +171,15 @@
     <!-- FOOTER -->
     <?php require base_path('views/partials/footer.php'); ?>
 
-    <!-- SCRIPT INITIALIZE CHART.JS (DYNAMIC DATA INJECTION) -->
+    <!-- DYNAMIC DATA BINDING UNTUK CHART.JS -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Data Dynamic Injection dari Controller / Fallback JSON
-            const barLabels = <?= json_encode($chartBarLabels ?? ['RT 01', 'RT 02', 'RT 03', 'RT 04', 'RT 05', 'RT 06', 'RT 07', 'RT 08', 'RT 09', 'RT 10']) ?>;
-            const barKk = <?= json_encode($chartBarKk ?? [32, 35, 28, 40, 38, 30, 36, 34, 39, 38]) ?>;
-            const barJiwa = <?= json_encode($chartBarJiwa ?? [112, 123, 98, 140, 133, 105, 126, 119, 137, 133]) ?>;
-
-            const usiaData = <?= json_encode($chartUsiaData ?? [215, 180, 680, 170]) ?>;
-            const genderData = <?= json_encode($chartGenderData ?? [635, 610]) ?>;
-
-            // 1. BAR CHART: Sebaran KK & Jiwa per RT
-            const ctxBar = document.getElementById('barChartRt').getContext('2d');
-            new Chart(ctxBar, {
-                type: 'bar',
-                data: {
-                    labels: barLabels,
-                    datasets: [{
-                            label: 'Jumlah KK',
-                            data: barKk,
-                            backgroundColor: '#9333ea',
-                            borderRadius: 6,
-                        },
-                        {
-                            label: 'Estimasi Jiwa',
-                            data: barJiwa,
-                            backgroundColor: '#059669',
-                            borderRadius: 6,
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                            labels: {
-                                font: {
-                                    family: 'Plus Jakarta Sans',
-                                    weight: 'bold'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            backgroundColor: '#1e1b4b',
-                            titleFont: {
-                                family: 'Plus Jakarta Sans',
-                                size: 13,
-                                weight: 'bold'
-                            },
-                            bodyFont: {
-                                family: 'Plus Jakarta Sans',
-                                size: 12
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: '#f3f4f6'
-                            },
-                            ticks: {
-                                font: {
-                                    family: 'Plus Jakarta Sans'
-                                }
-                            }
-                        },
-                        x: {
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                font: {
-                                    family: 'Plus Jakarta Sans',
-                                    weight: 'bold'
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // 2. PIE CHART: Kelompok Usia Warga
-            const ctxPie = document.getElementById('pieChartUsia').getContext('2d');
-            new Chart(ctxPie, {
-                type: 'pie',
-                data: {
-                    labels: ['Anak (0-12 thn)', 'Remaja (13-18 thn)', 'Dewasa (19-59 thn)', 'Lansia (60+ thn)'],
-                    datasets: [{
-                        data: usiaData,
-                        backgroundColor: ['#c084fc', '#38bdf8', '#7e22ce', '#f59e0b'],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                font: {
-                                    family: 'Plus Jakarta Sans',
-                                    weight: '600'
-                                },
-                                padding: 15
-                            }
-                        },
-                        tooltip: {
-                            backgroundColor: '#1e1b4b',
-                            callbacks: {
-                                label: function(context) {
-                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                    const val = context.raw;
-                                    const pct = ((val / total) * 100).toFixed(1);
-                                    return ` ${context.label}: ${val} Jiwa (${pct}%)`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // 3. DOUGHNUT CHART: Komposisi Gender
-            const ctxGender = document.getElementById('pieChartGender').getContext('2d');
-            new Chart(ctxGender, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Laki-laki', 'Perempuan'],
-                    datasets: [{
-                        data: genderData,
-                        backgroundColor: ['#2563eb', '#ec4899'],
-                        borderWidth: 3,
-                        borderColor: '#ffffff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                font: {
-                                    family: 'Plus Jakarta Sans',
-                                    weight: '600'
-                                },
-                                padding: 12
-                            }
-                        }
-                    }
-                }
-            });
-        });
+        window.chartBarLabels = <?= json_encode($chartBarLabels ?? ['RT 01', 'RT 02', 'RT 03', 'RT 04', 'RT 05', 'RT 06', 'RT 07', 'RT 08', 'RT 09', 'RT 10']) ?>;
+        window.chartBarKk = <?= json_encode($chartBarKk ?? [32, 35, 28, 40, 38, 30, 36, 34, 39, 38]) ?>;
+        window.chartBarJiwa = <?= json_encode($chartBarJiwa ?? [112, 123, 98, 140, 133, 105, 126, 119, 137, 133]) ?>;
+        window.chartUsiaData = <?= json_encode($chartUsiaData ?? [215, 180, 680, 170]) ?>;
+        window.chartGenderData = <?= json_encode($chartGenderData ?? [635, 610]) ?>;
     </script>
+    <script src="/script.js"></script>
 </body>
 
 </html>

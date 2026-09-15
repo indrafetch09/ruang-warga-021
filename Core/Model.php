@@ -2,7 +2,7 @@
 
 namespace Core;
 
-abstract class Model
+abstract class Model implements \ArrayAccess
 {
     protected static $table;
     public $attributes = [];
@@ -37,6 +37,43 @@ abstract class Model
     public function __set($key, $value)
     {
         $this->attributes[$key] = $value;
+    }
+
+    public function __isset($key): bool
+    {
+        return isset($this->attributes[$key]);
+    }
+
+    public function __unset($key): void
+    {
+        unset($this->attributes[$key]);
+    }
+
+    // -----------------------------------------------------------------
+    // ARRAY ACCESS IMPLEMENTATION
+    // -----------------------------------------------------------------
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->attributes[$offset]) || method_exists($this, $offset);
+    }
+
+    public function offsetGet(mixed $offset): mixed
+    {
+        return $this->__get($offset);
+    }
+
+    public function offsetSet(mixed $offset, mixed $value): void
+    {
+        if (is_null($offset)) {
+            $this->attributes[] = $value;
+        } else {
+            $this->attributes[$offset] = $value;
+        }
+    }
+
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->attributes[$offset]);
     }
 
     // -----------------------------------------------------------------
@@ -101,7 +138,7 @@ abstract class Model
         $table = $relatedModel::$table;
 
         // 1. Kumpulkan semua ID Utama (untuk query IN)
-        $ids = array_map(function($model) use ($type, $localKey, $foreignKey) {
+        $ids = array_map(function ($model) use ($type, $localKey, $foreignKey) {
             return $type === 'hasMany' ? $model->attributes[$localKey] : $model->attributes[$foreignKey];
         }, $models);
 
@@ -111,7 +148,7 @@ abstract class Model
         // 2. Hit ke Database HANYA 1 KALI (WHERE IN)
         $inClause = implode(',', array_fill(0, count($ids), '?'));
         $keyToMatch = $type === 'hasMany' ? $foreignKey : $localKey;
-        
+
         $results = $db->query("SELECT * FROM {$table} WHERE {$keyToMatch} IN ($inClause)", $ids)->get();
 
         // 3. Kelompokkan Data Relasi
@@ -128,7 +165,7 @@ abstract class Model
         // 4. Suntikkan (Inject) ke Property Object Utama
         foreach ($models as $model) {
             $matchId = $type === 'hasMany' ? $model->attributes[$localKey] : $model->attributes[$foreignKey];
-            
+
             if ($type === 'hasMany') {
                 $model->relations[$relationName] = $dictionary[$matchId] ?? [];
             } else {
@@ -148,7 +185,7 @@ abstract class Model
         $table = static::$table;
 
         $db->query("DELETE FROM {$table} WHERE id = :id", ['id' => $id]);
-        
+
         return true;
     }
 
@@ -161,7 +198,7 @@ abstract class Model
         $table = static::$table;
 
         $results = $db->query(
-            "SELECT * FROM {$table} WHERE {$column} {$operator} :val", 
+            "SELECT * FROM {$table} WHERE {$column} {$operator} :val",
             ['val' => $value]
         )->get();
 
@@ -184,7 +221,7 @@ abstract class Model
 
         // Fetch data sesuai limit & offset
         $results = $db->query(
-            "SELECT * FROM {$table} LIMIT :per_page OFFSET :offset", 
+            "SELECT * FROM {$table} LIMIT :per_page OFFSET :offset",
             [
                 'per_page' => (int) $perPage,
                 'offset' => (int) $offset
@@ -200,7 +237,7 @@ abstract class Model
         ];
     }
 
-     public static function create($attributes)
+    public static function create($attributes)
     {
         $db = App::resolve(Database::class);
         $table = static::$table;
@@ -237,5 +274,4 @@ abstract class Model
 
         return array_map(fn($row) => new static($row), $results);
     }
-
 }

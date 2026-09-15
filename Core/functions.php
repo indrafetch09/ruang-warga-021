@@ -34,16 +34,18 @@ function authorize($condition, $status = Response::FORBIDDEN)
     return true;
 }
 
-function base_path($path)
+function base_path($path = '')
 {
     return BASE_PATH . $path;
 }
 
 function view($path, $attributes = [])
 {
+    if (!isset($attributes['user']) && \Core\Authenticator::check()) {
+        $attributes['user'] = \App\Models\User::current();
+    }
     extract($attributes);
 
-    // ponytail: resolution logic for filtered user/ and admin/ views architecture
     $fullPath = base_path('views/' . $path);
     if (!file_exists($fullPath)) {
         if (file_exists(base_path('views/user/' . $path))) {
@@ -79,4 +81,30 @@ function csrf_field()
 {
     $token = csrf_token();
     return "<input type='hidden' name='_token' value='{$token}'>";
+}
+
+function env($key, $default = null)
+{
+    $value = $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key);
+
+    if ($value === false || $value === null) {
+        return $default;
+    }
+
+    switch (strtolower($value)) {
+        case 'true':
+        case '(true)':
+            return true;
+        case 'false':
+        case '(false)':
+            return false;
+        case 'empty':
+        case '(empty)':
+            return '';
+        case 'null':
+        case '(null)':
+            return null;
+    }
+
+    return $value;
 }
