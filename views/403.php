@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-    <title>403 - Akses Ditolak</title>
-    <?php require base_path('views/partials/head.php'); ?>
+    <?php $title = "403 - Akses Ditolak";
+    require base_path('views/partials/head.php'); ?>
 </head>
+
 <body class="bg-gray-100 flex items-center justify-center h-screen font-sans">
     <div class="text-center bg-white p-8 rounded-2xl shadow-lg max-w-md w-full mx-4">
         <h1 class="text-6xl font-extrabold text-red-600 mb-2">403</h1>
@@ -14,4 +16,5 @@
         </a>
     </div>
 </body>
+
 </html>

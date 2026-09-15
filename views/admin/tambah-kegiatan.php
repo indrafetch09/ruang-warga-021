@@ -2,8 +2,8 @@
 <html lang="id">
 
 <head>
-    <title>Tambah Kegiatan Rutin - Dasbor Pengurus RW 021</title>
-    <?php require base_path('views/partials/head.php'); ?>
+    <?php $title = "Tambah Kegiatan Rutin - Dasbor Pengurus RW 021";
+    require base_path('views/partials/head.php'); ?>
 </head>
 
 <body class="text-gray-800 bg-gray-50 flex flex-col min-h-screen">

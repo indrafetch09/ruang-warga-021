@@ -2,8 +2,8 @@
 <html lang="id">
 
 <head>
-    <title>Dasbor Pengurus - Ruang Warga 021</title>
-    <?php require base_path('views/partials/head.php'); ?>
+    <?php $title = "Dasbor Pengurus - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
 </head>
 
 <body class="text-gray-800 bg-gray-50 flex flex-col min-h-screen">

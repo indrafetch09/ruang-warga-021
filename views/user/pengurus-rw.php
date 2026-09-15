@@ -2,8 +2,8 @@
 <html lang="id">
 
 <head>
-    <title>Struktur Pengurus RW 021 Periode 2025 - 2028</title>
-    <?php require base_path('views/partials/head.php'); ?>
+    <?php $title = "Struktur Pengurus - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
     <style>
         @media (min-width: 768px) {
             .hierarchy-line-bottom::after {
@@ -128,9 +128,27 @@
                 </div>
             </div>
 
-            <!-- LEVEL 2: KETUA RW 021 -->
-            <?php $ketuaInfo = $getSlotInfo('Ketua RW 021'); ?>
-            <div class="flex justify-center my-8">
+            <?php
+            $ketua = $ketuaRw ?? null;
+            $sekretaris = $sekretarisRw ?? null;
+            $bendahara = $bendaharaRw ?? null;
+            $seksi = $seksiList ?? [];
+            $dataRtList = $listRt ?? [];
+
+            $ketuaFoto = $ketua['foto'] ?? 'https://ui-avatars.com/api/?name=Ketua+RW&background=7c3aed&color=fff&size=150';
+            $ketuaJabatan = $ketua['jabatan'] ?? 'Ketua RW 021';
+            $ketuaNama = $ketua['nama'] ?? 'Belum Diinputkan';
+            $ketuaPeriode = $ketua['periode'] ?? 'Masa Bakti 2024 - 2027';
+
+            $sekretarisFoto = $sekretaris['foto'] ?? 'https://ui-avatars.com/api/?name=Sekretaris&background=10b981&color=fff&size=150';
+            $sekretarisNama = $sekretaris['nama'] ?? 'Belum Diinputkan';
+
+            $bendaharaFoto = $bendahara['foto'] ?? 'https://ui-avatars.com/api/?name=Bendahara&background=10b981&color=fff&size=150';
+            $bendaharaNama = $bendahara['nama'] ?? 'Belum Diinputkan';
+            ?>
+
+            <!-- LEVEL 1: KETUA RW -->
+            <div class="flex justify-center mb-6 md:mb-12">
                 <div class="relative w-full max-w-sm hierarchy-line-bottom">
                     <div class="bg-white rounded-lg shadow-xl border-2 border-purple-300 p-8 flex flex-col items-center text-center transform hover:-translate-y-1 transition-all">
                         <img src="<?= $getAvatar($ketuaInfo['nama'], $ketuaInfo['assigned'] ? '7c3aed' : 'cbd5e1') ?>" alt="Ketua RW" class="w-28 h-28 rounded-full mb-4 object-cover border-4 border-purple-100 shadow-md" />
@@ -187,19 +205,20 @@
                     <div class="h-px bg-purple-200 flex-1"></div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                    <?php foreach ($seksiListDef as $seksiName): ?>
-                        <?php $seksiInfo = $getSlotInfo($seksiName); ?>
-                        <div class="bg-white p-5 rounded-lg border border-purple-100 shadow-sm text-center flex flex-col justify-between">
-                            <div>
-                                <span class="bg-amber-300 text-purple-950 text-[10px] font-extrabold px-2.5 py-1 rounded-lg uppercase tracking-wider block mb-3 leading-tight min-h-[28px] flex items-center justify-center">
-                                    <?= htmlspecialchars($seksiName) ?>
-                                </span>
-                                <img src="<?= $getAvatar($seksiInfo['nama'], $seksiInfo['assigned'] ? '7c3aed' : 'cbd5e1') ?>" class="w-14 h-14 rounded-full mx-auto mb-2 border-2 border-purple-100" />
-                                <h5 class="font-bold text-xs <?= $seksiInfo['assigned'] ? 'text-gray-900' : 'text-gray-400 italic' ?>">
-                                    <?= htmlspecialchars($seksiInfo['nama']) ?>
-                                </h5>
-                            </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <?php foreach ($seksi as $s): ?>
+                        <?php
+                        $badgeColor = match ($s['color'] ?? 'purple') {
+                            'amber' => 'text-amber-600 border-amber-50',
+                            'sky'   => 'text-sky-600 border-sky-50',
+                            'rose'  => 'text-rose-600 border-rose-50',
+                            default => 'text-purple-600 border-purple-50'
+                        };
+                        ?>
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+                            <img src="<?= htmlspecialchars($s['foto']) ?>" alt="Seksi" class="w-16 h-16 rounded-full mb-3 object-cover border-2 <?= $badgeColor ?>" />
+                            <span class="text-[10px] font-bold <?= explode(' ', $badgeColor)[0] ?> mb-1 uppercase"><?= htmlspecialchars($s['seksi']) ?></span>
+                            <h4 class="text-base font-bold text-gray-900"><?= htmlspecialchars($s['nama']) ?></h4>
                         </div>
                     <?php endforeach; ?>
                 </div>

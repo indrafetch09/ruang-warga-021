@@ -2,8 +2,8 @@
 <html lang="id">
 
 <head>
-    <title>Galeri Kegiatan - Ruang Warga 021</title>
-    <?php require base_path('views/partials/head.php'); ?>
+    <?php $title = "Galeri Kegiatan - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
     <style>
         .logo-container {
             border-radius: 0 0 24px 24px;

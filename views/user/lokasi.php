@@ -2,8 +2,8 @@
 <html lang="id">
 
 <head>
-    <title>Peta & Lokasi Sekretariat - Ruang Warga 021</title>
-    <?php require base_path('views/partials/head.php'); ?>
+    <?php $title = "Peta & Lokasi Sekretariat - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
 </head>
 
 <body class="bg-gray-50 flex flex-col min-h-screen">

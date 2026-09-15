@@ -2,21 +2,26 @@
 <html lang="id">
 
 <head>
-    <title>Login Pengurus - Ruang Warga 021</title>
-    <?php require base_path('views/partials/head.php'); ?>
-    <style>
-        .bg-login-image {
-            background-image: url("/images/kkn_rw21.webp");
-            background-size: cover;
-            background-position: center;
-        }
+    <<<<<<< HEAD
+        <title>Login Pengurus - Ruang Warga 021</title>
+        <?php require base_path('views/partials/head.php'); ?>
+        =======
+        <?php $title = "Login Pengurus - Ruang Warga 021";
+        require base_path('views/partials/head.php'); ?>
+        >>>>>>> main
+        <style>
+            .bg-login-image {
+                background-image: url("/images/kkn_rw21.webp");
+                background-size: cover;
+                background-position: center;
+            }
 
-        .overlay-gradient {
-            background: linear-gradient(135deg,
-                    rgba(147, 51, 234, 0.9) 0%,
-                    rgba(88, 28, 135, 0.95) 100%);
-        }
-    </style>
+            .overlay-gradient {
+                background: linear-gradient(135deg,
+                        rgba(147, 51, 234, 0.9) 0%,
+                        rgba(88, 28, 135, 0.95) 100%);
+            }
+        </style>
 </head>
 
 <body class="bg-gray-50 flex min-h-screen">

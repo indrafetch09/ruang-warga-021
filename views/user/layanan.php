@@ -2,13 +2,14 @@
 <html lang="id">
 
 <head>
-    <title>Balai RW 021 & Fasilitas Balai Warga - Ruang Warga 021</title>
-    <?php require base_path('views/partials/head.php'); ?>
+    <?php $title = "Aula RW 021 & Fasilitas Balai Warga - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
     <style>
         @keyframes marquee-right {
             from {
                 transform: translateX(-50%);
             }
+
             to {
                 transform: translateX(0%);
             }
@@ -18,6 +19,7 @@
             from {
                 transform: translateX(0%);
             }
+
             to {
                 transform: translateX(-50%);
             }

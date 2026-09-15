@@ -2,8 +2,8 @@
 <html lang="id">
 
 <head>
-    <title>Arsip Notulen Rapat - Ruang Warga 021</title>
-    <?php require base_path('views/partials/head.php'); ?>
+    <?php $title = "Arsip Notulen Rapat - Ruang Warga 021";
+    require base_path('views/partials/head.php'); ?>
 </head>
 
 <body class="bg-gray-50 flex flex-col min-h-screen">
@@ -28,7 +28,7 @@
     <!-- MAIN CONTENT -->
     <div class="py-10 bg-white flex-1">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            
+
             <!-- Filter & Search Bar (Method GET) -->
             <form action="/notulensi" method="GET" class="bg-white border border-gray-200 p-4 rounded-lg shadow-sm mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
                 <div class="w-full md:w-1/2 relative">
@@ -38,7 +38,7 @@
                     <input type="text" name="q" value="<?= htmlspecialchars($_GET['q'] ?? '') ?>" placeholder="Cari judul atau kata kunci rapat..."
                         class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm" />
                 </div>
-                
+
                 <div class="w-full md:w-auto flex gap-3">
                     <select name="kategori" onchange="this.form.submit()"
                         class="w-full md:w-auto px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white cursor-pointer">
@@ -57,8 +57,8 @@
             </form>
 
             <!-- List of Notulensi (100% Dynamic from Database) -->
-            <?php 
-                $listNotulensi = $notulensiList ?? $notulensi ?? [];
+            <?php
+            $listNotulensi = $notulensiList ?? $notulensi ?? [];
             ?>
 
             <?php if (empty($listNotulensi)): ?>
@@ -73,28 +73,28 @@
             <?php else: ?>
                 <div class="flex flex-col space-y-6">
                     <?php foreach ($listNotulensi as $item): ?>
-                        <?php 
-                            $isObj = is_object($item);
-                            $idVal = $isObj ? ($item->id ?? 1) : ($item['id'] ?? 1);
-                            $tglVal = $isObj ? ($item->tanggal ?? 'now') : ($item['tanggal'] ?? 'now');
-                            $dayVal = date('d', strtotime($tglVal));
-                            $monthVal = date('M', strtotime($tglVal));
-                            $yearVal = date('Y', strtotime($tglVal));
-                            $katVal = $isObj ? ($item->kategori ?? 'rutin') : ($item['kategori'] ?? 'rutin');
-                            $waktuVal = $isObj ? ($item->waktu_mulai ?? '') : ($item['waktu'] ?? '');
-                            $judulVal = $isObj ? ($item->judul ?? '-') : ($item['judul'] ?? '-');
-                            $ringkasanVal = $isObj ? ($item->hasil_pembahasan ?? $item->agenda ?? '') : ($item['ringkasan'] ?? '');
+                        <?php
+                        $isObj = is_object($item);
+                        $idVal = $isObj ? ($item->id ?? 1) : ($item['id'] ?? 1);
+                        $tglVal = $isObj ? ($item->tanggal ?? 'now') : ($item['tanggal'] ?? 'now');
+                        $dayVal = date('d', strtotime($tglVal));
+                        $monthVal = date('M', strtotime($tglVal));
+                        $yearVal = date('Y', strtotime($tglVal));
+                        $katVal = $isObj ? ($item->kategori ?? 'rutin') : ($item['kategori'] ?? 'rutin');
+                        $waktuVal = $isObj ? ($item->waktu_mulai ?? '') : ($item['waktu'] ?? '');
+                        $judulVal = $isObj ? ($item->judul ?? '-') : ($item['judul'] ?? '-');
+                        $ringkasanVal = $isObj ? ($item->hasil_pembahasan ?? $item->agenda ?? '') : ($item['ringkasan'] ?? '');
 
-                            $badgeColor = match(strtolower($katVal)) {
-                                'khusus' => 'text-purple-600 bg-purple-50 border-l-purple-500',
-                                'laporan' => 'text-amber-600 bg-amber-50 border-l-amber-500',
-                                default => 'text-emerald-600 bg-emerald-50 border-l-emerald-500',
-                            };
-                            $borderColor = match(strtolower($katVal)) {
-                                'khusus' => 'border-l-purple-500',
-                                'laporan' => 'border-l-amber-500',
-                                default => 'border-l-emerald-500',
-                            };
+                        $badgeColor = match (strtolower($katVal)) {
+                            'khusus' => 'text-purple-600 bg-purple-50 border-l-purple-500',
+                            'laporan' => 'text-amber-600 bg-amber-50 border-l-amber-500',
+                            default => 'text-emerald-600 bg-emerald-50 border-l-emerald-500',
+                        };
+                        $borderColor = match (strtolower($katVal)) {
+                            'khusus' => 'border-l-purple-500',
+                            'laporan' => 'border-l-amber-500',
+                            default => 'border-l-emerald-500',
+                        };
                         ?>
                         <div class="flex flex-col sm:flex-row gap-6 bg-white p-5 rounded-lg border border-gray-100 border-l-4 <?= $borderColor ?> hover:shadow-lg transition-all duration-300 group">
                             <!-- Tanggal Box -->
