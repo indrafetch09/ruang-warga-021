@@ -65,9 +65,20 @@ class HomeController
             }
         }
 
+        $daysMap = [
+            'senin'   => 'Senin',
+            'selasa'  => 'Selasa',
+            'rabu'    => 'Rabu',
+            'kamis'   => 'Kamis',
+            'jumat'   => 'Jumat',
+            'sabtu'   => 'Sabtu',
+            'minggu'  => 'Minggu'
+        ];
+
         return view('user/tentang-kami.php', [
             'profil'         => $profil,
-            'kegiatanByHari' => $kegiatanByHari
+            'kegiatanByHari' => $kegiatanByHari,
+            'daysMap'        => $daysMap
         ]);
     }
 
