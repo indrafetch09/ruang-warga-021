@@ -29,6 +29,7 @@
 
         #postModal .overflow-y-auto::-webkit-scrollbar-track {
             background: transparent;
+
         }
 
         #postModal .overflow-y-auto::-webkit-scrollbar-thumb {
@@ -62,7 +63,6 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
             <!-- SECTION: VISI & MISI (TOGGLE BUTTONS) -->
-
             <!-- SIMPLE PAGE HEADER -->
             <div>
                 <div class="flex items-center gap-2 mb-0">

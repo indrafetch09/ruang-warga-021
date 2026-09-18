@@ -23,7 +23,6 @@ $headDesc  = $description ?? $pageDesc ?? 'Portal Resmi Sistem Informasi & Layan
 <!-- Stylesheets & Fonts -->
 <!-- Favicon -->
 <link rel="icon" type="image/svg" href="/images/favicon.svg" />
-<link rel="apple-touch-icon" href="/images/logo_RW021.webp" />
 <link rel="stylesheet" href="/css/theme.css" />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
