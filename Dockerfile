@@ -17,7 +17,13 @@ RUN composer install --no-dev --prefer-dist --no-scripts --no-progress --no-inte
 FROM php:8.3-cli
 
 # Extension PHP yang dibutuhkan aplikasi
-RUN docker-php-ext-install pdo_mysql pdo_sqlite
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libsqlite3-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-install pdo_mysql pdo_sqlite
+
+# Composer untuk kebutuhan dev (composer install/update di dalam container)
+COPY --from=vendor /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
