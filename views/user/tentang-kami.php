@@ -84,28 +84,19 @@
                         <div class="w-full md:w-1/3">
                             <h3 class="text-3xl font-extrabold text-gray-900 mb-2">Visi Kami</h3>
                         </div>
-                        <div class="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div class="bg-purple-50/60 border border-purple-100 p-6 rounded-2xl hover:border-purple-300 transition-all">
-                                <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-sm">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m-9 9a9 9 0 019-9"></path>
-                                    </svg>
+                        <div class="w-full md:w-2/3">
+                            <div class="bg-purple-50/60 border border-purple-100 p-6 md:p-8 rounded-2xl hover:border-purple-300 transition-all">
+                                <div class="flex items-start gap-5">
+                                    <div class="w-14 h-14 bg-purple-600 text-white rounded-2xl flex items-center justify-center shadow-sm flex-shrink-0">
+                                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <p class="text-gray-700 text-base md:text-lg leading-relaxed">
+                                        Terwujudnya lingkungan RW 21 yang <strong class="font-bold text-purple-700">aman, rukun, bersih, harmonis</strong>, serta pelayanan warga yang <strong class="font-bold text-purple-700">transparan</strong> dan <strong class="font-bold text-purple-700">berbasis kekeluargaan</strong>.
+                                    </p>
                                 </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">Digitalisasi Pelayanan</h4>
-                                <p class="text-gray-600 text-sm leading-relaxed">
-                                    Mewujudkan sistem administrasi kependudukan yang cepat, transparan, dan dapat diakses 24/7 melalui portal warga.
-                                </p>
-                            </div>
-                            <div class="bg-purple-50/60 border border-purple-100 p-6 rounded-2xl hover:border-purple-300 transition-all">
-                                <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-sm">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                                    </svg>
-                                </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">Lingkungan Inklusif</h4>
-                                <p class="text-gray-600 text-sm leading-relaxed">
-                                    Membangun komunitas warga yang saling peduli, guyub rukun, dan menjunjung tinggi nilai toleransi antar tetangga.
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -116,48 +107,68 @@
                             <h3 class="text-3xl font-extrabold text-gray-900 mb-2">Misi Kami</h3>
                         </div>
                         <div class="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <!-- Misi 1: Pelayanan Prima -->
                             <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-2xl hover:border-emerald-300 transition-all">
                                 <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-sm">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                     </svg>
                                 </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">Keamanan & Ketertiban 24 Jam</h4>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">Pelayanan Prima</h4>
                                 <p class="text-gray-600 text-sm leading-relaxed">
-                                    Optimalisasi sistem jam malam portal, penambahan CCTV lingkungan, dan pos ronda aktif di tiap RT.
+                                    Memberikan pelayanan administrasi kependudukan yang cepat, tulus, dan transparan kepada seluruh warga.
                                 </p>
                             </div>
+
+                            <!-- Misi 2: Keamanan & Ketertiban -->
                             <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-2xl hover:border-emerald-300 transition-all">
                                 <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-sm">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                                     </svg>
                                 </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">Pengelolaan Sampah Terpadu</h4>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">Keamanan &amp; Ketertiban</h4>
                                 <p class="text-gray-600 text-sm leading-relaxed">
-                                    Penguatan armada TPST, pemilahan sampah organik & anorganik, serta aktivasi rutin Bank Sampah warga.
+                                    Meningkatkan sistem keamanan lingkungan secara swadaya dan terpadu.
                                 </p>
                             </div>
+
+                            <!-- Misi 3: Kebersihan & Lingkungan -->
+                            <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-2xl hover:border-emerald-300 transition-all">
+                                <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-sm">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">Kebersihan &amp; Lingkungan</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Menjaga kebersihan, keindahan, dan kesehatan lingkungan hidup di wilayah RW.
+                                </p>
+                            </div>
+
+                            <!-- Misi 4: Kerukunan Sosial -->
                             <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-2xl hover:border-emerald-300 transition-all">
                                 <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-sm">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                                     </svg>
                                 </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">Posyandu & Kesehatan</h4>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">Kerukunan Sosial</h4>
                                 <p class="text-gray-600 text-sm leading-relaxed">
-                                    Pemeriksaan berkala Balita, Lansia, serta senam kebugaran di Aula Posyandu Bunga Tanjung.
+                                    Mempererat tali silaturahmi, gotong royong, dan kepedulian sosial antarwarga.
                                 </p>
                             </div>
-                            <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-2xl hover:border-emerald-300 transition-all">
+
+                            <!-- Misi 5: Sinergi Program -->
+                            <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-2xl hover:border-emerald-300 transition-all md:col-span-2">
                                 <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-sm">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
                                     </svg>
                                 </div>
-                                <h4 class="text-lg font-bold text-gray-900 mb-2">Musyawarah & Karang Taruna</h4>
+                                <h4 class="text-lg font-bold text-gray-900 mb-2">Sinergi Program</h4>
                                 <p class="text-gray-600 text-sm leading-relaxed">
-                                    Penyelenggaraan rapat terbuka warga secara akuntabel dan fasilitasi sarana olahraga Karang Taruna.
+                                    Mendukung dan menyukseskan program kerja dari kelurahan.
                                 </p>
                             </div>
                         </div>
@@ -178,7 +189,7 @@
                 <!-- GIS Map Placeholder -->
                 <div>
                     <div class="rounded-xl border border-gray-200 overflow-hidden bg-gray-100 relative group">
-                        <img src="/images/maps_rw21.jpg" alt="Peta Wilayah RW 021 Dasana Indah, Bojong Nangka" class="w-full h-[250px] md:h-[750px] object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <img src="/images/maps_rw21.jpg" alt="Peta Wilayah RW 021 Dasana Indah, Bojong Nangka" class="w-full h-auto block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                         <div class="w-full h-[280px] md:h-[400px] items-center justify-center flex-col gap-4 text-gray-400" style="display:none;">
                             <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
@@ -342,63 +353,8 @@
                     </div>
                 </div>
 
-                <!-- MISI CONTENT (TOGGLEABLE) -->
-                <div id="content-misi" class="hidden flex flex-col md:flex-row gap-8 items-start">
-                    <div class="w-full md:w-1/3">
-                        <h3 class="text-3xl font-extrabold text-gray-900 mb-2">Misi Kami</h3>
-                    </div>
-                    <div class="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-2xl hover:border-emerald-300 transition-all">
-                            <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-sm">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                                </svg>
-                            </div>
-                            <h4 class="text-lg font-bold text-gray-900 mb-2">Keamanan & Ketertiban 24 Jam</h4>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                Optimalisasi sistem jam malam portal, penambahan CCTV lingkungan, dan pos ronda aktif di tiap RT.
-                            </p>
-                        </div>
-                        <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-2xl hover:border-emerald-300 transition-all">
-                            <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-sm">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                                </svg>
-                            </div>
-                            <h4 class="text-lg font-bold text-gray-900 mb-2">Pengelolaan Sampah Terpadu</h4>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                Penguatan armada TPST, pemilahan sampah organik & anorganik, serta aktivasi rutin Bank Sampah warga.
-                            </p>
-                        </div>
-                        <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-2xl hover:border-emerald-300 transition-all">
-                            <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-sm">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                </svg>
-                            </div>
-                            <h4 class="text-lg font-bold text-gray-900 mb-2">Posyandu & Kesehatan</h4>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                Pemeriksaan berkala Balita, Lansia, serta senam kebugaran di Aula Posyandu Bunga Tanjung.
-                            </p>
-                        </div>
-                        <div class="bg-emerald-50/60 border border-emerald-100 p-6 rounded-2xl hover:border-emerald-300 transition-all">
-                            <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center mb-4 shadow-sm">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                            </div>
-                            <h4 class="text-lg font-bold text-gray-900 mb-2">Musyawarah & Karang Taruna</h4>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                Penyelenggaraan rapat terbuka warga secara akuntabel dan fasilitasi sarana olahraga Karang Taruna.
-                            </p>
-                        </div>
-                    </div>
                 </div>
-
-
-            </div>
         </div>
-    </div>
     </div>
 
     <!-- FOOTER -->
