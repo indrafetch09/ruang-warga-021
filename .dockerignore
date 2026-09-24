@@ -1,0 +1,8 @@
+.git
+.gitignore
+.env
+*.sql
+tests/
+docs/
+public/uploads/
+vendor/

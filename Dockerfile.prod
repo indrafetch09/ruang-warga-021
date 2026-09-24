@@ -1,0 +1,46 @@
+# syntax=docker/dockerfile:1
+
+# =============================================================
+# Ruang Warga 021 - PRODUCTION IMAGE (Nginx + PHP-FPM)
+# Fase 1: dependensi composer (tanpa dev)
+# =============================================================
+FROM composer:2 AS vendor
+
+WORKDIR /app
+
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --prefer-dist --no-scripts --no-progress --no-interaction
+
+# =============================================================
+# Fase 2: Runtime PHP-FPM
+# =============================================================
+FROM php:8.3-fpm
+
+# Extension produksi: PDO MySQL, sqlite (test CLI), OPcache
+RUN docker-php-ext-install pdo_mysql pdo_sqlite opcache
+
+# Konfigurasi OPcache untuk produksi
+RUN { \
+    echo 'opcache.enable=1'; \
+    echo 'opcache.memory_consumption=128'; \
+    echo 'opcache.max_accelerated_files=10000'; \
+    echo 'opcache.validate_timestamps=0'; \
+    echo 'opcache.enable_cli=1'; \
+    } > /usr/local/etc/php/conf.d/opcache.ini
+
+WORKDIR /var/www/html
+
+# Aplikasi & dependensi
+COPY --from=vendor /app/vendor ./vendor
+COPY . .
+
+# Direktori upload harus writable oleh user proses (www-data)
+RUN mkdir -p public/uploads/galeri public/uploads/notulensi \
+    && chown -R www-data:www-data public/uploads
+
+# Jalankan sebagai user non-root
+USER www-data
+
+EXPOSE 9000
+
+CMD ["php-fpm"]

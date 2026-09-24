@@ -62,7 +62,7 @@ Ruang Warga 021 adalah aplikasi web sederhana berbasis PHP yang dibangun tanpa f
    'database' => [
        'host'    => 'localhost',
        'port'    => 3306,
-       'dbname'  => 'ruang_warga_021',
+       'dbname'  => 'rw021',
        'charset' => 'utf8mb4',
    ],
    ```
@@ -75,6 +75,56 @@ Ruang Warga 021 adalah aplikasi web sederhana berbasis PHP yang dibangun tanpa f
    ```
 
 6. Akses aplikasi di browser: `http://localhost:8000`
+
+---
+
+## 🐳 Docker (Dev)
+
+Cara tercepat untuk menjalankan aplikasi tanpa setup PHP/MySQL lokal:
+
+```bash
+# 1. (Opsional) Buat .env - jika dilewati, nilai default dari compose yang dipakai
+cp .env.example .env
+
+# 2. Build & jalankan (app + MariaDB)
+docker compose up --build
+
+# 3. Akses aplikasi
+#    http://localhost:8000
+```
+
+Kredensial database dev (tetap, hanya untuk dev):
+
+| Item     | Nilai |
+|----------|-------|
+| Host     | `db` (di dalam compose) |
+| Port     | `3306` |
+| Database | `${DB_NAME} / rw021` |
+| User     | `${DB_USER}` |
+| Password | `${DB_PASS}` |
+| Root     | `root`  |
+
+Source code di-mount dari host, jadi perubahan kode langsung berlaku (hot reload).
+
+**Migrasi database** dijalankan manual karena `database/migrate.php` menghapus
+database (DROP DATABASE):
+
+```bash
+docker compose exec app php database/migrate.php
+docker compose exec app php database/seed_user.php
+```
+
+> Catatan: `database/schema.sql` belum ada di repo, sehingga migrate memerlukan
+> file skema tersebut terlebih dahulu.
+
+**Composer / Pest di dalam container** (tidak perlu PHP di host):
+
+```bash
+docker compose run --rm --entrypoint composer app install
+docker compose exec app vendor/bin/pest
+```
+
+Setelah selesai: `docker compose down` (tambah `-v` jika ingin menghapus volume DB juga).
 
 ---
 
