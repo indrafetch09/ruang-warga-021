@@ -1,0 +1,60 @@
+# Docker Compose untuk pengembangan (DEV)
+#
+# Menggunakan PHP built-in web server (php -S) langsung tanpa Nginx,
+# dan source code di-mount dari host agar perubahan langsung terlihat
+# (hot reload) tanpa rebuild image.
+#
+# Penggunaan:
+#   docker compose up --build
+#   buka http://localhost:8000
+#
+# Kredensial database dev (tetap, jangan dipakai untuk produksi):
+#   user: rw021   password: rw021   database: rw021
+#
+# Catatan migrasi:
+#   database/migrate.php MENGHAPUS database (DROP DATABASE), jadi otomatis
+#   nonaktif (DB_AUTO_MIGRATE=0) agar data tidak hilang saat container
+#   restart. Untuk bootstrap awal, jalankan manual:
+#     docker compose exec app php database/migrate.php
+#     docker compose exec app php database/seed_user.php
+#   (pastikan database/schema.sql tersedia - saat ini belum ada di repo)
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_AUTO_MIGRATE: ${DB_AUTO_MIGRATE:-0}
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: mariadb:10.4
+    environment:
+      MARIADB_DATABASE: ${DB_NAME} 
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASS}
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  db_data:

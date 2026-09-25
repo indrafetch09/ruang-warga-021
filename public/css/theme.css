@@ -100,7 +100,7 @@
 
 /* Global Reset & Typography */
 body {
-  font-family: "Urbanist", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   background-color: var(--color-bg-main);
   color: var(--color-text-main);
 }

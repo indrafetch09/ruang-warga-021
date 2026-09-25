@@ -51,10 +51,10 @@ $router->get('/hubungi-kami', function () {
     return view('user/hubungi-kami.php');
 });
 $router->get('/lokasi', function () {
-    return view('user/lokasi.php');
+    return view('user/hubungi-kami.php');
 });
 $router->get('/maps', function () {
-    return view('user/lokasi.php');
+    return view('user/hubungi-kami.php');
 });
 
 // Laporan Bulanan (Public list & Auth create/store)

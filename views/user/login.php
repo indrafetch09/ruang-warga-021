@@ -4,26 +4,13 @@
 <head>
     <?php $title = "Login Pengurus - Ruang Warga 021";
     require base_path('views/partials/head.php'); ?>
-    <style>
-        .bg-login-image {
-            background-image: url("/images/kkn_rw21.webp");
-            background-size: cover;
-            background-position: center;
-        }
-
-        .overlay-gradient {
-            background: linear-gradient(135deg,
-                    rgba(147, 51, 234, 0.9) 0%,
-                    rgba(88, 28, 135, 0.95) 100%);
-        }
-    </style>
 </head>
 
-<body class="bg-gray-50 flex min-h-screen">
+<body class="bg-gray-50 flex w-full min-h-screen">
     <!-- KIRI: GAMBAR & BRANDING (Layar Besar) -->
-    <div class="hidden md:flex lg:w-1/2 bg-login-image relative">
-        <div class="hidden md:flex lg:w-1/2 bg-login-image relative">
-            <div class="absolute inset-0 overlay-gradient"></div>
+    <div class="flex md:flex w-full relative">
+        <div class="hidden md:flex lg:w-1/2  relative">
+            <div class="absolute inset-0 bg-purple-700"></div>
             <div class="relative z-10 flex flex-col justify-between p-12 text-white w-full">
                 <!-- Logo Kiri Atas -->
                 <div class="flex items-center gap-3">
@@ -169,9 +156,9 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                                 </svg>
                             </div>
-                            <input type="password" id="password" name="password" placeholder="••••••••"
-                                class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm"
-                                required />
+                                <input type="password" id="password" name="password" placeholder="••••••••"
+                                    class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition text-sm"
+                                    required />
                         </div>
                     </div>
 
