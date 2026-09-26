@@ -2,162 +2,101 @@
 <html lang="id">
 
 <head>
-    <title>Kebersihan Lingkungan (TPST & Bank Sampah) - Ruang Warga 021</title>
-    <?php require base_path('views/partials/head.php'); ?>
-    <style>
-        @keyframes marquee-right {
-            from {
-                transform: translateX(-50%);
-            }
-
-            to {
-                transform: translateX(0%);
-            }
-        }
-
-        @keyframes marquee-left {
-            from {
-                transform: translateX(0%);
-            }
-
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        .animate-slide-right {
-            animation: marquee-right 28s linear infinite;
-        }
-
-        .animate-slide-left {
-            animation: marquee-left 28s linear infinite;
-        }
-
-        .animate-slide-right:hover,
-        .animate-slide-left:hover {
-            animation-play-state: paused;
-        }
-    </style>
+    <?php $title = "Kebersihan Lingkungan (TPST & Bank Sampah) - Ruang Warga 021";
+    $description = "Jadwal pengangkutan sampah, program Bank Sampah Berkah 021, dan panduan memilah sampah untuk warga RW 021.";
+    require base_path('views/partials/head.php'); ?>
 </head>
 
 <body class="bg-gray-50 flex flex-col min-h-screen text-gray-800">
 
     <?php require base_path('views/partials/navbar.php'); ?>
 
-    <!-- MAIN CONTENT -->
-    <div class="py-12 md:py-16 flex-1">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <!-- HERO + RINGKASAN LAYANAN (GABUNGAN SATU LAYAR) -->
+    <section class="relative isolate overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="/images/tps.jpg" alt="TPS &amp; Bank Sampah RW 021" class="w-full h-full object-cover object-center"
+                onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1600&q=80'" />
+            <div class="absolute inset-0 bg-gradient-to-br bg-emerald-950/85"></div>
+        </div>
+
+        <div class="relative items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 md:pb-12 md:min-h-[calc(100vh-6rem)] md:flex md:flex-col md:justify-center">
 
             <!-- PAGE HEADER -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-2">
-                <div class="space-y-2">
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-                        Layanan Kebersihan <span class="text-emerald-600">TPS & Bank Sampah RW 021</span>
-                    </h1>
-                    <p class="text-sm md:text-base text-gray-600 max-w-3xl leading-relaxed">
-                        Sistem pengelolaan sampah mandiri dan terpadu RW 021 Bojong Nangka. Melayani jadwal armada pengangkutan sampah rumah tangga harian, pemilahan organik/anorganik, serta tabungan daur ulang Bank Sampah untuk mewujudkan lingkungan yang sehat, asri, dan produktif.
-                    </p>
-                </div>
-                <div class="flex-shrink-0">
-                    <a href="https://wa.me/6281511322022" target="_blank" class="inline-flex items-center gap-2 px-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-lg transition duration-150 shadow-md">
-                        <span>Hubungi Koordinator Kebersihan</span>
-                        <span>&rarr;</span>
-                    </a>
-                </div>
+            <div class="max-w-3xl py-12">
+                <h1 class="text-center my-14 text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                    Layanan Kebersihan <span class="text-emerald-300">TPS &amp; Bank Sampah RW 021</span>
+                </h1>
+                <p class="text-center mt-4 text-sm text-gray-200 leading-relaxed">
+                    Sistem pengelolaan sampah mandiri dan terpadu RW 021 Bojong Nangka. Melayani jadwal armada pengangkutan sampah rumah tangga harian, pemilahan organik/anorganik, serta tabungan daur ulang Bank Sampah untuk mewujudkan lingkungan yang sehat, asri, dan produktif.
+                </p>
             </div>
 
-            <!-- SUMMARY STATS TPST -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-                <div class="bg-white p-5 rounded-lg border border-emerald-100 shadow-sm text-center">
-                    <span class="text-2xl sm:text-3xl font-extrabold text-emerald-600 block mb-1">Setiap Hari</span>
-                    <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Sampah Dapur Organik</span>
+            <!-- SUMMARY STATS CARDS -->
+            <div class="mt-10 md:mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                <div class="px-4 py-5 sm:px-5 sm:py-6 rounded-lg bg-white border border-emerald-100 shadow-sm hover:shadow-md transition text-center">
+                    <span class="block text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 leading-tight">Setiap Hari</span>
+                    <span class="mt-1.5 block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-emerald-700">Sampah Dapur Organik</span>
                 </div>
-                <div class="bg-white p-5 rounded-lg border border-emerald-100 shadow-sm text-center">
-                    <span class="text-2xl sm:text-3xl font-extrabold text-emerald-600 block mb-1">Senin & Kamis</span>
-                    <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Sampah Anorganik Kering</span>
+                <div class="px-4 py-5 sm:px-5 sm:py-6 rounded-lg bg-white border border-emerald-100 shadow-sm hover:shadow-md transition text-center">
+                    <span class="block text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 leading-tight">Senin & Kamis</span>
+                    <span class="mt-1.5 block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-emerald-700">Sampah Anorganik Kering</span>
                 </div>
-                <div class="bg-white p-5 rounded-lg border border-emerald-100 shadow-sm text-center">
-                    <span class="text-2xl sm:text-3xl font-extrabold text-purple-700 block mb-1">RT 01 - 10</span>
-                    <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Cakupan Armada Gerobak</span>
+                <div class="px-4 py-5 sm:px-5 sm:py-6 rounded-lg bg-white border border-emerald-100 shadow-sm hover:shadow-md transition text-center">
+                    <span class="block text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 leading-tight">RT 01 - 10</span>
+                    <span class="mt-1.5 block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-emerald-700">Cakupan Armada Gerobak</span>
                 </div>
-                <div class="bg-white p-5 rounded-lg border border-emerald-100 shadow-sm text-center">
-                    <span class="text-2xl sm:text-3xl font-extrabold text-emerald-600 block mb-1">Bank Sampah</span>
-                    <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Tabungan Daur Ulang</span>
+                <div class="px-4 py-5 sm:px-5 sm:py-6 rounded-lg bg-white border border-emerald-100 shadow-sm hover:shadow-md transition text-center">
+                    <span class="block text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 leading-tight">Bank Sampah</span>
+                    <span class="mt-1.5 block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-emerald-700">Tabungan Daur Ulang</span>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- SECTION GAMBAR & DOKUMENTASI TPST -->
+    <!-- MAIN CONTENT -->
+    <div class="py-14 md:py-20 flex-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14 md:space-y-16">
+
+            <!-- DOKUMENTASI AKTIVITAS (GRID DENGAN UKURAN VARIASI) -->
             <?php
             $galeriTpst = [
-                ['foto' => 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80', 'judul' => 'Pemilahan Sampah Bank Sampah', 'sub' => 'Daur Ulang Warga'],
-                ['foto' => 'https://images.unsplash.com/photo-1605600659873-d808a13e4d2a?auto=format&fit=crop&w=800&q=80', 'judul' => 'Pemilahan Organik & Anorganik', 'sub' => 'Edukasi Lingkungan'],
-                ['foto' => 'https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&w=800&q=80', 'judul' => 'Armada Gerobak Pengangkutan', 'sub' => 'Operasional Kebersihan'],
-                ['foto' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80', 'judul' => 'Gotong Royong Kebersihan Lingkungan', 'sub' => 'Kerja Bakti RW 021'],
-                ['foto' => 'https://images.unsplash.com/photo-1528323273322-d81458248d40?auto=format&fit=crop&w=800&q=80', 'judul' => 'Pusat Pengumpulan Sampah Terpadu', 'sub' => 'TPST 021 Bojong Nangka']
+                ['foto' => 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80', 'judul' => 'Pemilahan Sampah Bank Sampah', 'sub' => 'Daur Ulang Warga', 'grid' => 'lead'],
+                ['foto' => 'https://images.unsplash.com/photo-1605600659873-d808a13e4d2a?auto=format&fit=crop&w=800&q=80', 'judul' => 'Pemilahan Organik & Anorganik', 'sub' => 'Edukasi Lingkungan', 'grid' => 'wide'],
+                ['foto' => 'https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&w=800&q=80', 'judul' => 'Armada Gerobak Pengangkutan', 'sub' => 'Operasional Kebersihan', 'grid' => 'tile'],
+                ['foto' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80', 'judul' => 'Gotong Royong Kebersihan Lingkungan', 'sub' => 'Kerja Bakti RW 021', 'grid' => 'tile'],
+                ['foto' => 'https://images.unsplash.com/photo-1528323273322-d81458248d40?auto=format&fit=crop&w=800&q=80', 'judul' => 'Pusat Pengumpulan Sampah Terpadu', 'sub' => 'TPST 021 Bojong Nangka', 'grid' => 'wide']
             ];
+            $galeriTpst[] = ['foto' => '/images/tps1.jpg', 'judul' => 'Titik Pengumpulan Sampah RT', 'sub' => 'Sistem TPS RW 021', 'grid' => 'wide'];
+
+            // Ukuran tiap kartu dalam grid dokumentasi (gaya acak/variasional, bukan seragam)
+            $galeriGridSpan = [
+                'lead' => 'md:col-span-2 md:row-span-2',
+                'wide' => 'md:col-span-2',
+                'tile' => '',
+            ];
+            $fotoCadangan = 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80';
             ?>
-            <div class="bg-white p-6 md:p-10 rounded-lg shadow-sm border border-emerald-100 space-y-8">
+            <section id="tps-rw" class="p-6 md:p-10 space-y-8">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-gray-100 pb-4">
                     <div>
                         <span class="text-xs font-extrabold text-emerald-700 uppercase tracking-widest block mb-1">Dokumentasi & Galeri</span>
-                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900">Aktivitas TPST & Bank Sampah RW 021</h2>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900">Aktivitas TPS & Bank Sampah RW 021</h2>
                         <p class="text-xs sm:text-sm text-gray-500 mt-1">Dokumentasi operasional armada pengangkutan lingkungan dan kegiatan setor tabungan daur ulang warga.</p>
                     </div>
                 </div>
 
-                <!-- ponytail: balanced animated marquee image cards -->
-                <div class="space-y-4 sm:space-y-5">
-                    <!-- TOP GRID ROW -->
-                    <div class="relative overflow-hidden rounded-lg">
-                        <div class="flex gap-4 w-max animate-slide-right">
-                            <?php foreach ($galeriTpst as $item): ?>
-                                <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80'" />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
-                                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-300"><?= htmlspecialchars($item['sub']) ?></span>
-                                        <h4 class="text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h4>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                            <!-- Duplicate Loop for Infinite Scroll -->
-                            <?php foreach ($galeriTpst as $item): ?>
-                                <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900" aria-hidden="true">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80'" />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
-                                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-300"><?= htmlspecialchars($item['sub']) ?></span>
-                                        <h4 class="text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h4>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-
-                    <!-- BOTTOM GRID ROW -->
-                    <div class="relative overflow-hidden rounded-lg">
-                        <div class="flex gap-4 w-max animate-slide-left">
-                            <?php foreach ($galeriTpst as $item): ?>
-                                <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80'" />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
-                                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-300"><?= htmlspecialchars($item['sub']) ?></span>
-                                        <h4 class="text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h4>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                            <!-- Duplicate Loop for Infinite Scroll -->
-                            <?php foreach ($galeriTpst as $item): ?>
-                                <div class="w-72 sm:w-80 md:w-96 flex-shrink-0 relative group overflow-hidden shadow-sm rounded-lg border border-gray-100 bg-gray-900" aria-hidden="true">
-                                    <img src="<?= htmlspecialchars($item['foto']) ?>" alt="" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80'" />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
-                                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-300"><?= htmlspecialchars($item['sub']) ?></span>
-                                        <h4 class="text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h4>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 auto-rows-[120px] sm:auto-rows-[140px] md:auto-rows-[130px]">
+                    <?php foreach ($galeriTpst as $item): ?>
+                        <figure class="relative group overflow-hidden rounded-lg bg-gray-900 border border-gray-100 shadow-sm <?= $galeriGridSpan[$item['grid']] ?? '' ?>">
+                            <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition duration-500" onerror="this.src='<?= $fotoCadangan ?>'" />
+                            <figcaption class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-3 sm:p-4">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-300"><?= htmlspecialchars($item['sub']) ?></span>
+                                <h3 class="text-xs sm:text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h3>
+                            </figcaption>
+                        </figure>
+                    <?php endforeach; ?>
                 </div>
-            </div>
+            </section>
 
             <!-- DESKRIPSI LENGKAP LAYANAN KEBERSIHAN (3 CARDS) -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
