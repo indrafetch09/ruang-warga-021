@@ -7,7 +7,7 @@
     <style>
         .logo-container {
             border-radius: 0 0 24px 24px;
-            box-shadow: 0 10px 15px -3px rgba(0, 1, 0, 0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--color-border-light);
             border-top-width: 0;
         }
@@ -48,12 +48,12 @@
     </style>
 </head>
 
-<body class="bg-gray-500">
+<body class="bg-gray-50">
     <!-- NAVBAR -->
     <?php require base_path('views/partials/navbar.php'); ?>
 
     <!-- HERO SECTION -->
-    <div class="flex relative bg-white overflow-hidden min-h-[720px] items-center">
+    <div class="relative bg-white overflow-hidden min-h-[650px] flex items-center">
         <div class="absolute inset-0">
             <img class="w-full h-full object-cover object-right"
                 src="/images/balairw21.jpg"
@@ -61,7 +61,7 @@
             <div class="absolute inset-0 bg-white/75"></div>
         </div>
 
-        <div class="flex relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 items-center w-full">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center w-full">
             <div class="max-w-2xl pt-10 pb-20 z-10">
                 <h1 class="text-5xl md:text-6xl font-extrabold text-black leading-tight tracking-tight mb-2">
                     Layanan Responsif
