@@ -35,10 +35,10 @@ $currentUser = \Core\Authenticator::user() ?? ($_SESSION['user'] ?? ['name' => '
             <!-- Admin Profile Menu -->
             <div class="flex items-center gap-4">
                 <div class="hidden sm:block text-right">
-                    <p class="text-sm font-bold text-gray-900"><?= htmlspecialchars($currentUser['name'] ?? 'Pengurus RW') ?></p>
+                    <p class="text-sm font-bold text-gray-900"><?= htmlspecialchars($currentUser['username'] ?? 'Pengurus RW') ?></p>
                     <p class="text-xs text-purple-600 font-bold uppercase tracking-wider"><?= htmlspecialchars($currentUser['role'] ?? 'Admin') ?></p>
                 </div>
-                <img src="https://ui-avatars.com/api/?name=<?= urlencode($currentUser['name'] ?? 'Admin') ?>&background=7c3aed&color=fff" alt="Admin Avatar"
+                <img src="https://ui-avatars.com/api/?name=<?= urlencode($currentUser['username'] ?? 'Admin') ?>&background=7c3aed&color=fff" alt="Admin Avatar"
                     class="w-10 h-10 rounded-full border-2 border-purple-200 shadow-sm" />
 
                 <!-- Form Logout Safe CSRF -->
