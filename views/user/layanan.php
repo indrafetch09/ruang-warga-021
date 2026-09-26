@@ -45,31 +45,17 @@
     <?php require base_path('views/partials/navbar.php'); ?>
 
     <!-- MAIN CONTENT -->
-    <div class="py-12 md:py-16 flex-1">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-
-            <!-- PAGE HEADER -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-8 pt-2">
-                <div class="space-y-2">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-purple-50 border border-purple-200 text-purple-700 text-xs font-bold rounded-lg uppercase tracking-wider">
-                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
-                        Fasilitas & Pelayanan Warga
-                    </div>
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-                        Balai RW 021 <span class="text-purple-600">& Posyandu Bunga Tanjung</span>
-                    </h1>
-                    <p class="text-sm md:text-base text-gray-600 max-w-3xl leading-relaxed">
-                        Pusat sarana publik terpadu RW 021 Bojong Nangka untuk kegiatan musyawarah warga, pelayanan kesehatan balita & lansia, fasilitas olahraga bulutangkis indoor, serta pengajuan izin peminjaman gedung.
-                    </p>
-                </div>
-                <div class="flex-shrink-0">
-                    <a href="#form-peminjaman" class="inline-flex items-center gap-2 px-6 py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-lg transition duration-150 shadow-md">
-                        <span>Ajukan Peminjaman Balai</span>
-                        <span>&rarr;</span>
-                    </a>
-                </div>
+    <div class="bg-yellow-300 py-12 md:py-16 flex-1">
+        <!-- PAGE HEADER -->
+        <div class="flex-col min-h-[650px] bg-red-500 gap-4 border-b border-gray-200 pb-8 pt-2">
+            <div class="w-full h-[500px] bg-green-500 space-y-2 justify-center items-center md:items-center ">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
+                    Balai RW 021 <span class="text-purple-600">& Posyandu Bunga Tanjung</span>
+                </h1>
+                <p class="text-sm md:text-base text-gray-600 max-w-3xl leading-relaxed">
+                    Pusat sarana publik terpadu RW 021 Bojong Nangka untuk kegiatan musyawarah warga, pelayanan kesehatan balita & lansia, fasilitas olahraga bulutangkis indoor, serta pengajuan izin peminjaman gedung.
+                </p>
             </div>
-
             <!-- SUMMARY STATS CARDS -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                 <div class="bg-white p-5 rounded-lg border border-purple-100 shadow-sm text-center">
@@ -89,6 +75,9 @@
                     <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Izin Peminjaman</span>
                 </div>
             </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
             <!-- SECTION PROFIL & DOKUMENTASI GAMBAR BALAI -->
             <div id="balai-rw" class="bg-white p-6 md:p-10 rounded-lg shadow-sm border border-purple-100 space-y-8">
