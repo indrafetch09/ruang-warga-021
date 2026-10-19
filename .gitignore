@@ -9,3 +9,10 @@ tests/
 /seed_user.php
 
 uploads/
+
+# PHP CS Fixer configuration
+/.php-cs-fixer.cache
+/.php-cs-fixer.php
+/.php-cs-fixer.dist.php
+
+discord-ipc-0
