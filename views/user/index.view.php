@@ -53,7 +53,7 @@
     <?php require base_path('views/partials/navbar.php'); ?>
 
     <!-- HERO SECTION -->
-    <div class="relative bg-white overflow-hidden min-h-[650px] flex items-center">
+    <div class="relative bg-white overflow-hidden min-h-[750px] flex items-center">
         <div class="absolute inset-0">
             <img class="w-full h-full object-cover object-right"
                 src="/images/balairw21.jpg"
