@@ -60,21 +60,21 @@
             <!-- DOKUMENTASI AKTIVITAS (GRID DENGAN UKURAN VARIASI) -->
             <?php
             $galeriBalai = [
-                ['foto' => '/images/aula_posyandu.jpg', 'judul' => 'Pelayanan Posyandu Bunga Tanjung', 'sub' => 'Kesehatan Balita & Lansia', 'grid' => 'lead'],
-                ['foto' => '/images/aula_rapat.jpg', 'judul' => 'Musyawarah & Rapat Warga', 'sub' => 'Pertemuan Rutin RW 021', 'grid' => 'wide'],
-                ['foto' => '/images/aula_badminton.jpg', 'judul' => 'Lapangan Badminton Indoor', 'sub' => 'Olahraga & Kebersamaan', 'grid' => 'tile'],
-                ['foto' => '/images/aula_senam.jpg', 'judul' => 'Senam Kebugaran Jasmani', 'sub' => 'Kebugaran Mingguan', 'grid' => 'tile'],
-                ['foto' => 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80', 'judul' => 'Gedung Pertemuan Serbaguna', 'sub' => 'Fasilitas Peminjaman Acara', 'grid' => 'wide'],
-                ['foto' => '/images/masjid.jpg', 'judul' => 'Musala & Sarana Ibadah', 'sub' => 'Sarana Ibadah Warga', 'grid' => 'wide'],
+                ['foto' => '/images/posyandu.jpg', 'judul' => '',  'grid' => 'lead'],
+                ['foto' => '/images/masjid.jpg', 'judul' => '', 'grid' => 'lead'],
+                ['foto' => '/images/rapat.jpg', 'judul' => '', 'grid' => 'lead'],
+                ['foto' => '/images/badminton.jpg', 'judul' => '', 'grid' => 'lead'],
+                ['foto' => '/images/senam.jpg', 'judul' => '', 'grid' => 'lead'],
+                ['foto' => '/images/senam2.jpg', 'judul' => '', 'grid' => 'lead'],
             ];
-            // Ukuran tiap kartu dalam grid dokumentasi (gaya acak/variasional, bukan seragam)
-            $galeriGridSpan = [
-                'lead' => 'md:col-span-2 md:row-span-2',
-                'wide' => 'md:col-span-2',
-                'tile' => '',
-            ];
-            $fotoCadangan = 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80';
-            ?>
+    // Ukuran tiap kartu dalam grid dokumentasi (gaya acak/variasional, bukan seragam)
+    $galeriGridSpan = [
+        'lead' => 'md:col-span-2 md:row-span-2',
+        'wide' => 'md:col-span-2',
+        'tile' => '',
+    ];
+    $fotoCadangan = '';
+    ?>
 
             <section id="balai-rw" class="p-6 md:p-10 space-y-8">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-gray-100 pb-4">
@@ -90,7 +90,7 @@
                         <figure class="relative group overflow-hidden rounded-lg bg-gray-900 border border-gray-100 shadow-sm <?= $galeriGridSpan[$item['grid']] ?? '' ?>">
                             <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition duration-500" onerror="this.src='<?= $fotoCadangan ?>'" />
                             <figcaption class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-3 sm:p-4">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-purple-300"><?= htmlspecialchars($item['sub'] ?? 'Fasilitas RW 021') ?></span>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-purple-300"></span>
                                 <h3 class="text-xs sm:text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h3>
                             </figcaption>
                         </figure>

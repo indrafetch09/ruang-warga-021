@@ -60,22 +60,22 @@
             <!-- DOKUMENTASI AKTIVITAS (GRID DENGAN UKURAN VARIASI) -->
             <?php
             $galeriTpst = [
-                ['foto' => 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80', 'judul' => 'Pemilahan Sampah Bank Sampah', 'sub' => 'Daur Ulang Warga', 'grid' => 'lead'],
-                ['foto' => 'https://images.unsplash.com/photo-1605600659873-d808a13e4d2a?auto=format&fit=crop&w=800&q=80', 'judul' => 'Pemilahan Organik & Anorganik', 'sub' => 'Edukasi Lingkungan', 'grid' => 'wide'],
-                ['foto' => 'https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&w=800&q=80', 'judul' => 'Armada Gerobak Pengangkutan', 'sub' => 'Operasional Kebersihan', 'grid' => 'tile'],
-                ['foto' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80', 'judul' => 'Gotong Royong Kebersihan Lingkungan', 'sub' => 'Kerja Bakti RW 021', 'grid' => 'tile'],
-                ['foto' => 'https://images.unsplash.com/photo-1528323273322-d81458248d40?auto=format&fit=crop&w=800&q=80', 'judul' => 'Pusat Pengumpulan Sampah Terpadu', 'sub' => 'TPST 021 Bojong Nangka', 'grid' => 'wide']
+                ['foto' => '/images/tps1.jpg', 'judul' => '', 'grid' => 'wide'],
+                ['foto' => '/images/tps3.jpg', 'judul' => '', 'grid' => 'lead'],
+                ['foto' => '/images/tps4.jpg', 'judul' => '', 'grid' => 'lead'],
+                ['foto' => '/images/tps5.jpg', 'judul' => '', 'grid' => 'lead'],
+                ['foto' => '/images/tps6.jpg', 'judul' => '', 'grid' => 'lead'],
+                ['foto' => '/images/tps2.jpg', 'judul' => '', 'grid' => 'wide'],
             ];
-            $galeriTpst[] = ['foto' => '/images/tps1.jpg', 'judul' => 'Titik Pengumpulan Sampah RT', 'sub' => 'Sistem TPS RW 021', 'grid' => 'wide'];
 
-            // Ukuran tiap kartu dalam grid dokumentasi (gaya acak/variasional, bukan seragam)
-            $galeriGridSpan = [
-                'lead' => 'md:col-span-2 md:row-span-2',
-                'wide' => 'md:col-span-2',
-                'tile' => '',
-            ];
-            $fotoCadangan = 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80';
-            ?>
+    // Ukuran tiap kartu dalam grid dokumentasi (gaya acak/variasional, bukan seragam)
+    $galeriGridSpan = [
+        'lead' => 'md:col-span-2 md:row-span-2',
+        'wide' => 'md:col-span-2',
+        'tile' => '',
+    ];
+    $fotoCadangan = 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80';
+    ?>
             <section id="tps-rw" class="p-6 md:p-10 space-y-8">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-gray-100 pb-4">
                     <div>
@@ -90,7 +90,6 @@
                         <figure class="relative group overflow-hidden rounded-lg bg-gray-900 border border-gray-100 shadow-sm <?= $galeriGridSpan[$item['grid']] ?? '' ?>">
                             <img src="<?= htmlspecialchars($item['foto']) ?>" alt="<?= htmlspecialchars($item['judul']) ?>" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition duration-500" onerror="this.src='<?= $fotoCadangan ?>'" />
                             <figcaption class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-3 sm:p-4">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-300"><?= htmlspecialchars($item['sub']) ?></span>
                                 <h3 class="text-xs sm:text-sm font-bold text-white"><?= htmlspecialchars($item['judul']) ?></h3>
                             </figcaption>
                         </figure>
