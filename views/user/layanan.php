@@ -23,7 +23,7 @@
 
             <!-- PAGE HEADER -->
             <div class="max-w-3xl py-12">
-                <h1 class="text-center my-14 text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                <h1 class="text-center my-14 text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
                     Balai RW 021 <span class="text-purple-700">&amp; Posyandu Bunga Tanjung</span>
                 </h1>
                 <p class="text-center mt-4 text-sm text-gray-200 leading-relaxed">

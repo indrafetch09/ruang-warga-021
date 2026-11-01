@@ -14,8 +14,8 @@
     <!-- HERO + RINGKASAN LAYANAN (GABUNGAN SATU LAYAR) -->
     <section class="relative isolate overflow-hidden">
         <div class="absolute inset-0">
-            <img src="/images/tps.jpg" alt="TPS &amp; Bank Sampah RW 021" class="w-full h-full object-cover object-center"
-                onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1600&q=80'" />
+            <img src="/images/tps4.jpg" alt="TPS &amp; Bank Sampah RW 021" class="w-full h-full object-cover object-center"
+                onerror="this.src='empty'" />
             <div class="absolute inset-0 bg-gradient-to-br bg-emerald-950/85"></div>
         </div>
 
@@ -23,7 +23,7 @@
 
             <!-- PAGE HEADER -->
             <div class="max-w-3xl py-12">
-                <h1 class="text-center my-14 text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                <h1 class="text-center my-14 text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
                     Layanan Kebersihan <span class="text-emerald-300">TPS &amp; Bank Sampah RW 021</span>
                 </h1>
                 <p class="text-center mt-4 text-sm text-gray-200 leading-relaxed">
@@ -211,46 +211,6 @@
                     </div>
                 </div>
 
-            </div>
-
-            <!-- PANDUAN PEMILAHAN SAMPAH RUMAH TANGGA -->
-            <div class="bg-gradient-to-br from-emerald-800 to-teal-900 text-white p-6 sm:p-10 rounded-lg shadow-lg space-y-6">
-                <div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-300">Panduan Praktis</span>
-                    <h3 class="text-2xl font-bold tracking-tight mt-1">Cara Memilah Sampah dari Rumah</h3>
-                    <p class="text-xs sm:text-sm text-emerald-100 mt-1 max-w-2xl leading-relaxed">
-                        Partisipasi aktif warga dalam memilah sampah di rumah mempermudah proses daur ulang dan mempercepat kerja petugas armada kebersihan RW 021.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-                    <div class="bg-white/10 p-5 rounded-lg border border-white/10 space-y-2">
-                        <div class="flex items-center gap-2 text-emerald-300 font-bold text-sm">
-                            <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
-                            <span>1. Sampah Organik</span>
-                        </div>
-                        <p class="text-emerald-100 leading-relaxed">Sisa makanan, sayuran, kulit buah, dan daun kebun. Masukkan ke kantong tersendiri untuk diolah menjadi pupuk kompos.</p>
-                        <span class="text-[11px] font-semibold text-emerald-200 block pt-1">Diangkut: Setiap Hari (06.00 - 09.00)</span>
-                    </div>
-
-                    <div class="bg-white/10 p-5 rounded-lg border border-white/10 space-y-2">
-                        <div class="flex items-center gap-2 text-amber-300 font-bold text-sm">
-                            <span class="w-3 h-3 rounded-full bg-amber-400"></span>
-                            <span>2. Sampah Anorganik Daur Ulang</span>
-                        </div>
-                        <p class="text-emerald-100 leading-relaxed">Botol plastik bersih, kardus, kaleng, koran, dan minyak jelantah. Kumpulkan dalam kondisi kering untuk disetor ke Bank Sampah.</p>
-                        <span class="text-[11px] font-semibold text-amber-200 block pt-1">Setor: Minggu ke-2 & ke-4</span>
-                    </div>
-
-                    <div class="bg-white/10 p-5 rounded-lg border border-white/10 space-y-2">
-                        <div class="flex items-center gap-2 text-rose-300 font-bold text-sm">
-                            <span class="w-3 h-3 rounded-full bg-rose-400"></span>
-                            <span>3. Sampah Residu & B3</span>
-                        </div>
-                        <p class="text-emerald-100 leading-relaxed">Pampers, tisu kotor, baterai bekas, pecahan kaca, atau limbah medis rumah tangga. Ikat rapat dalam kantong khusus.</p>
-                        <span class="text-[11px] font-semibold text-rose-200 block pt-1">Diangkut: Senin & Kamis</span>
-                    </div>
-                </div>
             </div>
 
         </div>

@@ -18,7 +18,7 @@ $dsn = "mysql:host={$host};port={$port};charset={$charset}";
 try {
     // Connect to MySQL server
     $pdo = new PDO($dsn, $user, $pass, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     ]);
 
     $pdo->exec("DROP DATABASE IF EXISTS `{$dbname}`");
