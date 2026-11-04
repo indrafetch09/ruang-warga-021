@@ -87,7 +87,9 @@ function env($key, $default = null)
 {
     $value = $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key);
 
-    if ($value === false || $value === null) {
+    // String kosong diperlakukan seperti env tidak diset, agar default dipakai.
+    // Ini mencegah koneksi PDO dengan user/password kosong ("Access denied for user ''").
+    if ($value === false || $value === null || $value === '') {
         return $default;
     }
 
