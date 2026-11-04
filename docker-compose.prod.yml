@@ -6,7 +6,7 @@ services:
     env_file: .env
     environment:
       DB_HOST: db
-      DB_AUTO_MIGRATE: "0" 
+      DB_AUTO_MIGRATE: "0"
     volumes:
       - uploads_data:/var/www/html/public/uploads
     depends_on:
@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
 
   db:
-    image: mariadb:10.4
+    image: mariadb:11.8
     env_file: .env
     environment:
       MARIADB_DATABASE: ${DB_NAME}
