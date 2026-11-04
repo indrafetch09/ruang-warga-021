@@ -9,7 +9,7 @@ Sistem Informasi Rukun Warga RW 021: platform digital untuk administrasi, komuni
 | Komponen       | Spesifikasi                                                              |
 |----------------|--------------------------------------------------------------------------|
 | Backend        | PHP >= 8.1 (native, tanpa framework) — target image `php:8.3-cli`        |
-| Database       | MySQL / MariaDB via PDO — image `mariadb:10.4` (basis dump schema)       |
+| Database       | MariaDB via PDO — image `mariadb:11.8` (dev & prod compose)             |
 | Autoload       | Composer 2 (PSR-4: `Core\`, `Http\`, `App\Controllers\`, `App\Models\`)  |
 | Dependencies   | `illuminate/collections ^10.9`, `vlucas/phpdotenv ^5.6` (dev: `pestphp/pest ^3`) |
 | Frontend       | Tailwind CSS (CDN), Google Fonts (Plus Jakarta Sans), Chart.js, Google Maps embed |
@@ -32,10 +32,10 @@ Sistem Informasi Rukun Warga RW 021: platform digital untuk administrasi, komuni
 | `APP_KEY`             | `SistemInformasiRW21-RahasiaSuper` | Kunci enkripsi NIK/No HP (min. 32 karakter)     |
 | `DB_HOST`             | `db`                         | Host database (nama service di compose)               |
 | `DB_PORT`             | `3306`                       | Port database                                         |
-| `DB_NAME`             | `sisrw21`                    | Nama database                                         |
+| `DB_NAME`             | `rw021`                      | Nama database                                         |
 | `DB_CHARSET`          | `utf8mb4`                    | Charset database                                      |
-| `DB_USER`             |                              | User database                                         |
-| `DB_PASS`             |                              | Password database                                     |
+| `DB_USER`             | `rw021`                      | User database                                         |
+| `DB_PASS`             | `rw021`                      | Password database                                     |
 | `MYSQL_DATABASE`      | `$DB_NAME`                   | (container db) Inisialisasi database otomatis         |
 | `MYSQL_USER` / `MYSQL_PASSWORD` | `$DB_USER` / `$DB_PASS` | (container db) Kredensial non-root             |
 | `MYSQL_ROOT_PASSWORD` | `root`                       | (container db) Password root                          |
