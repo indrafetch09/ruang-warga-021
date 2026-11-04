@@ -3,8 +3,8 @@ set -e
 
 DB_HOST="${DB_HOST:-db}"
 DB_PORT="${DB_PORT:-3306}"
-DB_USER="${DB_USER:-root}"
-DB_PASS="${DB_PASS:-}"
+DB_USER="${DB_USER:-rw021}"
+DB_PASS="${DB_PASS:-rw021}"
 
 echo "[entrypoint] Menunggu database ${DB_HOST}:${DB_PORT} ..."
 

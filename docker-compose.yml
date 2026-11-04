@@ -8,8 +8,9 @@
 #   docker compose up --build
 #   buka http://localhost:8000
 #
-# Kredensial database dev (tetap, jangan dipakai untuk produksi):
-#   user: rw021   password: rw021   database: rw021
+# Kredensial database dibaca dari .env (salin dari .env.example):
+#   DB_NAME, DB_USER, DB_PASS
+#   Tanpa .env, default dev: database rw021, user rw021 / password rw021.
 #
 # Catatan migrasi:
 #   database/migrate.php MENGHAPUS database (DROP DATABASE), jadi otomatis
@@ -17,7 +18,7 @@
 #   restart. Untuk bootstrap awal, jalankan manual:
 #     docker compose exec app php database/migrate.php
 #     docker compose exec app php database/seed_user.php
-#   (pastikan database/schema.sql tersedia - saat ini belum ada di repo)
+#   (pastikan database/schema.sql tersedia di repo)
 
 services:
   app:
@@ -27,9 +28,9 @@ services:
     environment:
       DB_HOST: db
       DB_PORT: 3306
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME:-rw021}
+      DB_USER: ${DB_USER:-rw021}
+      DB_PASS: ${DB_PASS:-rw021}
       DB_AUTO_MIGRATE: ${DB_AUTO_MIGRATE:-0}
     volumes:
       - ./:/var/www/html
@@ -41,11 +42,12 @@ services:
     restart: unless-stopped
 
   db:
-    image: mariadb:10.4
+    image: mariadb:11.8
+    # Tanpa .env: pakai default rw021/rw021 (user dibuat oleh image saat init).
     environment:
-      MARIADB_DATABASE: ${DB_NAME}
-      MARIADB_USER: ${DB_USER}
-      MARIADB_PASSWORD: ${DB_PASS}
+      MARIADB_DATABASE: ${DB_NAME:-rw021}
+      MARIADB_USER: ${DB_USER:-rw021}
+      MARIADB_PASSWORD: ${DB_PASS:-rw021}
       MARIADB_ROOT_PASSWORD: root
     volumes:
       - db_data:/var/lib/mysql
