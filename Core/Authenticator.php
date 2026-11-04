@@ -18,12 +18,12 @@ class Authenticator
             'SELECT * FROM `users` WHERE username = :identity LIMIT 1',
             [
                 'identity' => $identity,
-            ]
+            ],
         )->find();
 
         if ($user) {
             // Cek status aktif akun
-            if (isset($user['is_active']) && (int)$user['is_active'] === 0) {
+            if (isset($user['is_active']) && (int) $user['is_active'] === 0) {
                 return false;
             }
 
@@ -51,7 +51,7 @@ class Authenticator
             'username'    => $user['username'] ?? '',
             'name'        => $user['name'] ?? $user['username'] ?? 'Pengurus RW',
             'role'        => $user['role'] ?? 'admin',
-            'is_active'   => (int)($user['is_active'] ?? 1),
+            'is_active'   => (int) ($user['is_active'] ?? 1),
             'logged_at'   => time(),
         ];
 
@@ -114,7 +114,8 @@ class Authenticator
      */
     public static function isRw(): bool
     {
-        return in_array(self::role(), ['admin', 'pengurus_rw', 'rw']);
+        // 'tester' = akun khusus development, berperilaku sama seperti pengurus RW
+        return in_array(self::role(), ['admin', 'pengurus_rw', 'rw', 'tester']);
     }
 
     /**

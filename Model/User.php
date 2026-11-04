@@ -40,7 +40,8 @@ class User extends Model
      */
     public function isRw(): bool
     {
-        return in_array($this->role ?? '', ['admin', 'pengurus_rw', 'rw']);
+        // 'tester' = akun khusus development, berperilaku sama seperti pengurus RW
+        return in_array($this->role ?? '', ['admin', 'pengurus_rw', 'rw', 'tester']);
     }
 
     /**
