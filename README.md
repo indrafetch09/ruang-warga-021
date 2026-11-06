@@ -71,12 +71,11 @@ Struktur:
 
 ## Quickstart
 
-### Docker (disarankan)
+### Install pakai Docker (disarankan)
 
 ```bash
 cp .env.example .env          # wajib isi minimal DB_NAME, DB_USER, DB_PASS
 docker compose up --build     # app + mariadb
-# buka http://localhost:8000
 ```
 
 > Tanpa `.env`, default dev dipakai: database `rw021`, user/password
@@ -84,26 +83,28 @@ docker compose up --build     # app + mariadb
 > menganggapnya tidak diset dan memakai default — mencegah error
 > `Access denied for user ''`.
 
-Migrasi dijalankan manual karena `database/migrate.php` melakukan `DROP DATABASE`:
+Migrasi dijalankan manual karena `database/migrate.php` melakukan `DROP DATABASE`
+
+Migrasi dan Seed menggunakan command ini:
 
 ```bash
 docker compose exec app php database/migrate.php
 docker compose exec app php database/seed_user.php
 ```
 
-> `DB_AUTO_MIGRATE=1` (default) juga menjalankan migrate + seed otomatis saat
-> kontainer pertama kali start.
+> `DB_AUTO_MIGRATE=0` (default) --> Tidak menjalankan migrate otomatis.
+> `DB_AUTO_MIGRATE=1` (default) --> Set value ke 1 jika ingin menyalakan migrate otomatis.
 
-Composer / Pest tanpa PHP di host:
+Menjalankan database secara individu:
 
 ```bash
-docker compose run --rm --entrypoint composer app install
-docker compose exec app vendor/bin/pest
+docker compose exec db mariadb -uroot -proot rw021
+docker compose exec db mariadb -h 127.0.0.1 -P 3306 -u<username> -p<password>
 ```
 
 Matikan stack: `docker compose down` (tambah `-v` untuk hapus volume DB).
 
-### PHP Native
+### Install pakai PHP Native
 
 ```bash
 composer install
