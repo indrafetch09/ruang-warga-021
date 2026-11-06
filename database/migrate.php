@@ -26,7 +26,22 @@ try {
     $pdo->exec("USE `{$dbname}`");
 
     $sql = file_get_contents(__DIR__ . '/schema.sql');
-    $pdo->exec($sql);
+
+    $statement = '';
+    foreach (explode("\n", $sql) as $line) {
+        $statement .= $line . "\n";
+
+        if (rtrim($line) !== '' && str_ends_with(rtrim($line), ';')) {
+            $stmt = rtrim(rtrim($statement), "; \t\n\r");
+            if (trim($stmt) !== '') {
+                $pdo->exec($stmt);
+            }
+            $statement = '';
+        }
+    }
+    if (trim($statement) !== '') {
+        $pdo->exec($statement);
+    }
 
     echo "✓ Database [{$dbname}] migrated successfully.\n";
 } catch (PDOException $e) {
