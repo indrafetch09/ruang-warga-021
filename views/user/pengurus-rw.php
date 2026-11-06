@@ -76,13 +76,13 @@
             return [
                 'assigned' => true,
                 'nama' => implode(', ', $names),
-                'periode' => $periode
+                'periode' => $periode,
             ];
         }
         return [
             'assigned' => false,
             'nama' => 'Belum Ditugaskan',
-            'periode' => 'Periode 2025 - 2028'
+            'periode' => 'Periode 2025 - 2028',
         ];
     };
     ?>
@@ -139,6 +139,7 @@
             $ketuaJabatan = $ketua['jabatan'] ?? 'Ketua RW 021';
             $ketuaNama = $ketua['nama'] ?? 'Belum Diinputkan';
             $ketuaPeriode = $ketua['periode'] ?? 'Masa Bakti 2024 - 2027';
+            $ketuaInfo = $getSlotInfo('Ketua RW') ;
 
             $sekretarisFoto = $sekretaris['foto'] ?? 'https://ui-avatars.com/api/?name=Sekretaris&background=10b981&color=fff&size=150';
             $sekretarisNama = $sekretaris['nama'] ?? 'Belum Diinputkan';
@@ -193,7 +194,7 @@
                 'Keamanan & Ketertiban',
                 'Pemberdayaan Masyarakat',
                 'Kepemudaan, Olah Raga & Seni',
-                'Humas'
+                'Humas',
             ];
             ?>
             <div class="space-y-6">
@@ -212,7 +213,7 @@
                             'amber' => 'text-amber-600 border-amber-50',
                             'sky'   => 'text-sky-600 border-sky-50',
                             'rose'  => 'text-rose-600 border-rose-50',
-                            default => 'text-purple-600 border-purple-50'
+                            default => 'text-purple-600 border-purple-50',
                         };
                         ?>
                         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col items-center text-center hover:shadow-md transition-shadow">
@@ -231,7 +232,7 @@
                 'Hansip',
                 'Karang Taruna',
                 'PKK',
-                'Posyandu'
+                'Posyandu',
             ];
             ?>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
