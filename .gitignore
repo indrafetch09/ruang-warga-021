@@ -6,6 +6,7 @@ vendor/
 
 tests/
 
+.vscode/
 
 uploads/
 
