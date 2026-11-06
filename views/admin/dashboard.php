@@ -20,7 +20,7 @@
             // Role & Wilayah Pengurus
             $isRw = $user->isRw();
             $isRt = $user->isRt();
-            $assignedRt = (int)($user->getRtAssigned() ?? 1);
+            $assignedRt = (int) ($user->getRtAssigned() ?? 1);
             ?>
 
             <!-- Alert Message Flash (Jika Ada) -->
@@ -106,7 +106,7 @@
 
                     <!-- Quick Actions Grid -->
                     <div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-4">Menu Akses Cepat</h3>
+                        <h3 class="text-lg w-full font-bold text-gray-900 mb-4">Menu Akses Cepat</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                             <!-- Card Penduduk -->
@@ -254,8 +254,8 @@
                         <h3 class="font-bold text-gray-900 text-base mb-4">Sebaran Penduduk per RT</h3>
                         <div class="space-y-3">
                             <?php
-                            $max = max(1, max(array_values($wargaPerRt))); // Perhitungan banyak RT
-                            for ($i = 1; $i <= 10; $i++): // Perhitungan jumlah RT 
+                            $max = max(1, $wargaPerRt ? max(array_values($wargaPerRt)) : 0); // Perhitungan banyak RT
+                            for ($i = 1; $i <= 10; $i++): // Perhitungan jumlah RT
                                 $count = $wargaPerRt[$i] ?? 0; // Jumlah jiwa
                                 $pct = round(($count / $max) * 100); // Perhitungan garis bar ungu
                             ?>
