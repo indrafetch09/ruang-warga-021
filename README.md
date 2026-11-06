@@ -1,5 +1,7 @@
 # Ruang Warga 021
 
+Jika sudah tau cara installnya, bisa langsung login menggunakan Akun Tester di [Akun Tester](#akun-tester).
+
 Sistem Informasi Rukun Warga RW 021 — aplikasi web untuk administrasi,
 komunikasi, dan layanan warga. Dibangun dengan PHP native (tanpa framework),
 front controller di `public/index.php`, dan MariaDB via PDO.
@@ -139,9 +141,19 @@ Yang paling penting:
 
 ## Testing
 
+Testing menggunakan pest: --> belum dicoba langsung.
+
 ```bash
 docker compose exec app vendor/bin/pest
 ```
+
+### Akun Tester
+
+| Username  | Password     |
+| --------- | ------------ |
+| `tester1` | `tester1_rw` |
+| `tester2` | `tester2_rw` |
+| `tester3` | `tester3_rw` |
 
 ---
 
