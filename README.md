@@ -87,6 +87,8 @@ docker compose up --build     # app + mariadb
 
 Migrasi dijalankan manual karena `database/migrate.php` melakukan `DROP DATABASE`
 
+Extract schema.zip dan copy schema.sql ke database/
+
 Migrasi dan Seed menggunakan command ini:
 
 ```bash
