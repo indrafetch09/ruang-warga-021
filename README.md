@@ -7,7 +7,7 @@ front controller di `public/index.php`, dan MariaDB via PDO.
 |                |                                                  |
 | -------------- | ------------------------------------------------ |
 | Bahasa         | Indonesia                                        |
-| Runtime        | PHP >= 8.1, MariaDB 10.4                         |
+| Runtime        | PHP >= 8.1, MariaDB 11.8                         |
 | Setup tercepat | Docker Compose (lihat [Quickstart](#quickstart)) |
 
 ---
