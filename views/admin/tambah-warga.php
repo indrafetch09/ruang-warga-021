@@ -41,7 +41,7 @@
             </div>
 
             <!-- FORM CONTAINER -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden max-w-4xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mx-auto">
                 <form action="/admin/warga" method="POST">
                     <?= \Core\Csrf::field() ?>
 
