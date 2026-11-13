@@ -17,11 +17,11 @@
             <!-- HEADER SECTION -->
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div>
-                    <a href="/dashboard" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-2 group">
+                    <a href="/admin/pengumuman" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-2 group">
                         <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
-                        Kembali ke Dasbor
+                        Kembali
                     </a>
                     <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
                         Edit Pengumuman
@@ -68,13 +68,15 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Kategori Pengumuman <span class="text-rose-500">*</span></label>
-                                <?php $katSelect = strtolower($pengumuman['kategori'] ?? 'info'); ?>
+                                <?php $katSelect = strtolower($pengumuman['kategori'] ?? \App\Models\Pengumuman::KATEGORI_DEFAULT); ?>
                                 <select name="kategori" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold cursor-pointer" required>
-                                    <option value="urgent" <?= $katSelect === 'urgent' ? 'selected' : '' ?>>Penting / Urgent (Merah)</option>
-                                    <option value="kegiatan" <?= $katSelect === 'kegiatan' ? 'selected' : '' ?>>Kegiatan / Event (Hijau)</option>
-                                    <option value="info" <?= $katSelect === 'info' ? 'selected' : '' ?>>Informasi Warga (Ungu)</option>
-                                    <option value="umum" <?= $katSelect === 'umum' ? 'selected' : '' ?>>Umum</option>
+                                    <?php foreach (\App\Models\Pengumuman::KATEGORI as $catValue => $catLabel): ?>
+                                        <option value="<?= $catValue ?>" <?= $katSelect === $catValue ? 'selected' : '' ?>><?= htmlspecialchars($catLabel) ?></option>
+                                    <?php endforeach; ?>
                                 </select>
+                                <?php if (isset($errors['kategori'])): ?>
+                                    <p class="text-xs text-rose-500 mt-1 font-semibold"><?= htmlspecialchars($errors['kategori']) ?></p>
+                                <?php endif; ?>
                             </div>
 
                             <div>
@@ -114,7 +116,7 @@
                         <div class="flex items-center gap-3 pt-2">
                             <input type="checkbox" id="is_published" name="is_published" value="1" <?= (!empty($pengumuman['is_published'])) ? 'checked' : '' ?> class="w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500 cursor-pointer">
                             <label for="is_published" class="text-sm font-bold text-gray-700 cursor-pointer">
-                                Tampilkan Pengumuman Ini di Beranda Portal Warga
+                                Tayangkan Pengumuman 
                             </label>
                         </div>
 
@@ -128,7 +130,7 @@
                             </svg>
                             Perbarui Pengumuman
                         </button>
-                        <a href="/dashboard" class="px-6 py-3 bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 text-sm font-bold rounded-xl transition text-center">
+                        <a href="/admin/pengumuman" class="px-6 py-3 bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 text-sm font-bold rounded-xl transition text-center">
                             Batal
                         </a>
                     </div>

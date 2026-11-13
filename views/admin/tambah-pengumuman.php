@@ -17,11 +17,11 @@
             <!-- HEADER SECTION -->
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div>
-                    <a href="/dashboard" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-2 group">
+                    <a href="/admin/pengumuman" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-2 group">
                         <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
-                        Kembali ke Dasbor
+                        Kembali ke daftar pengumuman 
                     </a>
                     <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
                         Buat Pengumuman Baru
@@ -81,12 +81,14 @@
                                     Kategori <span class="text-rose-500">*</span>
                                 </label>
                                 <select name="kategori" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition text-sm font-semibold cursor-pointer" required>
-                                    <?php $cat = $old['kategori'] ?? 'umum'; ?>
-                                    <option value="umum" <?= $cat === 'umum' ? 'selected' : '' ?>>Info Umum / Himbauan</option>
-                                    <option value="kegiatan" <?= $cat === 'kegiatan' ? 'selected' : '' ?>>Agenda / Kegiatan</option>
-                                    <option value="darurat" <?= $cat === 'darurat' ? 'selected' : '' ?>>Penting / Darurat</option>
-                                    <option value="keuangan" <?= $cat === 'keuangan' ? 'selected' : '' ?>>Iuran & Keuangan</option>
+                                    <?php $cat = strtolower($old['kategori'] ?? \App\Models\Pengumuman::KATEGORI_DEFAULT); ?>
+                                    <?php foreach (\App\Models\Pengumuman::KATEGORI as $catValue => $catLabel): ?>
+                                        <option value="<?= $catValue ?>" <?= $cat === $catValue ? 'selected' : '' ?>><?= htmlspecialchars($catLabel) ?></option>
+                                    <?php endforeach; ?>
                                 </select>
+                                <?php if (isset($errors['kategori'])): ?>
+                                    <p class="text-xs text-rose-500 mt-1 font-semibold"><?= htmlspecialchars($errors['kategori']) ?></p>
+                                <?php endif; ?>
                             </div>
 
                             <!-- Tanggal Publikasi -->

@@ -254,15 +254,18 @@
                             $isToday = (date('Y-m-d', $tgl) === date('Y-m-d'));
 
                             // Retain theme colors with matching soft background tones
-                            $badgeBg = 'bg-purple-100 text-purple-800';
+                            $badgeBg = 'bg-gray-100 text-gray-700';
                             $btnStyle = 'border border-gray-200 text-gray-700 hover:border-purple-300 hover:text-purple-700 hover:bg-purple-50';
 
-                            if (in_array($kat, ['mendesak', 'darurat', 'penting'])) {
+                            if ($kat === 'urgent') {
                                 $badgeBg = 'bg-rose-100 text-rose-800';
                                 $btnStyle = 'bg-rose-600 text-white hover:bg-rose-700 shadow-sm';
-                            } elseif (in_array($kat, ['kegiatan', 'sosial', 'agenda'])) {
+                            } elseif ($kat === 'kegiatan') {
                                 $badgeBg = 'bg-emerald-100 text-emerald-800';
                                 $btnStyle = 'border border-emerald-200 text-emerald-700 hover:bg-emerald-50';
+                            } elseif ($kat === 'info') {
+                                $badgeBg = 'bg-purple-100 text-purple-800';
+                                $btnStyle = 'border border-purple-200 text-purple-700 hover:bg-purple-50';
                             }
                             ?>
                             <div class="bg-white rounded-lg p-4 sm:p-5 border border-purple-100/70 shadow-sm hover:shadow-md transition duration-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group">
@@ -284,7 +287,7 @@
                                             <?= htmlspecialchars($pengumuman->judul ?? '-') ?>
                                         </h3>
                                         <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-extrabold uppercase tracking-wider <?= $badgeBg ?>">
-                                            <?= htmlspecialchars(ucfirst($kat)) ?>
+                                            <?= htmlspecialchars(\App\Models\Pengumuman::labelKategori($kat)) ?>
                                         </span>
                                     </div>
                                     <p class="text-xs sm:text-sm text-gray-500 leading-relaxed line-clamp-2">
