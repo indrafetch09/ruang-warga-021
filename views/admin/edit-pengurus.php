@@ -108,7 +108,7 @@
                     <button type="submit" class="w-full md:w-auto px-8 py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-purple-200 transition">
                         Perbarui Pengurus
                     </button>
-                    <a href="/pengurus-rw" class="w-full md:w-auto px-8 py-3.5 bg-white border border-gray-300 text-gray-700 font-bold text-sm rounded-xl hover:bg-gray-50 transition text-center">
+                    <a href="/admin/pengurus" class="w-full md:w-auto px-8 py-3.5 bg-white border border-gray-300 text-gray-700 font-bold text-sm rounded-xl hover:bg-gray-50 transition text-center">
                         Batal
                     </a>
                 </div>

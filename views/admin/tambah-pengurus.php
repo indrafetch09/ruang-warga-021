@@ -9,7 +9,7 @@
 <body class="bg-gray-50 min-h-screen py-10">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Tombol Kembali -->
-        <a href="/pengurus-rw" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-6 group">
+        <a href="/admin/pengurus" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-6 group">
             <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
@@ -145,7 +145,7 @@
                     <button type="submit" class="w-full md:w-auto px-8 py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-purple-200 transition">
                         Simpan Pengurus
                     </button>
-                    <a href="/pengurus-rw" class="w-full md:w-auto px-8 py-3.5 bg-white border border-gray-300 text-gray-700 font-bold text-sm rounded-xl hover:bg-gray-50 transition text-center">
+                    <a href="/admin/pengurus" class="w-full md:w-auto px-8 py-3.5 bg-white border border-gray-300 text-gray-700 font-bold text-sm rounded-xl hover:bg-gray-50 transition text-center">
                         Batal
                     </a>
                 </div>

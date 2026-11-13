@@ -19,11 +19,11 @@
             <!-- HEADER SECTION -->
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                    <a href="/dashboard" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-2 group">
+                    <a href="/admin/galeri" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-purple-600 transition mb-2 group">
                         <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
-                        Kembali ke Dasbor
+                        Kembali ke daftar galeri
                     </a>
                     <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
                         Galeri Dokumentasi <span class="text-purple-600">Kegiatan RW 021</span>
@@ -136,7 +136,7 @@
                     </div>
 
                     <div class="p-6 bg-gray-50 border-t border-gray-100 flex items-center justify-end gap-3">
-                        <a href="/dashboard" class="px-5 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold text-xs rounded-xl transition">
+                        <a href="/admin/galeri" class="px-5 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold text-xs rounded-xl transition">
                             Batal
                         </a>
                         <button type="submit" class="px-6 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl transition shadow-md flex items-center gap-2">
