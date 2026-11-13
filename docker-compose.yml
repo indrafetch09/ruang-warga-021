@@ -17,7 +17,9 @@
 #   restart. Untuk bootstrap awal, jalankan manual:
 #     docker compose exec app php database/migrate.php
 #     docker compose exec app php database/seed_user.php
-#   (pastikan database/schema.sql tersedia - saat ini belum ada di repo)
+#     docker compose exec app php database/seed_dummy.php
+#   (seed_dummy.php mengisi data contoh untuk semua menu admin & aman
+#    dijalankan berulang kali tanpa membuat data ganda)
 
 services:
   app:
