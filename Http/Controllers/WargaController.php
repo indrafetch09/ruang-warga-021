@@ -71,7 +71,7 @@ class WargaController
     {
         if (!Csrf::verify($_POST['_csrf_token'] ?? null)) {
             Session::flash('error', 'Sesi keamanan telah kadaluarsa. Silakan coba lagi.');
-            return redirect('/admin/warga/create');
+            return redirect('/admin/warga');
         }
 
         $user = $this->getCurrentUser();
