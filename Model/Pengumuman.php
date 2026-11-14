@@ -10,6 +10,26 @@ class Pengumuman extends Model
 {
     public static $table = 'pengumuman';
 
+    /**
+     * Kategori pengumuman yang valid.
+     * Key harus sama dengan nilai enum kolom `kategori` di database.
+     */
+    public const KATEGORI = [
+        'urgent'   => 'Penting / Urgent',
+        'kegiatan' => 'Kegiatan',
+        'info'     => 'Informasi',
+        'umum'     => 'Umum',
+    ];
+
+    public const KATEGORI_DEFAULT = 'umum';
+
+    public static function labelKategori(?string $kategori): string
+    {
+        $kategori = strtolower(trim((string) $kategori));
+
+        return self::KATEGORI[$kategori] ?? ucfirst($kategori ?: self::KATEGORI_DEFAULT);
+    }
+
     // Scope: Ambil hanya pengumuman yang aktif/di-publish untuk Beranda Warga
     public static function getPublished()
     {

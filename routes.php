@@ -85,7 +85,7 @@ $router->get('/dashboard', [AdminController::class, 'dashboard'])->only('auth');
 // --- A. Manajemen Data Warga ---
 $router->get('/admin/warga', [WargaController::class, 'index'])->only('auth');
 $router->get('/admin/warga/create', [WargaController::class, 'create'])->only('auth');
-$router->post('/warga', [WargaController::class, 'store'])->only('auth');
+$router->post('/admin/warga', [WargaController::class, 'store'])->only('auth');
 
 // Edit, Update & Delete Warga
 $router->get('/admin/warga/edit', [WargaController::class, 'edit'])->only('auth');

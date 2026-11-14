@@ -652,6 +652,47 @@ function filterGaleriRealtime() {
     }
 }
 
+function filterPengumumanRealtime() {
+    const searchInput = document.getElementById("searchPengumuman");
+    const katSelect = document.getElementById("filterKategoriPengumuman");
+    const statusSelect = document.getElementById("filterStatusPengumuman");
+
+    if (!searchInput || !katSelect || !statusSelect) return;
+
+    const query = searchInput.value.toLowerCase().trim();
+    const kategori = katSelect.value.toLowerCase();
+    const status = statusSelect.value.toLowerCase();
+
+    const rows = document.querySelectorAll(".pengumuman-row");
+    let visibleCount = 0;
+
+    rows.forEach((row) => {
+        const text = row.textContent.toLowerCase();
+        const rowKat = (row.getAttribute("data-kategori") || "").toLowerCase();
+        const rowStatus = (row.getAttribute("data-status") || "").toLowerCase();
+
+        const matchesQuery = query === "" || text.includes(query);
+        const matchesKat = kategori === "" || rowKat === kategori;
+        const matchesStatus = status === "" || rowStatus === status;
+
+        if (matchesQuery && matchesKat && matchesStatus) {
+            row.style.display = "";
+            visibleCount++;
+        } else {
+            row.style.display = "none";
+        }
+    });
+
+    const emptyState = document.getElementById("emptyPengumumanSearchState");
+    if (emptyState) {
+        if (visibleCount === 0 && rows.length > 0) {
+            emptyState.classList.remove("hidden");
+        } else {
+            emptyState.classList.add("hidden");
+        }
+    }
+}
+
 /* ==========================================================================
    5. DYNAMIC DEPENDENT DROPDOWNS HELPERS
    ========================================================================== */

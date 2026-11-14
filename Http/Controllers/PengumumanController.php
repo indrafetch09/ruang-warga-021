@@ -77,7 +77,7 @@ class PengumumanController
         }
 
         $judul            = trim($_POST['judul'] ?? '');
-        $kategori         = trim($_POST['kategori'] ?? 'umum');
+        $kategori         = strtolower(trim($_POST['kategori'] ?? Pengumuman::KATEGORI_DEFAULT));
         $tanggalPublikasi = $_POST['tanggal_publikasi'] ?? date('Y-m-d');
         $pesan            = trim($_POST['pesan'] ?? '');
         $labelTombol      = trim($_POST['label_tombol'] ?? '');
@@ -89,6 +89,10 @@ class PengumumanController
 
         if (!Validator::string($judul, 3, 255)) {
             $errors['judul'] = 'Judul pengumuman harus diisi (3 - 255 karakter).';
+        }
+
+        if (!array_key_exists($kategori, Pengumuman::KATEGORI)) {
+            $errors['kategori'] = 'Kategori pengumuman tidak valid.';
         }
 
         if (!Validator::string($pesan, 10)) {
@@ -125,7 +129,7 @@ class PengumumanController
         );
 
         Session::flash('sukses', 'Pengumuman berhasil dibuat dan dipublikasikan!');
-        return redirect('/dashboard');
+        return redirect('/admin/pengumuman');
     }
 
     /**
@@ -180,7 +184,7 @@ class PengumumanController
         }
 
         $judul            = trim($_POST['judul'] ?? '');
-        $kategori         = trim($_POST['kategori'] ?? 'umum');
+        $kategori         = strtolower(trim($_POST['kategori'] ?? Pengumuman::KATEGORI_DEFAULT));
         $tanggalPublikasi = $_POST['tanggal_publikasi'] ?? date('Y-m-d');
         $pesan            = trim($_POST['pesan'] ?? '');
         $labelTombol      = trim($_POST['label_tombol'] ?? '');
@@ -192,6 +196,10 @@ class PengumumanController
 
         if (!Validator::string($judul, 3, 255)) {
             $errors['judul'] = 'Judul pengumuman harus diisi (3 - 255 karakter).';
+        }
+
+        if (!array_key_exists($kategori, Pengumuman::KATEGORI)) {
+            $errors['kategori'] = 'Kategori pengumuman tidak valid.';
         }
 
         if (!Validator::string($pesan, 10)) {

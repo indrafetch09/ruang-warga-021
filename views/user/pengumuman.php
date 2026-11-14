@@ -48,10 +48,9 @@
                         $selectedCat = strtolower($kategori ?? '');
                         $categories = [
                             ''         => 'Semua',
-                            'mendesak' => 'Mendesak',
-                            'penting'  => 'Penting',
+                            'urgent'   => 'Penting',
                             'kegiatan' => 'Kegiatan',
-                            'sosial'   => 'Sosial',
+                            'info'     => 'Informasi',
                             'umum'     => 'Umum'
                         ];
                         ?>
@@ -97,18 +96,18 @@
                         $tautanUrl = is_object($p) ? ($p->tautan_url ?? '') : ($p['tautan_url'] ?? '');
 
                         // Styling badges based on category
-                        $badgeBg = 'bg-purple-100 text-purple-800 border-purple-200';
-                        $accentColor = 'bg-purple-600';
+                        $badgeBg = 'bg-gray-100 text-gray-700 border-gray-200';
+                        $accentColor = 'bg-gray-500';
 
-                        if (in_array($kat, ['mendesak', 'darurat', 'penting'])) {
+                        if ($kat === 'urgent') {
                             $badgeBg = 'bg-rose-100 text-rose-800 border-rose-200';
                             $accentColor = 'bg-rose-600';
-                        } elseif (in_array($kat, ['kegiatan', 'sosial', 'agenda'])) {
+                        } elseif ($kat === 'kegiatan') {
                             $badgeBg = 'bg-emerald-100 text-emerald-800 border-emerald-200';
                             $accentColor = 'bg-emerald-600';
-                        } elseif (in_array($kat, ['layanan', 'fasilitas'])) {
-                            $badgeBg = 'bg-blue-100 text-blue-800 border-blue-200';
-                            $accentColor = 'bg-blue-600';
+                        } elseif ($kat === 'info') {
+                            $badgeBg = 'bg-purple-100 text-purple-800 border-purple-200';
+                            $accentColor = 'bg-purple-600';
                         }
                         ?>
                         <div class="bg-white rounded-lg border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col justify-between overflow-hidden relative group">
@@ -117,7 +116,7 @@
                                 <!-- Badge & Tanggal -->
                                 <div class="flex items-center justify-between gap-2">
                                     <span class="px-3 py-1 rounded-lg text-[11px] font-extrabold uppercase tracking-wider border <?= $badgeBg ?>">
-                                        <?= htmlspecialchars(ucfirst($kat)) ?>
+                                        <?= htmlspecialchars(\App\Models\Pengumuman::labelKategori($kat)) ?>
                                     </span>
                                     <span class="text-xs font-semibold text-gray-400 flex items-center gap-1">
                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

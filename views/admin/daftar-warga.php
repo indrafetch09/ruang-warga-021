@@ -155,7 +155,7 @@
                 </div>
                 <div class="text-xs text-sky-800 leading-relaxed">
                     <strong class="font-bold">Keamanan & Privasi Data Warga:</strong>
-                    NIK Warga dan NIK Kepala Keluarga dienkripsi secara ketat di basis data. Sebagai pengurus terautentikasi, Anda dapat meninjau rincian lengkap melalui tombol <span class="font-bold underline">Detail</span> di setiap baris.
+                    NIK Warga dan NIK Kepala Keluarga dienkripsi secara ketat di basis data. Sebagai pengurus terautentikasi, Anda dapat meninjau rincian lengkap melalui ikon <span class="font-bold underline">mata (Detail)</span> di setiap baris.
                 </div>
             </div>
 
@@ -248,12 +248,17 @@
                                                 RT <?= sprintf('%02d', $wArr['rt']) ?>
                                             </td>
                                             <td class="px-6 py-4 text-center">
-                                                <div class="flex items-center justify-center gap-2">
-                                                    <button onclick='showDetailModal(<?= json_encode($wArr) ?>)' class="text-purple-600 hover:text-purple-800 font-bold text-xs px-3 py-1.5 rounded-lg bg-purple-50 hover:bg-purple-100 transition">
-                                                        Detail
+                                                <div class="flex items-center justify-center gap-1.5">
+                                                    <button onclick='showDetailModal(<?= json_encode($wArr) ?>)' class="p-1.5 bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 rounded-lg transition" title="Detail Warga" aria-label="Detail Warga">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                        </svg>
                                                     </button>
-                                                    <a href="/admin/warga/edit?id=<?= $wArr['id'] ?>" class="text-amber-600 hover:text-amber-800 font-bold text-xs px-3 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 transition">
-                                                        Edit
+                                                    <a href="/admin/warga/edit?id=<?= $wArr['id'] ?>" class="p-1.5 bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100 rounded-lg transition" title="Edit Warga" aria-label="Edit Warga">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                        </svg>
                                                     </a>
                                                 </div>
                                             </td>
@@ -304,7 +309,7 @@
                                         <th class="px-6 py-4">Status Keluarga</th>
                                         <th class="px-6 py-4">Alamat Rumah</th>
                                         <th class="px-6 py-4 text-center">RT</th>
-                                        <th class="px-6 py-4 text-center">Aksi (ACC / Tolak)</th>
+                                        <th class="px-6 py-4 text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-100 text-sm text-gray-700">
@@ -330,25 +335,32 @@
                                                 RT <?= sprintf('%02d', $pwArr['rt']) ?>
                                             </td>
                                             <td class="px-6 py-4 text-center">
-                                                <div class="flex items-center justify-center gap-2">
-                                                    <button onclick='showDetailModal(<?= json_encode($pwArr) ?>)' class="text-purple-600 hover:text-purple-800 font-bold text-xs px-3 py-1.5 rounded-lg bg-purple-50 hover:bg-purple-100 transition">
-                                                        Detail
+                                                <div class="flex items-center justify-center gap-1.5">
+                                                    <button onclick='showDetailModal(<?= json_encode($pwArr) ?>)' class="p-1.5 bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 rounded-lg transition" title="Detail Warga" aria-label="Detail Warga">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                        </svg>
                                                     </button>
 
                                                     <?php if ($isRw): ?>
                                                         <form action="/admin/warga/approve" method="POST" class="inline">
                                                             <?= \Core\Csrf::field() ?>
                                                             <input type="hidden" name="warga_id" value="<?= $pwArr['id'] ?>">
-                                                            <button type="submit" class="text-emerald-700 hover:text-emerald-900 font-bold text-xs px-3 py-1.5 rounded-lg bg-emerald-100 hover:bg-emerald-200 transition" onclick="return confirm('Setujui (ACC) pengajuan warga ini?')">
-                                                                ACC
+                                                            <button type="submit" class="p-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 rounded-lg transition" title="Setujui (ACC)" aria-label="Setujui (ACC)" onclick="return confirm('Setujui (ACC) pengajuan warga ini?')">
+                                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                                </svg>
                                                             </button>
                                                         </form>
 
                                                         <form action="/admin/warga/reject" method="POST" class="inline">
                                                             <?= \Core\Csrf::field() ?>
                                                             <input type="hidden" name="warga_id" value="<?= $pwArr['id'] ?>">
-                                                            <button type="submit" class="text-rose-700 hover:text-rose-900 font-bold text-xs px-3 py-1.5 rounded-lg bg-rose-100 hover:bg-rose-200 transition" onclick="return confirm('Tolak pengajuan warga ini?')">
-                                                                Tolak
+                                                            <button type="submit" class="p-1.5 bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 rounded-lg transition" title="Tolak" aria-label="Tolak" onclick="return confirm('Tolak pengajuan warga ini?')">
+                                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                                </svg>
                                                             </button>
                                                         </form>
                                                     <?php else: ?>
