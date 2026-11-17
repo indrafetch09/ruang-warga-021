@@ -134,8 +134,8 @@ $router->get('/admin/pengumuman/edit', [PengumumanController::class, 'edit'])->o
 $router->post('/admin/pengumuman/update', [PengumumanController::class, 'update'])->only('auth');
 $router->post('/admin/pengumuman/delete', [PengumumanController::class, 'destroy'])->only('auth');
 
-$router->get('/admin/warga/template', [App\Controllers\WargaController::class, 'downloadTemplate'])->only('auth');
-$router->post('/admin/warga/import', [App\Controllers\WargaController::class, 'import'])->only('auth');
+$router->get('/admin/warga/template', [WargaController::class, 'downloadTemplate'])->only('auth');
+$router->post('/admin/warga/import', [WargaController::class, 'import'])->only('auth');
 
 // --- G. Pengaturan Sistem & Akun ---
 $router->get('/admin/pengaturan', [PengaturanController::class, 'index'])->only('auth');

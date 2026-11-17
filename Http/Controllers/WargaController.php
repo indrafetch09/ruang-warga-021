@@ -26,7 +26,7 @@ class WargaController
         if ($user->isRw()) {
             $wargaList   = Warga::getByStatus('verified');
             $pendingList = Warga::getByStatus('pending');
-        } else if ($user->isRt()) {
+        } elseif ($user->isRt()) {
             $rtAssigned  = $user->getRtAssigned();
             $wargaList   = Warga::getByRtAndStatus($rtAssigned, 'verified');
             $pendingList = Warga::getByRtAndStatus($rtAssigned, 'pending');
@@ -57,7 +57,7 @@ class WargaController
         return view('admin/daftar-warga.php', [
             'user'        => $user,
             'wargaList'   => $decryptData($wargaList),
-            'pendingList' => $decryptData($pendingList)
+            'pendingList' => $decryptData($pendingList),
         ]);
     }
 
@@ -91,7 +91,7 @@ class WargaController
 
         $statusVerifikasi = $user->isRw() ? 'verified' : 'pending';
         $rtVal = $user->isRt() ? $user->getRtAssigned() : ($_POST['rt'] ?? 1);
-        $rtFormatted = sprintf('%02d', (int)$rtVal);
+        $rtFormatted = sprintf('%02d', (int) $rtVal);
 
         $pekerjaan = trim($_POST['pekerjaan'] ?? 'Karyawan Swasta');
 
@@ -114,8 +114,8 @@ class WargaController
                 'pekerjaan'           => !empty($pekerjaan) ? $pekerjaan : 'Karyawan Swasta',
                 'status_keluarga'     => $statusKeluarga,
                 'status_verifikasi'   => $statusVerifikasi,
-                'created_by'          => $user->id
-            ]
+                'created_by'          => $user->id,
+            ],
         );
 
         if ($user->isRt()) {
@@ -150,7 +150,7 @@ class WargaController
 
         return view('admin/edit-warga.php', [
             'user'  => $user,
-            'warga' => $warga
+            'warga' => $warga,
         ]);
     }
 
@@ -182,7 +182,7 @@ class WargaController
         $nikKkAman = Crypt::encrypt($nikKkRaw);
 
         $rtVal = $user->isRt() ? $user->getRtAssigned() : ($_POST['rt'] ?? 1);
-        $rtFormatted = sprintf('%02d', (int)$rtVal);
+        $rtFormatted = sprintf('%02d', (int) $rtVal);
         $pekerjaan = trim($_POST['pekerjaan'] ?? 'Karyawan Swasta');
 
         $db->query(
@@ -214,7 +214,7 @@ class WargaController
                 'agama'               => $_POST['agama'] ?? null,
                 'pekerjaan'           => !empty($pekerjaan) ? $pekerjaan : 'Karyawan Swasta',
                 'status_keluarga'     => $statusKeluarga,
-            ]
+            ],
         );
 
         Session::flash('sukses', 'Data warga berhasil diperbarui!');
@@ -237,7 +237,7 @@ class WargaController
         if ($wargaId) {
             $db = App::resolve(Database::class);
             $db->query("UPDATE " . (Warga::$table ?? 'warga') . " SET status_verifikasi = 'verified' WHERE id = :id", [
-                'id' => $wargaId
+                'id' => $wargaId,
             ]);
             Session::flash('sukses', 'Data warga berhasil diverifikasi (ACC).');
         }
@@ -261,7 +261,7 @@ class WargaController
         if ($wargaId) {
             $db = App::resolve(Database::class);
             $db->query("UPDATE " . (Warga::$table ?? 'warga') . " SET status_verifikasi = 'rejected' WHERE id = :id", [
-                'id' => $wargaId
+                'id' => $wargaId,
             ]);
             Session::flash('sukses', 'Pengajuan data warga telah ditolak.');
         }
@@ -280,7 +280,7 @@ class WargaController
         if ($wargaId) {
             $db = App::resolve(Database::class);
             $db->query("DELETE FROM " . (Warga::$table ?? 'warga') . " WHERE id = :id", [
-                'id' => $wargaId
+                'id' => $wargaId,
             ]);
             Session::flash('sukses', 'Data warga berhasil dihapus.');
         }
@@ -346,8 +346,10 @@ class WargaController
         $maxHeaderScan = 15;
 
         for ($scan = 0; $scan < $maxHeaderScan; $scan++) {
-            $row = fgetcsv($handle, 4000, $delimiter);
-            if (!$row) break;
+            $row = fgetcsv($handle, 4000, $delimiter, '"', '');
+            if (!$row) {
+                break;
+            }
 
             $rowString = strtolower(implode(' ', $row));
             if (str_contains($rowString, 'nama') || str_contains($rowString, 'nik') || str_contains($rowString, 'alamat')) {
@@ -498,15 +500,17 @@ class WargaController
             'Buruh Nelayan / Perikanan',
             'Buruh Peternakan',
             'Atlet',
-            'Lainnya'
+            'Lainnya',
         ];
 
         $normalizePekerjaan = function ($raw) use ($validPekerjaanList) {
-            $clean = preg_replace('/[\r\n\t]+/', ' ', (string)$raw);
+            $clean = preg_replace('/[\r\n\t]+/', ' ', (string) $raw);
             $clean = preg_replace('/\s+/', ' ', $clean);
             $clean = trim($clean);
 
-            if (empty($clean)) return 'Karyawan Swasta';
+            if (empty($clean)) {
+                return 'Karyawan Swasta';
+            }
 
             if (str_contains($clean, '-')) {
                 $parts = explode('-', $clean);
@@ -516,30 +520,74 @@ class WargaController
             $lower = strtolower($clean);
 
             foreach ($validPekerjaanList as $item) {
-                if (strtolower($item) === $lower) return $item;
+                if (strtolower($item) === $lower) {
+                    return $item;
+                }
             }
 
-            if (str_contains($lower, 'swasta') || str_contains($lower, 'karyawan')) return 'Karyawan Swasta';
-            if (str_contains($lower, 'rumah tangga') || str_contains($lower, 'irt') || str_contains($lower, 'pengurus rumah') || str_contains($lower, 'mengurus')) return 'Mengurus Rumah Tangga';
-            if (str_contains($lower, 'pelajar') || str_contains($lower, 'mahasis')) return 'Pelajar/Mahasiswa';
-            if (str_contains($lower, 'blm') || str_contains($lower, 'belum') || str_contains($lower, 'tidak bekerja')) return 'Belum/Tidak Bekerja';
-            if (str_contains($lower, 'wira') || str_contains($lower, 'usaha')) return 'Wiraswasta';
-            if (str_contains($lower, 'pns') || str_contains($lower, 'pegawai negeri') || str_contains($lower, 'asn')) return 'Pegawai Negeri Sipil (PNS)';
-            if (str_contains($lower, 'dokter')) return 'Dokter';
-            if (str_contains($lower, 'perawat')) return 'Perawat';
-            if (str_contains($lower, 'bidan')) return 'Bidan';
-            if (str_contains($lower, 'bumn')) return 'Karyawan BUMN';
-            if (str_contains($lower, 'bumd')) return 'Karyawan BUMD';
-            if (str_contains($lower, 'honorer')) return 'Karyawan Honorer';
-            if (str_contains($lower, 'guru')) return 'Guru';
-            if (str_contains($lower, 'dosen')) return 'Dosen';
-            if (str_contains($lower, 'tni') || str_contains($lower, 'tentara')) return 'Tentara Nasional Indonesia (TNI)';
-            if (str_contains($lower, 'polri') || str_contains($lower, 'polisi')) return 'Kepolisian RI (POLRI)';
-            if (str_contains($lower, 'dagang') || str_contains($lower, 'pedagang')) return 'Pedagang';
-            if (str_contains($lower, 'pensiun')) return 'Pensiunan';
-            if (str_contains($lower, 'buruh')) return 'Buruh Harian Lepas';
-            if (str_contains($lower, 'sopir') || str_contains($lower, 'driver')) return 'Sopir';
-            if (str_contains($lower, 'tani') || str_contains($lower, 'kebun')) return 'Petani / Pekebun';
+            if (str_contains($lower, 'swasta') || str_contains($lower, 'karyawan')) {
+                return 'Karyawan Swasta';
+            }
+            if (str_contains($lower, 'rumah tangga') || str_contains($lower, 'irt') || str_contains($lower, 'pengurus rumah') || str_contains($lower, 'mengurus')) {
+                return 'Mengurus Rumah Tangga';
+            }
+            if (str_contains($lower, 'pelajar') || str_contains($lower, 'mahasis')) {
+                return 'Pelajar/Mahasiswa';
+            }
+            if (str_contains($lower, 'blm') || str_contains($lower, 'belum') || str_contains($lower, 'tidak bekerja')) {
+                return 'Belum/Tidak Bekerja';
+            }
+            if (str_contains($lower, 'wira') || str_contains($lower, 'usaha')) {
+                return 'Wiraswasta';
+            }
+            if (str_contains($lower, 'pns') || str_contains($lower, 'pegawai negeri') || str_contains($lower, 'asn')) {
+                return 'Pegawai Negeri Sipil (PNS)';
+            }
+            if (str_contains($lower, 'dokter')) {
+                return 'Dokter';
+            }
+            if (str_contains($lower, 'perawat')) {
+                return 'Perawat';
+            }
+            if (str_contains($lower, 'bidan')) {
+                return 'Bidan';
+            }
+            if (str_contains($lower, 'bumn')) {
+                return 'Karyawan BUMN';
+            }
+            if (str_contains($lower, 'bumd')) {
+                return 'Karyawan BUMD';
+            }
+            if (str_contains($lower, 'honorer')) {
+                return 'Karyawan Honorer';
+            }
+            if (str_contains($lower, 'guru')) {
+                return 'Guru';
+            }
+            if (str_contains($lower, 'dosen')) {
+                return 'Dosen';
+            }
+            if (str_contains($lower, 'tni') || str_contains($lower, 'tentara')) {
+                return 'Tentara Nasional Indonesia (TNI)';
+            }
+            if (str_contains($lower, 'polri') || str_contains($lower, 'polisi')) {
+                return 'Kepolisian RI (POLRI)';
+            }
+            if (str_contains($lower, 'dagang') || str_contains($lower, 'pedagang')) {
+                return 'Pedagang';
+            }
+            if (str_contains($lower, 'pensiun')) {
+                return 'Pensiunan';
+            }
+            if (str_contains($lower, 'buruh')) {
+                return 'Buruh Harian Lepas';
+            }
+            if (str_contains($lower, 'sopir') || str_contains($lower, 'driver')) {
+                return 'Sopir';
+            }
+            if (str_contains($lower, 'tani') || str_contains($lower, 'kebun')) {
+                return 'Petani / Pekebun';
+            }
 
             return 'Lainnya';
         };
@@ -550,7 +598,7 @@ class WargaController
             $nomor = !empty($nomorInput) ? trim($nomorInput) : '';
 
             if (!empty($alamatRaw)) {
-                $raw = preg_replace('/[\r\n\t]+/', ' ', (string)$alamatRaw);
+                $raw = preg_replace('/[\r\n\t]+/', ' ', (string) $alamatRaw);
                 $raw = trim(preg_replace('/\s+/', ' ', $raw));
 
                 // A. Ekstraksi Nomor Rumah
@@ -600,11 +648,19 @@ class WargaController
 
         // 6. SANITASI STATUS HUBUNGAN KELUARGA
         $normalizeStatusKeluarga = function ($raw) {
-            $clean = strtolower(trim(preg_replace('/[\r\n\t\s]+/', ' ', (string)$raw)));
-            if (str_contains($clean, 'kepala') || str_contains($clean, 'suami')) return 'kepala_keluarga';
-            if (str_contains($clean, 'istri')) return 'istri';
-            if (str_contains($clean, 'anak')) return 'anak';
-            if (str_contains($clean, 'orang tua') || str_contains($clean, 'mertua') || str_contains($clean, 'ayah') || str_contains($clean, 'ibu')) return 'orang_tua';
+            $clean = strtolower(trim(preg_replace('/[\r\n\t\s]+/', ' ', (string) $raw)));
+            if (str_contains($clean, 'kepala') || str_contains($clean, 'suami')) {
+                return 'kepala_keluarga';
+            }
+            if (str_contains($clean, 'istri')) {
+                return 'istri';
+            }
+            if (str_contains($clean, 'anak')) {
+                return 'anak';
+            }
+            if (str_contains($clean, 'orang tua') || str_contains($clean, 'mertua') || str_contains($clean, 'ayah') || str_contains($clean, 'ibu')) {
+                return 'orang_tua';
+            }
             return 'famili_lain';
         };
 
@@ -614,13 +670,15 @@ class WargaController
         $currentKepalaKeluargaNik = null;
 
         // 7. PROSES EKSEKUSI DATA
-        while (($row = fgetcsv($handle, 4000, $delimiter)) !== false) {
+        while (($row = fgetcsv($handle, 4000, $delimiter, '"', '')) !== false) {
             $row = array_map(function ($v) {
-                $v = preg_replace('/[\r\n\t]+/', ' ', (string)$v);
+                $v = preg_replace('/[\r\n\t]+/', ' ', (string) $v);
                 return trim(preg_replace('/\s+/', ' ', $v), " '\"");
             }, $row);
 
-            if (empty(array_filter($row))) continue;
+            if (empty(array_filter($row))) {
+                continue;
+            }
 
             $nikRaw       = $row[$headerMap['nik'] ?? 3] ?? '';
             $nikKkRaw     = $row[$headerMap['nik_kk'] ?? -1] ?? '';
@@ -669,15 +727,15 @@ class WargaController
                 }
 
                 if (preg_match('/(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})/', $tglLahirStr, $mDate)) {
-                    $tglFormatted = sprintf('%04d-%02d-%02d', (int)$mDate[3], (int)$mDate[2], (int)$mDate[1]);
+                    $tglFormatted = sprintf('%04d-%02d-%02d', (int) $mDate[3], (int) $mDate[2], (int) $mDate[1]);
                 } elseif (preg_match('/(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})/', $tglLahirStr, $mDate)) {
-                    $tglFormatted = sprintf('%04d-%02d-%02d', (int)$mDate[1], (int)$mDate[2], (int)$mDate[3]);
+                    $tglFormatted = sprintf('%04d-%02d-%02d', (int) $mDate[1], (int) $mDate[2], (int) $mDate[3]);
                 }
             }
 
             // RT & Gender
-            $rtNum = (int)preg_replace('/[^0-9]/', '', (string)$rtInput);
-            $rtNumber = $user->isRt() ? (int)$user->getRtAssigned() : ($rtNum > 0 ? $rtNum : 8);
+            $rtNum = (int) preg_replace('/[^0-9]/', '', (string) $rtInput);
+            $rtNumber = $user->isRt() ? (int) $user->getRtAssigned() : ($rtNum > 0 ? $rtNum : 8);
             $rtFormatted = sprintf('%02d', max(1, min(10, $rtNumber)));
 
             $upperJk = strtoupper($jkRaw);
@@ -710,8 +768,8 @@ class WargaController
                     'pekerjaan'           => $pekerjaan,
                     'status_keluarga'     => $statusKeluarga,
                     'status_verifikasi'   => $statusVerifikasi,
-                    'created_by'          => $user->id
-                ]
+                    'created_by'          => $user->id,
+                ],
             );
 
             $suksesCount++;
@@ -726,5 +784,40 @@ class WargaController
         }
 
         return redirect('/admin/warga');
+    }
+
+    public function downloadTemplate()
+    {
+
+        $filename = 'template-data-warga-rw021.csv';
+
+        header('Content-Type: text/csv; charset=UTF-8');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        header('Cache-Control: no-store, no-cache, must-revalidate');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+
+        $output = fopen('php://output', 'w');
+
+        // BOM agar Excel membaca UTF-8 dengan benar
+        fwrite($output, "\xEF\xBB\xBF");
+
+        fputcsv($output, [
+            'NIK',
+            'NIK KK',
+            'Nama',
+            'Alamat',
+            'Tempat, Tanggal Lahir',
+            'Jenis Kelamin',
+            'RT',
+            'Blok',
+            'No Rumah',
+            'Agama',
+            'Status Keluarga',
+            'Pekerjaan',
+        ], ',', '"', '');
+
+        fclose($output);
+        exit;
     }
 }
